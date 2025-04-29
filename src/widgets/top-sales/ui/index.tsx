@@ -73,14 +73,16 @@ export const TopSalesSection: React.FC = () => {
           </div>
         </div>
       </div>
-      {activeTabData?.category && (
-        <ProductTab
-          ref={swiperRef}
-          key={activeTab}
-          category={activeTabData.category}
-          productList={productsDataList}
-        />
-      )}
+      <div className={css.top_sales_section_content}>
+        {activeTabData?.category && (
+          <ProductTab
+            ref={swiperRef}
+            key={activeTab}
+            category={activeTabData.category}
+            productList={productsDataList}
+          />
+        )}
+      </div>
     </section>
   )
 }

@@ -1,5 +1,3 @@
-"use cleint"
-
 import React from "react"
 import css from "./styles.module.scss"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
