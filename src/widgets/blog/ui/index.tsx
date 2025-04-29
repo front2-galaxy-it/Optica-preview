@@ -12,6 +12,7 @@ import { Pagination } from "swiper/modules"
 import { SliderButton } from "@/shared/ui/buttons"
 
 const blogCardDataList: IBlogCardProps[] = blogCardData.cards
+ 
 
 export const BlogSection: React.FC = () => {
   const swiperRef = useRef<SwiperType | null>(null)
