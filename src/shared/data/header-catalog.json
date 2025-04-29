@@ -1,0 +1,97 @@
+{
+  "category_list": [
+    {
+      "href": "/",
+      "label": "Сонцезахисні окуляри"
+    },
+    {
+      "href": "/",
+      "label": "Контактні лінзи"
+    },
+    {
+      "href": "/",
+      "label": "Оправи"
+    },
+    {
+      "href": "/",
+      "label": "Лінзи для окулярів"
+    },
+    {
+      "href": "/",
+      "label": "Засоби для догляду"
+    },
+    {
+      "href": "/",
+      "label": "Сертифікати"
+    },
+    {
+      "href": "/",
+      "label": "Акціі",
+      "specialColorRed": true
+    }
+  ],
+  "link_list": [
+    {
+      "href": "/",
+      "label": "Категорія"
+    },
+    {
+      "href": "/",
+      "label": "Бренди"
+    },
+    {
+      "href": "/",
+      "label": "Бренди"
+    },
+    {
+      "href": "/",
+      "label": "Форма оправи"
+    },
+    {
+      "href": "/",
+      "label": "Матеріал"
+    },
+    {
+      "href": "/",
+      "label": "Колекція"
+    },
+    {
+      "href": "/",
+      "label": "Аксесуари"
+    }
+  ],
+  "brand_list": [
+    {
+      "href": "/",
+      "label": "Polaroid"
+    },
+    {
+      "href": "/",
+      "label": "Ray-Ban"
+    },
+    {
+      "href": "/",
+      "label": "EMPORIO ARMANI"
+    },
+    {
+      "href": "/",
+      "label": "Gucci"
+    },
+    {
+      "href": "/",
+      "label": "Tom Ford"
+    },
+    {
+      "href": "/",
+      "label": "Miu Miu"
+    },
+    {
+      "href": "/",
+      "label": "Miu Miu"
+    },
+    {
+      "href": "/",
+      "label": "Miu Miu"
+    }
+  ]
+}

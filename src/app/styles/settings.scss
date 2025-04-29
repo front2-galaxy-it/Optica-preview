@@ -1,0 +1,107 @@
+html {
+  font-family: var(--ff-primary);
+  font-size: var(--font-size);
+  font-weight: 400;
+  color: var(--text-color-primary);
+}
+
+body {
+  padding-right: var(--scrollbar-width);
+
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+
+  &._lock {
+    overflow: hidden;
+  }
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  color: var(--gray4E);
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  @include adaptive-value("font-size", 64, 40, 1);
+}
+
+h2 {
+  @include adaptive-value("font-size", 48, 32, 1);
+}
+
+h3 {
+  @include adaptive-value("font-size", 40, 28, 1);
+}
+
+h4 {
+  @include adaptive-value("font-size", 36, 24, 1);
+}
+
+h5 {
+  @include adaptive-value("font-size", 32, 24, 1);
+}
+
+h6 {
+  @include adaptive-value("font-size", 24, 20, 1);
+}
+
+p {
+  color: var(--gray62);
+  line-height: 150%;
+  letter-spacing: 0.54px;
+}
+
+input {
+  caret-color: var(--blue-primary);
+  color: var(--gray);
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.swiper-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  bottom: 30px !important;
+  position: static !important;
+  margin-top: 22px;
+
+  // @include media-down(lg) {
+  // }
+}
+
+.swiper-pagination-bullet {
+  width: 24px !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+  background-color: var(--blueF0) !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  width: 48px !important;
+  background-color: var(--blue-primary) !important;
+  transition: all 0.3s ease;
+}

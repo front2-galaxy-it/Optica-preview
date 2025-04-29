@@ -1,0 +1,46 @@
+.review_card {
+  background-color: var(--white);
+  @include adaptive-value("padding", 24, 16, 1);
+  border-radius: 8px;
+  max-width: 420px;
+
+  &_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    @include adaptive-value("margin-bottom", 16, 8, 1);
+  }
+
+  .username {
+    @include adaptive-value("font-size", 24, 20, 1);
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--gray4E);
+  }
+
+  .nickname {
+    @include adaptive-value("font-size", 18, 14, 1);
+    color: var(--gray8C);
+  }
+
+  .card_icon {
+    @include adaptive-value("width", 60, 40, 1);
+    @include adaptive-value("height", 60, 40, 1);
+  }
+
+  &_text {
+    @include adaptive-value("font-size", 18, 16, 1);
+    color: var(--gray62);
+    @include adaptive-value("margin-bottom", 16, 8, 1);
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &_date {
+    @include adaptive-value("font-size", 18, 16, 1);
+    color: var(--gray8C);
+  }
+}

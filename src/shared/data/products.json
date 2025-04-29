@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "id": "SAINT LAURENT SL 276 MICA 032 GREY",
+      "name": "SAINT LAURENT SL 276 MICA 032 GREY",
+      "category": "Сонячні окуляри",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["unavailable"],
+      "labelTypes": ["discount"],
+      "price": 14000
+    },
+    {
+      "id": "SAINT LAURENT SL 276 MICA 032 ",
+      "name": "SAINT LAURENT SL 276 MICA 032 GREY",
+      "category": "Сонячні окуляри",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["discount"],
+      "price": 14000,
+      "oldPrice": 18000
+    },
+    {
+      "id": "SAINT LAURENT SL 276 MICA  GREY",
+      "name": "SAINT LAURENT SL 276 MICA 032 GREY",
+      "category": "Сонячні окуляри",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["pre-order"],
+      "labelTypes": ["discount"],
+      "price": 14000,
+      "oldPrice": 18000
+    },
+    {
+      "id": "SAINT LAURENT SL 276  032 GREY",
+      "name": "SAINT LAURENT SL 276 MICA 032 GREY",
+      "category": "Сонячні окуляри",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["discount"],
+      "price": 14000
+    },
+    {
+      "id": "SAINT LAURENT 276  032 GREY",
+      "name": "SAINT LAURENT SL 276 MICA 032 GREY",
+      "category": "Дитячі окуляри",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["discount"],
+      "price": 14000,
+      "oldPrice": 18000
+    }
+  ]
+}

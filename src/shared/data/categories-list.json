@@ -1,0 +1,34 @@
+{
+  "categories_list": [
+    {
+      "href": "/",
+      "label": "Сонцезахисні окуляри"
+    },
+    {
+      "href": "/",
+      "label": "Контактні лінзи"
+    },
+    {
+      "href": "/",
+      "label": "Оправи"
+    },
+    {
+      "href": "/",
+      "label": "Лінзи для окулярів"
+    },
+    {
+      "href": "/",
+      "label": "Засоби для догляду"
+    },
+    {
+      "href": "/",
+      "label": "Сертифікати",
+      "specialColorGreen": true
+    },
+    {
+      "href": "/",
+      "label": "Акціі",
+      "specialColorRed": true
+    }
+  ]
+}
