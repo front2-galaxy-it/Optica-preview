@@ -129,6 +129,9 @@ export const Header: React.FC = () => {
               placeholder="Що шукаєте?"
               className={`${searchOpen ? css.show : ""}`}
               searchOpen={searchOpen}
+              value=""
+              onChange={() => {}}
+              onSearch={() => {}}
             />
             <div className={css.action_buttons}>
               <LanguageDropdown className={css.lang_switcher_desk} />

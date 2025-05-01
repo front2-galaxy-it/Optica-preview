@@ -11,5 +11,5 @@ export interface IButtonProps
   size?: ButtonSize
   className?: string
   iconName?: IIconsProps["name"]
-  iconPosition: ButtonIconPosition
+  iconPosition?: ButtonIconPosition
 }
