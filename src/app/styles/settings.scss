@@ -3,6 +3,19 @@ html {
   font-size: var(--font-size);
   font-weight: 400;
   color: var(--text-color-primary);
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--blue-primary);
+    border-radius: 4px;
+  }
 }
 
 body {
@@ -83,12 +96,13 @@ input {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  bottom: 30px !important;
   position: static !important;
   margin-top: 22px;
+}
 
-  // @include media-down(lg) {
-  // }
+.hero-pagination {
+  position: absolute !important;
+  bottom: 30px !important;
 }
 
 .swiper-pagination-bullet {
@@ -104,4 +118,15 @@ input {
   width: 48px !important;
   background-color: var(--blue-primary) !important;
   transition: all 0.3s ease;
+}
+
+.blog-pagination,
+.reviews-pagination {
+  .swiper-pagination-bullet {
+    background-color: var(--blueD5) !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: var(--blue-primary) !important;
+  }
 }

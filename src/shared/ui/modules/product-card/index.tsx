@@ -8,7 +8,7 @@ import Image from "next/image"
 import { Icon } from "../../icons"
 import { Button } from "../../buttons"
 import { IProductCardProps } from "@/shared/types/product-card.interface"
-import { Price } from "./components/price"
+import { Price } from "../price"
 
 export const ProductCard: React.FC<IProductCardProps> = ({
   className,

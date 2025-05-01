@@ -1,26 +1,45 @@
 "use client"
 
-import React, { useState, forwardRef } from "react"
+import React, { forwardRef } from "react"
 import css from "./styles.module.scss"
 import { Icon } from "../../icons"
 import classNames from "classnames"
 import { Button } from "../../buttons"
 
 interface ISearchFieldProps {
-  placeholder?: string
+  placeholder: string
   state?: string
   disabled?: boolean
   className?: string
   searchOpen: boolean
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onSearch: () => void
 }
 
 export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
-  ({ placeholder, state, disabled = false, className, searchOpen = false }, ref) => {
-    const [value, setValue] = useState("")
+  (
+    {
+      placeholder,
+      state,
+      disabled = false,
+      className,
+      searchOpen = false,
+      value,
+      onChange,
+      onSearch,
+    },
+    ref,
+  ) => {
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault()
+      onSearch()
+    }
 
     return (
       <form
         ref={ref}
+        onSubmit={handleSubmit}
         className={classNames(
           css.search_wrap,
           className,
@@ -36,7 +55,7 @@ export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
           className={css.search_input}
           disabled={disabled}
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={onChange}
         />
         <Button
           modifier="primary"

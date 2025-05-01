@@ -21,8 +21,8 @@
   }
 
   .button_icon {
-    @include adaptive-value("width", 20, 16, 1);
-    @include adaptive-value("height", 20, 16, 1);
+    @include adaptive-value("width", 14, 10, 1);
+    @include adaptive-value("height", 12, 8, 1);
   }
 
   &:hover {

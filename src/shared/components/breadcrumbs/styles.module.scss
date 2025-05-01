@@ -1,0 +1,40 @@
+.breadcrumbs_wrap {
+  background-color: var(--blueF0);
+  @include adaptive-value("padding-top", 24, 8, 1);
+  @include adaptive-value("padding-bottom", 24, 8, 1);
+
+  @include media-down(lg) {
+    border-top: 1px solid var(--blueD5);
+  }
+}
+
+.breadcrumbs,
+.breadcrumb_item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.breadcrumb_item {
+  a {
+    @include adaptive-value("font-size", 16, 12, 1);
+    color: var(--gray8C);
+  }
+}
+
+.separator_icon {
+  color: var(--gray8C);
+  @include adaptive-value("width", 6, 4, 1);
+  @include adaptive-value("height", 10, 8, 1);
+}
+
+.current {
+  a {
+    font-weight: 700;
+    color: var(--blue-primary);
+  }
+
+  .separator_icon {
+    color: var(--blue-primary);
+  }
+}

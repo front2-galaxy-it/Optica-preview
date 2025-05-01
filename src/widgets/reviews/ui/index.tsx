@@ -13,6 +13,22 @@ import { SliderButton } from "@/shared/ui/buttons"
 
 const reviewsDataList: IReviewCardProps[] = dataReviewsList.review_cards
 
+const swiperSettings = {
+  className: css.reviews_swiper,
+  slidesPerView: 3,
+  spaceBetween: 12,
+  pagination: { el: ".swiper-pagination.reviews-pagination", clickable: true },
+  breakpoints: {
+    320: { slidesPerView: 1.1 },
+    480: { slidesPerView: 1.4 },
+    611: { slidesPerView: 1.7 },
+    768: { slidesPerView: 2 },
+    920: { slidesPerView: 2.3 },
+    1024: { slidesPerView: 2.7 },
+    1200: { slidesPerView: 3 },
+  },
+}
+
 export const ReviewsSection: React.FC = () => {
   const swiperRef = useRef<SwiperType | null>(null)
 
@@ -36,29 +52,18 @@ export const ReviewsSection: React.FC = () => {
       </div>
 
       <Swiper
-        className={css.reviews_swiper}
+        modules={[Pagination]}
         onSwiper={(swiper) => {
           swiperRef.current = swiper
         }}
-        slidesPerView={3}
-        spaceBetween={12}
-        modules={[Pagination]}
-        pagination={{ clickable: true }}
-        breakpoints={{
-          320: { slidesPerView: 1.1 },
-          480: { slidesPerView: 1.4 },
-          611: { slidesPerView: 1.7 },
-          768: { slidesPerView: 2 },
-          920: { slidesPerView: 2.3 },
-          1024: { slidesPerView: 2.7 },
-          1200: { slidesPerView: 3 },
-        }}
+        {...swiperSettings}
       >
         {reviewsDataList.map((card, index) => (
           <SwiperSlide key={index}>
             <ReviewCard {...card} />
           </SwiperSlide>
         ))}
+        <div className="swiper-pagination reviews-pagination"></div>
       </Swiper>
     </section>
   )

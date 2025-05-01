@@ -1,0 +1,1 @@
+export { DiagnosticPage } from "./ui"

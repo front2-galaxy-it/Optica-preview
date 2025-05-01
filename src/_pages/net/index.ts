@@ -1,0 +1,1 @@
+export { NetPage } from "./ui"

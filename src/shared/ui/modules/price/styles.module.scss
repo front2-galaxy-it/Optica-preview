@@ -1,0 +1,40 @@
+.price_wrap {
+  @include adaptive-value("margin-bottom", 16, 8, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.price_body {
+  @include adaptive-value("font-size", 18, 16, 1);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.current_price_wrap {
+  color: var(--blue-primary);
+}
+
+.discount_price_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.price_with_discount {
+  color: var(--red);
+}
+
+.discount_price {
+  text-decoration: line-through;
+  color: var(--grayB8);
+  @include adaptive-value("font-size", 18, 16, 1);
+}
+
+.discounted_price {
+  color: var(--red);
+}

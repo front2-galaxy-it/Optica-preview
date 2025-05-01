@@ -8,17 +8,22 @@ import classNames from "classnames"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination } from "swiper/modules"
 
+const swiperSettings = {
+  className: css.hero_swiper,
+  spaceBetween: 20,
+  slidesPerView: 1,
+  pagination: {
+    el: ".swiper-pagination.hero-pagination",
+    clickable: true,
+  },
+}
+
 export const Hero: React.FC = () => {
   return (
     <section className={css.hero}>
       <Swiper
-        className={css.hero_swiper}
+        {...swiperSettings}
         modules={[Pagination]}
-        pagination={{
-          clickable: true,
-        }}
-        spaceBetween={20}
-        slidesPerView={1}
       >
         <SwiperSlide>
           <div className={css.slide_container}>
@@ -125,6 +130,7 @@ export const Hero: React.FC = () => {
             </div>
           </div>
         </SwiperSlide>
+        <div className="swiper-pagination hero-pagination"></div>
       </Swiper>
     </section>
   )

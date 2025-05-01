@@ -6,7 +6,7 @@ import { SectionTip } from "@/shared/ui/modules/section-tip"
 import Image from "next/image"
 import classNames from "classnames"
 import { Icon } from "@/shared/ui/icons"
-import { Button } from "@/shared/ui"
+import { Button, CheckboxPolicy } from "@/shared/ui"
 import { useForm } from "react-hook-form"
 
 type FormValues = {
@@ -58,6 +58,7 @@ export const MailingSection: React.FC = () => {
             onSubmit={handleSubmit(onSubmit)}
             className={css.mailing_form}
           >
+            <CheckboxPolicy />
             <div className={css.input_wrap}>
               <input
                 type="email"

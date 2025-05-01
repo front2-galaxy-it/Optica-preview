@@ -13,6 +13,40 @@ import { SliderButton } from "@/shared/ui/buttons"
 
 const blogCardDataList: IBlogCardProps[] = blogCardData.cards
 
+const swiperSettings = {
+  className: css.blog_swiper,
+  slidesPerView: 3,
+  spaceBetween: 12,
+  pagination: {
+    el: ".swiper-pagination.blog-pagination",
+    clickable: true,
+  },
+  breakpoints: {
+    320: {
+      slidesPerView: 1.2,
+      spaceBetween: 28,
+    },
+    480: {
+      slidesPerView: 1.4,
+    },
+    611: {
+      slidesPerView: 1.7,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    920: {
+      slidesPerView: 2.3,
+    },
+    1024: {
+      slidesPerView: 2.7,
+    },
+    1200: {
+      slidesPerView: 3,
+    },
+  },
+}
+
 export const BlogSection: React.FC = () => {
   const swiperRef = useRef<SwiperType | null>(null)
 
@@ -38,46 +72,18 @@ export const BlogSection: React.FC = () => {
         </div>
       </div>
       <Swiper
-        className={css.blog_swiper}
+        modules={[Pagination]}
         onSwiper={(swiper) => {
           swiperRef.current = swiper
         }}
-        slidesPerView={3}
-        spaceBetween={12}
-        modules={[Pagination]}
-        pagination={{
-          clickable: true,
-        }}
-        breakpoints={{
-          320: {
-            slidesPerView: 1.2,
-            spaceBetween: 28,
-          },
-          480: {
-            slidesPerView: 1.4,
-          },
-          611: {
-            slidesPerView: 1.7,
-          },
-          768: {
-            slidesPerView: 2,
-          },
-          920: {
-            slidesPerView: 2.3,
-          },
-          1024: {
-            slidesPerView: 2.7,
-          },
-          1200: {
-            slidesPerView: 3,
-          },
-        }}
+        {...swiperSettings}
       >
         {blogCardDataList.map((card, index) => (
           <SwiperSlide key={index}>
             <BlogCard {...card} />
           </SwiperSlide>
         ))}
+        <div className="swiper-pagination blog-pagination"></div>
       </Swiper>
     </section>
   )

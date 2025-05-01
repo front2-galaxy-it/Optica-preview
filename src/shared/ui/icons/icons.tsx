@@ -1,4 +1,5 @@
 import { Arrow } from "./svg/arrow"
+import { ArrowBC } from "./svg/arrow-bc"
 import { ArrowRight } from "./svg/arrow_right"
 import { IconBasket } from "./svg/basket_icon"
 import { BoxGroup } from "./svg/boxGroup"
@@ -6,6 +7,7 @@ import { DotLineLeft } from "./svg/dot-with-line-left"
 import { DotLineRight } from "./svg/dot-with-line-right"
 import { IconGlobe } from "./svg/globe"
 import { IconHeart } from "./svg/heart_icon"
+import { IconClock } from "./svg/icon_clock"
 import { IconInstagram } from "./svg/icon_instagram"
 import { IconPlus } from "./svg/icon_plus"
 import { IconTelegram } from "./svg/icon_telegram"
@@ -32,4 +34,6 @@ export const icons = {
   icon_instagram: IconInstagram,
   icon_telegram: IconTelegram,
   icon_tiktok: IconTiktok,
+  icon_arrow_bc: ArrowBC,
+  icon_clock: IconClock,
 }
