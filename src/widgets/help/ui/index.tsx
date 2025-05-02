@@ -24,7 +24,12 @@ export const HelpSection: React.FC = () => {
                 Види <br /> діагностики зору
               </h3>
               <p className={css.card_text}>Попіклуйтесь про свій зір вже сьогодні!</p>
-              <ButtonLink modifier="primary">Діагностика зору</ButtonLink>
+              <ButtonLink
+                modifier="primary"
+                iconName="arrow_right"
+              >
+                Діагностика зору
+              </ButtonLink>
             </div>
           </div>
           <div className={css.help_card}>

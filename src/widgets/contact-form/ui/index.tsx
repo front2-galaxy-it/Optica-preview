@@ -5,7 +5,6 @@ import css from "./styles.module.scss"
 import Image from "next/image"
 import { Button, CheckboxPolicy, FormField, FormTextArea } from "@/shared/ui"
 import { useForm } from "react-hook-form"
-import { Icon } from "@/shared/ui/icons"
 
 export const FormSection: React.FC = () => {
   const {
@@ -103,12 +102,9 @@ export const FormSection: React.FC = () => {
                 className={css.form_btn}
                 modifier="primary"
                 type="submit"
+                iconName="arrow_right"
               >
                 Надіслати
-                <Icon
-                  name="arrow_right"
-                  className={css.arrow_right}
-                />
               </Button>
             </form>
           </div>

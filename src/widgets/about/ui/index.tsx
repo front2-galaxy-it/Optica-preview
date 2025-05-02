@@ -38,7 +38,12 @@ export const AboutSection: React.FC = () => {
             кожному клієнту.
           </p>
           <p className={css.about_section_text}>Чекаємо вас у нашому салоні!</p>
-          <ButtonLink modifier="secondary">Детальніше</ButtonLink>
+          <ButtonLink
+            modifier="secondary"
+            iconName="arrow_right"
+          >
+            Детальніше
+          </ButtonLink>
         </div>
       </div>
     </section>

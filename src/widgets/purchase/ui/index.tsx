@@ -13,6 +13,7 @@ export const PurchaseSection: React.FC = () => {
           <h2 className={css.purchase_section_title}>Що придбати в Оптиці Добрих Цін</h2>
           <ButtonLink
             modifier="secondary"
+            iconName="arrow_right"
             className={css.purchase_section_button}
           >
             До каталогу

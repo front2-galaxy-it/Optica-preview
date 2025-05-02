@@ -88,9 +88,9 @@ export const ProductCard: React.FC<IProductCardProps> = ({
         <Button
           modifier="primary"
           className={css.card_btn}
+          iconName="basket_icon"
         >
           До кошика
-          <Icon name="basket_icon" />
         </Button>
       </div>
     </div>

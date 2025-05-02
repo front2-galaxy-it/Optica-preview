@@ -13,7 +13,7 @@ export const Button: React.FC<IButtonProps> = ({
   modifier,
   size = "md",
   iconName,
-  iconPosition = "left",
+  iconPosition = "right",
   ...props
 }) => {
   const icon = iconName ? (

@@ -5,11 +5,18 @@ import css from "./styles.module.scss"
 interface PriceProps {
   price: number
   oldPrice?: number
+  oldPriceClass?: string
   currency?: string
   className?: string
 }
 
-export const Price = ({ price, oldPrice, currency = "грн", className }: PriceProps) => {
+export const Price = ({
+  price,
+  oldPrice,
+  currency = "грн",
+  className,
+  oldPriceClass,
+}: PriceProps) => {
   const isDiscount = oldPrice && oldPrice > price
 
   return (
@@ -23,7 +30,7 @@ export const Price = ({ price, oldPrice, currency = "грн", className }: Price
         <span className={css.currency}>{currency}</span>
       </div>
       {isDiscount && (
-        <div className={classNames(css.discount_price, css.price_body)}>
+        <div className={classNames(css.discount_price, css.price_body, oldPriceClass)}>
           <span className={css.price}>{oldPrice}</span>
           <span className={css.currency}>{currency}</span>
         </div>

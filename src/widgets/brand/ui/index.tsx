@@ -37,7 +37,12 @@ export const BrandSection: React.FC = () => {
             Обирайте окуляри від світових брендів і переконайтесь у їхній неперевершеній якості. Ви
             заслужили найкраще!
           </p>
-          <ButtonLink modifier="secondary">Детальніше</ButtonLink>
+          <ButtonLink
+            modifier="secondary"
+            iconName="arrow_right"
+          >
+            Детальніше
+          </ButtonLink>
         </div>
       </div>
     </section>

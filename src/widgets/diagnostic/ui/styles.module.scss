@@ -1,6 +1,5 @@
 .diagnistic_section {
   @include adaptive-value("padding-top", 40, 16, 1);
-  @include adaptive-value("padding-bottom", 120, 60, 1);
 
   &_text {
     @include adaptive-value("margin-bottom", 40, 16, 1);

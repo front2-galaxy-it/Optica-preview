@@ -1,4 +1,4 @@
-.lang_popup_container {
+.thanks_popup_container {
   position: fixed;
   z-index: 1001;
   top: 50%;
@@ -20,8 +20,8 @@
   }
 }
 
-.lang_popup {
-  max-width: 600px;
+.thanks_popup {
+  max-width: 1000px;
   width: calc(100% - 32px);
 
   @include media-down(sm) {
@@ -30,7 +30,7 @@
     height: 100%;
   }
 
-  .lang_popup_head {
+  &_head {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -71,79 +71,33 @@
   }
 
   &_content {
+    display: grid;
+    place-items: center;
     background-color: var(--white);
     padding: 68px 16px;
     text-align: center;
 
     @include media-down(sm) {
-      padding: 16px;
+      width: 100%;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
     }
+  }
+
+  &_content_title {
+    @include adaptive-value("font-size", 18, 14, 1);
+    color: var(--gray4E);
+    font-weight: 600;
+    @include adaptive-value("margin-bottom", 24, 16, 1);
   }
 
   &_content_text {
-    font-size: 18px;
+    @include adaptive-value("font-size", 18, 14, 1);
     color: var(--gray4E);
-    max-width: 412px;
+  }
+
+  &_thanks_message {
+    max-width: 600px;
     width: 100%;
     margin: 0 auto;
-    line-height: 150%;
-
-    @include media-down(sm) {
-      br {
-        display: none;
-      }
-    }
-
-    &:last-of-type {
-      margin-bottom: 24px;
-    }
-  }
-
-  &_buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-  }
-
-  &_button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    width: 82px;
-    padding: 4px;
-    color: var(--gray77);
-    transition: all 0.3s ease;
-    font-size: 16px;
-    border: 1px solid var(--gray77);
-    border-radius: 8px;
-    line-height: 100%;
-
-    @include media-down(lg) {
-      font-size: 12px;
-    }
-
-    &:hover {
-      border-color: var(--blue-primary);
-      color: var(--blue-primary);
-      transition: all 0.3s ease;
-    }
-
-    .globe {
-      width: 20px;
-      height: 20px;
-      transition: all 0.3s ease;
-
-      @include media-down(lg) {
-        width: 16px;
-        height: 16px;
-      }
-    }
   }
 }

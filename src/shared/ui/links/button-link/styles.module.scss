@@ -65,8 +65,19 @@
     height: 40px;
   }
 
-  .button_icon {
-    width: 12px;
-    height: 10px;
+  .icon {
+    width: 14px;
+    height: 12px;
+
+    @include media-down(sm) {
+      width: 10px;
+      height: 9px;
+    }
+  }
+
+  &.icon_left {
+    .icon {
+      rotate: 180deg;
+    }
   }
 }

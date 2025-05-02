@@ -2,7 +2,6 @@
 
 import React, { forwardRef } from "react"
 import css from "./styles.module.scss"
-import { Icon } from "../../icons"
 import classNames from "classnames"
 import { Button } from "../../buttons"
 
@@ -62,12 +61,10 @@ export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
           type="submit"
           className={css.serach_btn}
           disabled={disabled}
+          iconName="search_icon"
+          iconPosition="right"
         >
           Пошук
-          <Icon
-            name="search_icon"
-            className={css.search_icon}
-          />
         </Button>
       </form>
     )

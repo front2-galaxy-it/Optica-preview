@@ -55,7 +55,13 @@ export const Hero: React.FC = () => {
                 >
                   14–21 квітня
                 </time>
-                <ButtonLink modifier="primary">Акційні пропозиції</ButtonLink>
+                <ButtonLink
+                  modifier="primary"
+                  iconName="arrow_right"
+                  className={css.hero_link}
+                >
+                  Акційні пропозиції
+                </ButtonLink>
               </div>
             </div>
           </div>
@@ -90,7 +96,13 @@ export const Hero: React.FC = () => {
                 >
                   14–21 квітня
                 </time>
-                <ButtonLink modifier="primary">Акційні пропозиції</ButtonLink>
+                <ButtonLink
+                  modifier="primary"
+                  iconName="arrow_right"
+                  className={css.hero_link}
+                >
+                  Акційні пропозиції
+                </ButtonLink>
               </div>
             </div>
           </div>
@@ -125,7 +137,13 @@ export const Hero: React.FC = () => {
                 >
                   14–21 квітня
                 </time>
-                <ButtonLink modifier="primary">Акційні пропозиції</ButtonLink>
+                <ButtonLink
+                  modifier="primary"
+                  iconName="arrow_right"
+                  className={css.hero_link}
+                >
+                  Акційні пропозиції
+                </ButtonLink>
               </div>
             </div>
           </div>

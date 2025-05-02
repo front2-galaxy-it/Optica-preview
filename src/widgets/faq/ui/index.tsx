@@ -22,7 +22,7 @@ export const FaqSection: React.FC = () => {
           <ButtonLink
             className={css.faq_section_btn}
             modifier="secondary"
-            size="medium"
+            iconName="arrow_right"
           >
             Більше відповідей
           </ButtonLink>

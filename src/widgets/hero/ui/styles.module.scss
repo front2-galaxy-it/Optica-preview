@@ -86,4 +86,10 @@
       height: 375px;
     }
   }
+
+  .hero_link {
+    @include media-down(sm) {
+      width: 100%;
+    }
+  }
 }

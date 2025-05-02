@@ -17,7 +17,8 @@ export const ButtonsList: React.FC<InfoButtonsListProps> = ({ items }) => {
     <div className={css.buttons_list_wrap}>
       <div className={css.buttons_list}>
         {items.map(({ label, href }) => {
-          const isActive = pathname === href
+          const isActive = pathname.startsWith(href)
+
           return (
             <RootLink
               key={href}

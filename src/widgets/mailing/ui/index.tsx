@@ -5,7 +5,6 @@ import css from "./styles.module.scss"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import Image from "next/image"
 import classNames from "classnames"
-import { Icon } from "@/shared/ui/icons"
 import { Button, CheckboxPolicy } from "@/shared/ui"
 import { useForm } from "react-hook-form"
 
@@ -74,10 +73,10 @@ export const MailingSection: React.FC = () => {
               <Button
                 className={css.mailing_form_btn}
                 modifier="primary"
+                iconName="arrow_right"
                 type="submit"
               >
                 Підписатися
-                <Icon name="arrow_right" />
               </Button>
             </div>
             {errors.email && <p className={css.error}>{errors.email.message}</p>}
