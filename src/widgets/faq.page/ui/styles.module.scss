@@ -1,0 +1,4 @@
+.faq_section {
+  @include adaptive-value("padding-top", 40, 16, 1);
+  @include adaptive-value("padding-bottom", 120, 60, 1);
+}

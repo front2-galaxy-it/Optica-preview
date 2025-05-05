@@ -5,6 +5,7 @@ import { Footer } from "@/widgets/footer"
 import css from "./styles.module.scss"
 import { ILayoutProps } from "./props"
 import { LangPopup } from "@/widgets/popups"
+import { DevMenu } from "@/shared/ui"
 
 export const Layout: React.FC<ILayoutProps> = ({ children, locale }) => {
   return (
@@ -14,6 +15,7 @@ export const Layout: React.FC<ILayoutProps> = ({ children, locale }) => {
         <main className={css.content}>{children}</main>
         <Footer />
         <LangPopup />
+        <DevMenu />
       </div>
     </ServerProviders>
   )

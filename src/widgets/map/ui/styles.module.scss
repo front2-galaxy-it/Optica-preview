@@ -1,0 +1,14 @@
+.map_section {
+  @include adaptive-value("padding-top", 120, 60, 1);
+  @include adaptive-value("padding-bottom", 120, 60, 1);
+
+  &_title {
+    @include adaptive-value("margin-bottom", 48, 24, 1);
+  }
+
+  &_text {
+    max-width: 525px;
+    width: 100%;
+    @include adaptive-value("margin-bottom", 24, 16, 1);
+  }
+}

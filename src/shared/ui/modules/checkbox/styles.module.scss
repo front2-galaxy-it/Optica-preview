@@ -6,6 +6,7 @@
   @include adaptive-value("font-size", 16, 12, 1);
   color: var(--gray4E);
   cursor: pointer;
+  width: max-content;
 }
 
 .checkbox_link {

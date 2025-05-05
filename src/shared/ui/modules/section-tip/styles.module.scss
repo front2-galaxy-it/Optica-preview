@@ -3,8 +3,8 @@
   align-items: center;
   gap: 16px;
   color: var(--blue-primary);
-  @include adaptive-value("font-size", 24, 18, 1);
-  font-weight: 700;
+  @include adaptive-value("font-size", 20, 18, 1);
+  font-weight: 600;
   margin-bottom: 16px;
 
   .dot_line {

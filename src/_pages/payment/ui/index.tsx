@@ -13,7 +13,11 @@ export function PaymentPage({ params: { locale } }: IHomePageProps) {
 
   return (
     <>
-      <Breadcrumbs arr={[{ type: "parent", slug: ClientRoutes.payment, title: "Умови оплати" }]} />
+      <Breadcrumbs
+        arr={[
+          { type: "parent", slug: ClientRoutes.payment.path, title: ClientRoutes.payment.name },
+        ]}
+      />
       <PageInfo
         label="Оптика Добрих Цін"
         title="Умови доставки і оплати"

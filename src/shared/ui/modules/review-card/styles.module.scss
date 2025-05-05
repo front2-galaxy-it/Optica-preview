@@ -29,6 +29,19 @@
     @include adaptive-value("height", 60, 40, 1);
   }
 
+  .stars_wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    @include adaptive-value("margin-bottom", 16, 8, 1);
+  }
+
+  .icon_star {
+    width: 20px;
+    height: 20px;
+    color: var(--blue-primary);
+  }
+
   &_text {
     @include adaptive-value("font-size", 18, 16, 1);
     color: var(--gray62);

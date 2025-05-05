@@ -1,36 +1,42 @@
 export const ClientRoutes = {
-  home: "/",
-  delivery: "/delivery",
-  payment: "/payment",
-  about: "/about",
-  net: "/net",
-  diagnostic: "/diagnostic",
-  reviews: "#",
-  faq: "#",
-  contacts: "#",
-
-  /**
-   * Get  the path to a specific task route.
-   * */
-  about_category: (id: string) => {
-    return `/about/${id}`
+  home: {
+    path: "/",
+    name: "Головна",
   },
-  blog_category: (id: string) => {
-    return `/blog/${id}`
+  delivery: {
+    path: "/delivery",
+    name: "Доставка",
   },
-  article: (id: string) => {
-    return `/blog/article/${id}`
+  payment: {
+    path: "/payment",
+    name: "Оплата",
   },
-  author: (id: string) => {
-    return `/authors/author/${id}`
+  about: {
+    path: "/about",
+    name: "Про нас",
   },
-  service: (id: string) => {
-    return `/our-services/${id}`
+  net: {
+    path: "/net",
+    name: "Мережа",
   },
-  solution: (id: string) => {
-    return `/our-solutions/${id}`
+  diagnostic: {
+    path: "/diagnostic",
+    name: "Діагностика",
   },
-  cases: (id: string) => {
-    return `/our-cases/${id}`
+  reviews: {
+    path: "/reviews",
+    name: "Відгуки",
+  },
+  faq: {
+    path: "/faq",
+    name: "Питання та відповіді",
+  },
+  contacts: {
+    path: "/contacts",
+    name: "Контакти",
+  },
+  policy: {
+    path: "/policy",
+    name: "Політика конфіденційності",
   },
 }

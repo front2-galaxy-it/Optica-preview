@@ -2,7 +2,6 @@
 
 import React, { useState } from "react"
 import css from "./styles.module.scss"
-import { SectionTip } from "../section-tip"
 import { IAddressProps } from "@/shared/types"
 import addressList from "@/shared/data/address.json"
 import classNames from "classnames"
@@ -26,11 +25,6 @@ export const SelfDelivery: React.FC = () => {
 
   return (
     <div className={css.self_delivery}>
-      <SectionTip label="Самовивіз" />
-      <h3 className={css.self_delivery_title}>Наявність товару в наших оптиках в м.Одеса</h3>
-      <p className={css.self_delivery_text}>
-        Для вашої зручності ви можете забронювати товар в оптиці, приїхати і забрати його особисто.
-      </p>
       <div className={css.self_delivery_content}>
         <ul className={css.self_delivery_address_list}>
           {addressListData.map((address) => (

@@ -16,7 +16,13 @@ export function DiagnosticPage({ params: { locale } }: IHomePageProps) {
   return (
     <>
       <Breadcrumbs
-        arr={[{ type: "parent", slug: ClientRoutes.diagnostic, title: "Діагностика" }]}
+        arr={[
+          {
+            type: "parent",
+            slug: ClientRoutes.diagnostic.path,
+            title: ClientRoutes.diagnostic.name,
+          },
+        ]}
       />
       <PageInfo
         label="Оптика Добрих Цін"

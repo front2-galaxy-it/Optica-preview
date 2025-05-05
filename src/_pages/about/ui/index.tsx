@@ -18,7 +18,9 @@ export function AboutPage({ params: { locale } }: IHomePageProps) {
 
   return (
     <>
-      <Breadcrumbs arr={[{ type: "parent", slug: ClientRoutes.about, title: "Про нас" }]} />
+      <Breadcrumbs
+        arr={[{ type: "parent", slug: ClientRoutes.about.path, title: ClientRoutes.about.name }]}
+      />
       <PageInfo
         label="Оптика Добрих Цін"
         title="Про нашу компанію"

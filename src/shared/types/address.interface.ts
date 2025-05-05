@@ -5,9 +5,10 @@ export interface IAddressProps {
   coordinates: [number, number]
 }
 export interface IAddressListProps {
-  label: string
+  address: string
   time: string
   master: string
   doctor: string
   otherServices?: string
+  coords?: [number, number]
 }

@@ -4,7 +4,7 @@ import React from "react"
 import css from "./styles.module.scss"
 import Image from "next/image"
 import { SelfDelivery } from "@/shared/ui"
-
+import { SectionTip } from "@/shared/ui/modules/section-tip"
 export const Delivery: React.FC = () => {
   return (
     <section className={css.delivery_section}>
@@ -134,7 +134,18 @@ export const Delivery: React.FC = () => {
                 </div>
               </div>
             </div>
-            <SelfDelivery />
+            <div className={css.map_wrap}>
+              <SectionTip
+                className={css.map_tip}
+                label="Самовивіз"
+              />
+              <h3 className={css.map_title}>Наявність товару в наших оптиках в м.Одеса</h3>
+              <p className={css.map_text}>
+                Для вашої зручності ви можете забронювати товар в оптиці, приїхати і забрати його
+                особисто.
+              </p>
+              <SelfDelivery />
+            </div>
           </div>
         </div>
       </div>

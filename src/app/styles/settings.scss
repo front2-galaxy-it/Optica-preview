@@ -130,3 +130,9 @@ input {
     background-color: var(--blue-primary) !important;
   }
 }
+
+.hero-pagination {
+  @include media-down(lg) {
+    position: static !important;
+  }
+}

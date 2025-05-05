@@ -60,3 +60,17 @@
     }
   }
 }
+
+.map_wrap {
+  @include adaptive-value("margin-top", 147, 64, 1);
+
+  .map_title {
+    @include adaptive-value("margin-bottom", 28, 16, 1);
+  }
+
+  .map_text {
+    max-width: 525px;
+    width: 100%;
+    @include adaptive-value("margin-bottom", 24, 16, 1);
+  }
+}

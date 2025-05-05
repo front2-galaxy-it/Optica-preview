@@ -23,7 +23,7 @@ export const AddressList: React.FC<AddressListProps> = ({ addressList }) => {
           {addressList &&
             addressList.map((address, index) => (
               <tr key={index}>
-                <td className={css.address}>{address.label}</td>
+                <td className={css.address}>{address.address}</td>
                 <td>{address.time}</td>
                 <td>{address.master}</td>
                 <td>{address.doctor}</td>

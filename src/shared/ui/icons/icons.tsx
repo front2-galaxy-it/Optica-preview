@@ -8,8 +8,11 @@ import { DotLineRight } from "./svg/dot-with-line-right"
 import { IconGlobe } from "./svg/globe"
 import { IconHeart } from "./svg/heart_icon"
 import { IconClock } from "./svg/icon_clock"
+import { IconDownload } from "./svg/icon_download"
 import { IconInstagram } from "./svg/icon_instagram"
 import { IconPlus } from "./svg/icon_plus"
+import { IconStar } from "./svg/icon_star"
+import { IconStarV2 } from "./svg/icon_star-v2"
 import { IconTelegram } from "./svg/icon_telegram"
 import { IconTiktok } from "./svg/icon_tiktok"
 import { IconMobile } from "./svg/IconMobile"
@@ -36,4 +39,7 @@ export const icons = {
   icon_tiktok: IconTiktok,
   icon_arrow_bc: ArrowBC,
   icon_clock: IconClock,
+  icon_star: IconStar,
+  icon_starV2: IconStarV2,
+  icon_download: IconDownload,
 }

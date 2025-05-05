@@ -16,7 +16,9 @@ export function NetPage({ params: { locale } }: IHomePageProps) {
 
   return (
     <>
-      <Breadcrumbs arr={[{ type: "parent", slug: ClientRoutes.net, title: "Мережа" }]} />
+      <Breadcrumbs
+        arr={[{ type: "parent", slug: ClientRoutes.net.path, title: ClientRoutes.net.name }]}
+      />
       <PageInfo
         label="Оптика Добрих Цін"
         title="Магазини оптики у м. Одеса"

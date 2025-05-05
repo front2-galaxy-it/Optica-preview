@@ -1,34 +1,47 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import css from "./styles.module.scss"
 import { MapBlock, SearchField } from "@/shared/ui"
 import { AddressList } from "../components/address-list"
 import { IAddressListProps } from "@/shared/types"
 import addressList from "@/shared/data/address-list.json"
 
-const addressListData: IAddressListProps[] = addressList
+const addressListData: IAddressListProps[] = addressList.map((item) => ({
+  ...item,
+  coords: [item.coords.lat, item.coords.lon] as [number, number],
+}))
 
 export const NetSection: React.FC = () => {
-  const [coords, setCoords] = useState<[number, number]>([46.4825, 30.7233]) // Киев по умолчанию
+  const [coords, setCoords] = useState<[number, number]>([46.4825, 30.7233])
   const [address, setAddress] = useState("")
+  const [filteredList, setFilteredList] = useState<IAddressListProps[]>(addressListData)
 
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`,
-      )
-      const data = await response.json()
-      if (data.length > 0) {
-        const lat = parseFloat(data[0].lat)
-        const lon = parseFloat(data[0].lon)
-        setCoords([lat, lon])
-      } else {
-        alert("Адреса не знайдена.")
+  const filterAddresses = (searchTerm: string) => {
+    const matches = addressListData.filter((item) =>
+      item.address.toLowerCase().includes(searchTerm.toLowerCase()),
+    )
+
+    if (matches.length > 0) {
+      setFilteredList(matches)
+      const firstMatch = matches[0]
+      if (firstMatch.coords) {
+        setCoords(firstMatch.coords)
       }
-    } catch (error) {
-      console.error("Помилка при геокодуванні:", error)
+    } else {
+      setFilteredList([])
+      alert("Адреса не знайдена.")
     }
+  }
+
+  useEffect(() => {
+    const searchTerm = address.trim()
+    filterAddresses(searchTerm)
+  }, [address])
+
+  const handleSearch = () => {
+    const searchTerm = address.trim()
+    filterAddresses(searchTerm)
   }
 
   return (
@@ -53,7 +66,7 @@ export const NetSection: React.FC = () => {
               <a href="tel:0963171897">0963171897</a>
             </p>
           </div>
-          <AddressList addressList={addressListData} />
+          <AddressList addressList={filteredList} />
         </div>
       </div>
     </section>

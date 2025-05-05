@@ -15,7 +15,9 @@ export function DeliveryPage({ params: { locale } }: IHomePageProps) {
   return (
     <>
       <Breadcrumbs
-        arr={[{ type: "parent", slug: ClientRoutes.delivery, title: "Умови доставки" }]}
+        arr={[
+          { type: "parent", slug: ClientRoutes.delivery.path, title: ClientRoutes.delivery.name },
+        ]}
       />
       <PageInfo
         label="Оптика Добрих Цін"

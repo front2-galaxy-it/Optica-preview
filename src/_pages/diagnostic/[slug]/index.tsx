@@ -30,7 +30,11 @@ export function DiagnosticServicePage({ params }: DiagnosticServicePageProps) {
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: ClientRoutes.diagnostic, title: "Діагностика" },
+          {
+            type: "parent",
+            slug: ClientRoutes.diagnostic.path,
+            title: ClientRoutes.diagnostic.name,
+          },
           { type: "current", slug: `/diagnostic/${service.slug}`, title: service.title },
         ]}
       />

@@ -1,3 +1,5 @@
 export { LangPopup } from "./lang-popup"
 export { DiagnosticPopup } from "./diagnostic-popup"
 export { ThanksPopup } from "./thanks-popup"
+export { ReviewPopup } from "./review-popup"
+export { RatingPopup } from "./rating-popup"
