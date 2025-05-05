@@ -97,7 +97,7 @@ export const DiagnosticServiceSection: React.FC<IDiagnosticService> = ({
           <div className={css.diagnostic_service_section_footer_bottom}>
             <ButtonLink
               className={css.service_button}
-              href={ClientRoutes.diagnostic}
+              href={ClientRoutes.diagnostic.path}
               modifier="secondary"
               iconPosition="left"
               iconName="arrow_right"

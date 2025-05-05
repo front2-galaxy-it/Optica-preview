@@ -18,7 +18,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ arr, className, color,
           {...props}
         >
           <li className={css.breadcrumb_item}>
-            <RootLink href={ClientRoutes.home}>Домашня сторінка</RootLink>
+            <RootLink href={ClientRoutes.home.path}>Домашня сторінка</RootLink>
           </li>
 
           {arr.map(({ slug, title }, index) => {
