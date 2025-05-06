@@ -4,6 +4,7 @@
 
   &_title {
     @include adaptive-value("margin-bottom", 48, 24, 1);
+    @include adaptive-value("font-size", 24, 20, 1);
   }
 
   &_text {

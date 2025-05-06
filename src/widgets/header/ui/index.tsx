@@ -183,7 +183,10 @@ export const Header: React.FC = () => {
           brandList={brandData}
         />
       </div>
-      <MobileMenu burgerOpen={burgerOpen} />
+      <MobileMenu
+        burgerOpen={burgerOpen}
+        onClose={() => setBurgerOpen(false)}
+      />
     </header>
   )
 }

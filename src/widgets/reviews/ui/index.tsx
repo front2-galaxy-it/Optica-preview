@@ -37,7 +37,7 @@ export const ReviewsSection: React.FC = () => {
       <div className="container">
         <SectionTip label="Відгуки" />
         <div className={css.reviews_section_head}>
-          <h5 className={css.reviews_section_title}>Що говорять про Оптику Добрих Цін</h5>
+          <h3 className={css.reviews_section_title}>Що говорять про Оптику Добрих Цін</h3>
           <div className={css.slider_buttons}>
             <SliderButton
               direction="prev"

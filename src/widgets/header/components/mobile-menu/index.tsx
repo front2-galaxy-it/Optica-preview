@@ -15,9 +15,10 @@ import { ButtonLink } from "@/shared/ui/links"
 
 interface MobileMenuProps {
   burgerOpen?: boolean
+  onClose: () => void
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = ({ burgerOpen = false }) => {
+export const MobileMenu: React.FC<MobileMenuProps> = ({ burgerOpen = false, onClose }) => {
   const menuRef = useRef<HTMLDivElement>(null)
   const [menuHeight, setMenuHeight] = useState<string | number>("100%")
 
@@ -66,13 +67,16 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ burgerOpen = false }) =>
       <Navigation
         navList={navDataByLocale}
         className={css.mobile_nav}
+        onClose={onClose}
       />
       <h2 className={css.mobile_menu_title}>Категорії</h2>
       <Categories
         cateroriesList={categoryDataList}
         className={css.mobile_categories}
+        onClose={onClose}
       />
       <ButtonLink
+        href="#"
         modifier="secondary"
         className={css.mobile_menu_button}
       >

@@ -42,7 +42,7 @@ export const TopSalesSection: React.FC = () => {
       <div className="container">
         <SectionTip label="Топ продажів" />
         <div className={css.top_sales_section_head}>
-          <h5 className={css.top_sales_section_title}>Ми рекомендуємо</h5>
+          <h3 className={css.top_sales_section_title}>Ми рекомендуємо</h3>
           <div className={css.slider_buttons}>
             <SliderButton
               direction="prev"

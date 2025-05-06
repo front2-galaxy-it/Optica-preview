@@ -6,9 +6,13 @@ import Image from "next/image"
 import classNames from "classnames"
 import { ButtonLink } from "@/shared/ui/links"
 
-export const BrandSection: React.FC = () => {
+interface BrandSectionProps {
+  className?: string
+}
+
+export const BrandSection: React.FC<BrandSectionProps> = ({ className }) => {
   return (
-    <section className={css.brand_section}>
+    <section className={classNames(css.brand_section, className)}>
       <div className={css.brand_bg_mob}>
         <Image
           src="/images/brands/brand_img_mob.png"
@@ -28,7 +32,7 @@ export const BrandSection: React.FC = () => {
         </div>
         <div className={css.brand_section_content}>
           <SectionTip label="Бренди" />
-          <h5 className={css.brand_section_title}>Світові бренди, яким довіряють мільйони</h5>
+          <h3 className={css.brand_section_title}>Світові бренди, яким довіряють мільйони</h3>
           <p className={css.brand_section_text}>
             Ми працюємо тільки з найкращими брендами, що пропонують стильні та високоякісні окуляри
             для будь-якого смаку. Ознайомтесь з нашими партнерами — лідерами індустрії.

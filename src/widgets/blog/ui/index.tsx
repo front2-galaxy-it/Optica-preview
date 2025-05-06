@@ -53,12 +53,11 @@ export const BlogSection: React.FC = () => {
   return (
     <section className={css.blog_section}>
       <div className="container">
-        <SectionTip label="Про нас" />
-
+        <SectionTip label="Блог" />
         <div className={css.blog_section_head}>
-          <h5 className={css.blog_section_title}>
+          <h3 className={css.blog_section_title}>
             Будь в курсі останніх новин та порад для твого зору!
-          </h5>
+          </h3>
           <div className={css.slider_buttons}>
             <SliderButton
               direction="prev"

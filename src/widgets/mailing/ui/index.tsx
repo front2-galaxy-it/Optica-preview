@@ -49,7 +49,7 @@ export const MailingSection: React.FC = () => {
             className={css.mailing_section_tip}
             label="Дізнавайся перший про акції"
           />
-          <h5 className={css.mailing_section_title}>Підпишись на нашу розсилку</h5>
+          <h3 className={css.mailing_section_title}>Підпишись на нашу розсилку</h3>
           <p className={css.mailing_section_text}>
             Будь першим хто дізнається про знижки, новинки та вигідні пропозиції
           </p>

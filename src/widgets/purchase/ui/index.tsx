@@ -10,7 +10,7 @@ export const PurchaseSection: React.FC = () => {
       <div className={classNames(css.purchase_section_container, "container")}>
         <SectionTip label="Каталог" />
         <div className={css.purchase_section_head}>
-          <h2 className={css.purchase_section_title}>Що придбати в Оптиці Добрих Цін</h2>
+          <h3 className={css.purchase_section_title}>Що придбати в Оптиці Добрих Цін</h3>
           <ButtonLink
             modifier="secondary"
             iconName="arrow_right"

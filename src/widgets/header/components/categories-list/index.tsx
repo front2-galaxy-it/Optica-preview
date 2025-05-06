@@ -7,9 +7,10 @@ import classNames from "classnames"
 interface ICateroriesList {
   cateroriesList: ICateroriesLink[]
   className?: string
+  onClose?: () => void
 }
 
-export const Categories: React.FC<ICateroriesList> = ({ cateroriesList, className }) => {
+export const Categories: React.FC<ICateroriesList> = ({ cateroriesList, className, onClose }) => {
   return (
     <div className={classNames(css.categories_wrap, className)}>
       <div className={classNames(css.categories_wrap_container, "container")}>
@@ -27,6 +28,7 @@ export const Categories: React.FC<ICateroriesList> = ({ cateroriesList, classNam
                   })}
                   href={cateroriesLink.href}
                   aria-label={cateroriesLink.label}
+                  onClick={onClose}
                 >
                   {cateroriesLink.label}
                 </RootLink>

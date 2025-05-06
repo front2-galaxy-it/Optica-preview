@@ -9,13 +9,17 @@
 
   &._white {
     .form_field_input_placeholder {
-      background-color: var(--white);
+      &::before {
+        background-color: var(--white);
+      }
     }
   }
 
   &._gray {
     .form_field_input_placeholder {
-      background-color: var(--blueF0);
+      &::before {
+        background-color: var(--blueF0);
+      }
     }
   }
 
@@ -72,6 +76,18 @@
   color: var(--grayB8);
   font-size: 16px;
   pointer-events: none;
+  z-index: 2;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 3px;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+  }
 }
 
 .error_icon {

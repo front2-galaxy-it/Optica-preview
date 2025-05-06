@@ -39,4 +39,24 @@ export const ClientRoutes = {
     path: "/policy",
     name: "Політика конфіденційності",
   },
+  terms: {
+    path: "/terms",
+    name: "Правила використання сайту",
+  },
+  brands: {
+    path: "/brands",
+    name: "Виробники нашої продукції",
+  },
+  for_military: {
+    path: "/for-military",
+    name: "Пропозиції для військових",
+  },
+  loyalty_program: {
+    path: "/loyalty-program",
+    name: "Програма лояльності",
+  },
+  career: {
+    path: "/career",
+    name: "Кар’єра",
+  },
 }

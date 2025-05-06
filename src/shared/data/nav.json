@@ -14,11 +14,11 @@
     },
     {
       "label": "Програми лояльності",
-      "href": "#"
+      "href": "/loyalty-program"
     },
     {
       "label": "Військовим",
-      "href": "#",
+      "href": "/for-military",
       "specialColorGreen": true
     },
     {
@@ -27,11 +27,11 @@
     },
     {
       "label": "Наша мережа",
-      "href": "#"
+      "href": "/net"
     },
     {
       "label": "Контакти",
-      "href": "#"
+      "href": "/contacts"
     }
   ]
 }

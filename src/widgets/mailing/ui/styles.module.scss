@@ -64,7 +64,6 @@
   }
 
   &_title {
-    text-transform: uppercase;
     @include adaptive-value("margin-bottom", 32, 24, 1);
   }
 

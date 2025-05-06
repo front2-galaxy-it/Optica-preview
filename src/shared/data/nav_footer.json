@@ -2,31 +2,31 @@
   "nav_links": [
     {
       "label": "ОПТИКА ДОБРИХ ЦІН",
-      "href": "#"
+      "href": "/"
     },
     {
       "label": "Мережа",
-      "href": "#"
+      "href": "/net"
     },
     {
       "label": "Діагностика зору",
-      "href": "#"
+      "href": "/diagnostic"
     },
     {
       "label": "Відгуки",
-      "href": "#"
+      "href": "/reviews"
     },
     {
       "label": "Питання та відповіді",
-      "href": "#"
+      "href": "/faq"
     },
     {
       "label": "Контакти",
-      "href": "#"
+      "href": "/contacts"
     },
     {
       "label": "Кар’єра",
-      "href": "#"
+      "href": "/career"
     }
   ],
   "category_links": [
@@ -67,15 +67,15 @@
     },
     {
       "label": "Виробники",
-      "href": "#"
+      "href": "/brands"
     },
     {
       "label": "Програма лояльності",
-      "href": "#"
+      "href": "/loyalty-program"
     },
     {
       "label": "Військовим",
-      "href": "#"
+      "href": "/for-military"
     },
     {
       "label": "Умови доставки і оплати",
@@ -83,11 +83,11 @@
     },
     {
       "label": "Політика конфіденційності",
-      "href": "#"
+      "href": "/policy"
     },
     {
       "label": "Правила використання сайту",
-      "href": "#"
+      "href": "/terms"
     }
   ]
 }

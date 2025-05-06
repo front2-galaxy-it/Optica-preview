@@ -13,7 +13,7 @@ export function PolicyPage({ params: { locale } }: IHomePageProps) {
   return (
     <>
       <Breadcrumbs
-        arr={[{ type: "parent", slug: ClientRoutes.about.path, title: ClientRoutes.policy.name }]}
+        arr={[{ type: "parent", slug: ClientRoutes.terms.path, title: ClientRoutes.policy.name }]}
       />
       <PageInfo
         label="Оптика Добрих Цін"

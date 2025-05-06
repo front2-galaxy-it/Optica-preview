@@ -10,6 +10,7 @@ import { ButtonLink } from "@/shared/ui/links"
 import { Accordions } from "@/shared/ui/modules/faq-item"
 import faqAccodrionsData from "@/shared/data/faq_accodrions.json"
 import { IFaqAccordions } from "@/shared/types/faq-accordion.interface"
+import { ClientRoutes } from "@/shared/routes"
 
 export const FaqSection: React.FC = () => {
   const faqData: IFaqAccordions[] = faqAccodrionsData
@@ -18,11 +19,12 @@ export const FaqSection: React.FC = () => {
       <div className={classNames(css.faq_section_container, "container")}>
         <SectionTip label="Питання та відповіді" />
         <div className={css.faq_section_head}>
-          <h5 className={css.faq_section_title}>Про що нас часто запитують</h5>
+          <h3 className={css.faq_section_title}>Про що нас часто запитують</h3>
           <ButtonLink
             className={css.faq_section_btn}
             modifier="secondary"
             iconName="arrow_right"
+            href={ClientRoutes.faq.path}
           >
             Більше відповідей
           </ButtonLink>

@@ -7,9 +7,10 @@ import classNames from "classnames"
 interface IHeaderNavifationProps {
   navList: INavLink[]
   className?: string
+  onClose?: () => void
 }
 
-export const Navigation: React.FC<IHeaderNavifationProps> = ({ navList, className }) => {
+export const Navigation: React.FC<IHeaderNavifationProps> = ({ navList, className, onClose }) => {
   return (
     <nav className={classNames(css.nav_menu, className)}>
       <ul className={css.nav_list}>
@@ -26,6 +27,7 @@ export const Navigation: React.FC<IHeaderNavifationProps> = ({ navList, classNam
                 })}
                 href={navLink.href}
                 aria-label={navLink.label}
+                onClick={onClose}
               >
                 {navLink.label}
               </RootLink>

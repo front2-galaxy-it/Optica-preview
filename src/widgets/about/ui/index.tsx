@@ -28,7 +28,7 @@ export const AboutSection: React.FC = () => {
         </div>
         <div className={css.about_section_content}>
           <SectionTip label="Про нас" />
-          <h5 className={css.about_section_title}>Ваш надійний партнер у світі оптики</h5>
+          <h3 className={css.about_section_title}>Ваш надійний партнер у світі оптики</h3>
           <p className={css.about_section_text}>
             Ми – команда професіоналів, яка допомагає вам бачити світ чіткіше! У нашій оптиці ви
             знайдете широкий вибір стильних та якісних окулярів, контактних лінз і аксесуарів.

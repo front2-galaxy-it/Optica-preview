@@ -9,7 +9,7 @@ export const ChooseSection: React.FC = () => {
     <section className={css.choose_section}>
       <div className={classNames(css.choose_section_container, "container")}>
         <SectionTip label="Оптика Добрих Цін" />
-        <h5 className={css.choose_section_title}>Чому нас обирають</h5>
+        <h3 className={css.choose_section_title}>Чому нас обирають</h3>
         <p className={css.choose_section_text}>
           Ми завжди намагаємося знайти індивідуальний підхід до кожного нашого клієнта, щоб
           допомогти вибрати оптимальні рішення для зору та стилю.
