@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import css from "./styles.module.scss"
-import { ClientRoutes } from "@/shared/routes"
+import { DevRoutes } from "@/shared/routes"
 import classNames from "classnames"
 
 export const DevMenu: React.FC = () => {
@@ -24,8 +24,8 @@ export const DevMenu: React.FC = () => {
       {isOpen && (
         <div className={css.content}>
           <ul className={css.menu_list}>
-            {Object.keys(ClientRoutes).map((routeKey) => {
-              const route = ClientRoutes[routeKey as keyof typeof ClientRoutes]
+            {Object.keys(DevRoutes).map((routeKey) => {
+              const route = DevRoutes[routeKey as keyof typeof DevRoutes]
               return (
                 <li key={route.path}>
                   <a

@@ -86,7 +86,7 @@ input {
 
 .container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1310px;
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -134,5 +134,13 @@ input {
 .hero-pagination {
   @include media-down(lg) {
     position: static !important;
+  }
+}
+
+.brand_page {
+  padding-top: 0 !important;
+
+  .brand_btn {
+    display: none !important;
   }
 }

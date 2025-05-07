@@ -4,9 +4,11 @@ import classNames from "classnames"
 import Image from "next/image"
 import { DefaultLink } from "../../links"
 import { IBlogCardProps } from "@/shared/types"
+import { ClientRoutes } from "@/shared/routes"
 
 interface BlogCardProps extends IBlogCardProps {
   className?: string
+  slug: string
 }
 
 export const BlogCard: React.FC<BlogCardProps> = ({
@@ -17,6 +19,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
   description,
   author,
   date,
+  slug,
 }) => {
   return (
     <div className={classNames(css.blog_card, className)}>
@@ -39,7 +42,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
           {date}
         </time>
       </div>
-      <DefaultLink href="/">Читати</DefaultLink>
+      <DefaultLink href={ClientRoutes.article(slug)}>Читати</DefaultLink>
     </div>
   )
 }

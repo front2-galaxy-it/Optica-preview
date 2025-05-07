@@ -9,6 +9,7 @@ import { IconGlobe } from "./svg/globe"
 import { IconHeart } from "./svg/heart_icon"
 import { IconClock } from "./svg/icon_clock"
 import { IconDownload } from "./svg/icon_download"
+import { IconHat } from "./svg/icon_hat"
 import { IconInstagram } from "./svg/icon_instagram"
 import { IconPin } from "./svg/icon_pin"
 import { IconPlus } from "./svg/icon_plus"
@@ -44,4 +45,5 @@ export const icons = {
   icon_starV2: IconStarV2,
   icon_download: IconDownload,
   icon_pin: IconPin,
+  icon_hat: IconHat,
 }

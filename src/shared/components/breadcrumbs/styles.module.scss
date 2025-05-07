@@ -15,6 +15,10 @@
   gap: 10px;
 }
 
+.breadcrumbs {
+  flex-wrap: wrap;
+}
+
 .breadcrumb_item {
   a {
     @include adaptive-value("font-size", 16, 12, 1);

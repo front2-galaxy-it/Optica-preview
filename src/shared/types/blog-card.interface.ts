@@ -1,4 +1,5 @@
 export interface IBlogCardProps {
+  slug: string
   className?: string
   image_url: string
   category: string
@@ -6,4 +7,6 @@ export interface IBlogCardProps {
   description: string
   author: string
   date: string
+  authorSlug: string
+  categorySlug: string
 }

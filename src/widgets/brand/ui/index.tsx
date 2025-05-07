@@ -5,6 +5,7 @@ import { SectionTip } from "@/shared/ui/modules/section-tip"
 import Image from "next/image"
 import classNames from "classnames"
 import { ButtonLink } from "@/shared/ui/links"
+import { ClientRoutes } from "@/shared/routes"
 
 interface BrandSectionProps {
   className?: string
@@ -42,6 +43,8 @@ export const BrandSection: React.FC<BrandSectionProps> = ({ className }) => {
             заслужили найкраще!
           </p>
           <ButtonLink
+            className="brand_btn"
+            href={ClientRoutes.brands.path}
             modifier="secondary"
             iconName="arrow_right"
           >

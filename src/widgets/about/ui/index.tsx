@@ -5,6 +5,7 @@ import { SectionTip } from "@/shared/ui/modules/section-tip"
 import Image from "next/image"
 import classNames from "classnames"
 import { ButtonLink } from "@/shared/ui/links"
+import { ClientRoutes } from "@/shared/routes"
 
 export const AboutSection: React.FC = () => {
   return (
@@ -39,6 +40,7 @@ export const AboutSection: React.FC = () => {
           </p>
           <p className={css.about_section_text}>Чекаємо вас у нашому салоні!</p>
           <ButtonLink
+            href={ClientRoutes.about.path}
             modifier="secondary"
             iconName="arrow_right"
           >

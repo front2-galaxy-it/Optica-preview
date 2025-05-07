@@ -1,0 +1,1 @@
+export { AuthorPageSection } from "./ui"

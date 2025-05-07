@@ -1,6 +1,6 @@
 import React from "react"
 import css from "./styles.module.scss"
-import { ICateroriesLink } from "@/shared/types/category-list.interface"
+import { ICateroriesLink } from "@/shared/types/blog.interface"
 import { RootLink } from "@/shared/ui"
 import classNames from "classnames"
 
