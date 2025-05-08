@@ -23,6 +23,12 @@
   a {
     @include adaptive-value("font-size", 16, 12, 1);
     color: var(--gray8C);
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--blue-primary);
+      transition: all 0.3s ease;
+    }
   }
 }
 

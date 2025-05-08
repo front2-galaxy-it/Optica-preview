@@ -1,0 +1,144 @@
+"use client"
+
+import React from "react"
+import css from "./styles.module.scss"
+
+import Image from "next/image"
+import { RootLink } from "@/shared/ui/links"
+import { ClientRoutes } from "@/shared/routes"
+import { ButtonsList } from "@/shared/components"
+import { navData } from "@/shared/routes/info-buttons-list"
+import { Button, CheckboxPolicy, FormField } from "@/shared/ui"
+import { useForm } from "react-hook-form"
+import classNames from "classnames"
+
+export const RegisterSection: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>()
+
+  interface FormData {
+    name: string
+    surname: string
+    phone: string
+    password: string
+    policy_agree: boolean
+  }
+
+  const onSubmit = (data: FormData) => {
+    console.log(data)
+  }
+
+  return (
+    <section className={css.profile_section}>
+      <ButtonsList items={navData.profile} />
+      <div className={classNames(css.profile_section_container, "container")}>
+        <Image
+          className={css.profile_section_bg}
+          src="/images/content_img_11.png"
+          width={1370}
+          height={806}
+          alt="image not found"
+        />
+        <div className={css.form_wrap}>
+          <p className={css.form_title}>
+            Якщо ви вже зараєстровані, перейдіть на сторінку{" "}
+            <RootLink
+              href={ClientRoutes.authorization.path}
+              className={css.link}
+            >
+              авторизації
+            </RootLink>
+          </p>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <FormField
+              placeholder="Ваше ім’я"
+              type="text"
+              register={register("name", {
+                required: {
+                  value: true,
+                  message: "Заповніть поле",
+                },
+              })}
+              error={errors.name}
+            />
+            <FormField
+              placeholder="Прізвище"
+              type="text"
+              register={register("surname", {
+                required: {
+                  value: true,
+                  message: "Заповніть поле",
+                },
+              })}
+              error={errors.surname}
+            />
+            <FormField
+              placeholder="+3 8(___) ___ - __ - __"
+              type="tel"
+              register={register("phone", {
+                required: {
+                  value: true,
+                  message: "Поле обов'язкове",
+                },
+                pattern: {
+                  value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
+                  message: "Невірний формат телефону",
+                },
+              })}
+              error={errors.phone}
+            />
+            <FormField
+              placeholder="Пароль"
+              type="text"
+              register={register("password", {
+                required: {
+                  value: true,
+                  message: "Заповніть поле",
+                },
+              })}
+              error={errors.password}
+            />
+            <CheckboxPolicy
+              className={css.checkbox}
+              register={register("policy_agree", {
+                required: {
+                  value: true,
+                  message: "Погодьтеся з політикою конфіденційності.",
+                },
+              })}
+              error={errors.policy_agree?.message}
+            />
+            <Button
+              className={css.submit_btn}
+              modifier="primary"
+              iconName="arrow_right"
+              type="submit"
+            >
+              Зареєструватися
+            </Button>
+            <span className={css.spacer}>або</span>
+            <div className={css.form_btn_wrap}>
+              <Button
+                className={css.auth_btn_social}
+                modifier="secondary"
+                iconName="icon_google"
+              >
+                Google
+              </Button>
+              <Button
+                className={css.auth_btn_social}
+                modifier="secondary"
+                iconName="icon_facebook"
+              >
+                Facebook
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  )
+}

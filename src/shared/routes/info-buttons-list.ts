@@ -41,14 +41,14 @@ export const navData = {
     label: "Політика конфіденційності",
     href: ClientRoutes.policy.path,
   },
-  career: [
+  profile: [
     {
-      label: "Офтальмолог",
-      href: ClientRoutes.career.path,
+      label: "Реєстрація",
+      href: ClientRoutes.register.path,
     },
     {
-      label: "Консультант",
-      href: ClientRoutes.career.path,
+      label: "Авторизація",
+      href: ClientRoutes.authorization.path,
     },
   ],
 }

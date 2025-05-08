@@ -12,27 +12,29 @@ interface CheckboxPolicyProps {
 
 export const CheckboxPolicy: React.FC<CheckboxPolicyProps> = ({ error, className, register }) => {
   return (
-    <label
-      htmlFor="policy"
-      className={classNames(css.label, className)}
-    >
-      <input
-        type="checkbox"
-        id="policy"
-        aria-required="true"
-        aria-invalid={!!error}
-        {...register}
-      />
-      я погоджуюсь з
-      <RootLink
-        href="/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={css.checkbox_link}
+    <div className={classNames(css.label_wrap, className)}>
+      <label
+        htmlFor="policy"
+        className={css.label}
       >
-        політикою конфіденційності
-      </RootLink>
+        <input
+          type="checkbox"
+          id="policy"
+          aria-required="true"
+          aria-invalid={!!error}
+          {...register}
+        />
+        я погоджуюсь з
+        <RootLink
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={css.checkbox_link}
+        >
+          політикою конфіденційності
+        </RootLink>
+      </label>
       {error && <p className={css.error}>{error}</p>}
-    </label>
+    </div>
   )
 }

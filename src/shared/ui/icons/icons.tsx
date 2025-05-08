@@ -5,7 +5,9 @@ import { IconBasket } from "./svg/basket_icon"
 import { BoxGroup } from "./svg/boxGroup"
 import { DotLineLeft } from "./svg/dot-with-line-left"
 import { DotLineRight } from "./svg/dot-with-line-right"
+import { IconFacebook } from "./svg/facebook"
 import { IconGlobe } from "./svg/globe"
+import { IconGoogle } from "./svg/google"
 import { IconHeart } from "./svg/heart_icon"
 import { IconClock } from "./svg/icon_clock"
 import { IconDownload } from "./svg/icon_download"
@@ -46,4 +48,6 @@ export const icons = {
   icon_download: IconDownload,
   icon_pin: IconPin,
   icon_hat: IconHat,
+  icon_google: IconGoogle,
+  icon_facebook: IconFacebook,
 }

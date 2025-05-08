@@ -63,6 +63,10 @@ export const DevRoutes = {
     path: "/blog",
     name: "Блог",
   },
+  profile: {
+    path: "/profile",
+    name: "Особистий профіль",
+  },
 }
 
 export const ClientRoutes = {
@@ -129,6 +133,18 @@ export const ClientRoutes = {
   blog: {
     path: "/blog",
     name: "Блог",
+  },
+  profile: {
+    path: "/profile",
+    name: "Особистий профіль",
+  },
+  authorization: {
+    path: "/profile/authorization",
+    name: "Авторизація",
+  },
+  register: {
+    path: "/profile/register",
+    name: "Реєстрація",
   },
 
   /** Get  the path to a specific task route.**/

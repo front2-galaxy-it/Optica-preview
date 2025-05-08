@@ -1,8 +1,20 @@
+.label_wrap {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.error {
+  margin-top: 8px;
+  color: var(--red);
+}
+
 .label {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 24px;
+
   @include adaptive-value("font-size", 16, 12, 1);
   color: var(--gray4E);
   cursor: pointer;
