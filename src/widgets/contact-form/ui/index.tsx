@@ -5,6 +5,7 @@ import css from "./styles.module.scss"
 import Image from "next/image"
 import { Button, CheckboxPolicy, FormField, FormTextArea } from "@/shared/ui"
 import { useForm } from "react-hook-form"
+import { FormData } from "@/shared/types/form-data.interface"
 
 export const FormSection: React.FC = () => {
   const {
@@ -12,14 +13,6 @@ export const FormSection: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>()
-
-  interface FormData {
-    name: string
-    surname: string
-    phone: string
-    email: string
-    message: string
-  }
 
   const onSubmit = (data: FormData) => {
     console.log(data)
@@ -52,7 +45,7 @@ export const FormSection: React.FC = () => {
                     message: "Заповніть поле",
                   },
                 })}
-                error={errors.name}
+                error={errors.name?.message}
               />
               <FormField
                 id="surname"
@@ -65,7 +58,7 @@ export const FormSection: React.FC = () => {
                     message: "Заповніть поле",
                   },
                 })}
-                error={errors.name}
+                error={errors.name?.message}
               />
               <FormField
                 id="phone"
@@ -82,22 +75,23 @@ export const FormSection: React.FC = () => {
                     message: "Невірний формат телефону",
                   },
                 })}
-                error={errors.phone}
+                error={errors.phone?.message}
               />
 
               <FormTextArea
                 id="message"
                 placeholder="Яке у вас питання?"
                 colorType="gray"
-                register={register("message", {
+              />
+              <CheckboxPolicy
+                register={register("policyAgree", {
                   required: {
                     value: true,
-                    message: "Заповніть поле",
+                    message: "Погодьтеся з політикою конфіденційності.",
                   },
                 })}
-                error={errors.name}
+                error={errors.policyAgree?.message}
               />
-              <CheckboxPolicy />
               <Button
                 className={css.form_btn}
                 modifier="primary"

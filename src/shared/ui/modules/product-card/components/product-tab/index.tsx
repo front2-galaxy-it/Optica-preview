@@ -1,4 +1,3 @@
-// ProductTab.tsx
 "use client"
 
 import React, { forwardRef } from "react"
@@ -10,16 +9,13 @@ import { Pagination } from "swiper/modules"
 import { Swiper as SwiperType } from "swiper"
 
 interface ProductTabProps {
-  category: string
+  categorySlug: string
   productList: IProductCardProps[]
 }
 
 export const ProductTab = forwardRef<SwiperType, ProductTabProps>(
-  ({ category, productList }, ref) => {
-    const filteredProducts = productList.filter(
-      (product) => product.category.toLowerCase() === category.toLowerCase(),
-    )
-
+  ({ categorySlug, productList }, ref) => {
+    const filteredProducts = productList.filter((product) => product.categorySlug === categorySlug)
     if (filteredProducts.length === 0) {
       return <div>Немає продуктів у цій категорії.</div>
     }
@@ -57,5 +53,3 @@ export const ProductTab = forwardRef<SwiperType, ProductTabProps>(
     )
   },
 )
-
-ProductTab.displayName = "ProductTab"

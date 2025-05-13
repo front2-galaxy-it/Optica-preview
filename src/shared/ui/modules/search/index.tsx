@@ -32,7 +32,7 @@ export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
   ) => {
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault()
-      onSearch() // вызываем onSearch при отправке формы
+      onSearch()
     }
 
     return (
@@ -54,11 +54,11 @@ export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
           className={css.search_input}
           disabled={disabled}
           value={value}
-          onChange={onChange} // обновляем состояние при изменении значения
+          onChange={onChange}
         />
         <Button
           modifier="primary"
-          type="submit" // Используем type="submit", чтобы кнопка отправляла форму
+          type="submit"
           className={css.serach_btn}
           disabled={disabled}
           iconName="search_icon"

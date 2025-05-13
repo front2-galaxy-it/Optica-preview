@@ -16,15 +16,15 @@ const productsDataList: IProductCardProps[] = productsData.products.map((product
   statusTypes: product.statusTypes as StatusType[],
 }))
 
-const tabs = [
-  {
-    id: "tab1",
-    label: "Сонячні окуляри",
-    category: "Сонячні окуляри",
-  },
-  { id: "tab2", label: "Дитячі окуляри", category: "Дитячі окуляри" },
-  { id: "tab3", label: "Контактні лінзи", category: "Контактні лінзи" },
-]
+const uniqueCategories = Array.from(
+  new Map(productsDataList.map((p) => [p.categorySlug, p.categoryName])).entries(),
+).slice(0, 3)
+
+const tabs = uniqueCategories.map(([slug, name], index) => ({
+  id: `tab${index + 1}`,
+  label: name,
+  categorySlug: slug,
+}))
 
 export const TopSalesSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id)
@@ -74,11 +74,11 @@ export const TopSalesSection: React.FC = () => {
         </div>
       </div>
       <div className={css.top_sales_section_content}>
-        {activeTabData?.category && (
+        {activeTabData?.categorySlug && (
           <ProductTab
             ref={swiperRef}
             key={activeTab}
-            category={activeTabData.category}
+            categorySlug={activeTabData.categorySlug}
             productList={productsDataList}
           />
         )}

@@ -66,7 +66,7 @@ export const AuthorizationSection: React.FC = () => {
                   message: "Невірний формат телефону",
                 },
               })}
-              error={errors.phone}
+              error={errors.phone?.message}
             />
             <FormField
               placeholder="Пароль"
@@ -77,7 +77,7 @@ export const AuthorizationSection: React.FC = () => {
                   message: "Заповніть поле",
                 },
               })}
-              error={errors.password}
+              error={errors.password?.message}
             />
             <CheckboxPolicy
               className={css.checkbox}

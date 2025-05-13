@@ -8,13 +8,23 @@ import { DotLineRight } from "./svg/dot-with-line-right"
 import { IconFacebook } from "./svg/facebook"
 import { IconGlobe } from "./svg/globe"
 import { IconGoogle } from "./svg/google"
-import { IconHeart } from "./svg/heart_icon"
+import { IconBin } from "./svg/icon_bin"
+import { IconCategory } from "./svg/icon_category"
+import { IconCheck } from "./svg/icon_check"
 import { IconClock } from "./svg/icon_clock"
+import { IconCross } from "./svg/icon_cross"
 import { IconDownload } from "./svg/icon_download"
+import { IconEdit } from "./svg/icon_edit"
+import { IconFilter } from "./svg/icon_filter"
 import { IconHat } from "./svg/icon_hat"
+import { IconHeart } from "./svg/icon_heart"
 import { IconInstagram } from "./svg/icon_instagram"
+import { IconLogout } from "./svg/icon_logout"
+import { IconMinus } from "./svg/icon_minus"
+import { IconPercent } from "./svg/icon_percent"
 import { IconPin } from "./svg/icon_pin"
 import { IconPlus } from "./svg/icon_plus"
+import { IconQoute } from "./svg/icon_quote"
 import { IconStar } from "./svg/icon_star"
 import { IconStarV2 } from "./svg/icon_star-v2"
 import { IconTelegram } from "./svg/icon_telegram"
@@ -36,7 +46,6 @@ export const icons = {
   arrow_right: ArrowRight,
   dot_line_left: DotLineLeft,
   dot_line_right: DotLineRight,
-  icon_heart: IconHeart,
   icon_plus: IconPlus,
   icon_instagram: IconInstagram,
   icon_telegram: IconTelegram,
@@ -50,4 +59,15 @@ export const icons = {
   icon_hat: IconHat,
   icon_google: IconGoogle,
   icon_facebook: IconFacebook,
+  icon_check: IconCheck,
+  icon_percent: IconPercent,
+  icon_logout: IconLogout,
+  icon_edit: IconEdit,
+  icon_bin: IconBin,
+  icon_cross: IconCross,
+  icon_qoute: IconQoute,
+  icon_minus: IconMinus,
+  icon_heart: IconHeart,
+  icon_category: IconCategory,
+  icon_filter: IconFilter,
 }

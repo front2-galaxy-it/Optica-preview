@@ -5,7 +5,7 @@ import css from "./styles.module.scss"
 import classNames from "classnames"
 import { Button, CheckboxPolicy, FormField, FormTextArea } from "@/shared/ui"
 import { useForm } from "react-hook-form"
-
+import { FormData } from "@/shared/types/form-data.interface"
 interface careerPopupProps {
   isOpen: boolean
   onClose: () => void
@@ -46,16 +46,6 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
 
   const [fileName, setFileName] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
-
-  interface FormData {
-    name: string
-    surname: string
-    phone: string
-    vacancy: string
-    comment: string
-    policy_agree: boolean
-    file: FileList
-  }
 
   useEffect(() => {
     if (isOpen) {
@@ -153,7 +143,7 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                     message: "Заповніть поле",
                   },
                 })}
-                error={errors.name}
+                error={errors.name?.message}
               />
               <FormField
                 id="surname"
@@ -166,7 +156,7 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                     message: "Заповніть поле",
                   },
                 })}
-                error={errors.surname}
+                error={errors.surname?.message}
               />
               <FormField
                 id="phone"
@@ -183,7 +173,7 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                     message: "Невірний формат телефону",
                   },
                 })}
-                error={errors.phone}
+                error={errors.phone?.message}
               />
               <FormField
                 id="vacancy"
@@ -196,7 +186,7 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                     message: "Заповніть поле",
                   },
                 })}
-                error={errors.phone}
+                error={errors.phone?.message}
               />
               <div className={css.upload_wrap}>
                 <input
@@ -225,13 +215,16 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                 <span className={css.error_message}>{error}</span>
                 <span className={css.file_info}>{fileName && `Файл: ${fileName}`}</span>
               </div>
-              <FormTextArea
-                placeholder="Коментар"
-                register={register("comment")}
-              />
+              <FormTextArea placeholder="Коментар" />
               <CheckboxPolicy
                 className={css.career_policy}
-                register={register("policy_agree")}
+                register={register("policyAgree", {
+                  required: {
+                    value: true,
+                    message: "Погодьтеся з політикою конфіденційності.",
+                  },
+                })}
+                error={errors.policyAgree?.message}
               />
               <Button
                 type="submit"

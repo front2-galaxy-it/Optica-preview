@@ -16,7 +16,6 @@ export const Icon: React.FC<IIconsProps> = ({ name, className, size = "md", ...p
       name={name}
       className={cn(css.icon, className, {
         [css._sm]: size === "sm",
-        // [css._md]: size === "md",
         // [css._light]: color === "light",
         // [css._dark]: color === "dark",
       })}

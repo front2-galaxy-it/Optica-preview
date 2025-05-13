@@ -78,7 +78,7 @@ export const PromotionSection: React.FC = () => {
           <ProductTab
             ref={swiperRef}
             key={activeTab}
-            category={activeTabData.category}
+            categorySlug={activeTabData.category}
             productList={productsDataList}
           />
         )}

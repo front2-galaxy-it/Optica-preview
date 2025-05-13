@@ -21,7 +21,7 @@ export const RatingPopup: React.FC<RatingPopupProps> = ({ isOpen, onClose, onSuc
   const { handleSubmit, setValue } = useForm<FormData>()
 
   const [rating, setRating] = useState<number | null>(null)
-  const [hoveredRating, setHoveredRating] = useState<number | null>(null) //
+  const [hoveredRating, setHoveredRating] = useState<number | null>(null)
 
   useEffect(() => {
     if (isOpen) {

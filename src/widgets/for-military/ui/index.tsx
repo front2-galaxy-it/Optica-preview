@@ -2,7 +2,6 @@ import React from "react"
 import css from "./styles.module.scss"
 
 import Image from "next/image"
-// import classNames from "classnames"
 import { ButtonLink } from "@/shared/ui/links"
 import { ClientRoutes } from "@/shared/routes"
 

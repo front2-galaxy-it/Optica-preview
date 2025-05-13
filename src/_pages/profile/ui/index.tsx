@@ -18,7 +18,7 @@ export function ProfilePage({ params: { locale } }: IHomePageProps) {
         ]}
       />
       <PageInfo
-        label="Реєстрація"
+        label="Персональні данні"
         title={ClientRoutes.profile.name}
       />
       <ProfileSection />

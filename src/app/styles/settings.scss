@@ -144,3 +144,27 @@ input {
     display: none !important;
   }
 }
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.swiper-slide {
+  min-height: 100%;
+  height: auto !important;
+}
+
+//rc slider
+.rc-slider-rail {
+  background-color: var(--grayD0);
+}
+
+.rc-slider-track {
+  background-color: var(--blue-primary);
+}
+
+.rc-slider-handle {
+  background-color: var(--blue-primary);
+  border: none;
+  opacity: 1;
+}

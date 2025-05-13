@@ -13,74 +13,11 @@ interface CareerSectionProps {
 }
 
 export const CareerSection: React.FC<CareerSectionProps> = ({ careerList }) => {
-  // const fileInputRef = useRef<HTMLInputElement>(null)
-  // const [fileName, setFileName] = useState<string | null>(null)
-  // const [error, setError] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<number>(0)
   const activeItem = careerList[activeTab]
 
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
-
-  // const handleClick = () => {
-  //   fileInputRef.current?.click()
-  // }
-
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files?.[0]
-  //   if (file) {
-  //     const allowedTypes = [
-  //       "application/pdf",
-  //       "application/msword",
-  //       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  //     ]
-  //     if (!allowedTypes.includes(file.type)) {
-  //       setError("Недопустимий формат файлу. Дозволено PDF або Word.")
-  //       setFileName(null)
-  //       return
-  //     }
-
-  //     if (file.size > 5 * 1024 * 1024) {
-  //       setError("Розмір файлу перевищує 5 МБ.")
-  //       setFileName(null)
-  //       return
-  //     }
-
-  //     setFileName(file.name)
-  //     setError(null)
-  //   }
-  // }
-
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault()
-
-  //   if (!fileName) {
-  //     setError("Будь ласка, прикріпіть резюме.")
-  //     return
-  //   }
-
-  //   const formData = new FormData()
-  //   const file = fileInputRef.current?.files?.[0]
-
-  //   if (file) {
-  //     formData.append("resume", file)
-  //   }
-
-  //   // Пример отправки (можно использовать fetch или axios)
-  //   // fetch("/api/upload", {
-  //   //   method: "POST",
-  //   //   body: formData,
-  //   // })
-  //   //   .then((response) => response.json())
-  //   //   .then((data) => {
-  //   //     console.log("File uploaded successfully:", data)
-  //   //   })
-  //   //   .catch((error) => {
-  //   //     console.error("Error uploading file:", error)
-  //   //   })
-
-  //   alert("Ваше резюме успішно надіслано!")
-  // }
 
   return (
     <section className={css.career_section}>
@@ -104,25 +41,6 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ careerList }) => {
               Якщо ви зацікавлені в одній з вакансій, надсилайте своє резюме або заповнюйте форму на
               сайті. Ми завжди відкриті для нових талантів!
             </p>
-            {/* <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleFileChange}
-              accept=".pdf,.doc,.docx"
-              className={css.hidden_input}
-            />
-            <div className={css.upload_wrap}>
-              <Button
-                className={css.career_btn}
-                modifier="primary"
-                iconName="icon_pin"
-                onClick={handleClick}
-              >
-                Прикріпити резюме
-              </Button>
-              <span className={css.error_message}>{error}</span>
-              <span className={css.file_info}>{fileName && `Файл: ${fileName}`}</span>
-            </div> */}
           </div>
           <Image
             className={css.career_section_img}

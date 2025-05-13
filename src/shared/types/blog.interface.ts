@@ -1,4 +1,5 @@
 export interface ICateroriesLink {
+  categorySlug: string
   label: string
   href: string
   specialColorGreen?: boolean

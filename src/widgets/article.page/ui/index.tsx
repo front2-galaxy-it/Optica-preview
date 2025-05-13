@@ -11,6 +11,7 @@ import { BlogPageNavigation } from "@/shared/components/blog-navigation"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import Image from "next/image"
 import { ButtonLink } from "@/shared/ui/links"
+import { Icon } from "@/shared/ui/icons"
 
 interface AuthorPageSectionProps {
   slug: string
@@ -98,6 +99,27 @@ export const ArticlePageSection: React.FC<AuthorPageSectionProps> = ({
                 піклуватися про здоров’я очей. Тривала робота за монітором може призводити до втоми,
                 сухості в очах, головного болю та зниження зору.
               </p>
+              <ol>
+                <li>Консультація клієнтів щодо підбору окулярів та контактних лінз.</li>
+                <li>Консультація клієнтів щодо підбору окулярів та контактних лінз.</li>
+                <li>Консультація клієнтів щодо підбору окулярів та контактних лінз.</li>
+              </ol>
+              <ul>
+                <li>Консультація клієнтів щодо підбору окулярів та контактних лінз.</li>
+                <li>Консультація клієнтів щодо підбору окулярів та контактних лінз.</li>
+                <li>Консультація клієнтів щодо підбору окулярів та контактних лінз.</li>
+              </ul>
+              <blockquote>
+                <div>
+                  <Icon name="icon_qoute" />
+                  <p>
+                    Комп’ютерні монітори випромінюють синє світло, яке може впливати на якість сну і
+                    викликати втомленість очей. Спеціальні лінзи з фільтром синього світла
+                    допомагають знизити навантаження на очі та зберегти комфорт протягом довгих
+                    годин роботи.
+                  </p>
+                </div>
+              </blockquote>
             </div>
             <div className={css.article_footer}>
               <span>{author?.label || article.author}</span>

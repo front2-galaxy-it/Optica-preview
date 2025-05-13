@@ -1,0 +1,14 @@
+.product_list {
+  display: grid;
+  grid-template: 1fr / repeat(auto-fit, minmax(290px, 1fr));
+  gap: 12px;
+}
+
+.product_card {
+  max-width: 100%;
+}
+
+.product_list_btn {
+  padding: 14px 24px;
+  font-size: 16px;
+}

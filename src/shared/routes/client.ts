@@ -149,6 +149,9 @@ export const ClientRoutes = {
 
   /** Get  the path to a specific task route.**/
 
+  product_category: (id: string) => {
+    return `/catalog/${id}`
+  },
   blog_category: (id: string) => {
     return `/blog/${id}`
   },

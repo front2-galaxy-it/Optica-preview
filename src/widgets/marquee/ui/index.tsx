@@ -1,6 +1,5 @@
 "use client"
 import React from "react"
-// import { gsap } from "gsap"
 import css from "./styles.module.scss"
 import Image from "next/image"
 import classNames from "classnames"

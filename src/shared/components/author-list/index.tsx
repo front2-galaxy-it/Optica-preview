@@ -11,7 +11,7 @@ import { ClientRoutes } from "@/shared/routes"
 interface AuthorListProps {
   className?: string
   authorList: IBlogAuthorLink[]
-  articleList: IBlogCardProps[] // Добавляем пропс articleList
+  articleList: IBlogCardProps[]
   activeAuthorSlug?: string
 }
 
@@ -21,7 +21,6 @@ export const AuthorList: React.FC<AuthorListProps> = ({
   articleList,
   activeAuthorSlug,
 }) => {
-  // Фильтруем авторов, чтобы оставить только тех, у которых есть статьи
   const filteredAuthors = authorList.filter((author) =>
     articleList.some((article) => article.authorSlug === author.slug),
   )

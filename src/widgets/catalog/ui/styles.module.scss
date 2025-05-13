@@ -1,0 +1,26 @@
+.catalog {
+  &_wrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  &_sidebar {
+    max-width: 311px;
+    width: 27%;
+    padding-right: 16px;
+    border-right: 1px solid var(--grayD0);
+  }
+
+  &_content {
+    width: 75%;
+  }
+}
+
+.product_list {
+  @include adaptive-value("margin-bottom", 32, 16, 1);
+}
+
+.product_pagiantion {
+  justify-content: center;
+}

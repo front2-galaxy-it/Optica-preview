@@ -31,7 +31,7 @@ export const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, onClose, onSuc
   } = useForm<FormData>()
 
   const [rating, setRating] = useState<number | null>(null)
-  const [hoveredRating, setHoveredRating] = useState<number | null>(null) //
+  const [hoveredRating, setHoveredRating] = useState<number | null>(null)
 
   useEffect(() => {
     if (isOpen) {
@@ -102,7 +102,7 @@ export const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, onClose, onSuc
                     message: "Заповніть поле",
                   },
                 })}
-                error={errors.name}
+                error={errors.name?.message}
               />
               <FormField
                 id="surname"
@@ -115,7 +115,7 @@ export const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, onClose, onSuc
                     message: "Заповніть поле",
                   },
                 })}
-                error={errors.surname}
+                error={errors.surname?.message}
               />
               <FormField
                 id="phone"
@@ -132,7 +132,7 @@ export const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, onClose, onSuc
                     message: "Невірний формат телефону",
                   },
                 })}
-                error={errors.phone}
+                error={errors.phone?.message}
               />
               <FormTextArea
                 placeholder="Напишіть свій відгук"

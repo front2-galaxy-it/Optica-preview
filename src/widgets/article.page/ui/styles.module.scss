@@ -88,9 +88,91 @@
 
     p {
       @include adaptive-value("font-size", 18, 16, 1);
+      @include adaptive-value("margin-bottom", 32, 16, 1);
+    }
 
-      &:not(:last-of-type) {
-        @include adaptive-value("margin-bottom", 32, 16, 1);
+    ol {
+      counter-reset: num;
+      @include adaptive-value("margin-bottom", 32, 16, 1);
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        counter-increment: num;
+        @include adaptive-value("font-size", 18, 16, 1);
+        color: var(--gray62);
+
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
+
+        &:nth-child(-n + 9) {
+          &::before {
+            content: "0" counter(num);
+            color: var(--blue-primary);
+            font-weight: 700;
+          }
+        }
+
+        &:nth-child(n + 10) {
+          &::before {
+            content: counter(num);
+          }
+        }
+      }
+    }
+
+    ul {
+      @include adaptive-value("margin-bottom", 32, 16, 1);
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        @include adaptive-value("font-size", 18, 16, 1);
+        color: var(--gray62);
+
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
+
+        &::before {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border-radius: 2px;
+          background-color: var(--blue-primary);
+        }
+      }
+    }
+
+    blockquote {
+      border-radius: 8px;
+      padding: 10px;
+      background-color: var(--blueF0);
+
+      div {
+        border-radius: 8px;
+        border: 1px solid var(--blue-primary);
+        @include adaptive-value("padding", 24, 16, 1);
+        display: flex;
+        align-items: flex-start;
+        @include adaptive-value("gap", 16, 8, 1);
+
+        svg {
+          @include adaptive-value("min-width", 60, 40, 1);
+          @include adaptive-value("min-height", 60, 40, 1);
+          @include adaptive-value("max-width", 60, 40, 1);
+          @include adaptive-value("max-height", 60, 40, 1);
+          color: var(--blue-primary);
+        }
+
+        p {
+          @include adaptive-value("font-size", 18, 14, 1);
+          color: var(--blue83);
+          margin: 0;
+        }
       }
     }
   }

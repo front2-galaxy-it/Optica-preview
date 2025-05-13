@@ -8,6 +8,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
+
+  &._isBin {
+    .icon_bin {
+      display: block;
+    }
+  }
 }
 
 .card_head {
@@ -61,14 +67,43 @@
   @include adaptive-value("height", 32, 24, 1);
 }
 
+.action_btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .icon_heart {
   @include adaptive-value("width", 32, 24, 1);
   @include adaptive-value("height", 32, 24, 1);
+  color: var(--gray4E);
+  fill: transparent;
+  transition: all 0.3s ease;
+
+  &:hover {
+    fill: var(--blue-primary);
+    color: var(--blue-primary);
+    transition: all 0.3s ease;
+  }
+}
+
+.icon_bin {
+  @include adaptive-value("width", 32, 24, 1);
+  @include adaptive-value("height", 32, 24, 1);
+  color: var(--gray4E);
+  transition: all 0.3s ease;
+  display: none;
+
+  &:hover {
+    color: var(--blue-primary);
+    transition: all 0.3s ease;
+  }
 }
 
 .product_img {
   width: 100%;
   max-height: 320px;
+  max-width: 390px;
   @include adaptive-value("margin-bottom", 16, 8, 1);
 
   img {
@@ -85,11 +120,11 @@
 }
 
 .product_info {
-  flex: 1;
+  margin-top: auto;
 }
 
 .product_name {
-  @include adaptive-value("font-size", 18, 16, 1);
+  font-size: 16px;
   margin-bottom: 8px;
   color: var(--gray);
 }
@@ -103,7 +138,6 @@
 
 .product_status {
   font-size: 12px;
-
   transition: all 0.3s;
   position: absolute;
   bottom: 16px;

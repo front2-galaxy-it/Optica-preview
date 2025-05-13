@@ -82,7 +82,7 @@ export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClos
                     message: "Заповніть поле",
                   },
                 })}
-                error={errors.name}
+                error={errors.name?.message}
               />
               <FormField
                 id="surname"
@@ -95,7 +95,7 @@ export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClos
                     message: "Заповніть поле",
                   },
                 })}
-                error={errors.surname}
+                error={errors.surname?.message}
               />
               <FormField
                 id="phone"
@@ -112,7 +112,7 @@ export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClos
                     message: "Невірний формат телефону",
                   },
                 })}
-                error={errors.phone}
+                error={errors.phone?.message}
               />
               <div className={css.inputs_wrap}>
                 <FormField
@@ -126,7 +126,7 @@ export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClos
                       message: "Заповніть поле",
                     },
                   })}
-                  error={errors.date}
+                  error={errors.date?.message}
                 />
                 <FormField
                   id="time"
@@ -139,7 +139,7 @@ export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClos
                       message: "Заповніть поле",
                     },
                   })}
-                  error={errors.time}
+                  error={errors.time?.message}
                 />
               </div>
               <Button

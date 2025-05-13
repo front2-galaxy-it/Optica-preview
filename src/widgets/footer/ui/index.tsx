@@ -1,6 +1,5 @@
 import React from "react"
 import css from "./styles.module.scss"
-// import classNames from "classnames"
 import { INavLink } from "@/shared/types"
 import LinksData from "@/shared/data/nav_footer.json"
 import { Navigation } from "@/shared/ui"

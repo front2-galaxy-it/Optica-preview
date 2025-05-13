@@ -1,3 +1,8 @@
+.form_field_wrap {
+  margin-bottom: 16px;
+  text-align: start;
+}
+
 .form_field {
   width: 100%;
   position: relative;
@@ -5,7 +10,6 @@
   border: 1px solid var(--gray8C);
   background-color: transparent;
   transition: all 0.3s ease;
-  margin-bottom: 16px;
 
   &._white {
     .form_field_input_placeholder {
@@ -97,6 +101,12 @@
     transform: translateX(-50%);
     z-index: -1;
   }
+}
+
+.error {
+  display: inline-block;
+  color: var(--red);
+  margin-top: 8px;
 }
 
 .error_icon {

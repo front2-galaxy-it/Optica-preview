@@ -62,7 +62,7 @@ export const RegisterSection: React.FC = () => {
                   message: "Заповніть поле",
                 },
               })}
-              error={errors.name}
+              error={errors.name?.message}
             />
             <FormField
               placeholder="Прізвище"
@@ -73,7 +73,7 @@ export const RegisterSection: React.FC = () => {
                   message: "Заповніть поле",
                 },
               })}
-              error={errors.surname}
+              error={errors.surname?.message}
             />
             <FormField
               placeholder="+3 8(___) ___ - __ - __"
@@ -88,7 +88,7 @@ export const RegisterSection: React.FC = () => {
                   message: "Невірний формат телефону",
                 },
               })}
-              error={errors.phone}
+              error={errors.phone?.message}
             />
             <FormField
               placeholder="Пароль"
@@ -99,7 +99,7 @@ export const RegisterSection: React.FC = () => {
                   message: "Заповніть поле",
                 },
               })}
-              error={errors.password}
+              error={errors.password?.message}
             />
             <CheckboxPolicy
               className={css.checkbox}

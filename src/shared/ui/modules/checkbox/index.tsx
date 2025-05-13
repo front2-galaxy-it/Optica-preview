@@ -3,7 +3,6 @@ import { RootLink } from "../../links"
 import css from "./styles.module.scss"
 import classNames from "classnames"
 import { UseFormRegisterReturn } from "react-hook-form"
-
 interface CheckboxPolicyProps {
   error?: string
   className?: string

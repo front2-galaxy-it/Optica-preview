@@ -4,14 +4,14 @@ import cn from "classnames"
 import { DetailedHTMLProps, InputHTMLAttributes, useEffect, useState } from "react"
 import css from "./styles.module.scss"
 import Image from "next/image"
-import { FieldError, UseFormRegisterReturn } from "react-hook-form"
+import { UseFormRegisterReturn } from "react-hook-form"
 
 export interface IFormFieldProps
   extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   isInvalid?: boolean
   isRequired?: boolean
   register?: UseFormRegisterReturn<string>
-  error?: FieldError | undefined
+  error?: string
   colorType?: "white" | "gray"
   isNeedToClean?: boolean
 }
@@ -41,6 +41,10 @@ export const FormField: React.FC<IFormFieldProps> = ({
     }
   }, [isNeedToClean])
 
+  useEffect(() => {
+    setIsFilled(Boolean(defaultValue))
+  }, [defaultValue])
+
   const handleFocus = () => setIsFocus(true)
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -49,41 +53,39 @@ export const FormField: React.FC<IFormFieldProps> = ({
   }
 
   return (
-    <div
-      className={cn(css.form_field, className, {
-        [css._invalid]: isError,
-        [css._disabled]: disabled,
-        [css._invalid_filled]: isError && isFilled,
-        [css._filled]: isFilled,
-        [css._focused]: isFocus,
-        [css._white]: colorType === "white",
-        [css._gray]: colorType === "gray",
-      })}
-    >
-      {placeholder && <span className={css.form_field_input_placeholder}>{placeholder}</span>}
-      <input
-        className={css.form_field_input}
-        onFocus={handleFocus}
-        defaultValue={defaultValue}
-        {...props}
-        {...register}
-        onBlur={(e) => {
-          register?.onBlur(e)
-          handleBlur(e)
-        }}
-      />
-      <span
-        className={cn(css.form_field_error, {
-          [css._visible_error]: error,
+    <div className={cn(css.form_field_wrap, className)}>
+      <div
+        className={cn(css.form_field, {
+          [css._invalid]: isError,
+          [css._disabled]: disabled,
+          [css._invalid_filled]: isError && isFilled,
+          [css._filled]: isFilled,
+          [css._focused]: isFocus,
+          [css._white]: colorType === "white",
+          [css._gray]: colorType === "gray",
         })}
-      ></span>
-      <Image
-        className={css.error_icon}
-        src="/images/svg/error-icon.svg"
-        width={15}
-        height={15}
-        alt="error icons"
-      />
+      >
+        {placeholder && <span className={css.form_field_input_placeholder}>{placeholder}</span>}
+        <input
+          className={css.form_field_input}
+          onFocus={handleFocus}
+          defaultValue={defaultValue}
+          {...props}
+          {...register}
+          onBlur={(e) => {
+            register?.onBlur(e)
+            handleBlur(e)
+          }}
+        />
+        <Image
+          className={css.error_icon}
+          src="/images/svg/error-icon.svg"
+          width={15}
+          height={15}
+          alt="error icon"
+        />
+      </div>
+      {error && <span className={css.error}>{error}</span>}
     </div>
   )
 }

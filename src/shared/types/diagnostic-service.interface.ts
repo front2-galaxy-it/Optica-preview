@@ -1,18 +1,14 @@
-// Типы контента
 export type DiagnosticContentType = "p" | "ul" | "li"
 
-// Структура блока контента
 export interface ContentBlock {
   type: DiagnosticContentType
   content: string | string[]
 }
 
-// Интерфейс для секции с диагностической услугой
 export interface IDiagnosticServiceSectionContent {
   contentBlocks?: ContentBlock[]
 }
 
-// Интерфейс для данных услуги
 export interface IDiagnosticService {
   slug: string
   img: string

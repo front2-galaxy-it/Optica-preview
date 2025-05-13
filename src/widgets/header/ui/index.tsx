@@ -15,6 +15,8 @@ import { SearchField } from "@/shared/ui/modules/search"
 import classNames from "classnames"
 import { Promo } from "../components/promo"
 import { useClickOutside } from "@/shared/hooks"
+import { ClientRoutes } from "@/shared/routes"
+import { useAuth } from "@/shared/lib/context/AuthContext"
 
 export const Header: React.FC = () => {
   const headerRef = useRef<HTMLDivElement>(null)
@@ -76,6 +78,10 @@ export const Header: React.FC = () => {
     searchOpen || catalogShow,
   )
 
+  const { isLoggedIn } = useAuth()
+
+  const profileLink = isLoggedIn ? ClientRoutes.profile.path : ClientRoutes.register.path
+
   return (
     <header
       ref={headerRef}
@@ -135,7 +141,7 @@ export const Header: React.FC = () => {
             />
             <div className={css.action_buttons}>
               <LanguageDropdown className={css.lang_switcher_desk} />
-              <RootLink href="/">
+              <RootLink href={profileLink}>
                 <Icon
                   name="user_icon"
                   className={css.action_icons}

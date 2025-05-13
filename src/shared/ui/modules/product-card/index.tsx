@@ -13,15 +13,21 @@ import { Price } from "../price"
 export const ProductCard: React.FC<IProductCardProps> = ({
   className,
   name,
-  category,
+  categoryName,
   image_url,
   labelTypes,
   statusTypes,
   price,
   oldPrice,
+  isBin,
+  basketButtonClass,
 }) => {
   return (
-    <div className={classNames(css.product_card, className)}>
+    <div
+      className={classNames(css.product_card, className, {
+        [css._isBin]: isBin,
+      })}
+    >
       <div className={css.card_head}>
         <div className={css.card_labels}>
           {labelTypes?.includes("novelty") && (
@@ -51,12 +57,20 @@ export const ProductCard: React.FC<IProductCardProps> = ({
               alt="privat"
             />
           </div>
-          <button className={css.wish_button}>
-            <Icon
-              name="icon_heart"
-              className={css.icon_heart}
-            />
-          </button>
+          <div className={css.action_btns}>
+            <button className={css.wish_button}>
+              <Icon
+                name="icon_heart"
+                className={css.icon_heart}
+              />
+            </button>
+            <button className={css.wish_button}>
+              <Icon
+                name="icon_bin"
+                className={css.icon_bin}
+              />
+            </button>
+          </div>
         </div>
       </div>
       <div className={css.product_img}>
@@ -68,7 +82,7 @@ export const ProductCard: React.FC<IProductCardProps> = ({
         />
       </div>
       <div className={css.product_info}>
-        <span className={css.product_category}>{category}</span>
+        <span className={css.product_category}>{categoryName}</span>
         <h5 className={css.product_name}>{name}</h5>
       </div>
       <Price
@@ -87,7 +101,7 @@ export const ProductCard: React.FC<IProductCardProps> = ({
         )}
         <Button
           modifier="primary"
-          className={css.card_btn}
+          className={classNames(css.card_btn, basketButtonClass)}
           iconName="basket_icon"
         >
           До кошика

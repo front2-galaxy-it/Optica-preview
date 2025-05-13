@@ -3,7 +3,8 @@
     {
       "id": "SAINT LAURENT SL 276 MICA 032 GREY",
       "name": "SAINT LAURENT SL 276 MICA 032 GREY",
-      "category": "Сонячні окуляри",
+      "categoryName": "Сонцезахисні окуляри",
+      "categorySlug": "soncezahysni-okulyary",
       "image_url": "/images/products/glasses/glasses.png",
       "statusTypes": ["unavailable"],
       "labelTypes": ["discount"],
@@ -12,7 +13,8 @@
     {
       "id": "SAINT LAURENT SL 276 MICA 032 ",
       "name": "SAINT LAURENT SL 276 MICA 032 GREY",
-      "category": "Сонячні окуляри",
+      "categoryName": "Сонцезахисні окуляри",
+      "categorySlug": "soncezahysni-okulyary",
       "image_url": "/images/products/glasses/glasses.png",
       "statusTypes": ["available"],
       "labelTypes": ["discount"],
@@ -20,33 +22,138 @@
       "oldPrice": 18000
     },
     {
-      "id": "SAINT LAURENT SL 276 MICA  GREY",
-      "name": "SAINT LAURENT SL 276 MICA 032 GREY",
-      "category": "Сонячні окуляри",
+      "id": "PRADA PS 1234 BLUE",
+      "name": "PRADA PS 1234 BLUE",
+      "categoryName": "Сонцезахисні окуляри",
+      "categorySlug": "soncezahysni-okulyary",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["new"],
+      "price": 16000,
+      "oldPrice": 20000
+    },
+    {
+      "id": "OAKLEY OO9208 SINGULARITY",
+      "name": "OAKLEY OO9208 SINGULARITY",
+      "categoryName": "Сонцезахисні окуляри",
+      "categorySlug": "soncezahysni-okulyary",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["new"],
+      "price": 20000
+    },
+    {
+      "id": "SAINT LAURENT SL 278 GREY",
+      "name": "SAINT LAURENT SL 278 GREY",
+      "categoryName": "Сонцезахисні окуляри",
+      "categorySlug": "soncezahysni-okulyary",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["new"],
+      "price": 15000
+    },
+    {
+      "id": "DELLA ARIA CLEANER",
+      "name": "Della Aria Cleaner",
+      "categoryName": "Засоби для догляду",
+      "categorySlug": "zasoby-dlya-doglyadu",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["new"],
+      "price": 500,
+      "oldPrice": 600
+    },
+    {
+      "id": "OPTIX LENS CLEANER",
+      "name": "Optix Lens Cleaner",
+      "categoryName": "Засоби для догляду",
+      "categorySlug": "zasoby-dlya-doglyadu",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["discount"],
+      "price": 350
+    },
+    {
+      "id": "CLEANING KIT 200ML",
+      "name": "Cleaning Kit 200ML",
+      "categoryName": "Засоби для догляду",
+      "categorySlug": "zasoby-dlya-doglyadu",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["new"],
+      "price": 300
+    },
+    {
+      "id": "OPTIX LENSES",
+      "name": "Optix Lenses",
+      "categoryName": "Лінзи для окулярів",
+      "categorySlug": "linzy-dlya-okulyariv",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["new"],
+      "price": 1200,
+      "oldPrice": 1500
+    },
+    {
+      "id": "UV PROTECT LENS",
+      "name": "UV Protect Lens",
+      "categoryName": "Лінзи для окулярів",
+      "categorySlug": "linzy-dlya-okulyariv",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["discount"],
+      "price": 1000
+    },
+    {
+      "id": "FLEXI LENS",
+      "name": "Flexi Lens",
+      "categoryName": "Лінзи для окулярів",
+      "categorySlug": "linzy-dlya-okulyariv",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["unavailable"],
+      "labelTypes": ["discount"],
+      "price": 1300
+    },
+    {
+      "id": "CONTACT LENS 1",
+      "name": "Contact Lens 1",
+      "categoryName": "Контактні лінзи",
+      "categorySlug": "kontaktny-linzy",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["new"],
+      "price": 900,
+      "oldPrice": 1100
+    },
+    {
+      "id": "CONTACT LENS 2",
+      "name": "Contact Lens 2",
+      "categoryName": "Контактні лінзи",
+      "categorySlug": "kontaktny-linzy",
+      "image_url": "/images/products/glasses/glasses.png",
+      "statusTypes": ["available"],
+      "labelTypes": ["discount"],
+      "price": 850
+    },
+    {
+      "id": "CONTACT LENS 3",
+      "name": "Contact Lens 3",
+      "categoryName": "Контактні лінзи",
+      "categorySlug": "kontaktny-linzy",
       "image_url": "/images/products/glasses/glasses.png",
       "statusTypes": ["pre-order"],
-      "labelTypes": ["discount"],
-      "price": 14000,
-      "oldPrice": 18000
+      "labelTypes": ["new"],
+      "price": 950
     },
     {
-      "id": "SAINT LAURENT SL 276  032 GREY",
-      "name": "SAINT LAURENT SL 276 MICA 032 GREY",
-      "category": "Сонячні окуляри",
+      "id": "CONTACT LENS 4",
+      "name": "Contact Lens 4",
+      "categoryName": "Контактні лінзи",
+      "categorySlug": "kontaktny-linzy",
       "image_url": "/images/products/glasses/glasses.png",
-      "statusTypes": ["available"],
+      "statusTypes": ["unavailable"],
       "labelTypes": ["discount"],
-      "price": 14000
-    },
-    {
-      "id": "SAINT LAURENT 276  032 GREY",
-      "name": "SAINT LAURENT SL 276 MICA 032 GREY",
-      "category": "Дитячі окуляри",
-      "image_url": "/images/products/glasses/glasses.png",
-      "statusTypes": ["available"],
-      "labelTypes": ["discount"],
-      "price": 14000,
-      "oldPrice": 18000
+      "price": 1000
     }
   ]
 }

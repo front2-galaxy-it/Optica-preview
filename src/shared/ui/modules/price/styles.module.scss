@@ -7,7 +7,7 @@
 }
 
 .price_body {
-  @include adaptive-value("font-size", 18, 16, 1);
+  font-size: 16px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -32,7 +32,7 @@
 .discount_price {
   text-decoration: line-through;
   color: var(--grayB8);
-  @include adaptive-value("font-size", 18, 16, 1);
+  font-size: 16px;
 }
 
 .discounted_price {
