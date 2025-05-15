@@ -3,6 +3,7 @@ import css from "./styles.module.scss"
 import { ICateroriesLink } from "@/shared/types/blog.interface"
 import { RootLink } from "@/shared/ui"
 import classNames from "classnames"
+import { ClientRoutes } from "@/shared/routes"
 
 interface ICateroriesList {
   cateroriesList: ICateroriesLink[]
@@ -26,7 +27,7 @@ export const Categories: React.FC<ICateroriesList> = ({ cateroriesList, classNam
                     [css["_special_green"]]: cateroriesLink.specialColorGreen,
                     [css["_special_red"]]: cateroriesLink.specialColorRed,
                   })}
-                  href={cateroriesLink.href}
+                  href={ClientRoutes.product_category(cateroriesLink.categorySlug)}
                   aria-label={cateroriesLink.label}
                   onClick={onClose}
                 >

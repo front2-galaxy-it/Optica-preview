@@ -7,22 +7,35 @@ import { RootLink } from "@/shared/ui"
 import { ClientRoutes } from "@/shared/routes"
 
 interface CategoriesListProps {
+  className?: string
   activeCategorySlug: string
   categoryList: ICateroriesLink[]
+  onClose: () => void
 }
 
 export const CategoriesList: React.FC<CategoriesListProps> = ({
   activeCategorySlug,
   categoryList,
+  onClose,
+  className,
 }) => {
   return (
-    <div className={css.categories_list_wrap}>
+    <div className={classNames(css.categories_list_wrap, className)}>
       <div className={css.categories_list_head}>
-        <Icon
-          name="icon_category"
-          className={css.icon_category}
-        />
-        <strong>Категорії</strong>
+        <div className={css.category_title}>
+          <Icon
+            name="icon_category"
+            className={css.icon_category}
+          />
+          <strong>Категорії</strong>
+        </div>
+        <button
+          className={css.closeButton}
+          onClick={onClose}
+        >
+          <span></span>
+          <span></span>
+        </button>
       </div>
       <ul className={css.categories_list}>
         {categoryList.map((link) => (
@@ -34,6 +47,10 @@ export const CategoriesList: React.FC<CategoriesListProps> = ({
                 [css["_special_red"]]: link.specialColorRed,
                 [css.active]: link.categorySlug === activeCategorySlug,
               })}
+              onClick={() => {
+                onClose()
+                document.body.classList.remove("_lock")
+              }}
             >
               {link.label}
               <Icon

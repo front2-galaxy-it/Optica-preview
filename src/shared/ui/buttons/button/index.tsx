@@ -11,7 +11,7 @@ export const Button: React.FC<IButtonProps> = ({
   type,
   className,
   modifier,
-  size = "md",
+  size = "",
   iconName,
   iconPosition = "right",
   ...props

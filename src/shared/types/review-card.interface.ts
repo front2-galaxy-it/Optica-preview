@@ -5,4 +5,8 @@ export interface IReviewCardProps {
   text: string
   mediaImg: string
   date: string
+  replyDate: string
+  replyText: string
+  hideMediaIcon?: boolean
+  hideReplyButton?: boolean
 }

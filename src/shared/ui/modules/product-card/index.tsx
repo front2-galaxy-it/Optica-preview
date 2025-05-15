@@ -9,6 +9,8 @@ import { Icon } from "../../icons"
 import { Button } from "../../buttons"
 import { IProductCardProps } from "@/shared/types/product-card.interface"
 import { Price } from "../price"
+import { RootLink } from "../../links"
+import { ClientRoutes } from "@/shared/routes"
 
 export const ProductCard: React.FC<IProductCardProps> = ({
   className,
@@ -21,6 +23,8 @@ export const ProductCard: React.FC<IProductCardProps> = ({
   oldPrice,
   isBin,
   basketButtonClass,
+  categorySlug,
+  id,
 }) => {
   return (
     <div
@@ -83,7 +87,12 @@ export const ProductCard: React.FC<IProductCardProps> = ({
       </div>
       <div className={css.product_info}>
         <span className={css.product_category}>{categoryName}</span>
-        <h5 className={css.product_name}>{name}</h5>
+        <RootLink
+          href={ClientRoutes.product(categorySlug, id)}
+          className={css.product_link}
+        >
+          <h5 className={css.product_name}>{name}</h5>
+        </RootLink>
       </div>
       <Price
         price={price}

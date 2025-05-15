@@ -56,4 +56,24 @@
     @include adaptive-value("font-size", 18, 16, 1);
     color: var(--gray8C);
   }
+
+  &_footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .reply_btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blue-primary);
+    @include adaptive-value("font-size", 16, 12, 1);
+
+    .reply_btn_arrow {
+      rotate: 90deg;
+    }
+  }
 }
+

@@ -10,6 +10,7 @@ import { IconGlobe } from "./svg/globe"
 import { IconGoogle } from "./svg/google"
 import { IconBin } from "./svg/icon_bin"
 import { IconCategory } from "./svg/icon_category"
+import { IconChat } from "./svg/icon_chat"
 import { IconCheck } from "./svg/icon_check"
 import { IconClock } from "./svg/icon_clock"
 import { IconCross } from "./svg/icon_cross"
@@ -70,4 +71,5 @@ export const icons = {
   icon_heart: IconHeart,
   icon_category: IconCategory,
   icon_filter: IconFilter,
+  icon_chat: IconChat,
 }

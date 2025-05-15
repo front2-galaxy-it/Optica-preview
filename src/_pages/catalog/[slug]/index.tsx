@@ -7,9 +7,9 @@ import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
 import { TopSalesSection } from "@/widgets/top-sales"
-import { CatalogSection } from "@/widgets/catalog"
 import categoryData from "@/shared/data/categories-list.json"
 import { ICateroriesLink } from "@/shared/types"
+import { CatalogSection } from "@/widgets/catalog"
 
 const categoryDataList: ICateroriesLink[] = categoryData.categories_list
 
