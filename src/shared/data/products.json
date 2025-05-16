@@ -461,19 +461,16 @@
       "id": "CONTACT_LENS_1",
       "name": "Contact Lens 1",
       "categoryName": "Контактні лінзи",
-      "categorySlug": "kontaktny-linzy",
-      "image_url": "/images/products/glasses/glasses.png",
+      "categorySlug": "kontaktni-linzy",
+      "image_url": "/images/products/lenses/lenses.png",
       "statusTypes": ["available"],
       "labelTypes": ["new"],
       "price": 900,
       "oldPrice": 1100,
       "code": 258369147,
       "images": {
-        "white": ["/images/products/glasses/glasses.png", "/images/products/glasses/glasses_2.png"],
-        "black": [
-          "/images/products/glasses/glasses_2.png",
-          "/images/products/glasses/glasses_3.png"
-        ]
+        "white": ["/images/products/lenses/lenses.png", "/images/products/lenses/lenses.png"],
+        "black": ["/images/products/glasses/lenses.png", "/images/products/glasses/lenses.png"]
       },
       "colors": [
         {
@@ -503,18 +500,15 @@
       "id": "CONTACT_LENS_2",
       "name": "Contact Lens 2",
       "categoryName": "Контактні лінзи",
-      "categorySlug": "kontaktny-linzy",
-      "image_url": "/images/products/glasses/glasses.png",
+      "categorySlug": "kontaktni-linzy",
+      "image_url": "/images/products/lenses/lenses.png",
       "statusTypes": ["available"],
       "labelTypes": ["discount"],
       "price": 850,
       "code": 654987321,
       "images": {
-        "white": ["/images/products/glasses/glasses.png", "/images/products/glasses/glasses_2.png"],
-        "black": [
-          "/images/products/glasses/glasses_2.png",
-          "/images/products/glasses/glasses_3.png"
-        ]
+        "white": ["/images/products/lenses/lenses.png", "/images/products/lenses/lenses.png"],
+        "black": ["/images/products/lenses/lenses.png", "/images/products/lenses/lenses.png"]
       },
       "colors": [
         {
@@ -544,18 +538,15 @@
       "id": "CONTACT_LENS_3",
       "name": "Contact Lens 3",
       "categoryName": "Контактні лінзи",
-      "categorySlug": "kontaktny-linzy",
-      "image_url": "/images/products/glasses/glasses.png",
+      "categorySlug": "kontaktni-linzy",
+      "image_url": "/images/products/lenses/lenses.png",
       "statusTypes": ["pre-order"],
       "labelTypes": ["new"],
       "price": 950,
       "code": 963741852,
       "images": {
-        "white": ["/images/products/glasses/glasses.png", "/images/products/glasses/glasses_2.png"],
-        "black": [
-          "/images/products/glasses/glasses_2.png",
-          "/images/products/glasses/glasses_3.png"
-        ]
+        "white": ["/images/products/lenses/lenses.png", "/images/products/lenses/lenses.png"],
+        "black": ["/images/products/lenses/lenses.png", "/images/products/lenses/lenses.png"]
       },
       "colors": [
         {
@@ -585,18 +576,15 @@
       "id": "CONTACT_LENS_4",
       "name": "Contact Lens 4",
       "categoryName": "Контактні лінзи",
-      "categorySlug": "kontaktny-linzy",
-      "image_url": "/images/products/glasses/glasses.png",
+      "categorySlug": "kontaktni-linzy",
+      "image_url": "/images/products/lenses/lenses.png",
       "statusTypes": ["unavailable"],
       "labelTypes": ["discount"],
       "price": 1000,
       "code": 369147258,
       "images": {
-        "white": ["/images/products/glasses/glasses.png", "/images/products/glasses/glasses_2.png"],
-        "black": [
-          "/images/products/glasses/glasses_2.png",
-          "/images/products/glasses/glasses_3.png"
-        ]
+        "white": ["/images/products/lenses/lenses.png", "/images/products/lenses/lenses.png"],
+        "black": ["/images/products/lenses/lenses.png", "/images/products/lenses/lenses.png"]
       },
       "colors": [
         {

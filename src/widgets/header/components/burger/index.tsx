@@ -4,6 +4,7 @@ import classNames from "classnames"
 
 interface BurgerMenuProps {
   onClick: () => void
+  onLinkClick?: () => void
   className?: string
   burgerOpen?: boolean
   closing?: boolean

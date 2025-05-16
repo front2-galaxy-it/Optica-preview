@@ -28,7 +28,7 @@
 }
 
 .categories_link {
-  font-size: 18px;
+  @include adaptive-value("font-size", 18, 14, 1);
   font-weight: 600;
   color: var(--gray4E);
   padding-bottom: 8px;
@@ -47,6 +47,15 @@
 
   &._special_red {
     color: var(--red);
+  }
+
+  &.active {
+    color: var(--blue-primary);
+
+    &::before {
+      width: 100%;
+      transition: all 0.3s ease;
+    }
   }
 
   &::before {

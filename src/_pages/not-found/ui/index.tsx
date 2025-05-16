@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl"
+import { NotFoundSection } from "@/widgets/not-found"
 
 /**
  * Note however that Next.js will only render this page when the **notFound** function
@@ -9,7 +9,5 @@ import { useTranslations } from "next-intl"
  * */
 
 export function NotFoundPage() {
-  const t = useTranslations("NotFoundPage")
-
-  return <h1>{t("title")}</h1>
+  return <NotFoundSection />
 }

@@ -14,6 +14,8 @@ import { Button } from "@/shared/ui"
 import { motion } from "framer-motion"
 import { ProductCharacteristicsTab } from "./ProductCharacteristicsTab"
 import { ProductReviewsTab } from "./ProductReviewsTab"
+import { ProductPaymentTab } from "./ProductPaymentTab"
+import EyesTabSelector from "../components/eyes-selector"
 
 interface ProductSectionProps {
   product: IProductCardProps
@@ -150,7 +152,6 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
               )}
             </div>
           </div>
-
           <div className={css.product_info}>
             <span className={css.product_category}>{product.categoryName}</span>
             <h5 className={css.product_title}>{product.name}</h5>
@@ -203,6 +204,8 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
                 ))}
               </div>
             </div>
+
+            <EyesTabSelector />
 
             <Price
               className={css.product_price}
@@ -278,7 +281,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
                 />
               )}
               {activeTab === "reviews" && <ProductReviewsTab />}
-              {activeTab === "payment" && <div className={css.product_tab}></div>}
+              {activeTab === "payment" && <ProductPaymentTab />}
             </motion.div>
           </div>
         </div>

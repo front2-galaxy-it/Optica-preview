@@ -1,0 +1,62 @@
+{
+  "menu": [
+    {
+      "title": "Категорія",
+      "items": [
+        { "label": "Жіночі", "href": "#" },
+        { "label": "Чоловічі", "href": "#" },
+        { "label": "Унісекс", "href": "#" },
+        { "label": "Дитячі", "href": "#" }
+      ]
+    },
+    {
+      "title": "Бренди",
+      "items": [
+        { "label": "Polaroid", "href": "#" },
+        { "label": "Ray-Ban", "href": "#" },
+        { "label": "EMPORIO ARMANI", "href": "#" },
+        { "label": "Gucci", "href": "#" }
+      ]
+    },
+    {
+      "title": "Матеріал",
+      "items": [
+        { "label": "Метал", "href": "#" },
+        { "label": "Пластик", "href": "#" },
+        { "label": "Титан", "href": "#" },
+        { "label": "Нейлон", "href": "#" }
+      ]
+    },
+    {
+      "title": "Аксесуари",
+      "items": [
+        { "label": "Ланцюжки", "href": "#" },
+        { "label": "Чохли", "href": "#" },
+        { "label": "Серветки", "href": "#" },
+        { "label": "Засоби для догляду", "href": "#" }
+      ]
+    }
+  ],
+  "shapes": [
+    {
+      "label": "авіатор",
+      "href": "#",
+      "image": "/images/products/glasses/glasses_4.png"
+    },
+    {
+      "label": "квадратні",
+      "href": "#",
+      "image": "/images/products/glasses/glasses_5.png"
+    },
+    {
+      "label": "круглі",
+      "href": "#",
+      "image": "/images/products/glasses/glasses_6.png"
+    },
+    {
+      "label": "Котяче око",
+      "href": "#",
+      "image": "/images/products/glasses/glasses_7.png"
+    }
+  ]
+}

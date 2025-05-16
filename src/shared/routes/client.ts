@@ -67,6 +67,10 @@ export const DevRoutes = {
     path: "/profile",
     name: "Особистий профіль",
   },
+  cart: {
+    path: "/cart",
+    name: "Кошик",
+  },
 }
 
 export const ClientRoutes = {
@@ -145,6 +149,10 @@ export const ClientRoutes = {
   register: {
     path: "/profile/register",
     name: "Реєстрація",
+  },
+  cart: {
+    path: "/cart",
+    name: "Кошик",
   },
 
   /** Get  the path to a specific task route.**/

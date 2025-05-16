@@ -61,6 +61,7 @@
   }
 
   &:hover {
+
     .icon_mobile,
     span {
       color: var(--blue-primary);
@@ -183,4 +184,13 @@
   @include media-down(md) {
     display: block;
   }
+}
+
+.categories_menu_wrap {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1005;
+  width: 100%;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.15);
 }

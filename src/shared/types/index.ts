@@ -1,6 +1,6 @@
 export * from "./nav-list.interface"
 export * from "./header-catalog-list.interface"
-export * from "./blog.interface"
+export * from "./categories.interface"
 export * from "./product-card.interface"
 export * from "./blog-card.interface"
 export * from "./address.interface"

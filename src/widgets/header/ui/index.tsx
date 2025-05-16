@@ -17,6 +17,9 @@ import { Promo } from "../components/promo"
 import { useClickOutside } from "@/shared/hooks"
 import { ClientRoutes } from "@/shared/routes"
 import { useAuth } from "@/shared/lib/context/AuthContext"
+import { CategoriesMenu } from "../components/categories-menu"
+import { AnimatePresence, motion } from "framer-motion"
+import { CartPopup } from "@/widgets/popups"
 
 export const Header: React.FC = () => {
   const headerRef = useRef<HTMLDivElement>(null)
@@ -69,8 +72,14 @@ export const Header: React.FC = () => {
 
   const toggleCatalog = () => setCatalogShow((prev) => !prev)
 
+  const { isLoggedIn } = useAuth()
+
+  const profileLink = isLoggedIn ? ClientRoutes.profile.path : ClientRoutes.register.path
+
+  const categoriesMenuRef = useRef<HTMLDivElement>(null)
+
   useClickOutside(
-    [catalogRef, searchRef],
+    [catalogRef, searchRef, categoriesMenuRef],
     () => {
       setSearchOpen(false)
       setCatalogShow(false)
@@ -78,9 +87,29 @@ export const Header: React.FC = () => {
     searchOpen || catalogShow,
   )
 
-  const { isLoggedIn } = useAuth()
+  const [activeCategorySlug, setActiveCategorySlug] = useState<string | null>(null)
 
-  const profileLink = isLoggedIn ? ClientRoutes.profile.path : ClientRoutes.register.path
+  const handleCategoryHover = (slug: string | null) => {
+    if (slug !== activeCategorySlug) {
+      setActiveCategorySlug(slug)
+    }
+  }
+
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveCategorySlug(null)
+    }, 200)
+  }
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+  }
+
+  const [popupOpen, setPopupOpen] = useState(false)
 
   return (
     <header
@@ -163,12 +192,12 @@ export const Header: React.FC = () => {
                   className={css.action_icons}
                 />
               </RootLink>
-              <RootLink href="/">
+              <button onClick={() => setPopupOpen(true)}>
                 <Icon
                   name="basket_icon"
                   className={css.action_icons}
                 />
-              </RootLink>
+              </button>
               <BurgerMenu
                 onClick={toggleBurger}
                 burgerOpen={burgerOpen}
@@ -179,7 +208,10 @@ export const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      <Categories cateroriesList={categoryDataList} />
+      <Categories
+        cateroriesList={categoryDataList}
+        onCategoryHover={handleCategoryHover}
+      />
       <div ref={catalogRef}>
         <HeaderCatalog
           isShow={catalogShow}
@@ -192,6 +224,82 @@ export const Header: React.FC = () => {
       <MobileMenu
         burgerOpen={burgerOpen}
         onClose={() => setBurgerOpen(false)}
+      />
+      <AnimatePresence mode="wait">
+        {activeCategorySlug === "soncezahysni-okulyary" && (
+          <motion.div
+            key={activeCategorySlug}
+            ref={categoriesMenuRef}
+            className={css.categories_menu_wrap}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+          >
+            <CategoriesMenu />
+          </motion.div>
+        )}
+        {activeCategorySlug === "kontaktni-linzy" && (
+          <motion.div
+            key={activeCategorySlug}
+            ref={categoriesMenuRef}
+            className={css.categories_menu_wrap}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+          >
+            <CategoriesMenu />
+          </motion.div>
+        )}
+        {activeCategorySlug === "opravy" && (
+          <motion.div
+            key={activeCategorySlug}
+            ref={categoriesMenuRef}
+            className={css.categories_menu_wrap}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+          >
+            <CategoriesMenu />
+          </motion.div>
+        )}
+        {activeCategorySlug === "linzy-dlya-okulyariv" && (
+          <motion.div
+            key={activeCategorySlug}
+            ref={categoriesMenuRef}
+            className={css.categories_menu_wrap}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+          >
+            <CategoriesMenu />
+          </motion.div>
+        )}
+        {activeCategorySlug === "zasoby-dlya-doglyadu" && (
+          <motion.div
+            key={activeCategorySlug}
+            ref={categoriesMenuRef}
+            className={css.categories_menu_wrap}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+          >
+            <CategoriesMenu />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <CartPopup
+        isOpen={popupOpen}
+        onClose={() => setPopupOpen(false)}
       />
     </header>
   )
