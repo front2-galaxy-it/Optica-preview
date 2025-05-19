@@ -1,1 +1,1 @@
-export { CheckoutPage as default } from "@/_pages/cart"
+export { CartPage as default } from "@/_pages/cart"

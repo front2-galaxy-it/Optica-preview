@@ -71,6 +71,10 @@ export const DevRoutes = {
     path: "/cart",
     name: "Кошик",
   },
+  checkout: {
+    path: "/checkout",
+    name: "Оформлення замовлення",
+  },
 }
 
 export const ClientRoutes = {
@@ -152,6 +156,10 @@ export const ClientRoutes = {
   },
   cart: {
     path: "/cart",
+    name: "Кошик",
+  },
+  checkout: {
+    path: "/checkout",
     name: "Кошик",
   },
 

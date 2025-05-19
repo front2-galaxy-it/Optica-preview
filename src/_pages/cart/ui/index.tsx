@@ -8,7 +8,7 @@ import { PageInfo } from "@/widgets/page-info-block"
 import { TopSalesSection } from "@/widgets/top-sales"
 import { CartSection } from "@/widgets/cart"
 
-export function CheckoutPage({ params: { locale } }: IHomePageProps) {
+export function CartPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
 
   return (
