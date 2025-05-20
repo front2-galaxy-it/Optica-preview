@@ -20,7 +20,7 @@ export const AuthorizationPopup: React.FC<authorizationPopupProps> = ({ isOpen, 
       <div className={classNames(css.authorization_popup_container, isOpen && css.show)}>
         <div className={css.authorization_popup}>
           <div className={css.authorization_popup_head}>
-            <p className={css.authorization_popup_head_title}>Реєстрація</p>
+            <p className={css.authorization_popup_head_title}>Авторизація</p>
             <button
               type="button"
               className={css.authorization_popup_head_close}

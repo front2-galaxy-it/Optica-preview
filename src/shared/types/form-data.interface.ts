@@ -20,4 +20,11 @@ export interface AddressData {
   surname: string
   patronymic: string
   phone: string
+  city: string
+  zipCode: string
+  district: string
+  street: string
+  houseNumber: string
+  houseHull: string
+  apartments: string
 }

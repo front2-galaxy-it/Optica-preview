@@ -8,6 +8,7 @@ import { RegisterForm } from "@/shared/ui"
 interface registerPopupProps {
   isOpen: boolean
   onClose: () => void
+  // onSubmit: () => void
 }
 
 export const RegisterPopup: React.FC<registerPopupProps> = ({ isOpen, onClose }) => {
