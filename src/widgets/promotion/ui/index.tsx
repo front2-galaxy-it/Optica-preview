@@ -9,6 +9,7 @@ import productsData from "@/shared/data/products.json"
 import { ProductTab } from "@/shared/ui/modules/product-card/components/product-tab"
 import { SliderButton } from "@/shared/ui/buttons"
 import { Swiper as SwiperType } from "swiper"
+import { AnimatePresence, motion } from "framer-motion"
 
 const productsDataList: IProductCardProps[] = productsData.products.map((product) => ({
   ...product,
@@ -16,27 +17,22 @@ const productsDataList: IProductCardProps[] = productsData.products.map((product
   statusTypes: product.statusTypes as StatusType[],
 }))
 
-const tabs = [
-  {
-    id: "tab1",
-    label: "Сонячні окуляри",
-    category: "Сонячні окуляри",
-  },
-  { id: "tab2", label: "Дитячі окуляри", category: "Дитячі окуляри" },
-  { id: "tab3", label: "Контактні лінзи", category: "Контактні лінзи" },
-]
+const uniqueCategories = Array.from(
+  new Map(productsDataList.map((p) => [p.categorySlug, p.categoryName])).entries(),
+).slice(0, 3)
+
+const tabs = uniqueCategories.map(([slug, name], index) => ({
+  id: `tab${index + 1}`,
+  label: name,
+  categorySlug: slug,
+}))
 
 export const PromotionSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id)
   const activeTabData = tabs.find((tab) => tab.id === activeTab)
 
   const swiperRef = useRef<SwiperType | null>(null)
-  const scrollIntoView = () => {
-    return (event: React.MouseEvent<HTMLButtonElement>) => {
-      const button = event.currentTarget
-      button.scrollIntoView({ behavior: "smooth", block: "center" })
-    }
-  }
+
   return (
     <section className={css.top_sales_section}>
       <div className="container">
@@ -59,10 +55,7 @@ export const PromotionSection: React.FC = () => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={(event) => {
-                  setActiveTab(tab.id)
-                  scrollIntoView()(event)
-                }}
+                onClick={() => setActiveTab(tab.id)}
                 className={classNames(css.button, {
                   [css.active]: tab.id === activeTab,
                 })}
@@ -74,14 +67,22 @@ export const PromotionSection: React.FC = () => {
         </div>
       </div>
       <div className={css.promotion_section_content}>
-        {activeTabData?.category && (
-          <ProductTab
-            ref={swiperRef}
-            key={activeTab}
-            categorySlug={activeTabData.category}
-            productList={productsDataList}
-          />
-        )}
+        <AnimatePresence mode="wait">
+          {activeTabData?.categorySlug && (
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: "0" }}
+              exit={{ opacity: 0, x: "-100%" }}
+            >
+              <ProductTab
+                ref={swiperRef}
+                categorySlug={activeTabData.categorySlug}
+                productList={productsDataList}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )

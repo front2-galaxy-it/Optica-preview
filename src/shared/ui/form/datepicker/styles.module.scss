@@ -1,5 +1,8 @@
 .datepicker_filed {
   position: relative;
+  margin-bottom: 16px;
+  width: 100%;
+  text-align: start;
 
   &._invalid {
     .datepicker {

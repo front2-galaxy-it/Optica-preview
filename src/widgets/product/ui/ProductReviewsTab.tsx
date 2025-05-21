@@ -6,7 +6,7 @@ import { CustomPagination, ReviewCard } from "@/shared/ui"
 import dataReviewsList from "@/shared/data/reviews-list.json"
 import { IReviewCardProps } from "@/shared/types"
 import { Icon } from "@/shared/ui/icons"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 const reviewsDataList: IReviewCardProps[] = dataReviewsList.review_cards
 
@@ -47,32 +47,33 @@ export const ProductReviewsTab: React.FC = () => {
               hideReplyButton={false}
               onReplyClick={() => toggleReplyBlock(index)}
             />
-            <motion.div
-              key={activeReplyIndex}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {activeReplyIndex === index && (
-                <div className={css.reply_block}>
-                  <strong className={css.reply_block_title}>
-                    <Icon
-                      name="icon_chat"
-                      className={css.reply_block_icon}
-                    />
-                    Відповідь представника мережі
-                  </strong>
-                  <p className={css.reply_block_text}>{card.replyText}</p>
-                  <time
-                    dateTime={formattedDate}
-                    className={css.reply_block_date}
-                  >
-                    {card.replyDate}
-                  </time>
-                </div>
-              )}
-            </motion.div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeReplyIndex}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+              >
+                {activeReplyIndex === index && (
+                  <div className={css.reply_block}>
+                    <strong className={css.reply_block_title}>
+                      <Icon
+                        name="icon_chat"
+                        className={css.reply_block_icon}
+                      />
+                      Відповідь представника мережі
+                    </strong>
+                    <p className={css.reply_block_text}>{card.replyText}</p>
+                    <time
+                      dateTime={formattedDate}
+                      className={css.reply_block_date}
+                    >
+                      {card.replyDate}
+                    </time>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
           </div>
         )
       })}

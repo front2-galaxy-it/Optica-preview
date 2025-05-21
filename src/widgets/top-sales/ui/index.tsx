@@ -9,6 +9,7 @@ import productsData from "@/shared/data/products.json"
 import { ProductTab } from "@/shared/ui/modules/product-card/components/product-tab"
 import { SliderButton } from "@/shared/ui/buttons"
 import { Swiper as SwiperType } from "swiper"
+import { AnimatePresence, motion } from "framer-motion"
 
 const productsDataList: IProductCardProps[] = productsData.products.map((product) => ({
   ...product,
@@ -31,12 +32,7 @@ export const TopSalesSection: React.FC = () => {
   const activeTabData = tabs.find((tab) => tab.id === activeTab)
 
   const swiperRef = useRef<SwiperType | null>(null)
-  const scrollIntoView = () => {
-    return (event: React.MouseEvent<HTMLButtonElement>) => {
-      const button = event.currentTarget
-      button.scrollIntoView({ behavior: "smooth", block: "center" })
-    }
-  }
+
   return (
     <section className={css.top_sales_section}>
       <div className="container">
@@ -59,10 +55,7 @@ export const TopSalesSection: React.FC = () => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={(event) => {
-                  setActiveTab(tab.id)
-                  scrollIntoView()(event)
-                }}
+                onClick={() => setActiveTab(tab.id)}
                 className={classNames(css.button, {
                   [css.active]: tab.id === activeTab,
                 })}
@@ -74,14 +67,22 @@ export const TopSalesSection: React.FC = () => {
         </div>
       </div>
       <div className={css.top_sales_section_content}>
-        {activeTabData?.categorySlug && (
-          <ProductTab
-            ref={swiperRef}
-            key={activeTab}
-            categorySlug={activeTabData.categorySlug}
-            productList={productsDataList}
-          />
-        )}
+        <AnimatePresence mode="wait">
+          {activeTabData?.categorySlug && (
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: "0" }}
+              exit={{ opacity: 0, x: "-100%" }}
+            >
+              <ProductTab
+                ref={swiperRef}
+                categorySlug={activeTabData.categorySlug}
+                productList={productsDataList}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )

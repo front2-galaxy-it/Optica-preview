@@ -168,3 +168,8 @@ input {
   border: none;
   opacity: 1;
 }
+
+// datepicker
+.react-datepicker__time-list-item--disabled {
+  display: none;
+}

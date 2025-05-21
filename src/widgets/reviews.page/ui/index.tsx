@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import css from "./styles.module.scss"
 import { Button, CustomPagination, ReviewCard } from "@/shared/ui"
 import dataReviewsList from "@/shared/data/reviews-list.json"
@@ -17,10 +17,19 @@ export const Reviews: React.FC = () => {
   const startIndex = (currentPage - 1) * itemsPerPage
   const paginatedItems = reviewsDataList.slice(startIndex, startIndex + itemsPerPage)
 
+  const reviewsListRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    reviewsListRef.current?.scrollIntoView({ behavior: "smooth" })
+  }, [currentPage])
+
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
   return (
-    <section className={css.reviews_section}>
+    <section
+      className={css.reviews_section}
+      ref={reviewsListRef}
+    >
       <div className="container">
         <div className={css.reviews_section_content}>
           <AnimatePresence mode="wait">
@@ -42,7 +51,7 @@ export const Reviews: React.FC = () => {
               </div>
             </motion.div>
           </AnimatePresence>
-          {reviewsDataList.length > 0 && (
+          {reviewsDataList.length > itemsPerPage && (
             <CustomPagination
               currentPage={currentPage}
               onPageChange={setCurrentPage}

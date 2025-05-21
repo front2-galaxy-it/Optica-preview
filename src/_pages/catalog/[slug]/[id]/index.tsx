@@ -40,7 +40,6 @@ export function ProductPage({
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: "#", title: "Каталог" },
           {
             type: "parent",
             slug: ClientRoutes.product_category(slug),

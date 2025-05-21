@@ -9,7 +9,7 @@ import { IProductCardProps, LabelType, StatusType, ICateroriesLink } from "@/sha
 import productData from "@/shared/data/products.json"
 import categoryData from "@/shared/data/categories-list.json"
 import { FilterList } from "../components/filter-list"
-import { PriceRangeFilter } from "../components/perice-filter-range"
+import { PriceRangeFilter } from "../components/price-filter-range"
 import { CatalogFilter } from "../components/catalog-filter"
 import { Icon } from "@/shared/ui/icons"
 import classNames from "classnames"

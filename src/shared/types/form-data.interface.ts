@@ -2,7 +2,7 @@ export interface FormData {
   name: string
   surname: string
   patronymic: string
-  birthDate: string
+  birthDate: Date | null
   phone: string
   email: string
   oldPassword: string
@@ -11,6 +11,7 @@ export interface FormData {
   vacancy: string
   policyAgree: boolean
   file: FileList
+  time: Date | null
 }
 
 export interface AddressData {

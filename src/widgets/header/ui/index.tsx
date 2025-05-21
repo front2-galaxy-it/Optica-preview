@@ -63,6 +63,7 @@ export const Header: React.FC = () => {
   }
 
   const [searchOpen, setSearchOpen] = useState(false)
+  const [searchValue, setSearchValue] = useState("")
 
   const showSearch = () => setSearchOpen(!searchOpen)
   const searchRef = useRef<HTMLFormElement>(null)
@@ -162,11 +163,12 @@ export const Header: React.FC = () => {
             <SearchField
               ref={searchRef}
               placeholder="Що шукаєте?"
-              className={`${searchOpen ? css.show : ""}`}
               searchOpen={searchOpen}
-              value=""
-              onChange={() => {}}
-              onSearch={() => {}}
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              onSearch={() => {
+                console.log("Searching for:", searchValue)
+              }}
             />
             <div className={css.action_buttons}>
               <LanguageDropdown className={css.lang_switcher_desk} />
@@ -186,7 +188,7 @@ export const Header: React.FC = () => {
                   className={css.action_icons}
                 />
               </button>
-              <RootLink href="/">
+              <RootLink href={`${ClientRoutes.profile.path}?tab=selected`}>
                 <Icon
                   name="wish_icon"
                   className={css.action_icons}

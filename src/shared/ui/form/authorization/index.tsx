@@ -84,7 +84,7 @@ export const AuthorizationForm: React.FC<AuthorizationFormProps> = ({ className 
           iconName="arrow_right"
           type="submit"
         >
-          Зареєструватися
+          Авторизуватися
         </Button>
         <span className={css.spacer}>або</span>
         <div className={css.form_btn_wrap}>

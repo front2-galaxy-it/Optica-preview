@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { unstable_setRequestLocale } from "next-intl/server"
 import { localeConfig } from "@/app/localization"
 import { Layout } from "@/widgets/layout"
-
+import ClientLayout from "@/widgets/layout/ClientLayout"
 export const metadata: Metadata = {
   title: "Оптика добрих цін",
   description: "Galaxy IT",
@@ -22,7 +22,9 @@ export default function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
-        <Layout locale={locale}>{children}</Layout>
+        <ClientLayout>
+          <Layout locale={locale}>{children}</Layout>
+        </ClientLayout>
       </body>
     </html>
   )

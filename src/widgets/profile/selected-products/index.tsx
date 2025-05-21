@@ -70,13 +70,15 @@ export const SelectedProducts: React.FC = () => {
             </div>
           </motion.div>
         </AnimatePresence>
-        <CustomPagination
-          className={css.selected_pagination}
-          currentPage={currentPage}
-          onPageChange={setCurrentPage}
-          totalItems={productsDataList.length}
-          itemsPerPage={itemsPerPage}
-        />
+        {productsDataList.length > itemsPerPage && (
+          <CustomPagination
+            className={css.selected_pagination}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+            totalItems={productsDataList.length}
+            itemsPerPage={itemsPerPage}
+          />
+        )}
       </div>
     </div>
   )

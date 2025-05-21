@@ -25,11 +25,14 @@ export const ProductCard: React.FC<IProductCardProps> = ({
   basketButtonClass,
   categorySlug,
   id,
+  size = "big",
 }) => {
   return (
     <div
       className={classNames(css.product_card, className, {
         [css._isBin]: isBin,
+        [css._big]: size === "big",
+        [css._small]: size === "small",
       })}
     >
       <div className={css.card_head}>

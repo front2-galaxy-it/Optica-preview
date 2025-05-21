@@ -49,12 +49,14 @@ export const BlogPageSection: React.FC<BlogPageSectionProps> = ({ slug }) => {
                 ))}
               </motion.div>
             </AnimatePresence>
-            <CustomPagination
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-              totalItems={blogCardDataList.length}
-              itemsPerPage={itemsPerPage}
-            />
+            {paginatedItems.length > itemsPerPage && (
+              <CustomPagination
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+                totalItems={paginatedItems.length}
+                itemsPerPage={itemsPerPage}
+              />
+            )}
           </div>
         </div>
       </div>

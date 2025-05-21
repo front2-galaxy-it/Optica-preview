@@ -34,7 +34,7 @@ export const CartPopup: React.FC<cartPopupProps> = ({ isOpen, onClose }) => {
     <>
       <div className={classNames(css.cart_popup, isOpen && css.show)}>
         <div className={css.cart_popup_head}>
-          <p className={css.cart_popup_head_title}>Відмінити замовлення</p>
+          <p className={css.cart_popup_head_title}>Продукт додано до кошика успішно!</p>
           <button
             type="button"
             className={css.cart_popup_head_close}

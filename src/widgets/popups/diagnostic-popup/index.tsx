@@ -3,8 +3,9 @@
 import React, { useEffect } from "react"
 import css from "./styles.module.scss"
 import classNames from "classnames"
-import { Button, FormField } from "@/shared/ui"
+import { Button, DatePickerField, FormField } from "@/shared/ui"
 import { useForm } from "react-hook-form"
+import { FormData } from "@/shared/types/form-data.interface"
 
 interface DiagnosticPopupProps {
   isOpen: boolean
@@ -16,16 +17,14 @@ export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClos
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
-  } = useForm<FormData>()
-
-  interface FormData {
-    name: string
-    surname: string
-    phone: string
-    date: string
-    time: string
-  }
+  } = useForm<FormData>({
+    defaultValues: {
+      birthDate: null,
+      time: null,
+    },
+  })
 
   useEffect(() => {
     if (isOpen) {
@@ -115,30 +114,20 @@ export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClos
                 error={errors.phone?.message}
               />
               <div className={css.inputs_wrap}>
-                <FormField
-                  id="date"
+                <DatePickerField
+                  name="birthDate"
+                  control={control}
+                  mode="date"
                   placeholder="дд/мм/рррр"
-                  type="date"
-                  colorType="white"
-                  register={register("date", {
-                    required: {
-                      value: true,
-                      message: "Заповніть поле",
-                    },
-                  })}
-                  error={errors.date?.message}
+                  error={errors.birthDate?.message}
                 />
-                <FormField
-                  id="time"
+                <DatePickerField
+                  name="time"
+                  control={control}
+                  mode="time"
                   placeholder="час"
-                  type="time"
-                  colorType="white"
-                  register={register("time", {
-                    required: {
-                      value: true,
-                      message: "Заповніть поле",
-                    },
-                  })}
+                  minTime={new Date(0, 0, 0, 9, 0)}
+                  maxTime={new Date(0, 0, 0, 18, 0)}
                   error={errors.time?.message}
                 />
               </div>

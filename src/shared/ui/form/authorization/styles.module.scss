@@ -14,6 +14,12 @@
   .link {
     font-weight: 700;
     text-decoration: underline;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--blue-primary);
+      transition: color 0.3s ease;
+    }
   }
 }
 

@@ -208,4 +208,23 @@
       }
     }
   }
+
+  .counter_wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--blue-primary);
+    border-radius: 8px;
+    padding: 4px 8px;
+    color: var(--blue-primary);
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    span {
+      font-size: 18px;
+    }
+  }
 }

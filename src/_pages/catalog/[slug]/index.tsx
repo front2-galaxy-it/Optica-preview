@@ -26,7 +26,6 @@ export function CategoryPage({
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: "#", title: "Каталог" },
           {
             type: "current",
             slug: ClientRoutes.product_category(slug),

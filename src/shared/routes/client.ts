@@ -75,6 +75,10 @@ export const DevRoutes = {
     path: "/checkout",
     name: "Оформлення замовлення",
   },
+  thanks: {
+    path: "/thanks",
+    name: "Дякуємо",
+  },
 }
 
 export const ClientRoutes = {
@@ -161,6 +165,10 @@ export const ClientRoutes = {
   checkout: {
     path: "/checkout",
     name: "Кошик",
+  },
+  thanks: {
+    path: "/thanks",
+    name: "Дякуємо",
   },
 
   /** Get  the path to a specific task route.**/

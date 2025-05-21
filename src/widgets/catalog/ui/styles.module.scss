@@ -55,6 +55,12 @@
     @include adaptive-value("font-size", 18, 14, 1);
     color: var(--gray8C);
     line-height: 150%;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--blue-primary);
+      transition: color 0.3s ease;
+    }
 
     &.active {
       text-underline-offset: 6px;

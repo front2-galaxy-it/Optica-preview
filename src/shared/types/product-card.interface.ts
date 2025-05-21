@@ -16,11 +16,13 @@ export interface IProductCardProps {
   colors: IProductColor[]
   itemList: IProductDescriptionItem[]
   description?: string
+  size?: CardSize
 }
 
 export type LabelType = "novelty" | "discount" | "top-sales"
 export type StatusType = "available" | "unavailable" | "pre-order"
 
+export type CardSize = "small" | "big"
 interface IProductColor {
   id: string
   hex: string

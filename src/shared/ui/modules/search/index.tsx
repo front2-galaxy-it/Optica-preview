@@ -4,7 +4,6 @@ import React, { forwardRef } from "react"
 import css from "./styles.module.scss"
 import classNames from "classnames"
 import { Button } from "../../buttons"
-
 interface ISearchFieldProps {
   placeholder: string
   state?: string
@@ -32,6 +31,7 @@ export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
   ) => {
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault()
+      if (!value.trim()) return
       onSearch()
     }
 
@@ -42,7 +42,7 @@ export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
         className={classNames(
           css.search_wrap,
           className,
-          state && css[`serach_wrap_${state}`],
+          state && css[`search_wrap_${state}`],
           disabled && css.disabled,
           value && css.filled,
           searchOpen && css.show,
@@ -50,9 +50,9 @@ export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
       >
         <input
           type="search"
+          aria-label="Поле пошуку"
           placeholder={placeholder}
           className={css.search_input}
-          disabled={disabled}
           value={value}
           onChange={onChange}
         />
@@ -60,7 +60,6 @@ export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
           modifier="primary"
           type="submit"
           className={css.serach_btn}
-          disabled={disabled}
           iconName="search_icon"
           iconPosition="right"
         >

@@ -6,6 +6,7 @@ import Image from "next/image"
 import { Icon } from "@/shared/ui/icons"
 import { ButtonLink } from "@/shared/ui/links"
 import classNames from "classnames"
+import { ClientRoutes } from "@/shared/routes"
 
 export const CartSection: React.FC = () => {
   const [counterValue, setCounterValue] = useState(1)
@@ -109,6 +110,7 @@ export const CartSection: React.FC = () => {
               className={classNames(css.cart_btn, css.place_btn)}
               modifier="primary"
               iconName="basket_icon"
+              href={ClientRoutes.checkout.path}
             >
               Оформити замовлення
             </ButtonLink>

@@ -1,8 +1,9 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import css from "./styles.module.scss"
 import classNames from "classnames"
+import { useRouter, useSearchParams } from "next/navigation"
 import { ProfileNav } from "../components/profile-navigation"
 import { ProfileData } from "../profile-data"
 import { PasswordChange } from "../change-password"
@@ -12,12 +13,29 @@ import { Orders } from "../orders"
 import { SelectedProducts } from "../selected-products"
 import { Bonuses } from "../bonuses"
 
+type Tab = "data" | "password" | "orders" | "selected" | "bonus"
+
 export const ProfileSection: React.FC = () => {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+
+  const tabFromUrl = searchParams.get("tab") as Tab | null
   const [popupOpen, setPopupOpen] = useState(false)
   const [popupThanksOpen, setPopupThanksOpen] = useState(false)
-  const [activeTab, setActiveTab] = useState<"data" | "password" | "orders" | "selected" | "bonus">(
-    "data",
-  )
+  const [activeTab, setActiveTab] = useState<Tab>("data")
+
+  useEffect(() => {
+    if (tabFromUrl && ["data", "password", "orders", "selected", "bonus"].includes(tabFromUrl)) {
+      setActiveTab(tabFromUrl)
+    }
+  }, [tabFromUrl])
+
+  const handleTabChange = (tab: Tab) => {
+    setActiveTab(tab)
+    const params = new URLSearchParams(window.location.search)
+    params.set("", tab)
+    router.replace(`?${params.toString()}`)
+  }
 
   const handleLogoutClick = () => {
     setPopupOpen(true)
@@ -38,7 +56,7 @@ export const ProfileSection: React.FC = () => {
         <div className={css.profile_section_content}>
           <ProfileNav
             activeTab={activeTab}
-            onTabChange={setActiveTab}
+            onTabChange={handleTabChange}
             onLogoutClick={handleLogoutClick}
           />
           <div className={css.profile_section_blocks}>
@@ -106,7 +124,6 @@ export const ProfileSection: React.FC = () => {
         isOpen={popupOpen}
         onClose={() => setPopupOpen(false)}
       />
-      {/* <CanceledPopup /> */}
       <ThanksPopup
         isOpen={popupThanksOpen}
         onClose={handlePersonalDataSuccessClose}

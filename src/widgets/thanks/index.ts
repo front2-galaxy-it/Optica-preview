@@ -1,0 +1,1 @@
+export { ThanksSection } from "./ui"

@@ -696,12 +696,12 @@ export const CheckoutSection: React.FC = () => {
                 телефонуйте мені тільки за необхідністю
               </label>
               <label
-                htmlFor="policy"
+                htmlFor="policyCheckout"
                 className={css.checkout_checkbox}
               >
                 <input
                   type="checkbox"
-                  id="policy"
+                  id="policyCheckout"
                 />
                 Погоджуюсь з Політикою конфіденційності, Умовами та положенням користування сайту,
                 Умовами договору куплі-продажу, в тому числі доставки, оплати, обміну та гарантії.

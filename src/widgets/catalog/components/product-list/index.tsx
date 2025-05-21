@@ -18,6 +18,7 @@ export const ProductList: React.FC<ProductListProps> = ({ productList, className
           basketButtonClass={css.product_list_btn}
           key={product.id}
           {...product}
+          size="small"
         />
       ))}
     </div>

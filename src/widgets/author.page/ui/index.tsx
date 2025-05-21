@@ -90,12 +90,14 @@ export const AuthorPageSection: React.FC<AuthorPageSectionProps> = ({ slug }) =>
                 ))}
               </motion.div>
             </AnimatePresence>
-            <CustomPagination
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-              totalItems={filteredCards.length}
-              itemsPerPage={itemsPerPage}
-            />
+            {paginatedItems.length > itemsPerPage && (
+              <CustomPagination
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+                totalItems={filteredCards.length}
+                itemsPerPage={itemsPerPage}
+              />
+            )}
           </div>
         </div>
       </div>

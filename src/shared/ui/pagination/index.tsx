@@ -1,4 +1,6 @@
-import React from "react"
+"use client"
+
+import React, { useRef } from "react"
 import css from "./styles.module.scss"
 import classNames from "classnames"
 import { Icon } from "../icons"
@@ -9,6 +11,7 @@ interface PaginationProps {
   currentPage: number
   onPageChange: (page: number) => void
   itemsPerPage?: number
+  scrollTargetRef?: React.RefObject<HTMLElement>
 }
 
 export const CustomPagination: React.FC<PaginationProps> = ({
@@ -17,15 +20,23 @@ export const CustomPagination: React.FC<PaginationProps> = ({
   currentPage,
   onPageChange,
   itemsPerPage = 4,
+  scrollTargetRef,
 }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage)
+  const paginationRef = useRef<HTMLDivElement>(null)
+
+  const scrollToTarget = () => {
+    scrollTargetRef?.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
   const handlePrev = () => {
     if (currentPage > 1) onPageChange(currentPage - 1)
+    scrollToTarget()
   }
 
   const handleNext = () => {
     if (currentPage < totalPages) onPageChange(currentPage + 1)
+    scrollToTarget()
   }
 
   const renderPageNumbers = () => {
@@ -73,7 +84,10 @@ export const CustomPagination: React.FC<PaginationProps> = ({
   }
 
   return (
-    <div className={classNames(css.pagination, className)}>
+    <div
+      className={classNames(css.pagination, className)}
+      ref={paginationRef}
+    >
       <button
         className={css.nav_button}
         onClick={handlePrev}
