@@ -67,7 +67,6 @@ export const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ onSuccess, i
         <DatePickerField
           name="birthDate"
           control={control}
-          rules={{ required: "Заповніть поле" }}
           error={errors.birthDate?.message}
           placeholder="дд/мм/рррр народження"
           className={css.profile_data_input}

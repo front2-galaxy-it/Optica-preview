@@ -94,19 +94,21 @@ export const ProfileData: React.FC<ProfileDataProps> = ({ onPersonalDataSuccess 
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <SavedPersonalData
-              name={personalData.name}
-              surname={personalData.surname}
-              patronymic={personalData.patronymic}
-              birthDate={new Date(personalData.birthDate)}
-              phone={personalData.phone}
-              email={personalData.email}
-              onEdit={() => setIsEditingPersonalData(true)}
-              onRemove={() => {
-                setPersonalData(null)
-                localStorage.removeItem("personalData")
-              }}
-            />
+            {personalData.birthDate ? (
+              <SavedPersonalData
+                name={personalData.name}
+                surname={personalData.surname}
+                patronymic={personalData.patronymic}
+                birthDate={personalData.birthDate}
+                phone={personalData.phone}
+                email={personalData.email}
+                onEdit={() => setIsEditingPersonalData(true)}
+                onRemove={() => {
+                  setPersonalData(null)
+                  localStorage.removeItem("personalData")
+                }}
+              />
+            ) : null}
           </motion.div>
         )}
       </AnimatePresence>
