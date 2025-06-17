@@ -12,6 +12,8 @@ export interface FormData {
   policyAgree: boolean
   file: FileList
   time: Date | null
+  password: string
+  confirmPassword: string
 }
 
 export interface AddressData {

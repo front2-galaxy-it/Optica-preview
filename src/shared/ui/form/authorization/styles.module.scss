@@ -46,6 +46,7 @@
   display: flex;
   align-items: center;
   gap: 18px;
+  @include adaptive-value("margin-bottom", 32, 16, 1);
 
   @include media-down(sm) {
     flex-direction: column;
@@ -58,5 +59,17 @@
 
   @include media-down(sm) {
     justify-content: center;
+  }
+}
+
+.reset {
+  @include adaptive-value("font-size", 18, 14, 1);
+  color: var(--gray4E);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--blue-primary);
+    transition: color 0.3s ease;
   }
 }

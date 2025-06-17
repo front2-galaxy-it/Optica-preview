@@ -9,9 +9,10 @@ import classNames from "classnames"
 
 interface AuthorizationFormProps {
   className?: string
+  onOpenReset?: () => void
 }
 
-export const AuthorizationForm: React.FC<AuthorizationFormProps> = ({ className }) => {
+export const AuthorizationForm: React.FC<AuthorizationFormProps> = ({ className, onOpenReset }) => {
   const {
     register,
     handleSubmit,
@@ -103,6 +104,13 @@ export const AuthorizationForm: React.FC<AuthorizationFormProps> = ({ className 
             Facebook
           </Button>
         </div>
+        <button
+          type="button"
+          className={css.reset}
+          onClick={onOpenReset}
+        >
+          Забули пароль?
+        </button>
       </form>
     </div>
   )

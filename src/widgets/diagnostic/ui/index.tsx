@@ -46,7 +46,6 @@ export const DiagnosticSection: React.FC = () => {
         onClose={() => setPopupOpen(false)}
         onSuccess={() => setThanksPopupOpen(true)}
       />
-
       <ThanksPopup
         title="Дякуємо за запис на діагностику!"
         message="Наші фахівці зв'яжуться з вами найближчим часом, щоб підтвердити запис та уточнити деталі."
