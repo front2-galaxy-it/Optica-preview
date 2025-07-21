@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl"
 export const AboutSection: React.FC = () => {
   const tAbout = useTranslations("about-us-section")
   const tButtons = useTranslations("buttons")
+  
   return (
     <section className={css.about_section}>
       <div className={css.about_bg_mob}>
