@@ -1,0 +1,1 @@
+export { FaqPageSection } from "./ui"

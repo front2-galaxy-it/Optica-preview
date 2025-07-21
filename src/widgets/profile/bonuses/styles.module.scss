@@ -1,0 +1,96 @@
+.bonuses {
+  &_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    @include adaptive-value("margin-bottom", 32, 24, 1);
+
+    @include media-down(md) {
+      flex-direction: column;
+    }
+  }
+
+  &_img_wrap {
+    display: grid;
+    place-items: center;
+    width: 50%;
+
+    @include media-down(md) {
+      width: 100%;
+    }
+  }
+
+  &_info {
+    background-color: var(--blueF0);
+    border: 1px solid var(--blueAC);
+    border-radius: 8px;
+    @include adaptive-value("padding", 40, 16, 1);
+
+    @include media-down(sm) {
+      width: 100%;
+    }
+
+    .total,
+    .available {
+      @include adaptive-value("margin-bottom", 24, 16, 1);
+    }
+
+    .total {
+      span {
+        color: var(--blue-primary);
+      }
+    }
+
+    .available {
+      span {
+        color: var(--green);
+      }
+    }
+
+    .reserved {
+      span {
+        color: var(--gray8C);
+      }
+    }
+
+    strong {
+      display: block;
+      @include adaptive-value("margin-bottom", 8, 4, 1);
+      color: var(--gray4E);
+      @include adaptive-value("font-size", 20, 18, 1);
+    }
+
+    span {
+      @include adaptive-value("font-size", 18, 14, 1);
+    }
+  }
+
+  &_text {
+    @include adaptive-value("font-size", 20, 18, 1);
+    @include adaptive-value("margin-bottom", 32, 24, 1);
+    color: var(--gray4E);
+  }
+
+  &_list {
+    @include adaptive-value("margin-bottom", 32, 24, 1);
+    padding-left: 20px;
+
+    &_item {
+      @include adaptive-value("font-size", 20, 18, 1);
+      color: var(--gray4E);
+      line-height: 150%;
+      list-style: outside;
+
+      &:not(:last-child) {
+        margin-bottom: 6px;
+      }
+    }
+  }
+
+  .bonuses_btn {
+    @include media-down(sm) {
+      width: 100%;
+    }
+  }
+}

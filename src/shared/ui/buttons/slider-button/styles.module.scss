@@ -1,0 +1,22 @@
+.slider_btn {
+  border: 2px solid var(--blue-primary);
+  border-radius: 4px;
+  width: 44px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-primary);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--blue-primary);
+    color: var(--white);
+    transition: all 0.3s ease;
+  }
+
+  &:active {
+    background-color: var(--blue-primary);
+    color: var(--white);
+  }
+}
