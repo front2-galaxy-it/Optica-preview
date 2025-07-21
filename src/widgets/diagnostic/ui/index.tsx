@@ -6,6 +6,7 @@ import { DiagnosticServiceBlock } from "../components/diagnostic-service-block"
 import serviceList from "@/shared/data/diagnostic-servises-list.json"
 import { IDiagnosticService } from "@/shared/types/diagnostic-service.interface"
 import { DiagnosticPopup, ThanksPopup } from "@/widgets/popups"
+import { useTranslations } from "next-intl"
 
 const serviceListData: IDiagnosticService[] = serviceList.map((service) => ({
   ...service,
@@ -21,6 +22,8 @@ const serviceListData: IDiagnosticService[] = serviceList.map((service) => ({
 export const DiagnosticSection: React.FC = () => {
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
+
+  const tPopupDiagnostic = useTranslations("popups.diagnostic-popup")
 
   return (
     <section className={css.diagnistic_section}>
@@ -47,8 +50,8 @@ export const DiagnosticSection: React.FC = () => {
         onSuccess={() => setThanksPopupOpen(true)}
       />
       <ThanksPopup
-        title="Дякуємо за запис на діагностику!"
-        message="Наші фахівці зв'яжуться з вами найближчим часом, щоб підтвердити запис та уточнити деталі."
+        title={tPopupDiagnostic("thanks_label")}
+        message={tPopupDiagnostic("thanks_text")}
         isOpen={thanksPopupOpen}
         onClose={() => setThanksPopupOpen(false)}
       />

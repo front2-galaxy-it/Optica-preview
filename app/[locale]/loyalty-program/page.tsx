@@ -1,1 +1,2 @@
-export { LoyaltyPage as default } from "@/_pages/loyalty-program"
+export const dynamic = process.env.NEXT_DYNAMIC === "true" ? "force-dynamic" : "auto"
+export { LoyaltyPage as default, generateMetadata } from "@/_pages/loyalty-program"

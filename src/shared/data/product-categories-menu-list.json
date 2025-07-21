@@ -1,60 +1,60 @@
 {
   "menu": [
     {
-      "title": "Категорія",
+      "titleKey": "category",
       "items": [
-        { "label": "Жіночі", "href": "#" },
-        { "label": "Чоловічі", "href": "#" },
-        { "label": "Унісекс", "href": "#" },
-        { "label": "Дитячі", "href": "#" }
+        { "labelKey": "women", "href": "#" },
+        { "labelKey": "men", "href": "#" },
+        { "labelKey": "unisex", "href": "#" },
+        { "labelKey": "kids", "href": "#" }
       ]
     },
     {
-      "title": "Бренди",
+      "titleKey": "brands",
       "items": [
-        { "label": "Polaroid", "href": "#" },
-        { "label": "Ray-Ban", "href": "#" },
-        { "label": "EMPORIO ARMANI", "href": "#" },
-        { "label": "Gucci", "href": "#" }
+        { "labelKey": "polaroid", "href": "#" },
+        { "labelKey": "rayban", "href": "#" },
+        { "labelKey": "emporio_armani", "href": "#" },
+        { "labelKey": "gucci", "href": "#" }
       ]
     },
     {
-      "title": "Матеріал",
+      "titleKey": "material",
       "items": [
-        { "label": "Метал", "href": "#" },
-        { "label": "Пластик", "href": "#" },
-        { "label": "Титан", "href": "#" },
-        { "label": "Нейлон", "href": "#" }
+        { "labelKey": "metal", "href": "#" },
+        { "labelKey": "plastic", "href": "#" },
+        { "labelKey": "titanium", "href": "#" },
+        { "labelKey": "nylon", "href": "#" }
       ]
     },
     {
-      "title": "Аксесуари",
+      "titleKey": "accessories",
       "items": [
-        { "label": "Ланцюжки", "href": "#" },
-        { "label": "Чохли", "href": "#" },
-        { "label": "Серветки", "href": "#" },
-        { "label": "Засоби для догляду", "href": "#" }
+        { "labelKey": "chains", "href": "#" },
+        { "labelKey": "cases", "href": "#" },
+        { "labelKey": "napkins", "href": "#" },
+        { "labelKey": "care", "href": "#" }
       ]
     }
   ],
   "shapes": [
     {
-      "label": "авіатор",
+      "labelKey": "aviator",
       "href": "#",
       "image": "/images/products/glasses/glasses_4.png"
     },
     {
-      "label": "квадратні",
+      "labelKey": "square",
       "href": "#",
       "image": "/images/products/glasses/glasses_5.png"
     },
     {
-      "label": "круглі",
+      "labelKey": "round",
       "href": "#",
       "image": "/images/products/glasses/glasses_6.png"
     },
     {
-      "label": "Котяче око",
+      "labelKey": "cat_eye",
       "href": "#",
       "image": "/images/products/glasses/glasses_7.png"
     }

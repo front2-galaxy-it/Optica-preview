@@ -10,6 +10,7 @@ import { ProductTab } from "@/shared/ui/modules/product-card/components/product-
 import { SliderButton } from "@/shared/ui/buttons"
 import { Swiper as SwiperType } from "swiper"
 import { AnimatePresence, motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 const productsDataList: IProductCardProps[] = productsData.products.map((product) => ({
   ...product,
@@ -28,6 +29,8 @@ const tabs = uniqueCategories.map(([slug, name], index) => ({
 }))
 
 export const PromotionSection: React.FC = () => {
+  const tPromotion = useTranslations("promotion-section")
+
   const [activeTab, setActiveTab] = useState(tabs[0].id)
   const activeTabData = tabs.find((tab) => tab.id === activeTab)
 
@@ -36,9 +39,9 @@ export const PromotionSection: React.FC = () => {
   return (
     <section className={css.top_sales_section}>
       <div className="container">
-        <SectionTip label="Акція" />
+        <SectionTip label={tPromotion("label")} />
         <div className={css.top_sales_section_head}>
-          <h3 className={css.top_sales_section_title}>Що варто придбати зараз</h3>
+          <h3 className={css.top_sales_section_title}>{tPromotion("title")}</h3>
           <div className={css.slider_buttons}>
             <SliderButton
               direction="prev"

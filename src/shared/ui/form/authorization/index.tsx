@@ -6,6 +6,7 @@ import { Button, CheckboxPolicy, FormField, RootLink } from "@/shared/ui"
 import { useForm } from "react-hook-form"
 import { ClientRoutes } from "@/shared/routes"
 import classNames from "classnames"
+import { useTranslations } from "next-intl"
 
 interface AuthorizationFormProps {
   className?: string
@@ -13,6 +14,13 @@ interface AuthorizationFormProps {
 }
 
 export const AuthorizationForm: React.FC<AuthorizationFormProps> = ({ className, onOpenReset }) => {
+  const tProfileLogin = useTranslations("profile-page.auth-description")
+  const tProfile = useTranslations("profile-page")
+  const tButtons = useTranslations("buttons")
+
+  const tFormPhone = useTranslations("form.phone")
+  const tFormPassword = useTranslations("form.password")
+
   const {
     register,
     handleSubmit,
@@ -33,38 +41,40 @@ export const AuthorizationForm: React.FC<AuthorizationFormProps> = ({ className,
 
   return (
     <div className={classNames(css.form_wrap, className)}>
-      <p className={css.form_title}>
-        Якщо ви ще не зараєстровані, перейдіть на сторінку{" "}
+      <div className={css.form_title}>
+        <p>{tProfileLogin("content")}</p> {""}
         <RootLink
-          href={ClientRoutes.register.path}
+          href={ClientRoutes.authorization.path}
           className={css.link}
         >
-          реєстрації
+          {tProfileLogin("link")}
         </RootLink>
-      </p>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormField
-          placeholder="+3 8(___) ___ - __ - __"
+          id="phone"
+          placeholder="+38(___)___-__-__"
           type="tel"
+          colorType="white"
           register={register("phone", {
             required: {
               value: true,
-              message: "Поле обов'язкове",
+              message: tFormPhone("required"),
             },
             pattern: {
               value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-              message: "Невірний формат телефону",
+              message: tFormPhone("pattern"),
             },
           })}
           error={errors.phone?.message}
         />
         <FormField
-          placeholder="Пароль"
+          placeholder={tFormPassword("placeholder")}
           type="text"
           register={register("password", {
             required: {
               value: true,
-              message: "Заповніть поле",
+              message: tFormPassword("error"),
             },
           })}
           error={errors.password?.message}
@@ -85,9 +95,9 @@ export const AuthorizationForm: React.FC<AuthorizationFormProps> = ({ className,
           iconName="arrow_right"
           type="submit"
         >
-          Авторизуватися
+          {tButtons("login_btn")}
         </Button>
-        <span className={css.spacer}>або</span>
+        <span className={css.spacer}>{tProfile("connecting-label")}</span>
         <div className={css.form_btn_wrap}>
           <Button
             className={css.auth_btn_social}
@@ -109,7 +119,7 @@ export const AuthorizationForm: React.FC<AuthorizationFormProps> = ({ className,
           className={css.reset}
           onClick={onOpenReset}
         >
-          Забули пароль?
+          {tProfile("fogot-password-title")}
         </button>
       </form>
     </div>

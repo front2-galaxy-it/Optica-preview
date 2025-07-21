@@ -3,8 +3,11 @@ import css from "./styles.module.scss"
 import categoriesMenuData from "@/shared/data/product-categories-menu-list.json"
 import { RootLink } from "@/shared/ui"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 export const CategoriesMenu = () => {
+  const tCategories = useTranslations("header-categories-menu")
+
   return (
     <div className={css.menu_wrap}>
       <div className="container">
@@ -14,7 +17,7 @@ export const CategoriesMenu = () => {
               className={css.menu_col}
               key={idx}
             >
-              <strong className={css.menu_col_title}>{col.title}</strong>
+              <strong className={css.menu_col_title}>{tCategories(col.titleKey)}</strong>
               <ul className={css.menu_list}>
                 {col.items.map((item, i) => (
                   <li
@@ -25,7 +28,7 @@ export const CategoriesMenu = () => {
                       href={item.href}
                       className={css.menu_list_link}
                     >
-                      {item.label}
+                      {tCategories(item.labelKey)}
                     </RootLink>
                   </li>
                 ))}
@@ -45,10 +48,10 @@ export const CategoriesMenu = () => {
                     src={shape.image}
                     width={104}
                     height={40}
-                    alt={shape.label}
+                    alt={tCategories(shape.labelKey)}
                     className={css.glasses_img}
                   />
-                  {shape.label}
+                  {tCategories(shape.labelKey)}
                 </RootLink>
               ))}
             </div>

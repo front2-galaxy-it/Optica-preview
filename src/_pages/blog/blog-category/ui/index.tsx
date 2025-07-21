@@ -2,7 +2,6 @@ import { unstable_setRequestLocale } from "next-intl/server"
 import { notFound } from "next/navigation"
 
 import { IHomePageProps } from "./props"
-import { MailingSection } from "@/widgets/mailing"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
@@ -22,16 +21,15 @@ export function CategoryPage({
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: ClientRoutes.blog.path, title: ClientRoutes.blog.name },
-          { type: "current", slug: ClientRoutes.blog_category(slug), title: category.label },
+          { type: "parent", slug: ClientRoutes.blog.path, titleKey: ClientRoutes.blog.nameKey },
+          { type: "current", slug: ClientRoutes.blog_category(slug), titleKey: category.label },
         ]}
       />
       <PageInfo
-        label={ClientRoutes.blog.name}
+        label={ClientRoutes.blog.nameKey}
         title={category.label}
       />
       <BlogCategoryPage slug={slug} />
-      <MailingSection />
     </>
   )
 }

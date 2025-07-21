@@ -19,6 +19,10 @@
   color: var(--gray4E);
   cursor: pointer;
   width: max-content;
+
+  input {
+    accent-color: var(--blue-primary);
+  }
 }
 
 .checkbox_link {

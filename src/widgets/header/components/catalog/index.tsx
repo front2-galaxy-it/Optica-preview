@@ -7,7 +7,7 @@ import Image from "next/image"
 import { Button, RootLink } from "@/shared/ui"
 import { ICatalogLink } from "@/shared/types"
 import classNames from "classnames"
-
+import { useTranslations } from "next-intl"
 interface ICatalogProps {
   categoryList: ICatalogLink[]
   linkList: ICatalogLink[]
@@ -23,6 +23,9 @@ export const HeaderCatalog: React.FC<ICatalogProps> = ({
   brandList,
   isShow = false,
 }) => {
+  const tButtons = useTranslations("buttons")
+  const tCommon = useTranslations("common")
+
   const [expanded, setExpanded] = useState(false)
   const visibleCount = 6
 
@@ -39,7 +42,7 @@ export const HeaderCatalog: React.FC<ICatalogProps> = ({
         alt="lenses"
       />
       <div className="container">
-        <span className={css.catalog_title}>Категорії</span>
+        <span className={css.catalog_title}>{tCommon("category-label")}</span>
         <div className={css.catalog_col_wrap}>
           <div className={classNames(css.catalog_col, css.category_list)}>
             <ul className={css.catalog_list}>
@@ -123,9 +126,11 @@ export const HeaderCatalog: React.FC<ICatalogProps> = ({
             )}
           </div>
         </div>
-        <Button modifier="secondary">
-          До каталогу
-          <Icon name="arrow_right" />
+        <Button
+          modifier="secondary"
+          iconName="arrow_right"
+        >
+          {tButtons("catalog_btn")}
         </Button>
       </div>
     </div>

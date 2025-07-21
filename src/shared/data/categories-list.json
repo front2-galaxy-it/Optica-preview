@@ -2,38 +2,38 @@
   "categories_list": [
     {
       "href": "/soncezahysni-okulyary",
-      "label": "Сонцезахисні окуляри",
+      "label": "soncezahysni-okulyary",
       "categorySlug": "soncezahysni-okulyary"
     },
     {
       "href": "/kontaktni-linzy",
-      "label": "Контактні лінзи",
+      "label": "kontaktni-linzy",
       "categorySlug": "kontaktni-linzy"
     },
     {
       "href": "/opravy",
-      "label": "Оправи",
+      "label": "opravy",
       "categorySlug": "opravy"
     },
     {
       "href": "/linzy-dlya-okulyariv",
-      "label": "Лінзи для окулярів",
+      "label": "linzy-dlya-okulyariv",
       "categorySlug": "linzy-dlya-okulyariv"
     },
     {
       "href": "/zasoby-dlya-doglyadu",
-      "label": "Засоби для догляду",
+      "label": "zasoby-dlya-doglyadu",
       "categorySlug": "zasoby-dlya-doglyadu"
     },
     {
       "href": "/sertyfikaty",
-      "label": "Сертифікати",
+      "label": "sertyfikaty",
       "categorySlug": "sertyfikaty",
       "specialColorGreen": true
     },
     {
       "href": "/akcii",
-      "label": "Акціі",
+      "label": "akcii",
       "categorySlug": "akcii",
       "specialColorRed": true
     }

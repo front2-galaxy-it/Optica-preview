@@ -1,41 +1,59 @@
 "use client"
 
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import css from "./styles.module.scss"
 import classNames from "classnames"
 import { Icon } from "@/shared/ui/icons"
-import { useClickOutside } from "@/shared/hooks"
+import { useLocale } from "next-intl"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 interface LanguageDropdownProps {
   className?: string
 }
 interface Language {
-  code: string
+  code: "uk" | "ru"
   label: string
 }
 
 const LANGUAGES: Language[] = [
-  { code: "UA", label: "Українська" },
-  { code: "RU", label: "Русский" },
+  { code: "uk", label: "Українська" },
+  { code: "ru", label: "Русский" },
 ]
 
 export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({ className }) => {
-  const [selected, setSelected] = useState<Language>(LANGUAGES[0])
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const locale = useLocale()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const queryString = searchParams.toString()
+  const paramsList = queryString ? `?${queryString}` : ""
+  const router = useRouter()
 
   const toggleDropdown = () => setIsOpen(!isOpen)
-  const selectLanguage = (lang: Language) => {
-    setSelected(lang)
+
+  const selectLanguage = (lang: "uk" | "ru") => {
+    let newPath = pathname
+    if (locale !== "uk") {
+      newPath = `/${lang}${pathname.substring(3)}` + paramsList
+    } else {
+      newPath = `/${lang}${pathname}` + paramsList
+    }
+    router.push(newPath)
     setIsOpen(false)
   }
 
-  useClickOutside(
-    [dropdownRef],
-    () => {
-      setIsOpen(false)
-    },
-    isOpen,
-  )
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
 
   return (
     <div
@@ -52,7 +70,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({ className })
             name="globe_icon"
             className={css.globe}
           />
-          {selected.code}
+          {locale}
           <Icon
             name="arrow_icon"
             className={css.arrow}
@@ -63,8 +81,10 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({ className })
             {LANGUAGES.map((lang) => (
               <li
                 key={lang.code}
-                className={classNames(css.item, lang.code === selected.code && css.active)}
-                onClick={() => selectLanguage(lang)}
+                className={classNames(css.item, {
+                  [css.active]: lang.code === locale,
+                })}
+                onClick={() => selectLanguage(lang.code)}
               >
                 {lang.label}
               </li>

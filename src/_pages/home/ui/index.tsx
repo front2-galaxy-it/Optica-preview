@@ -9,14 +9,25 @@ import { Marquee } from "@/widgets/marquee"
 import { AboutSection } from "@/widgets/about"
 import { TopSalesSection } from "@/widgets/top-sales"
 import { HelpSection } from "@/widgets/help"
-import { BlogSection } from "@/widgets/blog"
-import { FaqSection } from "@/widgets/faq"
 import { PromotionSection } from "@/widgets/promotion"
-import { ReviewsSection } from "@/widgets/reviews"
-import { MailingSection } from "@/widgets/mailing"
+import { IGlobalPageProps } from "@/shared/types"
+import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
+import { notFound } from "next/navigation"
+import { ModulesSwitch } from "@/widgets/module-switch"
 
-export function HomePage({ params: { locale } }: IHomePageProps) {
+const getHomePageData = async ({ locale }: { locale: string }) => {
+  return await fetchPageLayoutData({ locale, layoutName: "home" })
+}
+
+export async function HomePage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
+
+  const homePageData = await getHomePageData({ locale })
+  if (!homePageData) notFound()
+
+  const {
+    layout: { modules },
+  } = homePageData
 
   return (
     <>
@@ -28,11 +39,18 @@ export function HomePage({ params: { locale } }: IHomePageProps) {
       <TopSalesSection />
       <AboutSection />
       <HelpSection />
-      <BlogSection />
       <PromotionSection />
-      <FaqSection />
-      <ReviewsSection />
-      <MailingSection />
+      <ModulesSwitch modules={modules} />
     </>
   )
+}
+
+export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
+  try {
+    const layoutData = await getHomePageData({ locale })
+    if (!layoutData) return
+    return getPageLayoutMetadata(layoutData.layout)
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+  }
 }

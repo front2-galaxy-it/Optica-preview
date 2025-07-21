@@ -1,14 +1,15 @@
-import { unstable_setRequestLocale } from "next-intl/server"
+import { unstable_setRequestLocale, getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
 
 import { IHomePageProps } from "./props"
-import { MailingSection } from "@/widgets/mailing"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
 import articleData from "@/shared/data/blog-card-list.json"
-import { BlogSection } from "@/widgets/blog"
 import { ArticlePageSection } from "@/widgets/article.page"
+import { IGlobalPageProps } from "@/shared/types"
+import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
+import { ModulesSwitch } from "@/widgets/module-switch"
 
 function slugify(text: string): string {
   return text
@@ -17,11 +18,17 @@ function slugify(text: string): string {
     .replace(/^-+|-+$/g, "")
 }
 
-export function ArticlePage({
+const getArticlePageData = async ({ locale }: { locale: string }) => {
+  return await fetchPageLayoutData({ locale, layoutName: "article" })
+}
+
+export async function ArticlePage({
   params,
 }: IHomePageProps & { params: { slug: string; locale: string } }) {
   const { locale, slug } = params
   unstable_setRequestLocale(locale)
+
+  const tCommon = await getTranslations("common")
 
   const article = articleData.cards.find((cat) => cat.slug === slug)
   if (!article) return notFound()
@@ -29,25 +36,32 @@ export function ArticlePage({
   const categorySlug = slugify(article.category)
   const authorSlug = slugify(article.author)
 
+  const articlePageData = await getArticlePageData({ locale })
+  if (!articlePageData) notFound()
+
+  const {
+    layout: { modules },
+  } = articlePageData
+
   return (
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: ClientRoutes.blog.path, title: ClientRoutes.blog.name },
+          { type: "parent", slug: ClientRoutes.blog.path, titleKey: ClientRoutes.blog.nameKey },
           {
             type: "parent",
             slug: ClientRoutes.blog_category(categorySlug),
-            title: article.category,
+            titleKey: article.category,
           },
           {
             type: "current",
             slug: ClientRoutes.article(slug),
-            title: article.title,
+            titleKey: article.title,
           },
         ]}
       />
       <PageInfo
-        label={ClientRoutes.blog.name}
+        label={tCommon("blog")}
         title={article.category}
       />
       <ArticlePageSection
@@ -55,8 +69,17 @@ export function ArticlePage({
         activeAuthorSlug={authorSlug}
         slug={slug}
       />
-      <BlogSection />
-      <MailingSection />
+      <ModulesSwitch modules={modules} />
     </>
   )
+}
+
+export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
+  try {
+    const layoutData = await getArticlePageData({ locale })
+    if (!layoutData) return
+    return getPageLayoutMetadata(layoutData.layout)
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+  }
 }

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   max-width: 403px;
+  min-height: 100%;
 
   &_image {
     width: 100%;
@@ -9,6 +10,8 @@
     @include adaptive-value("height", 312, 200, 1);
     @include adaptive-value("margin-bottom", 24, 16, 1);
     object-fit: cover;
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   &_category {
@@ -42,12 +45,12 @@
     align-items: center;
     justify-content: space-between;
     gap: 15px;
+    margin-bottom: 16px;
 
     .author,
     .date {
       @include adaptive-value("font-size", 14, 12, 1);
       color: var(--gray77);
-      margin-bottom: 16px;
     }
   }
 }

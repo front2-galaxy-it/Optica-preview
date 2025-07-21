@@ -1,19 +1,32 @@
-import { unstable_setRequestLocale } from "next-intl/server"
+import { unstable_setRequestLocale, getTranslations } from "next-intl/server"
 
 import { IHomePageProps } from "./props"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
-
-import { HelpSection } from "@/widgets/help"
-import { MapSection } from "@/widgets/map"
-import { FormSection } from "@/widgets/contact-form"
-import { FaqSection } from "@/widgets/faq"
 import { ForMilitarySection } from "@/widgets/for-military/ui"
 import { AdvantageSection } from "@/widgets/advantage"
+import { IGlobalPageProps } from "@/shared/types"
+import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
+import { notFound } from "next/navigation"
+import { ModulesSwitch } from "@/widgets/module-switch"
 
-export function ProposalPage({ params: { locale } }: IHomePageProps) {
+const getMilitaryPageData = async ({ locale }: { locale: string }) => {
+  return await fetchPageLayoutData({ locale, layoutName: "military" })
+}
+
+export async function ProposalPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
+
+  const tLabels = await getTranslations("page-labels")
+  const tCommon = await getTranslations("common")
+
+  const militaryPageData = await getMilitaryPageData({ locale })
+  if (!militaryPageData) notFound()
+
+  const {
+    layout: { modules },
+  } = militaryPageData
 
   return (
     <>
@@ -22,20 +35,27 @@ export function ProposalPage({ params: { locale } }: IHomePageProps) {
           {
             type: "parent",
             slug: ClientRoutes.for_military.path,
-            title: ClientRoutes.for_military.name,
+            titleKey: ClientRoutes.for_military.nameKey,
           },
         ]}
       />
       <PageInfo
-        label="Оптика Добрих Цін"
-        title={ClientRoutes.for_military.name}
+        label={tCommon("company-name")}
+        title={tLabels("military")}
       />
       <ForMilitarySection />
-      <HelpSection />
       <AdvantageSection />
-      <MapSection />
-      <FormSection />
-      <FaqSection />
+      <ModulesSwitch modules={modules} />
     </>
   )
+}
+
+export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
+  try {
+    const layoutData = await getMilitaryPageData({ locale })
+    if (!layoutData) return
+    return getPageLayoutMetadata(layoutData.layout)
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+  }
 }

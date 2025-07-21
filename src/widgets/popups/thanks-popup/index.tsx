@@ -3,7 +3,7 @@
 import React, { useEffect } from "react"
 import css from "./styles.module.scss"
 import classNames from "classnames"
-
+import { useTranslations } from "next-intl"
 interface ThanksPopupProps {
   isOpen: boolean
   onClose: () => void
@@ -29,11 +29,13 @@ export const ThanksPopup: React.FC<ThanksPopupProps> = ({
     }
   }, [isOpen])
 
+  const tPopups = useTranslations("popups")
+
   return (
     <div className={classNames(css.thanks_popup_container, isOpen && css.show)}>
       <div className={css.thanks_popup}>
         <div className={css.thanks_popup_head}>
-          <p className={css.thanks_popup_head_title}>Дякуємо</p>
+          <p className={css.thanks_popup_head_title}>{tPopups("thanks-label")}</p>
           <button
             type="button"
             className={css.thanks_popup_head_close}

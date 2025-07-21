@@ -5,6 +5,7 @@ import { RootLink } from "@/shared/ui"
 import css from "./styles.module.scss"
 import { IInfoButtonsProps } from "@/shared/types"
 import { usePathname } from "next/navigation"
+import { useTranslations } from "next-intl"
 
 interface InfoButtonsListProps {
   items: IInfoButtonsProps[]
@@ -12,11 +13,11 @@ interface InfoButtonsListProps {
 
 export const ButtonsList: React.FC<InfoButtonsListProps> = ({ items }) => {
   const pathname = usePathname()
-
+  const tNavButtons = useTranslations("nav_buttons")
   return (
     <div className={css.buttons_list_wrap}>
       <div className={css.buttons_list}>
-        {items.map(({ label, href }) => {
+        {items.map(({ labelKey, href }) => {
           const isActive = pathname.startsWith(href)
 
           return (
@@ -25,7 +26,7 @@ export const ButtonsList: React.FC<InfoButtonsListProps> = ({ items }) => {
               href={href}
               className={`${css.button} ${isActive ? css.active : ""}`}
             >
-              {label}
+              {tNavButtons(labelKey)}
             </RootLink>
           )
         })}

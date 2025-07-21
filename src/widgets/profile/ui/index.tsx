@@ -12,10 +12,13 @@ import { LogoutPopup, ThanksPopup } from "@/widgets/popups"
 import { Orders } from "../orders"
 import { SelectedProducts } from "../selected-products"
 import { Bonuses } from "../bonuses"
+import { useTranslations } from "next-intl"
 
 type Tab = "data" | "password" | "orders" | "selected" | "bonus"
 
 export const ProfileSection: React.FC = () => {
+  const tPopup = useTranslations("popups")
+
   const searchParams = useSearchParams()
   const router = useRouter()
 
@@ -127,8 +130,8 @@ export const ProfileSection: React.FC = () => {
       <ThanksPopup
         isOpen={popupThanksOpen}
         onClose={handlePersonalDataSuccessClose}
-        title="Дякуємо!"
-        message="Ваші данні були успішно збереженні."
+        title={tPopup("thanks-label")}
+        message={tPopup("save_message")}
       />
     </section>
   )

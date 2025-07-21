@@ -1,31 +1,31 @@
 {
   "nav_links": [
     {
-      "label": "ОПТИКА ДОБРИХ ЦІН",
+      "label": "footer-nav-item-1",
       "href": "/"
     },
     {
-      "label": "Мережа",
+      "label": "footer-nav-item-2",
       "href": "/net"
     },
     {
-      "label": "Діагностика зору",
+      "label": "footer-nav-item-3",
       "href": "/diagnostic"
     },
     {
-      "label": "Відгуки",
+      "label": "footer-nav-item-4",
       "href": "/reviews"
     },
     {
-      "label": "Питання та відповіді",
+      "label": "footer-nav-item-5",
       "href": "/faq"
     },
     {
-      "label": "Контакти",
+      "label": "footer-nav-item-6",
       "href": "/contacts"
     },
     {
-      "label": "Кар’єра",
+      "label": "footer-nav-item-7",
       "href": "/career"
     }
   ],
@@ -62,31 +62,31 @@
   ],
   "info_links": [
     {
-      "label": "Блог",
+      "label": "footer-info-item-1",
       "href": "/blog"
     },
     {
-      "label": "Виробники",
+      "label": "footer-info-item-2",
       "href": "/brands"
     },
     {
-      "label": "Програма лояльності",
+      "label": "footer-info-item-3",
       "href": "/loyalty-program"
     },
     {
-      "label": "Військовим",
+      "label": "footer-info-item-4",
       "href": "/for-military"
     },
     {
-      "label": "Умови доставки і оплати",
+      "label": "footer-info-item-5",
       "href": "/delivery"
     },
     {
-      "label": "Політика конфіденційності",
+      "label": "footer-info-item-6",
       "href": "/policy"
     },
     {
-      "label": "Правила використання сайту",
+      "label": "footer-info-item-7",
       "href": "/terms"
     }
   ]

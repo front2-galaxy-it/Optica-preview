@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import css from "./styles.module.scss"
 import blogCardData from "@/shared/data/blog-card-list.json"
 import categoryData from "@/shared/data/blog-categories-list.json"
-import { BlogCard, CustomPagination } from "@/shared/ui"
+import { BlogCard } from "@/shared/ui"
 import { BlogPageNavigation } from "@/shared/components/blog-navigation"
 import { IBlogCardProps, IBlogCateroriesLink } from "@/shared/types"
 import { AnimatePresence, motion } from "framer-motion"
@@ -19,7 +19,7 @@ const categoryDataList: IBlogCateroriesLink[] = categoryData
 const itemsPerPage = 6
 
 export const BlogCategoryPage: React.FC<BlogCategoryPageProps> = ({ slug }) => {
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage] = useState(1)
 
   const activeCategory = categoryDataList.find((cat) => cat.slug === slug)
   const filteredCards = blogCardDataList.filter((card) => card.category === activeCategory?.label)
@@ -47,6 +47,7 @@ export const BlogCategoryPage: React.FC<BlogCategoryPageProps> = ({ slug }) => {
               >
                 {paginatedItems.map((card, index) => (
                   <BlogCard
+                    cardData={card}
                     className={css.blog_section_card}
                     {...card}
                     key={index}
@@ -54,14 +55,14 @@ export const BlogCategoryPage: React.FC<BlogCategoryPageProps> = ({ slug }) => {
                 ))}
               </motion.div>
             </AnimatePresence>
-            {paginatedItems.length > itemsPerPage && (
+            {/* {paginatedItems.length > itemsPerPage && (
               <CustomPagination
                 currentPage={currentPage}
                 onPageChange={setCurrentPage}
                 totalItems={filteredCards.length}
                 itemsPerPage={itemsPerPage}
               />
-            )}
+            )} */}
           </div>
         </div>
       </div>

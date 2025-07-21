@@ -11,6 +11,10 @@
   color: var(--gray4E);
   @include adaptive-value("margin-bottom", 32, 16, 1);
 
+  p {
+    display: inline;
+  }
+
   .link {
     font-weight: 700;
     text-decoration: underline;

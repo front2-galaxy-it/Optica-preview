@@ -5,34 +5,25 @@ import Image from "next/image"
 
 interface TeamCardProps {
   className?: string
-  name: string
-  image_url: string
-  position: string
-  experience: string
+  cardData: any
 }
 
-export const TeamCard: React.FC<TeamCardProps> = ({
-  className,
-  image_url,
-  name,
-  position,
-  experience,
-}) => {
+export const TeamCard: React.FC<TeamCardProps> = ({ className, cardData }) => {
+  const { title, description } = cardData.content
+  const { image } = cardData
   return (
     <div className={classNames(css.team_card, className)}>
       <Image
         className={css.team_card_image}
-        src={image_url}
+        src={image}
         width={403}
         height={415}
-        alt={name || "image not found"}
+        alt={title || "image not found"}
       />
       <div className={css.team_card_text_wrap}>
-        <h6 className={css.team_card_name}>{name}</h6>
+        <h6 className={css.team_card_name}>{title}</h6>
         <div className={css.team_card_info}>
-          <span>{position}</span>
-          <span>|</span>
-          <span>{experience}</span>
+          <span>{description}</span>
         </div>
       </div>
     </div>

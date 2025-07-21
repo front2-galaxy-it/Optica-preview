@@ -6,6 +6,7 @@ import classNames from "classnames"
 import { Button, CheckboxPolicy, FormField, FormTextArea } from "@/shared/ui"
 import { useForm } from "react-hook-form"
 import { FormData } from "@/shared/types/form-data.interface"
+import { useTranslations } from "next-intl"
 interface careerPopupProps {
   isOpen: boolean
   onClose: () => void
@@ -69,38 +70,6 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
     onSuccess()
   }
 
-  // const onSubmit = (data: FormData) => {
-  //   const formData = new FormData()
-
-  //   formData.append("name", data.name)
-  //   formData.append("surname", data.surname)
-  //   formData.append("phone", data.phone)
-  //   formData.append("vacancy", data.vacancy)
-  //   formData.append("comment", data.comment || "")
-  //   formData.append("policy_agree", String(data.policy_agree))
-
-  //   if (data.file && data.file.length > 0) {
-  //     formData.append("file", data.file[0])
-  //   }
-
-  //   fetch("/api/send-career-form", {
-  //     method: "POST",
-  //     body: formData,
-  //   })
-  //     .then((res) => {
-  //       if (!res.ok) throw new Error("Network response was not ok")
-  //       return res.json()
-  //     })
-  //     .then(() => {
-  //       onClose()
-  //       onSuccess()
-  //     })
-  //     .catch((err) => {
-  //       console.error("Помилка при відправці форми:", err)
-  //       setError("Помилка при відправці форми. Спробуйте пізніше.")
-  //     })
-  // }
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
@@ -109,12 +78,20 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
     }
   }
 
+  const tButtons = useTranslations("buttons")
+  const tPopupCareer = useTranslations("popups.career-popup")
+  const tFormName = useTranslations("form.name")
+  const tFormSurname = useTranslations("form.surname")
+  const tFormPhone = useTranslations("form.phone")
+  const tFormVacancy = useTranslations("form.vacancy")
+  const tFormComment = useTranslations("form.comment-message")
+
   return (
     <>
       <div className={classNames(css.career_popup_container, isOpen && css.show)}>
         <div className={css.career_popup}>
           <div className={css.career_popup_head}>
-            <p className={css.career_popup_head_title}>Запис на діагностику зору</p>
+            <p className={css.career_popup_head_title}>{tPopupCareer("label")}</p>
             <button
               type="button"
               className={css.career_popup_head_close}
@@ -125,35 +102,33 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
             </button>
           </div>
           <div className={css.career_popup_content}>
-            <h6 className={css.career_popup_content_title}>
-              Залиште свої контакти і наш менеджер зв’яжеться з Вами!
-            </h6>
+            <h6 className={css.career_popup_content_title}>{tPopupCareer("title-2")}</h6>
             <form
               className={css.career_popup_form}
               onSubmit={handleSubmit(onSubmit)}
             >
               <FormField
                 id="name"
-                placeholder="Ім’я"
+                placeholder={tFormName("placeholder")}
                 type="text"
                 colorType="white"
                 register={register("name", {
                   required: {
                     value: true,
-                    message: "Заповніть поле",
+                    message: tFormName("required"),
                   },
                 })}
                 error={errors.name?.message}
               />
               <FormField
                 id="surname"
-                placeholder="Прізвище"
+                placeholder={tFormSurname("placeholder")}
                 type="text"
                 colorType="white"
                 register={register("surname", {
                   required: {
                     value: true,
-                    message: "Заповніть поле",
+                    message: tFormSurname("required"),
                   },
                 })}
                 error={errors.surname?.message}
@@ -166,24 +141,24 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                 register={register("phone", {
                   required: {
                     value: true,
-                    message: "Заповніть поле",
+                    message: tFormPhone("required"),
                   },
                   pattern: {
                     value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-                    message: "Невірний формат телефону",
+                    message: tFormPhone("pattern"),
                   },
                 })}
                 error={errors.phone?.message}
               />
               <FormField
                 id="vacancy"
-                placeholder="Вакансія"
+                placeholder={tFormVacancy("placeholder")}
                 type="text"
                 colorType="white"
                 register={register("vacancy", {
                   required: {
                     value: true,
-                    message: "Заповніть поле",
+                    message: tFormVacancy("error"),
                   },
                 })}
                 error={errors.phone?.message}
@@ -210,12 +185,12 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                   iconName="icon_pin"
                   onClick={handleClick}
                 >
-                  Прикріпити резюме
+                  {tButtons("cv_btn")}
                 </Button>
                 <span className={css.error_message}>{error}</span>
                 <span className={css.file_info}>{fileName && `Файл: ${fileName}`}</span>
               </div>
-              <FormTextArea placeholder="Коментар" />
+              <FormTextArea placeholder={tFormComment("placeholder")} />
               <CheckboxPolicy
                 className={css.career_policy}
                 register={register("policyAgree", {
@@ -231,7 +206,7 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                 modifier="primary"
                 iconName="arrow_right"
               >
-                Доєднатися до команди
+                {tButtons("join_btn")}
               </Button>
             </form>
           </div>

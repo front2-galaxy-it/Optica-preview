@@ -6,8 +6,12 @@ import { SectionTip } from "@/shared/ui/modules/section-tip"
 import { ButtonLink } from "@/shared/ui/links"
 import classNames from "classnames"
 import { ClientRoutes } from "@/shared/routes"
+import { useTranslations } from "next-intl"
 
 export const NotFoundSection: React.FC = () => {
+  const tNotFound = useTranslations("not-found-section")
+  const tButtons = useTranslations("buttons")
+
   return (
     <section className={css.not_found}>
       <Image
@@ -27,17 +31,17 @@ export const NotFoundSection: React.FC = () => {
             alt="not found"
           />
           <SectionTip
-            label="Упсс!"
+            label={tNotFound("label")}
             className={css.not_found_tip}
           />
-          <p>Щось пішло не так! Сторінку не знайдено...</p>
+          <p>{tNotFound("description")}</p>
           <ButtonLink
             className={css.not_found_btn}
             modifier="primary"
             iconName="arrow_right"
             href={ClientRoutes.home.path}
           >
-            Повернутися на головну
+            {tButtons("return_home_btn")}
           </ButtonLink>
           <ButtonLink
             className={css.not_found_btn}
@@ -45,7 +49,7 @@ export const NotFoundSection: React.FC = () => {
             iconName="arrow_right"
             href={ClientRoutes.loyalty_program.path}
           >
-            До програми лояльності
+            {tButtons("loyalty_program_btn")}
           </ButtonLink>
         </div>
       </div>

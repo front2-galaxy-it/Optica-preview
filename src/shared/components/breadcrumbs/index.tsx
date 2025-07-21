@@ -6,8 +6,10 @@ import { ClientRoutes } from "@/shared/routes"
 import { RootLink } from "@/shared/ui"
 import { Icon } from "@/shared/ui/icons"
 import classNames from "classnames"
+import { useTranslations } from "next-intl"
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ arr, className, color, ...props }) => {
+  const t = useTranslations("breadcrumbs")
   return (
     <div className={css.breadcrumbs_wrap}>
       <div className="container">
@@ -18,10 +20,10 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ arr, className, color,
           {...props}
         >
           <li className={css.breadcrumb_item}>
-            <RootLink href={ClientRoutes.home.path}>Домашня сторінка</RootLink>
+            <RootLink href={ClientRoutes.home.path}>{t("home")}</RootLink>
           </li>
 
-          {arr.map(({ slug, title }, index) => {
+          {arr.map(({ slug, titleKey }, index) => {
             const isLast = index === arr.length - 1
 
             return (
@@ -37,7 +39,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ arr, className, color,
                     className={css.separator_icon}
                   />
                 </span>
-                <RootLink href={slug}>{title}</RootLink>
+                <RootLink href={slug}>{t(titleKey)}</RootLink>
               </li>
             )
           })}

@@ -1,19 +1,23 @@
-import React from "react"
+import React, { DetailedHTMLProps, HtmlHTMLAttributes } from "react"
 import css from "./styles.module.scss"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import classNames from "classnames"
 import Image from "next/image"
 
-export const GallerySection: React.FC = () => {
+interface IGallerySectionProps
+  extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  module: any
+}
+
+export const GallerySection: React.FC<IGallerySectionProps> = ({ module }) => {
+  const { title, sub_title, text } = module.content
+
   return (
     <section className={css.choose_section}>
       <div className={classNames(css.choose_section_container, "container")}>
-        <SectionTip label="Галерея" />
-        <h5 className={css.choose_section_title}>Мережа оптик</h5>
-        <p className={css.choose_section_text}>
-          Ми завжди намагаємося знайти індивідуальний підхід до кожного нашого клієнта, щоб
-          допомогти вибрати оптимальні рішення для зору та стилю.
-        </p>
+        <SectionTip label={sub_title} />
+        <h5 className={css.choose_section_title}>{title}</h5>
+        <p className={css.choose_section_text}>{text}</p>
         <div className={css.choose_section_content}>
           <div className={css.central_banner}>
             <Image

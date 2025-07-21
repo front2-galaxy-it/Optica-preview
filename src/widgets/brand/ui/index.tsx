@@ -6,12 +6,15 @@ import Image from "next/image"
 import classNames from "classnames"
 import { ButtonLink } from "@/shared/ui/links"
 import { ClientRoutes } from "@/shared/routes"
-
+import { useTranslations } from "next-intl"
 interface BrandSectionProps {
   className?: string
 }
 
 export const BrandSection: React.FC<BrandSectionProps> = ({ className }) => {
+  const tBrand = useTranslations("brands-section")
+  const tButtons = useTranslations("buttons")
+
   return (
     <section className={classNames(css.brand_section, className)}>
       <div className={css.brand_bg_mob}>
@@ -32,23 +35,17 @@ export const BrandSection: React.FC<BrandSectionProps> = ({ className }) => {
           />
         </div>
         <div className={css.brand_section_content}>
-          <SectionTip label="Бренди" />
-          <h3 className={css.brand_section_title}>Світові бренди, яким довіряють мільйони</h3>
-          <p className={css.brand_section_text}>
-            Ми працюємо тільки з найкращими брендами, що пропонують стильні та високоякісні окуляри
-            для будь-якого смаку. Ознайомтесь з нашими партнерами — лідерами індустрії.
-          </p>
-          <p className={css.brand_section_text}>
-            Обирайте окуляри від світових брендів і переконайтесь у їхній неперевершеній якості. Ви
-            заслужили найкраще!
-          </p>
+          <SectionTip label={tBrand("label")} />
+          <h3 className={css.brand_section_title}>{tBrand("title")}</h3>
+          <p className={css.brand_section_text}>{tBrand("description-1")}</p>
+          <p className={css.brand_section_text}>{tBrand("description-2")}</p>
           <ButtonLink
             className="brand_btn"
             href={ClientRoutes.brands.path}
             modifier="secondary"
             iconName="arrow_right"
           >
-            Детальніше
+            {tButtons("details_btn")}
           </ButtonLink>
         </div>
       </div>

@@ -1,22 +1,24 @@
 import React from "react"
 import css from "./styles.module.scss"
 import classNames from "classnames"
+import { useTranslations } from "next-intl"
 
 export const ThanksSection: React.FC = () => {
+  const tThanks = useTranslations("checkout-success-page")
   return (
     <section className={css.thanks}>
       <div className="container">
-        <p className={css.thanks_text}>
-          Наші менеджери вже почали роботу над вашим замовленням! <br /> У разі потреби додаткових
-          уточнень щодо вашого замовлення ми обов’язково зв’яжемося з Вами.
-        </p>
+        <div className={css.thanks_text_wrap}>
+          <p className={css.thanks_text}>{tThanks("thanks_text-1")}</p>
+          <p className={css.thanks_text}>{tThanks("thanks_text-2")}</p>
+        </div>
         <div className={css.thanks_content}>
           <div className={css.thanks_content_item}>
             <div className={css.item_text_wrap}>
-              <strong>Ваше замовлення</strong>
+              <strong>{tThanks("order_summary_title")}</strong>
               <div className={css.item_value}>
                 <span>3</span>
-                <span>товари на сумму</span>
+                <span>{tThanks("order_summary_items_label")}</span>
               </div>
               <div className={classNames(css.item_info, css.total_price)}>
                 <span>2550</span>
@@ -27,7 +29,7 @@ export const ThanksSection: React.FC = () => {
           </div>
           <div className={css.thanks_content_item}>
             <div className={css.item_text_wrap}>
-              <strong>Отримувач</strong>
+              <strong>{tThanks("order_recipient")}</strong>
               <div className={css.item_value}>
                 <span>Анна</span>
                 <span>Миколаївна</span>
@@ -41,7 +43,7 @@ export const ThanksSection: React.FC = () => {
           </div>
           <div className={css.thanks_content_item}>
             <div className={css.item_text_wrap}>
-              <strong>Доставка</strong>
+              <strong>{tThanks("order_delivery")}</strong>
               <div className={css.item_value}>
                 <span>Нова пошта</span>
               </div>
@@ -54,7 +56,7 @@ export const ThanksSection: React.FC = () => {
           </div>
           <div className={css.thanks_content_item}>
             <div className={css.item_text_wrap}>
-              <strong>Оплата</strong>
+              <strong>{tThanks("order_payment")}</strong>
               <div className={css.item_value}>
                 <span>при отриманні</span>
               </div>

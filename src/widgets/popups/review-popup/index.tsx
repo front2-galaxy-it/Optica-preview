@@ -6,7 +6,7 @@ import classNames from "classnames"
 import { Button, CheckboxPolicy, FormField, FormTextArea } from "@/shared/ui"
 import { useForm } from "react-hook-form"
 import { Icon } from "@/shared/ui/icons"
-
+import { useTranslations } from "next-intl"
 interface ReviewPopupProps {
   isOpen: boolean
   onClose: () => void
@@ -68,12 +68,20 @@ export const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, onClose, onSuc
     setHoveredRating(null)
   }
 
+  const tPopupReview = useTranslations("popups.reviews-popup")
+  const tFormName = useTranslations("form.name")
+  const tFormSurname = useTranslations("form.surname")
+  const tFormPhone = useTranslations("form.phone")
+  const tFormMessage = useTranslations("form.review-message")
+  const tButtons = useTranslations("buttons")
+  const tCommon = useTranslations("common")
+
   return (
     <>
       <div className={classNames(css.review_popup_container, isOpen && css.show)}>
         <div className={css.review_popup}>
           <div className={css.review_popup_head}>
-            <p className={css.review_popup_head_title}>Залиште свій відгук</p>
+            <p className={css.review_popup_head_title}>{tPopupReview("label")}</p>
             <button
               type="button"
               className={css.review_popup_head_close}
@@ -84,35 +92,33 @@ export const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, onClose, onSuc
             </button>
           </div>
           <div className={css.review_popup_content}>
-            <h6 className={css.review_popup_content_title}>
-              Ми будемо раді отримати ваш відгук про данний товар!
-            </h6>
+            <h6 className={css.review_popup_content_title}>{tPopupReview("title")}</h6>
             <form
               className={css.review_popup_form}
               onSubmit={handleSubmit(onSubmit)}
             >
               <FormField
                 id="name"
-                placeholder="Ім’я"
+                placeholder={tFormName("placeholder")}
                 type="text"
                 colorType="white"
                 register={register("name", {
                   required: {
                     value: true,
-                    message: "Заповніть поле",
+                    message: tFormName("required"),
                   },
                 })}
                 error={errors.name?.message}
               />
               <FormField
                 id="surname"
-                placeholder="Прізвище"
+                placeholder={tFormSurname("placeholder")}
                 type="text"
                 colorType="white"
                 register={register("surname", {
                   required: {
                     value: true,
-                    message: "Заповніть поле",
+                    message: tFormSurname("required"),
                   },
                 })}
                 error={errors.surname?.message}
@@ -125,21 +131,21 @@ export const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, onClose, onSuc
                 register={register("phone", {
                   required: {
                     value: true,
-                    message: "Заповніть поле",
+                    message: tFormPhone("required"),
                   },
                   pattern: {
                     value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-                    message: "Невірний формат телефону",
+                    message: tFormPhone("pattern"),
                   },
                 })}
                 error={errors.phone?.message}
               />
               <FormTextArea
-                placeholder="Напишіть свій відгук"
+                placeholder={tFormMessage("placeholder")}
                 register={register("text")}
               />
               <div className={css.evaluation}>
-                <span className={css.evaluation_title}>Оцінка</span>
+                <span className={css.evaluation_title}>{tCommon("rating")}</span>
                 <div className={css.evaluation_stars}>
                   {Array(5)
                     .fill(0)
@@ -167,7 +173,7 @@ export const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, onClose, onSuc
                 modifier="primary"
                 iconName="arrow_right"
               >
-                Залишити відгук
+                {tButtons("reviews_btn")}
               </Button>
             </form>
           </div>

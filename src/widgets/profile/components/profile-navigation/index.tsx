@@ -2,6 +2,7 @@ import React from "react"
 import css from "./styles.module.scss"
 import { Icon } from "@/shared/ui/icons"
 import classNames from "classnames"
+import { useTranslations } from "next-intl"
 
 interface ProfileNavProps {
   activeTab: "data" | "password" | "orders" | "selected" | "bonus"
@@ -14,6 +15,9 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
   onTabChange,
   onLogoutClick,
 }) => {
+  const tProfileNav = useTranslations("profile-page.profile_nav")
+  const tButtons = useTranslations("buttons")
+
   return (
     <div className={css.profile_nav}>
       <button
@@ -24,7 +28,7 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
           name="user_icon"
           className={css.button_icon}
         />
-        Персональні данні
+        {tProfileNav("item-1")}
         <Icon
           name="icon_arrow_bc"
           className={css.button_arrow}
@@ -38,7 +42,7 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
           name="icon_check"
           className={css.button_icon}
         />
-        Зміна паролю
+        {tProfileNav("item-2")}
         <Icon
           name="icon_arrow_bc"
           className={css.button_arrow}
@@ -52,7 +56,7 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
           name="basket_icon"
           className={css.button_icon}
         />
-        Мої замовлення
+        {tProfileNav("item-3")}
         <Icon
           name="icon_arrow_bc"
           className={css.button_arrow}
@@ -66,7 +70,7 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
           name="wish_icon"
           className={css.button_icon}
         />
-        Обрані товари
+        {tProfileNav("item-4")}
         <Icon
           name="icon_arrow_bc"
           className={css.button_arrow}
@@ -80,7 +84,7 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
           name="icon_percent"
           className={css.button_icon}
         />
-        Мої бонуси
+        {tProfileNav("item-5")}
         <Icon
           name="icon_arrow_bc"
           className={css.button_arrow}
@@ -91,7 +95,7 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
         onClick={onLogoutClick}
       >
         <Icon name="icon_logout" />
-        Вихід
+        {tButtons("exit-btn")}
       </button>
     </div>
   )

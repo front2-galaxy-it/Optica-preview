@@ -6,6 +6,7 @@ import classNames from "classnames"
 import { Button } from "@/shared/ui"
 import { useForm } from "react-hook-form"
 import { Icon } from "@/shared/ui/icons"
+import { useTranslations } from "next-intl"
 
 interface RatingPopupProps {
   isOpen: boolean
@@ -22,6 +23,9 @@ export const RatingPopup: React.FC<RatingPopupProps> = ({ isOpen, onClose, onSuc
 
   const [rating, setRating] = useState<number | null>(null)
   const [hoveredRating, setHoveredRating] = useState<number | null>(null)
+
+  const tPopupRating = useTranslations("popups.rating-popup")
+  const tButtons = useTranslations("buttons")
 
   useEffect(() => {
     if (isOpen) {
@@ -63,7 +67,7 @@ export const RatingPopup: React.FC<RatingPopupProps> = ({ isOpen, onClose, onSuc
       <div className={classNames(css.rating_popup_container, isOpen && css.show)}>
         <div className={css.rating_popup}>
           <div className={css.rating_popup_head}>
-            <p className={css.rating_popup_head_title}>Залиште свій відгук</p>
+            <p className={css.rating_popup_head_title}>{tPopupRating("label")}</p>
             <button
               type="button"
               className={css.rating_popup_head_close}
@@ -74,7 +78,7 @@ export const RatingPopup: React.FC<RatingPopupProps> = ({ isOpen, onClose, onSuc
             </button>
           </div>
           <div className={css.rating_popup_content}>
-            <h6 className={css.rating_popup_content_title}>Ми будемо раді отримати вашу оцінку!</h6>
+            <h6 className={css.rating_popup_content_title}>{tPopupRating("title")}</h6>
             <form
               className={css.rating_popup_form}
               onSubmit={handleSubmit(onSubmit)}
@@ -104,7 +108,7 @@ export const RatingPopup: React.FC<RatingPopupProps> = ({ isOpen, onClose, onSuc
                 modifier="secondary"
                 iconName="arrow_right"
               >
-                Оцінити товар
+                {tButtons("rating_btn")}
               </Button>
             </form>
           </div>

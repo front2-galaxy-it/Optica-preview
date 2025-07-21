@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import css from "./styles.module.scss"
-import { BlogCard, CustomPagination } from "@/shared/ui"
+import { BlogCard } from "@/shared/ui"
 import blogCardData from "@/shared/data/blog-card-list.json"
 import authorData from "@/shared/data/author-list.json"
 import { IBlogCardProps, IBlogAuthorLink } from "@/shared/types"
@@ -22,7 +22,7 @@ const authorDataList: IBlogAuthorLink[] = authorData
 const itemsPerPage = 6
 
 export const AuthorPageSection: React.FC<AuthorPageSectionProps> = ({ slug }) => {
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage] = useState(1)
 
   const author = authorDataList.find((item) => item.slug === slug)
   const filteredCards = blogCardDataList.filter((card) => card.author === author?.label)
@@ -65,7 +65,7 @@ export const AuthorPageSection: React.FC<AuthorPageSectionProps> = ({ slug }) =>
             </div>
             <div className={css.articles_head}>
               <SectionTip
-                label={ClientRoutes.blog.name}
+                label={ClientRoutes.blog.nameKey}
                 className={css.author_tip}
               />
               {author?.label && (
@@ -75,7 +75,7 @@ export const AuthorPageSection: React.FC<AuthorPageSectionProps> = ({ slug }) =>
             <AnimatePresence mode="wait">
               <motion.div
                 className={css.blog_section_articels_wrap}
-                key={currentPage}
+                // key={currentPage}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -83,6 +83,7 @@ export const AuthorPageSection: React.FC<AuthorPageSectionProps> = ({ slug }) =>
               >
                 {paginatedItems.map((card, index) => (
                   <BlogCard
+                    cardData={card}
                     className={css.blog_section_card}
                     {...card}
                     key={index}
@@ -90,14 +91,14 @@ export const AuthorPageSection: React.FC<AuthorPageSectionProps> = ({ slug }) =>
                 ))}
               </motion.div>
             </AnimatePresence>
-            {paginatedItems.length > itemsPerPage && (
+            {/* {paginatedItems.length > itemsPerPage ? (
               <CustomPagination
                 currentPage={currentPage}
                 onPageChange={setCurrentPage}
                 totalItems={filteredCards.length}
                 itemsPerPage={itemsPerPage}
               />
-            )}
+            ) : null} */}
           </div>
         </div>
       </div>

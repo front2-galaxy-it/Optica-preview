@@ -2,8 +2,11 @@ import React from "react"
 import css from "./styles.module.scss"
 import Image from "next/image"
 import { ButtonLink } from "@/shared/ui/links"
+import { useTranslations } from "next-intl"
 
 export const Bonuses: React.FC = () => {
+  const tBonuses = useTranslations("profile-page.bonuses")
+  const tButtons = useTranslations("buttons")
   return (
     <div className={css.bonuses}>
       <div className={css.bonuses_content}>
@@ -18,40 +21,38 @@ export const Bonuses: React.FC = () => {
         </div>
         <div className={css.bonuses_info}>
           <div className={css.total}>
-            <strong>Всього накопичено:</strong>
+            <strong>{tBonuses("bonuses_total_label")}</strong>
             <span>450 грн.</span>
           </div>
           <div className={css.available}>
-            <strong>Доступно:</strong>
+            <strong>{tBonuses("bonuses_available_label")}</strong>
             <span>200 грн.</span>
           </div>
           <div className={css.reserved}>
-            <strong>Буде доступно протягом 7 днів:</strong>
+            <strong>{tBonuses("bonuses_reserved_label")}</strong>
             <span>450 грн.</span>
           </div>
         </div>
       </div>
-      <p className={css.bonuses_text}>
-        Постійні покупці магазину “Оптика добрих цін” отримують бонуси за покупку товарів. Бонуси
-        можна використовувати під час оплати наступних покупок, зменшуючи поточну вартість товару. А
-        ще всі учасники програми лояльності першими дізнаються про спеціальні пропозиції, акції та
-        новинки у нашому магазині.
-      </p>
+      <p className={css.bonuses_text}>{tBonuses("bonuses_description")}</p>
       <ul className={css.bonuses_list}>
-        <li className={css.bonuses_list_item}>
-          10% від кожної вашої покупки нараїовується на ваш бонусний рахунок
-        </li>
-        <li className={css.bonuses_list_item}>1 бонус = 1 гривня</li>
-        <li className={css.bonuses_list_item}>
-          протягом 7 днів після покупки бонуси будуть доступні на вашому рахунку
-        </li>
+        <ul className={css.bonuses_list}>
+          {tBonuses.raw("bonuses_list").map((item: string, idx: number) => (
+            <li
+              key={idx}
+              className={css.bonuses_list_item}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
       </ul>
       <ButtonLink
         className={css.bonuses_btn}
         modifier="secondary"
         iconName="arrow_right"
       >
-        Детальніше
+        {tButtons("details_btn")}
       </ButtonLink>
     </div>
   )

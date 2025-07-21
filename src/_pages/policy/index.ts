@@ -1,1 +1,1 @@
-export { PolicyPage } from "./ui"
+export { PolicyPage, generateMetadata } from "./ui"

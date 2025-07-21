@@ -1,38 +1,59 @@
-import { unstable_setRequestLocale } from "next-intl/server"
+import { unstable_setRequestLocale, getTranslations } from "next-intl/server"
 
 import { IHomePageProps } from "./props"
-import { MailingSection } from "@/widgets/mailing"
 import { ChooseSection } from "@/widgets/choose"
-import { BlogSection } from "@/widgets/blog"
-import { FaqSection } from "@/widgets/faq"
-import { ReviewsSection } from "@/widgets/reviews"
 import { AboutUsSection } from "@/widgets/about-company"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs, ButtonsList } from "@/shared/components"
-import { TeamSection } from "@/widgets/team"
 import { PageInfo } from "@/widgets/page-info-block"
 import { navData } from "@/shared/routes/info-buttons-list"
+import { notFound } from "next/navigation"
+import { ModulesSwitch } from "@/widgets/module-switch"
+import { IGlobalPageProps } from "@/shared/types"
+import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
 
-export function AboutPage({ params: { locale } }: IHomePageProps) {
+const getAboutPageData = async ({ locale }: { locale: string }) => {
+  return await fetchPageLayoutData({ locale, layoutName: "about" })
+}
+
+export async function AboutPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
+
+  const tLabels = await getTranslations("page-labels")
+  const tCommon = await getTranslations("common")
+
+  const aboutPageData = await getAboutPageData({ locale })
+  if (!aboutPageData) notFound()
+
+  const {
+    layout: { modules },
+  } = aboutPageData
 
   return (
     <>
       <Breadcrumbs
-        arr={[{ type: "parent", slug: ClientRoutes.about.path, title: ClientRoutes.about.name }]}
+        arr={[
+          { type: "parent", slug: ClientRoutes.about.path, titleKey: ClientRoutes.about.nameKey },
+        ]}
       />
       <PageInfo
-        label="Оптика Добрих Цін"
-        title="Про нашу компанію"
+        label={tCommon("company-name")}
+        title={tLabels("about")}
       />
       <ButtonsList items={navData.about_us} />
       <AboutUsSection />
       <ChooseSection />
-      <TeamSection />
-      <BlogSection />
-      <FaqSection />
-      <ReviewsSection />
-      <MailingSection />
+      <ModulesSwitch modules={modules} />
     </>
   )
+}
+
+export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
+  try {
+    const layoutData = await getAboutPageData({ locale })
+    if (!layoutData) return
+    return getPageLayoutMetadata(layoutData.layout)
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+  }
 }

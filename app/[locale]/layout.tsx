@@ -4,6 +4,7 @@ import { unstable_setRequestLocale } from "next-intl/server"
 import { localeConfig } from "@/app/localization"
 import { Layout } from "@/widgets/layout"
 import ClientLayout from "@/widgets/layout/ClientLayout"
+import { ServerProviders } from "@/app/providers"
 export const metadata: Metadata = {
   title: "Оптика добрих цін",
   description: "Galaxy IT",
@@ -22,9 +23,11 @@ export default function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
-        <ClientLayout>
-          <Layout locale={locale}>{children}</Layout>
-        </ClientLayout>
+        <ServerProviders locale={locale}>
+          <ClientLayout>
+            <Layout locale={locale}>{children}</Layout>
+          </ClientLayout>
+        </ServerProviders>
       </body>
     </html>
   )

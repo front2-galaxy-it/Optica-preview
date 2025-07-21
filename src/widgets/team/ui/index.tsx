@@ -1,16 +1,13 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useRef, DetailedHTMLProps, HtmlHTMLAttributes } from "react"
 import css from "./styles.module.scss"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
-import dataTeamList from "@/shared/data/team-list.json"
 import { Swiper as SwiperType } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination } from "swiper/modules"
 import { SliderButton } from "@/shared/ui/buttons"
 import { TeamCard } from "@/shared/ui/modules/team-card"
-
-const teamDataList = dataTeamList
 
 const swiperSettings = {
   className: css.team_swiper,
@@ -28,15 +25,23 @@ const swiperSettings = {
   },
 }
 
-export const TeamSection: React.FC = () => {
+interface IAboutSectionProps
+  extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  module: any
+}
+
+export const TeamSection: React.FC<IAboutSectionProps> = ({ module }) => {
   const swiperRef = useRef<SwiperType | null>(null)
+
+  const { title, sub_title } = module.content
+  const { items } = module
 
   return (
     <section className={css.team_section}>
       <div className="container">
-        <SectionTip label="Наша команда" />
+        <SectionTip label={sub_title} />
         <div className={css.team_section_head}>
-          <h5 className={css.team_section_title}>У нас працюють тільки найкращі</h5>
+          <h5 className={css.team_section_title}>{title}</h5>
           <div className={css.slider_buttons}>
             <SliderButton
               direction="prev"
@@ -57,9 +62,9 @@ export const TeamSection: React.FC = () => {
         }}
         {...swiperSettings}
       >
-        {teamDataList.map((card, index) => (
+        {items.map((card: any, index: number) => (
           <SwiperSlide key={index}>
-            <TeamCard {...card} />
+            <TeamCard cardData={card} />
           </SwiperSlide>
         ))}
         <div className="swiper-pagination team-pagination"></div>

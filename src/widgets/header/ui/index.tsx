@@ -20,9 +20,15 @@ import { useAuth } from "@/shared/lib/context/AuthContext"
 import { CategoriesMenu } from "../components/categories-menu"
 import { AnimatePresence, motion } from "framer-motion"
 import { CartPopup } from "@/widgets/popups"
+import { useTranslations } from "next-intl"
 
 export const Header: React.FC = () => {
+  const tNav = useTranslations("navigation")
+  const tSearch = useTranslations("form.search-field")
+  const tCategories = useTranslations("categories_list")
+
   const headerRef = useRef<HTMLDivElement>(null)
+  const tPurchase = useTranslations("purchase-section")
 
   useEffect((): (() => void) => {
     DocumentWorker.setCSSVar("header-height", `${headerRef.current?.offsetHeight}px`)
@@ -38,11 +44,19 @@ export const Header: React.FC = () => {
     }
   }, [])
 
-  const categoryDataList: ICateroriesLink[] = CategoryList.categories_list
+  const categoryDataList: ICateroriesLink[] = CategoryList.categories_list.map((label) => ({
+    ...label,
+    label: tCategories(label.label),
+  }))
 
-  const navDataByLocale: INavLink[] = LinksData.nav_links
-  const categoryData: ICatalogLink[] = CategoryData.category_list
-  const linkData: ICatalogLink[] = CategoryData.link_list
+  const navDataByLocale: INavLink[] = LinksData.nav_links.map((link) => ({
+    ...link,
+    label: tNav(link.label),
+  }))
+  const linkData: ICatalogLink[] = CategoryData.link_list.map((link) => ({
+    ...link,
+    label: tNav(link.label),
+  }))
   const brandData: ICatalogLink[] = CategoryData.brand_list
 
   const [burgerOpen, setBurgerOpen] = useState(false)
@@ -158,11 +172,11 @@ export const Header: React.FC = () => {
                 name="box_group"
                 className={css.catalog_icon}
               />
-              Каталог
+              {tPurchase("label")}
             </button>
             <SearchField
               ref={searchRef}
-              placeholder="Що шукаєте?"
+              placeholder={tSearch("placeholder")}
               searchOpen={searchOpen}
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
@@ -218,7 +232,7 @@ export const Header: React.FC = () => {
         <HeaderCatalog
           isShow={catalogShow}
           className={catalogShow ? css.show : ""}
-          categoryList={categoryData}
+          categoryList={categoryDataList}
           linkList={linkData}
           brandList={brandData}
         />

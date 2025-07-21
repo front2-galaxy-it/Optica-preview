@@ -7,6 +7,7 @@ import { RootLink } from "@/shared/ui"
 import classNames from "classnames"
 import { Icon } from "@/shared/ui/icons"
 import { ClientRoutes } from "@/shared/routes"
+import { useTranslations } from "next-intl"
 
 interface CategoryListProps {
   className?: string
@@ -21,17 +22,19 @@ export const CategoryList: React.FC<CategoryListProps> = ({
   articleList,
   activeCategorySlug,
 }) => {
+  const tCommon = useTranslations("common")
+
   const filteredCategories = categoryList.filter((category) =>
     articleList.some((article) => article.categorySlug === category.slug),
   )
 
   if (filteredCategories.length === 0) {
-    return <div className={css.no_categories}>Нет доступных категорий</div>
+    return <div className={css.no_categories}>{tCommon("no-categories")}</div>
   }
 
   return (
     <div className={classNames(css.category_list_wrap, className)}>
-      <h6 className={css.category_list_title}>Категорії</h6>
+      <h6 className={css.category_list_title}>{tCommon("category-label")}</h6>
       <ul className={css.category_list}>
         {filteredCategories.map((category, index) => (
           <li

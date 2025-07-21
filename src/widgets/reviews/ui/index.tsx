@@ -1,17 +1,13 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useRef, DetailedHTMLProps, HtmlHTMLAttributes } from "react"
 import css from "./styles.module.scss"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import { ReviewCard } from "@/shared/ui"
-import dataReviewsList from "@/shared/data/reviews-list.json"
-import { IReviewCardProps } from "@/shared/types"
 import { Swiper as SwiperType } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination } from "swiper/modules"
 import { SliderButton } from "@/shared/ui/buttons"
-
-const reviewsDataList: IReviewCardProps[] = dataReviewsList.review_cards
 
 const swiperSettings = {
   className: css.reviews_swiper,
@@ -29,15 +25,23 @@ const swiperSettings = {
   },
 }
 
-export const ReviewsSection: React.FC = () => {
+interface IReviewSectionProps
+  extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  module: any
+}
+
+export const ReviewsSection: React.FC<IReviewSectionProps> = ({ module }) => {
   const swiperRef = useRef<SwiperType | null>(null)
+
+  const { title, sub_title } = module.content
+  const { items } = module
 
   return (
     <section className={css.reviews_section}>
       <div className="container">
-        <SectionTip label="Відгуки" />
+        <SectionTip label={sub_title} />
         <div className={css.reviews_section_head}>
-          <h3 className={css.reviews_section_title}>Що говорять про Оптику Добрих Цін</h3>
+          <h3 className={css.reviews_section_title}>{title}</h3>
           <div className={css.slider_buttons}>
             <SliderButton
               direction="prev"
@@ -58,11 +62,12 @@ export const ReviewsSection: React.FC = () => {
         }}
         {...swiperSettings}
       >
-        {reviewsDataList.map((card, index) => (
-          <SwiperSlide key={index}>
-            <ReviewCard {...card} />
-          </SwiperSlide>
-        ))}
+        {Array.isArray(items) &&
+          items.slice(0, 12).map((item: any, index: number) => (
+            <SwiperSlide key={index}>
+              <ReviewCard itemData={item} />
+            </SwiperSlide>
+          ))}
         <div className="swiper-pagination reviews-pagination"></div>
       </Swiper>
     </section>

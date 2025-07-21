@@ -1,1 +1,1 @@
-export { LoyaltyPage } from "./ui"
+export { LoyaltyPage, generateMetadata } from "./ui"

@@ -1,5 +1,5 @@
 export const localeConfig: ILocaleConfig = {
-  locales: ["uk", "en"],
+  locales: ["uk", "ru"],
   defaultLocale: "uk",
   localeDetection: false,
   localePrefix: "as-needed" as "as-needed" | "always" | "never",

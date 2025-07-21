@@ -1,4 +1,4 @@
 export interface IInfoButtonsProps {
-  label: string
+  labelKey: string
   href: string
 }

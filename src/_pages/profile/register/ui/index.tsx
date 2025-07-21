@@ -6,27 +6,57 @@ import { Breadcrumbs } from "@/shared/components"
 
 import { PageInfo } from "@/widgets/page-info-block"
 import { RegisterSection } from "@/widgets/profile/register"
+import { IGlobalPageProps } from "@/shared/types"
+import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
+import { notFound } from "next/navigation"
+import { ModulesSwitch } from "@/widgets/module-switch"
 
-export function RegisterPage({ params: { locale } }: IHomePageProps) {
+const getRegisterPageData = async ({ locale }: { locale: string }) => {
+  return await fetchPageLayoutData({ locale, layoutName: "register" })
+}
+
+export async function RegisterPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
+
+  const registerPageData = await getRegisterPageData({ locale })
+  if (!registerPageData) notFound()
+
+  const {
+    layout: { modules },
+  } = registerPageData
 
   return (
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: ClientRoutes.profile.path, title: ClientRoutes.profile.name },
+          {
+            type: "parent",
+            slug: ClientRoutes.profile.path,
+            titleKey: ClientRoutes.profile.nameKey,
+          },
           {
             type: "current",
             slug: ClientRoutes.register.path,
-            title: ClientRoutes.authorization.name,
+            titleKey: ClientRoutes.authorization.nameKey,
           },
         ]}
       />
       <PageInfo
-        label={ClientRoutes.register.name}
-        title={ClientRoutes.profile.name}
+        label={ClientRoutes.register.nameKey}
+        title={ClientRoutes.profile.nameKey}
       />
       <RegisterSection />
+      <ModulesSwitch modules={modules} />
     </>
   )
+}
+
+export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
+  try {
+    const layoutData = await getRegisterPageData({ locale })
+    if (!layoutData) return
+    return getPageLayoutMetadata(layoutData.layout)
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+  }
 }

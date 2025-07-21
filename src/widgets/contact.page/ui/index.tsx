@@ -9,24 +9,23 @@ import { Swiper as SwiperType } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination } from "swiper/modules"
 import { SliderButton } from "@/shared/ui/buttons"
+import { useTranslations } from "next-intl"
 
 export const ContactPageSection: React.FC = () => {
   const swiperRef = useRef<SwiperType | null>(null)
 
   const images = ["/images/content_img_4.png"]
+
+  const tContact = useTranslations("contacts-page")
+
   return (
     <section className={css.contact_section}>
       <div className="container">
         <div className={css.contact_section_content}>
           <div className={css.contact_section_text_block}>
-            <p className={css.contact_section_text}>
-              Якщо у вас виникли питання стосовно вашого замовлення в одному з наших салонів,
-              звертайтеся за номером телефону салону, <u>контакти та адреси нашої мереж.</u>
-            </p>
+            <p className={css.contact_section_text}>{tContact("description")}</p>
             <div className={css.contact_section_text_block_item}>
-              <b className={css.contact_section_title}>
-                Якщо ваше питання стосується інтернет-замовлення телефонуйте за номером:
-              </b>
+              <b className={css.contact_section_title}>{tContact("subtitle-1")}</b>
               <a
                 href="tel:+380963171897"
                 className={css.contact_section_link}
@@ -41,12 +40,12 @@ export const ContactPageSection: React.FC = () => {
               </a>
             </div>
             <div className={css.contact_section_text_block_item}>
-              <b className={css.contact_section_title}>Графік роботи</b>
+              <b className={css.contact_section_title}>{tContact("subtitle-2")}</b>
               <p className={classNames(css.contact_section_text, css.time)}>Пн-Пт: 08:00 - 20:00</p>
               <p className={classNames(css.contact_section_text, css.time)}>Сб-Нд: 08:00 - 20:00</p>
             </div>
             <div className={css.contact_section_text_block_item}>
-              <b className={css.contact_section_title}>Ми в соціальних мережах</b>
+              <b className={css.contact_section_title}>{tContact("subtitle-3")}</b>
               <div className={css.social_links}>
                 <a
                   href="/"
@@ -80,9 +79,7 @@ export const ContactPageSection: React.FC = () => {
                 </a>
               </div>
             </div>
-            <p className={css.contact_section_text}>
-              Для вашої зручності ви також можете заповнити форму або замовити зворотний дзвінок.
-            </p>
+            <p className={css.contact_section_text}>{tContact("description-2")}</p>
           </div>
           <div className={css.contact_section_img_wrap}>
             {images.length > 1 ? (

@@ -1,17 +1,13 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useRef, DetailedHTMLProps, HtmlHTMLAttributes } from "react"
 import css from "./styles.module.scss"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import { BlogCard } from "@/shared/ui"
-import blogCardData from "@/shared/data/blog-card-list.json"
-import { IBlogCardProps } from "@/shared/types"
 import { Swiper as SwiperType } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination } from "swiper/modules"
 import { SliderButton } from "@/shared/ui/buttons"
-
-const blogCardDataList: IBlogCardProps[] = blogCardData.cards
 
 const swiperSettings = {
   className: css.blog_swiper,
@@ -47,17 +43,23 @@ const swiperSettings = {
   },
 }
 
-export const BlogSection: React.FC = () => {
+interface IBlogSectionProps
+  extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  module: any
+}
+
+export const BlogSection: React.FC<IBlogSectionProps> = ({ module }) => {
   const swiperRef = useRef<SwiperType | null>(null)
+
+  const { title } = module.content
+  const { items } = module
 
   return (
     <section className={css.blog_section}>
       <div className="container">
-        <SectionTip label="Блог" />
+        <SectionTip label={module.content.sub_title} />
         <div className={css.blog_section_head}>
-          <h3 className={css.blog_section_title}>
-            Будь в курсі останніх новин та порад для твого зору!
-          </h3>
+          <h3 className={css.blog_section_title}>{title}</h3>
           <div className={css.slider_buttons}>
             <SliderButton
               direction="prev"
@@ -77,11 +79,12 @@ export const BlogSection: React.FC = () => {
         }}
         {...swiperSettings}
       >
-        {blogCardDataList.map((card, index) => (
-          <SwiperSlide key={index}>
-            <BlogCard {...card} />
-          </SwiperSlide>
-        ))}
+        {Array.isArray(items) &&
+          items.slice(0, 12).map((item: any, index: number) => (
+            <SwiperSlide key={index}>
+              <BlogCard cardData={item} />
+            </SwiperSlide>
+          ))}
         <div className="swiper-pagination blog-pagination"></div>
       </Swiper>
     </section>

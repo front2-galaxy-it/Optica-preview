@@ -3,32 +3,27 @@ import css from "./styles.module.scss"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import classNames from "classnames"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 export const ChooseSection: React.FC = () => {
+  const tChoose = useTranslations("choose-section")
+
   return (
     <section className={css.choose_section}>
       <div className={classNames(css.choose_section_container, "container")}>
-        <SectionTip label="Оптика Добрих Цін" />
-        <h3 className={css.choose_section_title}>Чому нас обирають</h3>
-        <p className={css.choose_section_text}>
-          Ми завжди намагаємося знайти індивідуальний підхід до кожного нашого клієнта, щоб
-          допомогти вибрати оптимальні рішення для зору та стилю.
-        </p>
-        <p className={css.choose_section_text}>
-          Надаємо гарантію на продукцію та забезпечуємо післяпродажний сервіс, щоб ви могли бути
-          впевнені в якості та довговічності ваших окулярів!
-        </p>
+        <SectionTip label={tChoose("label")} />
+        <h3 className={css.choose_section_title}>{tChoose("title")}</h3>
+        <p className={css.choose_section_text}>{tChoose("description-1")}</p>
+        <p className={css.choose_section_text}>{tChoose("description-2")}</p>
         <div className={css.choose_section_content}>
           <div className={css.central_banner}>
-            <h5>
-              Якість, <br /> якій можна довіряти!
-            </h5>
+            <h5>{tChoose("description-3")}</h5>
           </div>
           <div className={css.content_block_wrap}>
             <div className={css.content_block}>
               <div className={css.banner}>
                 <b>15</b>
-                <span>років досвіду</span>
+                <span>{tChoose("item-1")}</span>
               </div>
               <div className={css.block_img}>
                 <Image
@@ -42,7 +37,7 @@ export const ChooseSection: React.FC = () => {
             <div className={css.content_block}>
               <div className={css.banner}>
                 <b>15тис+</b>
-                <span>оправ світових брендів</span>
+                <span>{tChoose("item-2")}</span>
               </div>
               <div className={css.block_img}>
                 <Image
@@ -56,7 +51,7 @@ export const ChooseSection: React.FC = () => {
             <div className={css.content_block}>
               <div className={css.banner}>
                 <b>5тис+</b>
-                <span>задоволених клієнтів</span>
+                <span>{tChoose("item-3")}</span>
               </div>
               <div className={css.block_img}>
                 <Image
@@ -70,7 +65,7 @@ export const ChooseSection: React.FC = () => {
             <div className={css.content_block}>
               <div className={css.banner}>
                 <b>10+</b>
-                <span>салонів оптики</span>
+                <span>{tChoose("item-4")}</span>
               </div>
               <div className={css.block_img}>
                 <Image

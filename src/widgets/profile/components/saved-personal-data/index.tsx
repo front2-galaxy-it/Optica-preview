@@ -4,6 +4,7 @@ import React from "react"
 import css from "./styles.module.scss"
 import { Icon } from "@/shared/ui/icons"
 import classNames from "classnames"
+import { useTranslations } from "next-intl"
 
 interface SavedPersonalDataProps {
   name: string
@@ -26,6 +27,7 @@ export const SavedPersonalData: React.FC<SavedPersonalDataProps> = ({
   phone,
   email,
 }) => {
+  const tPersonalData = useTranslations("profile-page.personal_data")
   return (
     <div className={css.saved_personal_data}>
       <div className={css.saved_personal_data_list}>
@@ -40,17 +42,17 @@ export const SavedPersonalData: React.FC<SavedPersonalDataProps> = ({
         </button>
         <ul className={css.saved_personal_data_wrap}>
           <li className={css.saved_personal_data_item}>
-            <span className={css.label}>Ваше ПІБ</span>
+            <span className={css.label}>{tPersonalData("full-name")}</span>
             <span className={css.value}>
               {surname} {name} {patronymic}
             </span>
           </li>
           <li className={css.saved_personal_data_item}>
-            <span className={css.label}>Дата народження</span>
+            <span className={css.label}>{tPersonalData("birthday")}</span>
             <span className={css.value}>{birthDate.toLocaleDateString()}</span>
           </li>
           <li className={css.saved_personal_data_item}>
-            <span className={css.label}>Номер телефону</span>
+            <span className={css.label}>{tPersonalData("phone")}</span>
             <span className={css.value}>{phone}</span>
           </li>
           <li className={css.saved_personal_data_item}>

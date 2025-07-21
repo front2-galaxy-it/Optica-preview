@@ -1,34 +1,61 @@
-import { unstable_setRequestLocale } from "next-intl/server"
+import { unstable_setRequestLocale, getTranslations } from "next-intl/server"
 
 import { IHomePageProps } from "./props"
-import { MailingSection } from "@/widgets/mailing"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs, ButtonsList } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
 import { navData } from "@/shared/routes/info-buttons-list"
-import { FormSection } from "@/widgets/contact-form"
 import { ContactPageSection } from "@/widgets/contact.page"
-import { MapSection } from "@/widgets/map"
+import { IGlobalPageProps } from "@/shared/types"
+import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
+import { notFound } from "next/navigation"
+import { ModulesSwitch } from "@/widgets/module-switch"
 
-export function ContactPage({ params: { locale } }: IHomePageProps) {
+const getContactPageData = async ({ locale }: { locale: string }) => {
+  return await fetchPageLayoutData({ locale, layoutName: "contact" })
+}
+
+export async function ContactPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
+
+  const tLabels = await getTranslations("page-labels")
+  const tCommon = await getTranslations("common")
+
+  const contactPageData = await getContactPageData({ locale })
+  if (!contactPageData) notFound()
+
+  const {
+    layout: { modules },
+  } = contactPageData
 
   return (
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: ClientRoutes.contacts.path, title: ClientRoutes.contacts.name },
+          {
+            type: "parent",
+            slug: ClientRoutes.contacts.path,
+            titleKey: ClientRoutes.contacts.nameKey,
+          },
         ]}
       />
       <PageInfo
-        label="Оптика Добрих Цін"
-        title="Як з нами зв’язатися"
+        label={tCommon("company-name")}
+        title={tLabels("contact")}
       />
       <ButtonsList items={navData.about_us} />
       <ContactPageSection />
-      <FormSection />
-      <MapSection />
-      <MailingSection />
+      <ModulesSwitch modules={modules} />
     </>
   )
+}
+
+export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
+  try {
+    const layoutData = await getContactPageData({ locale })
+    if (!layoutData) return
+    return getPageLayoutMetadata(layoutData.layout)
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+  }
 }

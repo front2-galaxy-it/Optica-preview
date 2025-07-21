@@ -12,13 +12,16 @@ import LinksData from "@/shared/data/nav.json"
 import { Navigation } from "../../../../shared/ui/modules/nav"
 import classNames from "classnames"
 import { ButtonLink } from "@/shared/ui/links"
-
+import { useTranslations } from "next-intl"
 interface MobileMenuProps {
   burgerOpen?: boolean
   onClose: () => void
 }
 
 export const MobileMenu: React.FC<MobileMenuProps> = ({ burgerOpen = false, onClose }) => {
+  const tNav = useTranslations("navigation")
+  const tHeader = useTranslations("header")
+  const tButtons = useTranslations("buttons")
   const menuRef = useRef<HTMLDivElement>(null)
   const [menuHeight, setMenuHeight] = useState<string | number>("100%")
 
@@ -43,7 +46,10 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ burgerOpen = false, onCl
   }, [])
 
   const categoryDataList: ICateroriesLink[] = CategoryList.categories_list
-  const navDataByLocale: INavLink[] = LinksData.nav_links
+  const navDataByLocale: INavLink[] = LinksData.nav_links.map((link) => ({
+    ...link,
+    label: tNav(link.label),
+  }))
   return (
     <div
       ref={menuRef}
@@ -63,13 +69,13 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ burgerOpen = false, onCl
         </RootLink>
         <LanguageDropdown className={css.lang_switcher_mobile} />
       </div>
-      <h2 className={css.mobile_menu_title}>Про компанію</h2>
+      <h2 className={css.mobile_menu_title}>{tHeader("about-label")}</h2>
       <Navigation
         navList={navDataByLocale}
         className={css.mobile_nav}
         onClose={onClose}
       />
-      <h2 className={css.mobile_menu_title}>Категорії</h2>
+      <h2 className={css.mobile_menu_title}>{tHeader("catalog-label")}</h2>
       <Categories
         cateroriesList={categoryDataList}
         className={css.mobile_categories}
@@ -80,7 +86,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ burgerOpen = false, onCl
         modifier="secondary"
         className={css.mobile_menu_button}
       >
-        До каталогу
+        {tButtons("catalog_btn")}
       </ButtonLink>
     </div>
   )

@@ -7,6 +7,7 @@ import { Button } from "@/shared/ui"
 import { ICareerSectionProps } from "@/shared/types"
 import { motion, AnimatePresence } from "framer-motion"
 import { CareerPopup, ThanksPopup } from "@/widgets/popups"
+import { useTranslations } from "next-intl"
 
 interface CareerSectionProps {
   careerList: ICareerSectionProps[]
@@ -19,28 +20,23 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ careerList }) => {
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
 
+  const tCareer = useTranslations("career-page")
+  const tPopupCareer = useTranslations("popups.career-popup")
+
   return (
     <section className={css.career_section}>
       <div className="container">
         <div className={css.career_section_content}>
           <div className={css.career_section_text}>
-            <p>
-              Ми – команда професіоналів, які прагнуть забезпечити кожному клієнту найкраще
-              обслуговування та якісні оптичні рішення. Якщо ви енергійна, ініціативна і хочете
-              працювати в динамічній та інноваційній компанії, ми будемо раді вас бачити в нашій
-              команді!
-            </p>
-            <b>Чому варто працювати з нами?</b>
-            <strong>Розвиток та навчання:</strong>
-            <p>Ми надаємо можливості для професійного зростання та навчання.</p>
-            <strong>Командна атмосфера:</strong>
-            <p>У нас працюють лише мотивовані та дружні люди, з якими приємно працювати.</p>
-            <strong>Справедливе ставлення та бонуси:</strong>
-            <p>Ми цінуємо ваші зусилля і винагороджуємо їх відповідно.</p>
-            <p>
-              Якщо ви зацікавлені в одній з вакансій, надсилайте своє резюме або заповнюйте форму на
-              сайті. Ми завжди відкриті для нових талантів!
-            </p>
+            <p>{tCareer("career_intro_text")}</p>
+            <b>{tCareer("career_why_join_us_title")}</b>
+            <strong>{tCareer("career_growth_title")}</strong>
+            <p>{tCareer("career_growth_text")}</p>
+            <strong>{tCareer("career_team_title")}</strong>
+            <p>{tCareer("career_team_text")}</p>
+            <strong>{tCareer("career_fairness_title")}</strong>
+            <p>{tCareer("career_fairness_text")}</p>
+            <p>{tCareer("career_call_to_action")}</p>
           </div>
           <Image
             className={css.career_section_img}
@@ -124,8 +120,8 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ careerList }) => {
         onSuccess={() => setThanksPopupOpen(true)}
       />
       <ThanksPopup
-        title="Дякуємо за Ваш відгук!"
-        message="Дякуємо за ваш відгук і зацікавленість у вакансії! Наші рекрутери найближчим часом зв'яжуться з вами для уточнення деталей. Сподіваємося на подальшу співпрацю та бажаємо вам успіхів!"
+        title={tPopupCareer("title")}
+        message={tPopupCareer("description")}
         isOpen={thanksPopupOpen}
         onClose={() => setThanksPopupOpen(false)}
       />

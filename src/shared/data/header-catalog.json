@@ -1,63 +1,28 @@
 {
-  "category_list": [
-    {
-      "href": "/",
-      "label": "Сонцезахисні окуляри"
-    },
-    {
-      "href": "/",
-      "label": "Контактні лінзи"
-    },
-    {
-      "href": "/",
-      "label": "Оправи"
-    },
-    {
-      "href": "/",
-      "label": "Лінзи для окулярів"
-    },
-    {
-      "href": "/",
-      "label": "Засоби для догляду"
-    },
-    {
-      "href": "/",
-      "label": "Сертифікати"
-    },
-    {
-      "href": "/",
-      "label": "Акціі",
-      "specialColorRed": true
-    }
-  ],
   "link_list": [
     {
       "href": "/",
-      "label": "Категорія"
+      "label": "catalog-link-item-1"
     },
     {
       "href": "/",
-      "label": "Бренди"
+      "label": "catalog-link-item-2"
     },
     {
       "href": "/",
-      "label": "Бренди"
+      "label": "catalog-link-item-3"
     },
     {
       "href": "/",
-      "label": "Форма оправи"
+      "label": "catalog-link-item-4"
     },
     {
       "href": "/",
-      "label": "Матеріал"
+      "label": "catalog-link-item-5"
     },
     {
       "href": "/",
-      "label": "Колекція"
-    },
-    {
-      "href": "/",
-      "label": "Аксесуари"
+      "label": "catalog-link-item-6"
     }
   ],
   "brand_list": [

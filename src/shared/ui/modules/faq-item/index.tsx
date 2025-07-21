@@ -34,12 +34,12 @@ export const Accordions: React.FC<IAccordionsProps> = ({ accordeons }) => {
               className={css.accordion_trigger}
               onClick={() => toggleAccordion(index)}
             >
-              <span className={css.accordion_name}>{accordeon.name}</span>
+              <span className={css.accordion_name}>{accordeon.question}</span>
               <div className={css.open_status}></div>
             </button>
             <div className={css.accordion_content}>
               <div className={css.accordion_content_inner}>
-                <p>{accordeon.text}</p>
+                <p>{accordeon.answer}</p>
               </div>
             </div>
           </div>

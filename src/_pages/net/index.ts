@@ -1,1 +1,1 @@
-export { NetPage } from "./ui"
+export { NetPage, generateMetadata } from "./ui"

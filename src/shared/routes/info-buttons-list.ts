@@ -2,53 +2,23 @@ import { ClientRoutes } from "./client"
 
 export const navData = {
   about_us: [
-    {
-      label: "Про нас",
-      href: ClientRoutes.about.path,
-    },
-    {
-      label: "Мережа",
-      href: ClientRoutes.net.path,
-    },
-    {
-      label: "Діагностика",
-      href: ClientRoutes.diagnostic.path,
-    },
-    {
-      label: "Відгуки",
-      href: ClientRoutes.reviews.path,
-    },
-    {
-      label: "Питання та відповіді",
-      href: ClientRoutes.faq.path,
-    },
-    {
-      label: "Контакти",
-      href: ClientRoutes.contacts.path,
-    },
+    { labelKey: "about", href: ClientRoutes.about.path },
+    { labelKey: "net", href: ClientRoutes.net.path },
+    { labelKey: "diagnostic", href: ClientRoutes.diagnostic.path },
+    { labelKey: "reviews", href: ClientRoutes.reviews.path },
+    { labelKey: "faq", href: ClientRoutes.faq.path },
+    { labelKey: "contacts", href: ClientRoutes.contacts.path },
   ],
   delivery: [
-    {
-      label: "Умови доставки",
-      href: ClientRoutes.delivery.path,
-    },
-    {
-      label: "Умови оплати",
-      href: ClientRoutes.payment.path,
-    },
+    { labelKey: "delivery_terms", href: ClientRoutes.delivery.path },
+    { labelKey: "payment_terms", href: ClientRoutes.payment.path },
   ],
   policy: {
-    label: "Політика конфіденційності",
+    labelKey: "privacy_policy",
     href: ClientRoutes.policy.path,
   },
   profile: [
-    {
-      label: "Реєстрація",
-      href: ClientRoutes.register.path,
-    },
-    {
-      label: "Авторизація",
-      href: ClientRoutes.authorization.path,
-    },
+    { labelKey: "register", href: ClientRoutes.register.path },
+    { labelKey: "login", href: ClientRoutes.authorization.path },
   ],
 }

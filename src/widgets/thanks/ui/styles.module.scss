@@ -1,9 +1,12 @@
 .thanks {
   @include adaptive-value("padding-bottom", 120, 60, 1);
 
+  &_text_wrap {
+    @include adaptive-value("margin-bottom", 40, 16, 1);
+  }
+
   &_text {
     @include adaptive-value("font-size", 20, 18, 1);
-    @include adaptive-value("padding-bottom", 40, 16, 1);
   }
 
   &_content {

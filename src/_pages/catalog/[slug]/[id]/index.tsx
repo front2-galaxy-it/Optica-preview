@@ -1,8 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server"
 import { notFound } from "next/navigation"
 import { IHomePageProps } from "./props"
-import { MailingSection } from "@/widgets/mailing"
-import { ReviewsSection } from "@/widgets/reviews"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
@@ -43,12 +41,12 @@ export function ProductPage({
           {
             type: "parent",
             slug: ClientRoutes.product_category(slug),
-            title: category.label,
+            titleKey: category.label,
           },
           {
             type: "current",
             slug: ClientRoutes.product(slug, id),
-            title: product.name,
+            titleKey: product.name,
           },
         ]}
       />
@@ -58,8 +56,6 @@ export function ProductPage({
       />
       <ProductSection product={product} />
       <TopSalesSection />
-      <ReviewsSection />
-      <MailingSection />
     </>
   )
 }

@@ -11,10 +11,15 @@ const nextConfig = {
         hostname: "localhost",
         port: "4040",
       },
+      {
+        protocol: "https",
+        hostname: "leader.galaxy-it.top",
+        pathname: "/api/storage/static/**",
+      },
     ],
   },
   sassOptions: {
-    prependData: `@import "@/app/styles/scss-utils/index";`,
+    prependData: '@import "@/app/styles/scss-utils/index";',
   },
 }
 

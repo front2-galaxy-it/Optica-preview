@@ -1,39 +1,62 @@
-import { unstable_setRequestLocale } from "next-intl/server"
+import { unstable_setRequestLocale, getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
 
 import { IHomePageProps } from "./props"
-import { MailingSection } from "@/widgets/mailing"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
 import authorData from "@/shared/data/author-list.json"
 import { AuthorPageSection } from "@/widgets/author.page"
-import { BlogSection } from "@/widgets/blog"
+import { IGlobalPageProps } from "@/shared/types"
+import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
+import { ModulesSwitch } from "@/widgets/module-switch"
 
-export function AuthorPage({
+const getAuthorPageData = async ({ locale }: { locale: string }) => {
+  return await fetchPageLayoutData({ locale, layoutName: "author" })
+}
+
+export async function AuthorPage({
   params,
 }: IHomePageProps & { params: { slug: string; locale: string } }) {
   const { locale, slug } = params
   unstable_setRequestLocale(locale)
 
+  const tCommon = await getTranslations("common")
+
   const author = authorData.find((cat) => cat.slug === slug)
   if (!author) return notFound()
+
+  const authorPageData = await getAuthorPageData({ locale })
+  if (!authorPageData) notFound()
+
+  const {
+    layout: { modules },
+  } = authorPageData
 
   return (
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: ClientRoutes.blog.path, title: ClientRoutes.blog.name },
-          { type: "current", slug: ClientRoutes.author(slug), title: author.label },
+          { type: "parent", slug: ClientRoutes.blog.path, titleKey: ClientRoutes.blog.nameKey },
+          { type: "current", slug: ClientRoutes.author(slug), titleKey: author.label },
         ]}
       />
       <PageInfo
-        label={ClientRoutes.blog.name}
+        label={tCommon("blog")}
         title={author.label}
       />
       <AuthorPageSection slug={slug} />
-      <BlogSection />
-      <MailingSection />
+      <ModulesSwitch modules={modules} />
     </>
   )
+}
+
+export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
+  try {
+    const layoutData = await getAuthorPageData({ locale })
+    if (!layoutData) return
+    return getPageLayoutMetadata(layoutData.layout)
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+  }
 }

@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import css from "./styles.module.scss"
 import { CategoriesList } from "../components/categories-list"
 import { ProductList } from "../components/product-list"
-import { CustomPagination } from "@/shared/ui"
+// import { CustomPagination } from "@/shared/ui"
 import { IProductCardProps, LabelType, StatusType, ICateroriesLink } from "@/shared/types"
 import productData from "@/shared/data/products.json"
 import categoryData from "@/shared/data/categories-list.json"
@@ -30,7 +30,7 @@ const productDataList: IProductCardProps[] = productData.products.map((product) 
 const itemsPerPage = 15
 
 export const CatalogSection: React.FC<CatalogSectionProps> = ({ slug }) => {
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage] = useState(1)
   const [openFilterModal, isOpenFilterModal] = useState(false)
   const [openCategoryModal, isOpenCategoryModal] = useState(false)
 
@@ -156,7 +156,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({ slug }) => {
               <p>Немає продуктів у цій категорії.</p>
             )}
 
-            {!isSertyfikaty && !isAkcii && filteredProducts.length > itemsPerPage && (
+            {/* {!isSertyfikaty && !isAkcii && filteredProducts.length > itemsPerPage && (
               <CustomPagination
                 className={css.product_pagiantion}
                 currentPage={currentPage}
@@ -164,7 +164,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({ slug }) => {
                 totalItems={filteredProducts.length}
                 itemsPerPage={itemsPerPage}
               />
-            )}
+            )} */}
           </div>
         </div>
       </div>

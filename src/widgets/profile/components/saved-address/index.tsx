@@ -5,6 +5,7 @@ import css from "./styles.module.scss"
 import { AddressData } from "@/shared/types/form-data.interface"
 import { Icon } from "@/shared/ui/icons"
 import classNames from "classnames"
+import { useTranslations } from "next-intl"
 
 interface SavedAddressProps {
   addressData: AddressData
@@ -13,6 +14,8 @@ interface SavedAddressProps {
 }
 
 export const SavedAddress: React.FC<SavedAddressProps> = ({ addressData, onEdit, onRemove }) => {
+  const tPersonalData = useTranslations("profile-page.personal_data")
+
   if (!addressData) return null
   return (
     <div className={css.saved_address}>
@@ -28,21 +31,21 @@ export const SavedAddress: React.FC<SavedAddressProps> = ({ addressData, onEdit,
         </button>
         <ul className={css.saved_address_wrap}>
           <li className={css.saved_address_item}>
-            <span className={css.label}>Адреса доставки</span>
+            <span className={css.label}>{tPersonalData("adress")}</span>
             <span className={css.value}>{addressData.address}</span>
           </li>
           <li className={css.saved_address_item}>
-            <span className={css.label}>Відділення пошти</span>
+            <span className={css.label}>{tPersonalData("post-office")}</span>
             <span className={css.value}>{addressData.postOffice}</span>
           </li>
           <li className={css.saved_address_item}>
-            <span className={css.label}>ПІБ отримувача</span>
+            <span className={css.label}>{tPersonalData("full-name-recipient")}</span>
             <span className={css.value}>
               {addressData.surname} {addressData.name} {addressData.patronymic}
             </span>
           </li>
           <li className={css.saved_address_item}>
-            <span className={css.label}>Номер телефону</span>
+            <span className={css.label}>{tPersonalData("phone")}</span>
             <span className={css.value}>{addressData.phone}</span>
           </li>
         </ul>

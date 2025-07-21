@@ -10,8 +10,27 @@ import { AuthenticationPopup, AuthorizationPopup } from "@/widgets/popups"
 import Image from "next/image"
 import { Icon } from "@/shared/ui/icons"
 import { AnimatePresence, motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 export const CheckoutSection: React.FC = () => {
+  const tCheckout = useTranslations("checkout-page")
+  const tCheckoutInfo = useTranslations("checkout-page.checkout-info")
+  const tCheckoutDelivery = useTranslations("checkout-page.delivery-method")
+  const tCheckoutPayment = useTranslations("checkout-page.payment-method")
+  const tFormName = useTranslations("form.name")
+  const tFormSurname = useTranslations("form.surname")
+  const tFormPhone = useTranslations("form.phone")
+  const tFormDistrict = useTranslations("form.district")
+  const tFormCity = useTranslations("form.city")
+  const tFormPostIndex = useTranslations("form.post-index")
+  const tFormAddress = useTranslations("form.address")
+  const tFormPostOffice = useTranslations("form.post-office")
+  const tFormStreet = useTranslations("form.street")
+  const tFormHouse = useTranslations("form.house")
+  const tFormApartment = useTranslations("form.apartment")
+  const tFormBlock = useTranslations("form.building-block")
+  const tButtons = useTranslations("buttons")
+
   interface CheckoutFormData extends FormData, AddressData {}
 
   const {
@@ -54,15 +73,11 @@ export const CheckoutSection: React.FC = () => {
             <div className={css.checkout_steps_head}>
               <div className={`${css.checkout_step} ${step === 1 ? css.active : ""}`}>
                 <span>01</span>
-                <span>
-                  Контактна <br /> інформація покупця
-                </span>
+                <span>{tCheckout("checkout_step_1_label")}</span>
               </div>
               <div className={`${css.checkout_step} ${step === 2 ? css.active : ""}`}>
                 <span>02</span>
-                <span>
-                  Вибір способів <br /> доставки та оплати
-                </span>
+                <span>{tCheckout("checkout_step_2_label")}</span>
               </div>
             </div>
             <AnimatePresence mode="wait">
@@ -83,7 +98,7 @@ export const CheckoutSection: React.FC = () => {
                         size="small"
                         onClick={() => isOpenAuthPopup(true)}
                       >
-                        Я постійний клієнт
+                        {tCheckout("checkout_returning_customer")}
                       </Button>
                       <Button
                         className={css.checkout_steps_button}
@@ -92,42 +107,49 @@ export const CheckoutSection: React.FC = () => {
                         size="small"
                         onClick={() => isOpenRegisterPopup(true)}
                       >
-                        Я новий покупець
+                        {tCheckout("checkout_new_customer")}
                       </Button>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                       <FormField
                         id="name"
+                        placeholder={tFormName("placeholder")}
                         type="text"
-                        placeholder="Ваше ім’я"
+                        colorType="white"
                         register={register("name", {
                           required: {
                             value: true,
-                            message: "Заповніть поле",
+                            message: tFormName("required"),
                           },
                         })}
                         error={errors.name?.message}
                       />
                       <FormField
                         id="surname"
+                        placeholder={tFormSurname("placeholder")}
                         type="text"
-                        placeholder="Прізвище"
+                        colorType="white"
                         register={register("surname", {
                           required: {
                             value: true,
-                            message: "Заповніть поле",
+                            message: tFormSurname("required"),
                           },
                         })}
                         error={errors.surname?.message}
                       />
                       <FormField
                         id="phone"
+                        placeholder="+38(___)___-__-__"
                         type="tel"
-                        placeholder="+3 8(___) ___- __ - __"
+                        colorType="white"
                         register={register("phone", {
                           required: {
                             value: true,
-                            message: "Заповніть поле",
+                            message: tFormPhone("required"),
+                          },
+                          pattern: {
+                            value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
+                            message: tFormPhone("pattern"),
                           },
                         })}
                         error={errors.phone?.message}
@@ -148,7 +170,7 @@ export const CheckoutSection: React.FC = () => {
                       />
                     </button>
                     <div className={css.checkblock}>
-                      <p className={css.checkblock_title}>Оберіть спосіб доставки:</p>
+                      <p className={css.checkblock_title}>{tCheckoutDelivery("label")}</p>
                       <form onSubmit={handleSubmit(onSubmit)}>
                         <label
                           htmlFor="self-delivery"
@@ -162,7 +184,7 @@ export const CheckoutSection: React.FC = () => {
                             className={css.radio_input}
                           />
                           <span className={css.custom_radio}></span>
-                          самовивіз з магазина
+                          {tCheckoutDelivery("delivery-method-item-1")}
                         </label>
 
                         <label
@@ -177,7 +199,7 @@ export const CheckoutSection: React.FC = () => {
                             className={css.radio_input}
                           />
                           <span className={css.custom_radio}></span>
-                          відділення Укрпошти
+                          {tCheckoutDelivery("delivery-method-item-2")}
                         </label>
 
                         <label
@@ -192,7 +214,7 @@ export const CheckoutSection: React.FC = () => {
                             className={css.radio_input}
                           />
                           <span className={css.custom_radio}></span>
-                          відділення Нової Пошти
+                          {tCheckoutDelivery("delivery-method-item-3")}
                         </label>
 
                         <label
@@ -207,7 +229,7 @@ export const CheckoutSection: React.FC = () => {
                             className={css.radio_input}
                           />
                           <span className={css.custom_radio}></span>
-                          кур’єром Нової Пошти
+                          {tCheckoutDelivery("delivery-method-item-4")}
                         </label>
 
                         <label
@@ -222,7 +244,7 @@ export const CheckoutSection: React.FC = () => {
                             className={css.radio_input}
                           />
                           <span className={css.custom_radio}></span>
-                          кур’єром Оптики Добрих Цін
+                          {tCheckoutDelivery("delivery-method-item-5")}
                         </label>
                       </form>
                     </div>
@@ -235,16 +257,16 @@ export const CheckoutSection: React.FC = () => {
                     >
                       {deliveryMethod === "ukrpost" && (
                         <div className={css.checkblock}>
-                          <p className={css.checkblock_title}>Адреса доставки:</p>
+                          <p className={css.checkblock_title}>{tCheckoutDelivery("address")}</p>
                           <form onSubmit={handleSubmit(onSubmit)}>
                             <FormField
                               id="district"
                               name="district"
-                              placeholder="Область"
+                              placeholder={tFormDistrict("placeholder")}
                               register={register("district", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormDistrict("error"),
                                 },
                               })}
                               error={errors.district?.message}
@@ -252,11 +274,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="city"
                               name="city"
-                              placeholder="Місто"
+                              placeholder={tFormCity("placeholder")}
                               register={register("city", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormCity("error"),
                                 },
                               })}
                               error={errors.city?.message}
@@ -265,11 +287,11 @@ export const CheckoutSection: React.FC = () => {
                               id="zipCode"
                               name="zipCode"
                               type="number"
-                              placeholder="Індекс"
+                              placeholder={tFormPostIndex("placeholder")}
                               register={register("zipCode", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormPostIndex("error"),
                                 },
                               })}
                               error={errors.zipCode?.message}
@@ -277,11 +299,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="address"
                               name="address"
-                              placeholder="Адреса"
+                              placeholder={tFormAddress("placeholder")}
                               register={register("address", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormAddress("error"),
                                 },
                               })}
                               error={errors.address?.message}
@@ -296,11 +318,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="district"
                               name="district"
-                              placeholder="Область"
+                              placeholder={tFormDistrict("placeholder")}
                               register={register("district", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormDistrict("error"),
                                 },
                               })}
                               error={errors.district?.message}
@@ -308,11 +330,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="city"
                               name="city"
-                              placeholder="Місто"
+                              placeholder={tFormCity("placeholder")}
                               register={register("city", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormCity("error"),
                                 },
                               })}
                               error={errors.city?.message}
@@ -320,11 +342,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="postOffice"
                               name="postOffice"
-                              placeholder="Відділення пошти"
+                              placeholder={tFormPostOffice("placeholder")}
                               register={register("postOffice", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormPostOffice("error"),
                                 },
                               })}
                               error={errors.postOffice?.message}
@@ -339,11 +361,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="district"
                               name="district"
-                              placeholder="Область"
+                              placeholder={tFormDistrict("placeholder")}
                               register={register("district", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormDistrict("error"),
                                 },
                               })}
                               error={errors.district?.message}
@@ -351,11 +373,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="city"
                               name="city"
-                              placeholder="Місто"
+                              placeholder={tFormCity("placeholder")}
                               register={register("city", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormCity("error"),
                                 },
                               })}
                               error={errors.city?.message}
@@ -363,11 +385,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="street"
                               name="street"
-                              placeholder="Вулиця"
+                              placeholder={tFormStreet("placeholder")}
                               register={register("street", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormStreet("error"),
                                 },
                               })}
                               error={errors.street?.message}
@@ -376,11 +398,11 @@ export const CheckoutSection: React.FC = () => {
                               id="houseNumber"
                               name="houseNumber"
                               type="number"
-                              placeholder="Номер будинку"
+                              placeholder={tFormHouse("placeholder")}
                               register={register("houseNumber", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormHouse("error"),
                                 },
                               })}
                               error={errors.houseNumber?.message}
@@ -388,11 +410,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="houseHull"
                               name="houseHull"
-                              placeholder="Корпус"
+                              placeholder={tFormBlock("placeholder")}
                               register={register("houseHull", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormBlock("error"),
                                 },
                               })}
                               error={errors.houseHull?.message}
@@ -401,11 +423,11 @@ export const CheckoutSection: React.FC = () => {
                               id="apartments"
                               name="apartments"
                               type="number"
-                              placeholder="Квартира"
+                              placeholder={tFormApartment("placeholder")}
                               register={register("apartments", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormApartment("error"),
                                 },
                               })}
                               error={errors.apartments?.message}
@@ -433,11 +455,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="street"
                               name="street"
-                              placeholder="Вулиця"
+                              placeholder={tFormStreet("placeholder")}
                               register={register("street", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormStreet("error"),
                                 },
                               })}
                               error={errors.street?.message}
@@ -446,11 +468,11 @@ export const CheckoutSection: React.FC = () => {
                               id="houseNumber"
                               name="houseNumber"
                               type="number"
-                              placeholder="Номер будинку"
+                              placeholder={tFormHouse("placeholder")}
                               register={register("houseNumber", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormHouse("error"),
                                 },
                               })}
                               error={errors.houseNumber?.message}
@@ -458,11 +480,11 @@ export const CheckoutSection: React.FC = () => {
                             <FormField
                               id="houseHull"
                               name="houseHull"
-                              placeholder="Корпус"
+                              placeholder={tFormBlock("placeholder")}
                               register={register("houseHull", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormBlock("error"),
                                 },
                               })}
                               error={errors.houseHull?.message}
@@ -471,11 +493,11 @@ export const CheckoutSection: React.FC = () => {
                               id="apartments"
                               name="apartments"
                               type="number"
-                              placeholder="Квартира"
+                              placeholder={tFormApartment("placeholder")}
                               register={register("apartments", {
                                 required: {
                                   value: true,
-                                  message: "Заповніть поле",
+                                  message: tFormApartment("error"),
                                 },
                               })}
                               error={errors.apartments?.message}
@@ -485,7 +507,7 @@ export const CheckoutSection: React.FC = () => {
                       )}
                     </motion.div>
                     <div className={css.checkblock}>
-                      <p className={css.checkblock_title}>Оберіть метод оплати:</p>
+                      <p className={css.checkblock_title}>{tCheckoutPayment("label")}</p>
                       <form>
                         <label
                           htmlFor="cash"
@@ -498,7 +520,7 @@ export const CheckoutSection: React.FC = () => {
                             className={css.radio_input}
                           />
                           <span className={css.custom_radio}></span>
-                          оплата готівкою
+                          {tCheckoutPayment("payment-method-item-1")}
                         </label>
 
                         <label
@@ -512,7 +534,7 @@ export const CheckoutSection: React.FC = () => {
                             className={css.radio_input}
                           />
                           <span className={css.custom_radio}></span>
-                          оплата картою на сайті
+                          {tCheckoutPayment("payment-method-item-2")}
                         </label>
 
                         <label
@@ -526,7 +548,7 @@ export const CheckoutSection: React.FC = () => {
                             className={css.radio_input}
                           />
                           <span className={css.custom_radio}></span>
-                          оплата за реквізитами
+                          {tCheckoutPayment("payment-method-item-3")}
                         </label>
 
                         <label
@@ -540,12 +562,12 @@ export const CheckoutSection: React.FC = () => {
                             className={css.radio_input}
                           />
                           <span className={css.custom_radio}></span>
-                          оплата частинами
+                          {tCheckoutPayment("payment-method-item-4")}
                         </label>
                       </form>
                     </div>
                     <div className={css.checkblock}>
-                      <p className={css.checkblock_title}>Коментар:</p>
+                      <p className={css.checkblock_title}>{tCheckout("comment-field")}</p>
                       <form>
                         <textarea></textarea>
                       </form>
@@ -556,7 +578,7 @@ export const CheckoutSection: React.FC = () => {
             </AnimatePresence>
           </div>
           <div className={css.checkout_info}>
-            <h5 className={css.checkout_info_title}>Ваше замовлення</h5>
+            <h5 className={css.checkout_info_title}>{tCheckoutInfo("checkout_order_title")}</h5>
             <div className={css.cart_products}>
               <div className={css.product_body}>
                 <Image
@@ -623,31 +645,33 @@ export const CheckoutSection: React.FC = () => {
             </div>
             <div className={css.cart_total}>
               <div className={css.cart_total_head}>
-                <p>
-                  Всього <span>3</span> товари на суму:
-                </p>
+                <div className={css.total_text}>
+                  <p>{tCheckoutInfo("checkout_total_items_label")}</p>
+                  <p>3</p>
+                  <p>{tCheckoutInfo("checkout_total_items_suffix")}</p>
+                </div>
                 <div className={css.total_sum}>
                   <span>2550</span>
                   <span>грн</span>
                 </div>
               </div>
               <div className={css.cart_total_bonus}>
-                <p>Нараховано бонусів</p>
+                <p>{tCheckoutInfo("checkout_bonus_earned_label")}</p>
                 <div className={css.total_bonus}>
                   <span>+</span>
                   <span>255</span>
-                  <span>бонусів</span>
+                  <span>{tCheckoutInfo("checkout_bonus_suffix")}</span>
                 </div>
               </div>
               <div className={css.cart_total_pay}>
-                <p>До сплати</p>
+                <p>{tCheckoutInfo("checkout_total_to_pay")}</p>
                 <div className={css.total_sum}>
                   <span>2550</span>
                   <span>грн</span>
                 </div>
               </div>
               <div className={css.available_bonus}>
-                <p>Доступні бонуси для використання:</p>
+                <p>{tCheckoutInfo("checkout_available_bonuses_label")}</p>
                 <div className={css.total_bonus}>
                   <span>200</span>
                   <span>бонусів</span>
@@ -659,14 +683,14 @@ export const CheckoutSection: React.FC = () => {
                     className={css.promo_input}
                     id="bonus"
                     type="text"
-                    placeholder="Використати бонусів"
+                    placeholder={tCheckoutInfo("checkout_use_bonus_placeholder")}
                   />
                   <Button
                     modifier="secondary"
                     className={css.promo_btn}
                     size="small"
                   >
-                    Застосувати
+                    {tButtons("checkout_apply_button")}
                   </Button>
                 </div>
                 <div className={css.promo_body}>
@@ -674,14 +698,14 @@ export const CheckoutSection: React.FC = () => {
                     className={css.promo_input}
                     id="promo"
                     type="text"
-                    placeholder="Використати промокод"
+                    placeholder={tCheckoutInfo("checkout_use_promo_placeholder")}
                   />
                   <Button
                     modifier="secondary"
                     className={css.promo_btn}
                     size="small"
                   >
-                    Застосувати
+                    {tButtons("checkout_apply_button")}
                   </Button>
                 </div>
               </div>
@@ -693,7 +717,7 @@ export const CheckoutSection: React.FC = () => {
                   type="checkbox"
                   id="callback"
                 />
-                телефонуйте мені тільки за необхідністю
+                {tCheckoutInfo("checkout_call_only_if_necessary")}
               </label>
               <label
                 htmlFor="policyCheckout"
@@ -703,8 +727,7 @@ export const CheckoutSection: React.FC = () => {
                   type="checkbox"
                   id="policyCheckout"
                 />
-                Погоджуюсь з Політикою конфіденційності, Умовами та положенням користування сайту,
-                Умовами договору куплі-продажу, в тому числі доставки, оплати, обміну та гарантії.
+                {tCheckoutInfo("checkout_privacy_policy_agreement")}
               </label>
             </div>
             <Button
@@ -717,7 +740,7 @@ export const CheckoutSection: React.FC = () => {
                 setStep(2)
               })}
             >
-              Оформити замовлення
+              {tButtons("cart_button_checkout")}
             </Button>
           </div>
         </div>

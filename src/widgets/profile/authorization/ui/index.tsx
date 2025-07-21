@@ -10,8 +10,12 @@ import { navData } from "@/shared/routes/info-buttons-list"
 import classNames from "classnames"
 import { AuthorizationForm } from "@/shared/ui"
 import { ResetPopup, ThanksPopup } from "@/widgets/popups"
+import { useTranslations } from "next-intl"
 
 export const AuthorizationSection: React.FC = () => {
+  const tPopup = useTranslations("popups")
+  const tPopupResetPass = useTranslations("popups.password-recovery-popup")
+
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
 
@@ -46,8 +50,8 @@ export const AuthorizationSection: React.FC = () => {
         onSuccess={() => setThanksPopupOpen(true)}
       />
       <ThanksPopup
-        title="Дякуємо!"
-        message="Ваш пароль було успішно змінено. Приємних покупок!"
+        title={tPopup("thanks-label")}
+        message={tPopupResetPass("success_message")}
         isOpen={thanksPopupOpen}
         onClose={() => setThanksPopupOpen(false)}
       />

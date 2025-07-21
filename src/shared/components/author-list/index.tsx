@@ -7,6 +7,7 @@ import { RootLink } from "@/shared/ui"
 import classNames from "classnames"
 import { Icon } from "@/shared/ui/icons"
 import { ClientRoutes } from "@/shared/routes"
+import { useTranslations } from "next-intl"
 
 interface AuthorListProps {
   className?: string
@@ -21,13 +22,15 @@ export const AuthorList: React.FC<AuthorListProps> = ({
   articleList,
   activeAuthorSlug,
 }) => {
+  const tCommon = useTranslations("common")
+
   const filteredAuthors = authorList.filter((author) =>
     articleList.some((article) => article.authorSlug === author.slug),
   )
 
   return (
     <div className={classNames(css.author_list_wrap, className)}>
-      <h6 className={css.author_list_title}>Автори статей</h6>
+      <h6 className={css.author_list_title}>{tCommon("author-label")}</h6>
       <ul className={css.author_list}>
         {filteredAuthors.map((author, index) => (
           <li

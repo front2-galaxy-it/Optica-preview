@@ -6,6 +6,7 @@ import classNames from "classnames"
 import { Button, FormField } from "@/shared/ui"
 import { useForm } from "react-hook-form"
 import { FormData } from "@/shared/types/form-data.interface"
+import { useTranslations } from "next-intl"
 
 interface ResetPopupProps {
   isOpen: boolean
@@ -14,6 +15,12 @@ interface ResetPopupProps {
 }
 
 export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSuccess }) => {
+  const tPopupsResetPass = useTranslations("popups.password-recovery-popup")
+  const tFormPhone = useTranslations("form.phone")
+  const tFormNewPass = useTranslations("form.new-password")
+  const tFormReNewPass = useTranslations("form.confirm-password")
+  const tButtons = useTranslations("buttons")
+
   const [step, setStep] = useState<"phone" | "code" | "password">("phone")
   const inputs = useRef<Array<HTMLInputElement | null>>([])
 
@@ -21,7 +28,10 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<FormData>()
+
+  const password = watch("password")
 
   const closePopup = () => {
     onClose()
@@ -64,7 +74,7 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
     <div className={classNames(css.reset_popup_container, isOpen && css.show)}>
       <div className={css.reset_popup}>
         <div className={css.reset_popup_head}>
-          <p className={css.reset_popup_head_title}>Забули пароль?</p>
+          <p className={css.reset_popup_head_title}>{tPopupsResetPass("label-2")}</p>
           <button
             type="button"
             className={css.reset_popup_head_close}
@@ -78,24 +88,26 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
         <div className={css.reset_popup_content}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <h6 className={css.reset_popup_content_title}>
-              {step === "phone" && "Якщо ви забули пароль – введіть свій номер телефону"}
-              {step === "code" && "Введіть код із SMS"}
-              {step === "password" && "Придумайте новий пароль"}
+              {step === "phone" && tPopupsResetPass("forgot_password_instruction")}
+              {step === "code" && tPopupsResetPass("code_instruction")}
+              {step === "password" && tPopupsResetPass("new_pass_instruction")}
             </h6>
 
             {step === "phone" && (
               <FormField
                 className={css.reset_popup_content_input}
-                placeholder="+3 8(___) ___ - __ - __"
+                id="phone"
+                placeholder="+38(___)___-__-__"
                 type="tel"
+                colorType="white"
                 register={register("phone", {
                   required: {
                     value: true,
-                    message: "Поле обов'язкове",
+                    message: tFormPhone("required"),
                   },
                   pattern: {
                     value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-                    message: "Невірний формат телефону",
+                    message: tFormPhone("pattern"),
                   },
                 })}
                 error={errors.phone?.message}
@@ -125,35 +137,36 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
               <>
                 <FormField
                   className={css.reset_popup_content_input}
-                  placeholder="Новий пароль"
+                  placeholder={tFormNewPass("placeholder")}
                   type="password"
                   register={register("password", {
                     required: {
                       value: true,
-                      message: "Поле обов'язкове",
+                      message: tFormNewPass("required"),
                     },
                     minLength: {
                       value: 6,
-                      message: "Мінімум 6 символів",
+                      message: tFormNewPass("error"),
                     },
                   })}
                   error={errors.password?.message}
                 />
                 <FormField
                   className={css.reset_popup_content_input}
-                  placeholder="Повторіть новий пароль"
+                  placeholder={tFormReNewPass("placeholder")}
                   type="password"
                   register={register("confirmPassword", {
                     required: {
                       value: true,
-                      message: "Поле обов'язкове",
+                      message: tFormReNewPass("required"),
                     },
                     minLength: {
                       value: 6,
-                      message: "Мінімум 6 символів",
+                      message: tFormReNewPass("required"),
                     },
+                    validate: (value) => value === password || tFormReNewPass("mismatch"), // сообщение об ошибке, если не совпадают
                   })}
-                  error={errors.password?.message}
+                  error={errors.confirmPassword?.message}
                 />
               </>
             )}
@@ -165,9 +178,9 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
               size="medium"
               type="submit"
             >
-              {step === "phone" && "Скинути пароль"}
-              {step === "code" && "Продовжити"}
-              {step === "password" && "Зберегти"}
+              {step === "phone" && tButtons("reset_btn")}
+              {step === "code" && tButtons("continue_btn")}
+              {step === "password" && tButtons("save_btn")}
             </Button>
           </form>
         </div>

@@ -4,6 +4,7 @@ import React, { forwardRef } from "react"
 import css from "./styles.module.scss"
 import classNames from "classnames"
 import { Button } from "../../buttons"
+import { useTranslations } from "next-intl"
 interface ISearchFieldProps {
   placeholder: string
   state?: string
@@ -35,6 +36,8 @@ export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
       onSearch()
     }
 
+    const tButtons = useTranslations("buttons")
+
     return (
       <form
         ref={ref}
@@ -63,7 +66,7 @@ export const SearchField = forwardRef<HTMLFormElement, ISearchFieldProps>(
           iconName="search_icon"
           iconPosition="right"
         >
-          Пошук
+          {tButtons("search_btn")}
         </Button>
       </form>
     )

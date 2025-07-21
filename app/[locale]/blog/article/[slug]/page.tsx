@@ -1,1 +1,1 @@
-export { ArticlePage as default } from "@/_pages/blog/article"
+export { ArticlePage as default, generateMetadata } from "@/_pages/blog/article"

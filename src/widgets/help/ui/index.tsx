@@ -8,8 +8,11 @@ import { ButtonLink } from "@/shared/ui/links"
 import { Button } from "@/shared/ui"
 import { ClientRoutes } from "@/shared/routes"
 import { DiagnosticPopup, ThanksPopup } from "@/widgets/popups"
+import { useTranslations } from "next-intl"
 
 export const HelpSection: React.FC = () => {
+  const tHelp = useTranslations("help-section")
+
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
   return (
@@ -25,16 +28,14 @@ export const HelpSection: React.FC = () => {
               alt="image not found"
             />
             <div className={css.card_content}>
-              <h3 className={css.card_title}>
-                Види <br /> діагностики зору
-              </h3>
-              <p className={css.card_text}>Попіклуйтесь про свій зір вже сьогодні!</p>
+              <h3 className={css.card_title}>{tHelp("card-title-1")}</h3>
+              <p className={css.card_text}>{tHelp("card-description-1")}</p>
               <ButtonLink
                 href={ClientRoutes.diagnostic.path}
                 modifier="primary"
                 iconName="arrow_right"
               >
-                Діагностика зору
+                {tHelp("card-button-1")}
               </ButtonLink>
             </div>
           </div>
@@ -47,14 +48,14 @@ export const HelpSection: React.FC = () => {
               alt="image not found"
             />
             <div className={css.card_content}>
-              <h3 className={css.card_title}>Запишіться на підбір окулярів</h3>
-              <p className={css.card_text}>Допоможемо покращити Ваш зір!</p>
+              <h3 className={css.card_title}>{tHelp("card-title-2")}</h3>
+              <p className={css.card_text}>{tHelp("card-description-2")}</p>
               <Button
                 modifier="primary"
                 iconName="arrow_right"
                 onClick={() => setPopupOpen(true)}
               >
-                Обрати час та день
+                {tHelp("card-button-2")}
               </Button>
             </div>
           </div>

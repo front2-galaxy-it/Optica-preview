@@ -7,12 +7,14 @@ import { AddressForm } from "../components/forms/AddressForm"
 import { SavedAddress } from "../components/saved-address"
 import { AddressData, FormData } from "@/shared/types/form-data.interface"
 import { SavedPersonalData } from "../components/saved-personal-data"
+import { useTranslations } from "next-intl"
 
 interface ProfileDataProps {
   onPersonalDataSuccess: () => void
 }
 
 export const ProfileData: React.FC<ProfileDataProps> = ({ onPersonalDataSuccess }) => {
+  const tPersonalData = useTranslations("profile-page.personal_data")
   const [isOpenEdit, setIsOpenEdit] = useState(false)
   const handleToggleEdit = () => setIsOpenEdit(!isOpenEdit)
 
@@ -74,7 +76,7 @@ export const ProfileData: React.FC<ProfileDataProps> = ({ onPersonalDataSuccess 
 
   return (
     <div className={css.profile_data}>
-      <h6 className={css.profile_data_title}>Ваші персональні дані</h6>
+      <h6 className={css.profile_data_title}>{tPersonalData("tab-title")}</h6>
       <AnimatePresence mode="wait">
         {!personalData || isEditingPersonalData ? (
           <PersonalDataForm
@@ -116,7 +118,7 @@ export const ProfileData: React.FC<ProfileDataProps> = ({ onPersonalDataSuccess 
         className={classNames(css.address_edit_btn, { [css.open]: isOpenEdit })}
         onClick={handleToggleEdit}
       >
-        <h6 className={css.profile_data_title}>Адреса доставки</h6>
+        <h6 className={css.profile_data_title}>{tPersonalData("adress-label")}</h6>
         <motion.div className={css.open_status}>
           <motion.span
             className={css.bar}
@@ -166,13 +168,11 @@ export const ProfileData: React.FC<ProfileDataProps> = ({ onPersonalDataSuccess 
               </motion.div>
             ))
           ) : (
-            <p className={css.value_without_address}>Немає збережених адрес.</p>
+            <p className={css.value_without_address}>{tPersonalData("no-saved-adress-label")}</p>
           )}
         </AnimatePresence>
       </AnimatePresence>
-      <p className={css.profile_data_address_tip}>
-        Ми зберігаємо останні адреси доставки, які ви вказуєте при оформленні замовлення.
-      </p>
+      <p className={css.profile_data_address_tip}>{tPersonalData("saved-adress-description")}</p>
     </div>
   )
 }

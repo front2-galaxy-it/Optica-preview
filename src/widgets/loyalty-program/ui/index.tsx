@@ -1,110 +1,70 @@
 import React from "react"
 import css from "./styles.module.scss"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 export const LoyaltySection: React.FC = () => {
+  const tLoyalty = useTranslations("loyalty-program")
   return (
     <section className={css.loyalty_section}>
       <div className="container">
         <div className={css.loyalty_section_head}>
           <div className={css.loyalty_section_head_text}>
-            <p>
-              Оптика Добрих Цін знає все про красу та здоров’я ваших очей і просто обожнює людей в
-              окулярах.
-            </p>
-            <p>
-              Завдяки участі в нашій бонусній програмі ви матимете змогу купувати за вигідною ціною
-              та серед перших дізнаватися про акції і пропозиції від Оптики Добрих цін.
-            </p>
-            <strong>Як отримати бонусну карту?</strong>
-            <p>
-              Отримайте карту в будь-якому магазині мережі або оформте її на сайті. Швидко, просто
-              та безкоштовно — для цього потрібно:
-            </p>
+            <p>{tLoyalty("loyalty_head_text_1")}</p>
+            <p>{tLoyalty("loyalty_head_text_2")}</p>
+            <strong>{tLoyalty("loyalty_how_to_get_card_title")}</strong>
+            <p>{tLoyalty("loyalty_how_to_get_card_text")}</p>
             <ul>
-              <li>заповнити анкету;</li>
-              <li>ознайомитися з правилами;</li>
-              <li>отримати Бонусну карту — вже активовану для накопичення бонусів!</li>
+              {tLoyalty.raw("loyalty_how_to_get_card_list").map((item: string, idx: number) => (
+                <li key={idx}>{item}</li>
+              ))}
             </ul>
-            <p>
-              Якщо ви заповнюєте анкету на сайті, то отримуєте активовану Бонусну карту разом із
-              вашим замовленням.
-            </p>
-            <strong>Як користуватися карткою?</strong>
-            <p>Користуйтесь Бонусною карткою на сайті або у будь-якому магазині мережі.</p>
+            <p>{tLoyalty("loyalty_get_card_online_text")}</p>
+            <strong>{tLoyalty("loyalty_how_to_use_card_title")}</strong>
+            <p>{tLoyalty("loyalty_how_to_use_card_text")}</p>
           </div>
           <Image
             className={css.loyalty_section_head_img}
             src="/images/content_img_6.png"
             width={634}
             height={579}
-            alt="image not found"
+            alt="loyalty"
           />
         </div>
+
         <div className={css.loyalty_section_content}>
-          <p>
-            Для нарахування або списання бонусів навіть не обов’язково мати карту при собі —
-            консультант зможе зробити це за номером вашого телефону, прив’язаного до карти.
-          </p>
-          <p>
-            При поверненні товару, частково оплаченого бонусами, бонуси автоматично повертаються на
-            ваш рахунок.
-          </p>
-          <p>
-            Як учасник Бонусної програми ви серед перших отримуєте новини про актуальні розпродажі,
-            акції та пропозиції.
-          </p>
-          <strong>Як накопичувати бонуси? За що вони нараховуються?</strong>
-          <p>Бонуси нараховуються за кожну покупку в магазинах мережі в таких розмірах:</p>
+          <p>{tLoyalty("loyalty_section_content_1")}</p>
+          <p>{tLoyalty("loyalty_section_content_2")}</p>
+          <p>{tLoyalty("loyalty_section_content_3")}</p>
+
+          <strong>{tLoyalty("loyalty_how_to_earn_title")}</strong>
+          <p>{tLoyalty("loyalty_how_to_earn_text")}</p>
           <ul>
-            <li>10% від суми фактично сплаченої вартості покупки товарів;</li>
-            <li>
-              5% від суми — за покупку товарів, на які поширюються умови сезонних акцій, спеціальних
-              пропозицій, або спеціальних цін.
-            </li>
+            {tLoyalty.raw("loyalty_bonus_list").map((item: string, idx: number) => (
+              <li key={idx}>{item}</li>
+            ))}
           </ul>
-          <p>
-            Бонуси не нараховуються за оплату послуг (діагностика зору, ремонт окулярів,
-            консультація лікаря-офтальмолога тощо) та при купівлі запчастин та подарункових
-            сертифікатів.
-          </p>
-          <strong>На що можна витратити бонуси?</strong>
-          <p>1 бонус = 1 гривня.</p>
-          <p>Бонуси можна використовувати, як знижку:</p>
+          <p>{tLoyalty("loyalty_not_earned_text")}</p>
+
+          <strong>{tLoyalty("loyalty_where_to_spend_title")}</strong>
+          <p>{tLoyalty("loyalty_bonus_value")}</p>
+          <p>{tLoyalty("loyalty_how_to_use_bonus_text")}</p>
           <ul>
-            <li>
-              до -50% вартості наступної покупки при придбанні аксесуарів для окулярів, оптичних
-              лінз, оптичних окулярів, оправ до окулярів та сонцезахисних окулярів;
-            </li>
-            <li>
-              до -30% вартості наступної покупки при придбанні аксесуарів контактної корекції зору
-              (контейнери для лінз, пінцети і т.д.), БАДів, розчинів та крапель;
-            </li>
-            <li>до -20% вартості наступної покупки при придбанні жорстких контактних лінз.</li>
-            <li>до -10% вартості наступної покупки при придбанні м’яких контактних лінз.</li>
+            {tLoyalty.raw("loyalty_spend_bonus_list").map((item: string, idx: number) => (
+              <li key={idx}>{item}</li>
+            ))}
           </ul>
-          <p>
-            Якщо хочете розрахуватися бонусами в оптиці — скажіть про це нашому консультанту.
-            Купуючи на сайті — вкажіть кількість бонусів для списання.
-          </p>
-          <p>
-            Бонусами не можна скористатися при оплаті акційних товарів, подарункових сертифікатів,
-            запчастин і послуг (діагностика зору, ремонт окулярів, консультація лікаря-офтальмолога
-            тощо).
-          </p>
-          <strong>Коли можна скористатися бонусами? Який строк дії бонусів?</strong>
-          <p>
-            Бонуси автоматично нараховуються після отримання замовлення, а через 14 днів вони
-            активуються і їх можна витратити. Дізнатися про стан Бонусного рахунку можна:
-          </p>
+          <p>{tLoyalty("loyalty_how_to_pay_with_bonus")}</p>
+          <p>{tLoyalty("loyalty_bonus_limitations")}</p>
+
+          <strong>{tLoyalty("loyalty_bonus_expiry_title")}</strong>
+          <p>{tLoyalty("loyalty_bonus_activation_text")}</p>
           <ul>
-            <li>на чеку від покупки;</li>
-            <li> в Особистому кабінеті;</li>
+            {tLoyalty.raw("loyalty_check_bonus_list").map((item: string, idx: number) => (
+              <li key={idx}>{item}</li>
+            ))}
           </ul>
-          <p>
-            Термін дії бонусів складає 2 роки з моменту їх активації. Невикористані бонуси через два
-            роки анулюються в хронологічному порядку, починаючи з дати першої активації.
-          </p>
+          <p>{tLoyalty("loyalty_bonus_expiry_info")}</p>
         </div>
       </div>
     </section>

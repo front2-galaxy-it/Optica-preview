@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import css from "./styles.module.scss"
-import { CustomPagination, ReviewCard } from "@/shared/ui"
+import { ReviewCard } from "@/shared/ui"
 import dataReviewsList from "@/shared/data/reviews-list.json"
 import { IReviewCardProps } from "@/shared/types"
 import { Icon } from "@/shared/ui/icons"
@@ -15,7 +15,7 @@ const itemsPerPage = 6
 export const ProductReviewsTab: React.FC = () => {
   const [activeReplyIndex, setActiveReplyIndex] = useState<number | null>(null)
 
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage] = useState(1)
   const startIndex = (currentPage - 1) * itemsPerPage
 
   const filteredCards = reviewsDataList
@@ -41,6 +41,7 @@ export const ProductReviewsTab: React.FC = () => {
             className={css.product_reviews_card_wrap}
           >
             <ReviewCard
+              itemData={card}
               className={css.product_reviews_card}
               {...card}
               hideMediaIcon={true}
@@ -77,14 +78,14 @@ export const ProductReviewsTab: React.FC = () => {
           </div>
         )
       })}
-      {paginatedItems.length > itemsPerPage ? (
+      {/* {paginatedItems.length > itemsPerPage ? (
         <CustomPagination
           currentPage={currentPage}
           onPageChange={setCurrentPage}
           totalItems={filteredCards.length}
           itemsPerPage={itemsPerPage}
         />
-      ) : null}
+      ) : null} */}
     </div>
   )
 }

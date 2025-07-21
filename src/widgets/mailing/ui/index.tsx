@@ -1,18 +1,29 @@
 "use client"
 
-import React from "react"
+import React, { DetailedHTMLProps, HtmlHTMLAttributes } from "react"
 import css from "./styles.module.scss"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import Image from "next/image"
 import classNames from "classnames"
 import { Button, CheckboxPolicy } from "@/shared/ui"
 import { useForm } from "react-hook-form"
+import { useTranslations } from "next-intl"
+
+interface IMailingSectionProps
+  extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  module: any
+}
 
 type FormValues = {
   email: string
 }
 
-export const MailingSection: React.FC = () => {
+export const MailingSection: React.FC<IMailingSectionProps> = ({ module }) => {
+  const tButtons = useTranslations("buttons")
+  const tForm = useTranslations("form.email")
+
+  const { title, sub_title, text } = module.content
+
   const {
     register,
     handleSubmit,
@@ -47,12 +58,10 @@ export const MailingSection: React.FC = () => {
         <div className={css.mailing_section_content}>
           <SectionTip
             className={css.mailing_section_tip}
-            label="Дізнавайся перший про акції"
+            label={sub_title}
           />
-          <h3 className={css.mailing_section_title}>Підпишись на нашу розсилку</h3>
-          <p className={css.mailing_section_text}>
-            Будь першим хто дізнається про знижки, новинки та вигідні пропозиції
-          </p>
+          <h3 className={css.mailing_section_title}>{title}</h3>
+          <p className={css.mailing_section_text}>{text}</p>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className={css.mailing_form}
@@ -61,12 +70,12 @@ export const MailingSection: React.FC = () => {
             <div className={css.input_wrap}>
               <input
                 type="email"
-                placeholder="Email"
+                placeholder={tForm("placeholder")}
                 {...register("email", {
-                  required: "Email обов’язковий",
+                  required: { value: true, message: tForm("required") },
                   pattern: {
                     value: /^\S+@\S+\.\S+$/,
-                    message: "Невірний формат email",
+                    message: tForm("error"),
                   },
                 })}
               />
@@ -76,7 +85,7 @@ export const MailingSection: React.FC = () => {
                 iconName="arrow_right"
                 type="submit"
               >
-                Підписатися
+                {tButtons("subscribe_btn")}
               </Button>
             </div>
             {errors.email && <p className={css.error}>{errors.email.message}</p>}

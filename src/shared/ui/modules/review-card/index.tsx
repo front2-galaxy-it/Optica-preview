@@ -1,30 +1,29 @@
 import React from "react"
 import css from "./styles.module.scss"
 import Image from "next/image"
-import { IReviewCardProps } from "@/shared/types"
 import classNames from "classnames"
 import { Icon } from "../../icons"
 
-interface Props extends IReviewCardProps {
+interface Props {
   className?: string
   onReplyClick?: () => void
   hideMediaIcon?: boolean
   hideReplyButton?: boolean
+  itemData: any
 }
 
 export const ReviewCard: React.FC<Props> = ({
   className,
-  username,
-  nickname,
-  text,
-  mediaImg,
-  date,
   hideMediaIcon = false,
   hideReplyButton = true,
   onReplyClick,
+  itemData,
 }) => {
-  const [day, month, year] = date.split(".")
-  const formattedDate = `${year}-${month}-${day}`
+  // const [day, month, year] = date.split(".")
+  // const formattedDate = `${year}-${month}-${day}`
+
+  const mediaImg = `/images/svg/${itemData.type}.svg`
+  const rating = parseInt(itemData.rating) // "1" → 1
 
   return (
     <div
@@ -34,8 +33,8 @@ export const ReviewCard: React.FC<Props> = ({
     >
       <div className={css.review_card_head}>
         <div className={css.user_info}>
-          <h6 className={css.username}>{username}</h6>
-          <span className={css.nickname}>{nickname}</span>
+          <h6 className={css.username}>{itemData.name}</h6>
+          <span className={css.nickname}>{itemData.nick_name}</span>
         </div>
         {!hideMediaIcon && (
           <Image
@@ -52,21 +51,23 @@ export const ReviewCard: React.FC<Props> = ({
         {[...Array(5)].map((_, idx) => (
           <Icon
             key={idx}
-            name="icon_star"
-            className={css.icon_star}
+            name="icon_starV2"
+            className={classNames(css.icon_star, {
+              [css.active]: idx < rating,
+            })}
           />
         ))}
       </div>
 
-      <p className={css.review_card_text}>{text}</p>
+      <p className={css.review_card_text}>{itemData.description}</p>
 
       <div className={css.review_card_footer}>
-        <time
+        {/* <time
           dateTime={formattedDate}
           className={css.review_card_date}
         >
           {date}
-        </time>
+        </time> */}
 
         {!hideReplyButton && (
           <button

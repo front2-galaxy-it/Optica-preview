@@ -1,116 +1,152 @@
-"use client"
+// "use client"
 
-import React, { useRef } from "react"
 import css from "./styles.module.scss"
 import classNames from "classnames"
+import React, { DetailedHTMLProps, HtmlHTMLAttributes, useMemo } from "react"
 import { Icon } from "../icons"
+import { useQueryParams } from "@/shared/hooks"
 
-interface PaginationProps {
-  className?: string
-  totalItems: number
-  currentPage: number
-  onPageChange: (page: number) => void
-  itemsPerPage?: number
-  scrollTargetRef?: React.RefObject<HTMLElement>
+interface IPaginationProps
+  extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  meta: any
+  isVisible: boolean
 }
 
-export const CustomPagination: React.FC<PaginationProps> = ({
-  className,
-  totalItems,
-  currentPage,
-  onPageChange,
-  itemsPerPage = 4,
-  scrollTargetRef,
-}) => {
-  const totalPages = Math.ceil(totalItems / itemsPerPage)
-  const paginationRef = useRef<HTMLDivElement>(null)
+export const CustomPagination: React.FC<IPaginationProps> = ({ className, meta, isVisible }) => {
+  const { setParam, removeParam } = useQueryParams()
 
-  const scrollToTarget = () => {
-    scrollTargetRef?.current?.scrollIntoView({ behavior: "smooth" })
-  }
-
-  const handlePrev = () => {
-    if (currentPage > 1) onPageChange(currentPage - 1)
-    scrollToTarget()
-  }
-
-  const handleNext = () => {
-    if (currentPage < totalPages) onPageChange(currentPage + 1)
-    scrollToTarget()
-  }
-
-  const renderPageNumbers = () => {
-    const pages = []
-
-    if (totalPages <= 5) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i)
-      }
-    } else {
-      pages.push(1, 2, 3)
-
-      if (currentPage > 4 && currentPage < totalPages - 1) {
-        pages.push("...")
-        pages.push(totalPages)
-      } else if (currentPage >= totalPages - 1) {
-        pages.push("...")
-        pages.push(totalPages)
+  const scrollAction = () => {
+    const listingSection = document.querySelector(".blog_section")
+    const header = document.querySelector("header")
+    if (listingSection && header) {
+      const headerOffset = (header as HTMLElement).offsetHeight
+      const elementPosition = listingSection.getBoundingClientRect().top + window.scrollY
+      let offsetPosition
+      if (headerOffset) {
+        offsetPosition = elementPosition - headerOffset + 1
       } else {
-        pages.push("...")
-        pages.push(totalPages)
+        offsetPosition = elementPosition
       }
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    }
+  }
+
+  // Always call the hook
+  const pagination = useMemo(() => (meta ? getPagination(meta) : null), [meta])
+
+  const onPaginationButtonClickHandle = (number: string | null): void => {
+    if (number === null) {
+      return
     }
 
-    return pages.map((page, index) =>
-      page === "..." ? (
-        <span
-          key={`dots-${index}`}
-          className={css.dots}
-        >
-          ...
-        </span>
-      ) : (
-        <button
-          key={page}
-          className={classNames(css.nav_button, {
-            [css.active]: page === currentPage,
-          })}
-          onClick={() => onPageChange(Number(page))}
-        >
-          {page}
-        </button>
-      ),
-    )
+    if (number === "1") {
+      removeParam("page", "")
+      scrollAction()
+      return
+    }
+
+    setParam("page", number)
+    scrollAction()
   }
 
-  return (
-    <div
-      className={classNames(css.pagination, className)}
-      ref={paginationRef}
-    >
-      <button
-        className={css.nav_button}
-        onClick={handlePrev}
-        disabled={currentPage === 1}
-      >
-        <Icon
-          name="icon_arrow_bc"
-          className={css.prev_icon}
-        />
-      </button>
+  if (!meta || !pagination) return null
 
-      {renderPageNumbers()}
+  return pagination.pageNumbers.length <= 1 || !isVisible ? null : (
+    <div className={classNames(css.pagination, className)}>
+      <div className={css.pagination}>
+        <button
+          type={"button"}
+          className={classNames(css.nav_button, {})}
+          aria-label={"Previously page, current is: " + meta.current_page}
+          onClick={() => onPaginationButtonClickHandle(pagination.prev)}
+        >
+          <Icon
+            name="icon_arrow_bc"
+            className={css.prev_icon}
+          />
+        </button>
+        <div className={css.paginations_pages}>
+          {pagination.pageNumbers.map((number: string) => {
+            const isActive = meta.current_page.toString() === number
+            const isDisabled = number === "..."
 
-      <button
-        className={css.nav_button}
-        onClick={handleNext}
-        disabled={currentPage === totalPages}
-      >
-        <Icon
-          name="icon_arrow_bc"
-          className={css.next_icon}
-        />
-      </button>
+            return (
+              <button
+                key={number + "-pagination"}
+                className={classNames(css.nav_button, {
+                  [css.current_page]: isActive,
+                  [css.disabled]: isDisabled,
+                })}
+                aria-label={"Change page to: " + number}
+                onClick={() => onPaginationButtonClickHandle(number)}
+                disabled={isDisabled}
+              >
+                {number}
+              </button>
+            )
+          })}
+        </div>
+        {pagination.next !== null && (
+          <button
+            type={"button"}
+            className={css.nav_button}
+            aria-label={"Next page, current is: " + meta.current_page}
+            onClick={() => onPaginationButtonClickHandle(pagination.next)}
+          >
+            <Icon
+              name="icon_arrow_bc"
+              className={css.next_icon}
+            />
+          </button>
+        )}
+      </div>
     </div>
   )
+}
+
+function getPagination(meta: any) {
+  if (!meta) {
+    return null
+  }
+
+  const { last_page: lastPage, current_page: currentPage } = meta
+  const result = []
+  const minNum = 1
+  const prevPage = currentPage - 1
+  const nextPage = currentPage + 1
+  result.push(minNum.toString())
+
+  if (prevPage - 1 > minNum && prevPage < lastPage) {
+    result.push("...")
+  }
+
+  if (prevPage > minNum && prevPage < currentPage) {
+    result.push(prevPage.toString())
+  }
+
+  if (minNum !== currentPage) {
+    result.push(currentPage.toString())
+  }
+
+  if (nextPage < lastPage && nextPage > minNum) {
+    result.push(nextPage.toString())
+  }
+
+  if (nextPage + 1 < lastPage && nextPage > minNum) {
+    result.push("...")
+  }
+
+  if (currentPage !== lastPage) {
+    result.push(lastPage.toString())
+  }
+
+  return {
+    prev: currentPage > minNum ? prevPage.toString() : null,
+    pageNumbers: result,
+    next: currentPage < lastPage ? nextPage.toString() : null,
+  }
 }

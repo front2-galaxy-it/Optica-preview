@@ -1,6 +1,6 @@
-.dropdown_wrap {
-  display: none;
-}
+// .dropdown_wrap {
+//   display: none;
+// }
 
 .dropdown {
   padding: 6px 8px;
@@ -111,6 +111,10 @@
 
     &:not(:last-child) {
       margin-bottom: 8px;
+    }
+
+    &.active {
+      font-weight: 700;
     }
   }
 }

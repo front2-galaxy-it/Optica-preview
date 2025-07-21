@@ -3,28 +3,27 @@ import css from "./styles.module.scss"
 import { ButtonLink, RootLink } from "@/shared/ui/links"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import classNames from "classnames"
+import { useTranslations } from "next-intl"
 
 export const PurchaseSection: React.FC = () => {
+  const tPurchase = useTranslations("purchase-section")
+  const tButtons = useTranslations("buttons")
   return (
     <section className={css.purchase_section}>
       <div className={classNames(css.purchase_section_container, "container")}>
-        <SectionTip label="Каталог" />
+        {/* <SectionTip label="Каталог" /> */}
+        <SectionTip label={tPurchase("label")} />
         <div className={css.purchase_section_head}>
-          <h3 className={css.purchase_section_title}>Що придбати в Оптиці Добрих Цін</h3>
+          <h3 className={css.purchase_section_title}>{tPurchase("title")}</h3>
           <ButtonLink
             modifier="secondary"
             iconName="arrow_right"
             className={css.purchase_section_button}
           >
-            До каталогу
+            {tButtons("catalog_btn")}
           </ButtonLink>
         </div>
-        <p className={css.purchase_section_text}>
-          У нашому магазині оптики ви знайдете все необхідне для догляду за вашим зором. Від
-          стильних окулярів для зору та сонцезахисних моделей до високоякісних лінз і аксесуарів.
-          Кожна категорія товарів створена для того, щоб забезпечити максимальний комфорт та захист
-          ваших очей.
-        </p>
+        <p className={css.purchase_section_text}>{tPurchase("description")}</p>
         <div className={css.purchase_section_content}>
           <div className={css.block_row}>
             <div className={css.content_block}>
@@ -33,9 +32,7 @@ export const PurchaseSection: React.FC = () => {
                 href="/"
               ></RootLink>
               <div className={css.block_text}>
-                <h5 className={css.block_title}>
-                  Окуляри <br /> для зору
-                </h5>
+                <h5 className={css.block_title}>{tPurchase("glasses")}</h5>
               </div>
               <picture className={css.block_img}>
                 <source
@@ -54,7 +51,7 @@ export const PurchaseSection: React.FC = () => {
                 href="/"
               ></RootLink>
               <div className={css.block_text}>
-                <h5 className={css.block_title}>Контактні лінзи</h5>
+                <h5 className={css.block_title}>{tPurchase("lenses")}</h5>
               </div>
               <picture className={css.block_img}>
                 <source
@@ -75,7 +72,7 @@ export const PurchaseSection: React.FC = () => {
                 href="/"
               ></RootLink>
               <div className={css.block_text}>
-                <h5 className={css.block_title}>Діагностика</h5>
+                <h5 className={css.block_title}>{tPurchase("diagnostic")}</h5>
               </div>
               <picture className={css.block_img}>
                 <source
@@ -94,7 +91,7 @@ export const PurchaseSection: React.FC = () => {
                 href="/"
               ></RootLink>
               <div className={css.block_text}>
-                <h5 className={css.block_title}>Сонцезахисні окуляри</h5>
+                <h5 className={css.block_title}>{tPurchase("sunglasses")}</h5>
               </div>
               <picture className={css.block_img}>
                 <source
@@ -115,7 +112,7 @@ export const PurchaseSection: React.FC = () => {
                 href="/"
               ></RootLink>
               <div className={css.block_text}>
-                <h5 className={css.block_title}>Оправи</h5>
+                <h5 className={css.block_title}>{tPurchase("frames")}</h5>
               </div>
               <picture className={css.block_img}>
                 <source
@@ -134,9 +131,7 @@ export const PurchaseSection: React.FC = () => {
                 href="/"
               ></RootLink>
               <div className={css.block_text}>
-                <h5 className={css.block_title}>
-                  АКЦІЇ <br /> %
-                </h5>
+                <h5 className={css.block_title}>{tPurchase("sale")}</h5>
               </div>
               <picture className={css.block_img}>
                 <source

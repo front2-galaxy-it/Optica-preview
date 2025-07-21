@@ -5,10 +5,13 @@ import { Button } from "@/shared/ui"
 import { Icon } from "@/shared/ui/icons"
 import classNames from "classnames"
 import { OrderDetails } from "../components/order-details"
+import { useTranslations } from "next-intl"
 
 // const itemsPerPage = 6
 
 export const Orders: React.FC = () => {
+  const tSelectedOrders = useTranslations("profile-page.orders")
+  const tButtons = useTranslations("buttons")
   // const [currentPage, setCurrentPage] = useState(1)
 
   // const startIndex = (currentPage - 1) * itemsPerPage
@@ -25,15 +28,13 @@ export const Orders: React.FC = () => {
             alt="image not found"
           />
           <div className={css.orders_text_wrap}>
-            <p className={css.orders_title}>Список замовлень порожній</p>
-            <p className={css.orders_descr}>
-              Ви ще нічого не замовляли. <br /> Давайте це виправипо.
-            </p>
+            <p className={css.orders_title}>{tSelectedOrders("empty-orders-title")}</p>
+            <p className={css.orders_descr}>{tSelectedOrders("empty-orders-description")}</p>
             <Button
               modifier="primary"
               iconName="arrow_right"
             >
-              Перейти до покупок
+              {tButtons("go-to-cart-btn")}
             </Button>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { FormField, DatePickerField, Button } from "@/shared/ui"
 import { FormData } from "@/shared/types/form-data.interface"
 import css from "./styles.module.scss"
+import { useTranslations } from "next-intl"
 
 interface PersonalDataFormProps {
   onSuccess?: (data: FormData) => void
@@ -10,6 +11,14 @@ interface PersonalDataFormProps {
 }
 
 export const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ onSuccess, initialValues }) => {
+  const tButtons = useTranslations("buttons")
+  const tFormName = useTranslations("form.name")
+  const tFormSurname = useTranslations("form.surname")
+  const tFormPatronymic = useTranslations("form.patronymic")
+  const tFormDate = useTranslations("form.date")
+  const tFormPhone = useTranslations("form.phone")
+  const tFormEmail = useTranslations("form.email")
+
   const {
     control,
     register,
@@ -43,32 +52,32 @@ export const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ onSuccess, i
         <FormField
           className={css.profile_data_input}
           id="name"
-          placeholder="Ваше ім’я"
+          placeholder={tFormName("placeholder")}
           type="text"
-          register={register("name", { required: "Заповніть поле" })}
+          register={register("name", { required: tFormName("error") })}
           error={errors.name?.message}
         />
         <FormField
           className={css.profile_data_input}
           id="surname"
-          placeholder="Прізвище"
+          placeholder={tFormSurname("placeholder")}
           type="text"
-          register={register("surname", { required: "Заповніть поле" })}
+          register={register("surname", { required: tFormSurname("error") })}
           error={errors.surname?.message}
         />
         <FormField
           className={css.profile_data_input}
           id="patronymic"
-          placeholder="По батькові"
+          placeholder={tFormPatronymic("placeholder")}
           type="text"
-          register={register("patronymic", { required: "Заповніть поле" })}
+          register={register("patronymic", { required: tFormPatronymic("error") })}
           error={errors.patronymic?.message}
         />
         <DatePickerField
           name="birthDate"
           control={control}
           error={errors.birthDate?.message}
-          placeholder="дд/мм/рррр народження"
+          placeholder={tFormDate("placeholder-2")}
           className={css.profile_data_input}
         />
         <FormField
@@ -77,10 +86,10 @@ export const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ onSuccess, i
           placeholder="+38(___)___-__-__"
           type="tel"
           register={register("phone", {
-            required: "Заповніть поле",
+            required: tFormPhone("error"),
             pattern: {
               value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-              message: "Невірний формат телефону",
+              message: tFormPhone("pattern"),
             },
           })}
           error={errors.phone?.message}
@@ -88,9 +97,9 @@ export const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ onSuccess, i
         <FormField
           className={css.profile_data_input}
           id="email"
-          placeholder="Email"
+          placeholder={tFormEmail("placeholder")}
           type="email"
-          register={register("email", { required: "Заповніть поле" })}
+          register={register("email", { required: tFormEmail("required") })}
           error={errors.email?.message}
         />
       </div>
@@ -99,7 +108,7 @@ export const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ onSuccess, i
         iconName="icon_check"
         type="submit"
       >
-        Зберегти
+        {tButtons("save_btn")}
       </Button>
     </form>
   )

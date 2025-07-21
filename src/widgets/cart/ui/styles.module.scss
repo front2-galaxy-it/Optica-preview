@@ -1,4 +1,6 @@
 .cart {
+  padding: 30px 0;
+
   &_content {
     display: flex;
     align-items: center;
@@ -123,6 +125,12 @@
 
     p {
       @include adaptive-value("font-size", 20, 18, 1);
+    }
+
+    .total_text {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
     }
 
     .total_sum {

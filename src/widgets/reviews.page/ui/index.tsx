@@ -2,17 +2,18 @@
 
 import React, { useState, useRef, useEffect } from "react"
 import css from "./styles.module.scss"
-import { Button, CustomPagination, ReviewCard } from "@/shared/ui"
+import { Button, ReviewCard } from "@/shared/ui"
 import dataReviewsList from "@/shared/data/reviews-list.json"
 import { IReviewCardProps } from "@/shared/types"
 import { motion, AnimatePresence } from "framer-motion"
 import { ReviewPopup, ThanksPopup } from "@/widgets/popups"
+import { useTranslations } from "next-intl"
 
 const reviewsDataList: IReviewCardProps[] = dataReviewsList.review_cards
 const itemsPerPage = 3
 
 export const Reviews: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage] = useState(1)
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const paginatedItems = reviewsDataList.slice(startIndex, startIndex + itemsPerPage)
@@ -25,6 +26,11 @@ export const Reviews: React.FC = () => {
 
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
+
+  const tReviews = useTranslations("reviews-page")
+  const tButtons = useTranslations("buttons")
+  const tPopupReview = useTranslations("popups.reviews-popup")
+
   return (
     <section
       className={css.reviews_section}
@@ -43,6 +49,8 @@ export const Reviews: React.FC = () => {
               <div className={css.reviews_section_items}>
                 {paginatedItems.map((card, index) => (
                   <ReviewCard
+                    //to-do: change to dynamic data
+                    itemData={reviewsDataList}
                     className={css.reviews_section_card}
                     {...card}
                     key={index}
@@ -51,27 +59,24 @@ export const Reviews: React.FC = () => {
               </div>
             </motion.div>
           </AnimatePresence>
-          {reviewsDataList.length > itemsPerPage && (
+          {/* {reviewsDataList.length > itemsPerPage && (
             <CustomPagination
               currentPage={currentPage}
               onPageChange={setCurrentPage}
               totalItems={reviewsDataList.length}
               itemsPerPage={itemsPerPage}
             />
-          )}
+          )} */}
         </div>
         <div className={css.send_review}>
-          <h5 className={css.send_review_title}>Залиш відгук про нашу мережу оптик</h5>
-          <p className={css.send_review_text}>
-            Поділіться своєю думкою з іншими нашими відвідувачами та клієнтами. Ми цінуємо Вашу
-            думку.
-          </p>
+          <h5 className={css.send_review_title}>{tReviews("subtitle")}</h5>
+          <p className={css.send_review_text}>{tReviews("description")}</p>
           <Button
             modifier="primary"
             iconName="arrow_right"
             onClick={() => setPopupOpen(true)}
           >
-            Залишити відгук
+            {tButtons("reviews_btn")}
           </Button>
         </div>
       </div>
@@ -82,8 +87,8 @@ export const Reviews: React.FC = () => {
       />
 
       <ThanksPopup
-        title="Дякуємо за Ваш відгук!"
-        message="Ваші думки дуже важливі для нас. Ми цінуємо Ваш час і будемо працювати над тим, щоб зробити наш сервіс ще кращим. Якщо у Вас є додаткові питання або пропозиції, не соромтеся звертатися до нас!"
+        title={tPopupReview("thanks_label")}
+        message={tPopupReview("thanks_text")}
         isOpen={thanksPopupOpen}
         onClose={() => setThanksPopupOpen(false)}
       />

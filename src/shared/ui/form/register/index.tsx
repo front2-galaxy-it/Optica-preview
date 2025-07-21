@@ -6,12 +6,22 @@ import { Button, CheckboxPolicy, FormField, RootLink } from "@/shared/ui"
 import { useForm } from "react-hook-form"
 import { ClientRoutes } from "@/shared/routes"
 import classNames from "classnames"
+import { useTranslations } from "next-intl"
 
 interface RegisterFormFProps {
   className?: string
 }
 
 export const RegisterForm: React.FC<RegisterFormFProps> = ({ className }) => {
+  const tProfileRegister = useTranslations("profile-page.register-description")
+  const tProfile = useTranslations("profile-page")
+  const tButtons = useTranslations("buttons")
+
+  const tFormName = useTranslations("form.name")
+  const tFormSurname = useTranslations("form.surname")
+  const tFormPhone = useTranslations("form.phone")
+  const tFormPassword = useTranslations("form.password")
+
   const {
     register,
     handleSubmit,
@@ -32,60 +42,66 @@ export const RegisterForm: React.FC<RegisterFormFProps> = ({ className }) => {
 
   return (
     <div className={classNames(css.form_wrap, className)}>
-      <p className={css.form_title}>
-        Якщо ви вже зараєстровані, перейдіть на сторінку{" "}
+      <div className={css.form_title}>
+        <p>{tProfileRegister("content")}</p> {""}
         <RootLink
           href={ClientRoutes.authorization.path}
           className={css.link}
         >
-          авторизації
+          {tProfileRegister("link")}
         </RootLink>
-      </p>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormField
-          placeholder="Ваше ім’я"
+          id="name"
+          placeholder={tFormName("placeholder")}
           type="text"
+          colorType="white"
           register={register("name", {
             required: {
               value: true,
-              message: "Поле обов'язкове",
+              message: tFormName("required"),
             },
           })}
           error={errors.name?.message}
         />
         <FormField
-          placeholder="Прізвище"
+          id="surname"
+          placeholder={tFormSurname("placeholder")}
           type="text"
+          colorType="white"
           register={register("surname", {
             required: {
               value: true,
-              message: "Поле обов'язкове",
+              message: tFormSurname("required"),
             },
           })}
           error={errors.surname?.message}
         />
         <FormField
-          placeholder="+3 8(___) ___ - __ - __"
+          id="phone"
+          placeholder="+38(___)___-__-__"
           type="tel"
+          colorType="white"
           register={register("phone", {
             required: {
               value: true,
-              message: "Поле обов'язкове",
+              message: tFormPhone("required"),
             },
             pattern: {
               value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-              message: "Невірний формат телефону",
+              message: tFormPhone("pattern"),
             },
           })}
           error={errors.phone?.message}
         />
         <FormField
-          placeholder="Пароль"
+          placeholder={tFormPassword("placeholder")}
           type="text"
           register={register("password", {
             required: {
               value: true,
-              message: "Заповніть поле",
+              message: tFormPassword("error"),
             },
           })}
           error={errors.password?.message}
@@ -106,9 +122,9 @@ export const RegisterForm: React.FC<RegisterFormFProps> = ({ className }) => {
           iconName="arrow_right"
           type="submit"
         >
-          Зареєструватися
+          {tButtons("register_btn")}
         </Button>
-        <span className={css.spacer}>або</span>
+        <span className={css.spacer}>{tProfile("connecting-label")}</span>
         <div className={css.form_btn_wrap}>
           <Button
             className={css.auth_btn_social}

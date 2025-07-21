@@ -4,8 +4,9 @@ import Image from "next/image"
 import { ButtonLink } from "@/shared/ui/links"
 import { IProductCardProps, LabelType, StatusType } from "@/shared/types"
 import productsData from "@/shared/data/products.json"
-import { CustomPagination, ProductCard } from "@/shared/ui"
+import { ProductCard } from "@/shared/ui"
 import { AnimatePresence, motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 const productsDataList: IProductCardProps[] = productsData.products.map((product) => ({
   ...product,
@@ -16,7 +17,9 @@ const productsDataList: IProductCardProps[] = productsData.products.map((product
 const itemsPerPage = 4
 
 export const SelectedProducts: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1)
+  const tSelectedOrders = useTranslations("profile-page.favorite")
+  const tButtons = useTranslations("buttons")
+  const [currentPage] = useState(1)
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const paginatedItems = productsDataList.slice(startIndex, startIndex + itemsPerPage)
@@ -36,16 +39,14 @@ export const SelectedProducts: React.FC = () => {
           alt="image not found"
         />
         <div className={css.selected_text_wrap}>
-          <p className={css.selected_title}>Список порожній</p>
-          <p className={css.selected_descr}>
-            Щоб додати товар до обранного, натисніть на його сторінці кнопку ❤️
-          </p>
+          <p className={css.selected_title}>{tSelectedOrders("empty-orders-title")}</p>
+          <p className={css.selected_descr}>{tSelectedOrders("empty-orders-description")}</p>
           <ButtonLink
             href="#"
             modifier="primary"
             iconName="arrow_right"
           >
-            Перейти до покупок
+            {tButtons("go-to-cart-btn")}
           </ButtonLink>
         </div>
       </div>
@@ -70,7 +71,7 @@ export const SelectedProducts: React.FC = () => {
             </div>
           </motion.div>
         </AnimatePresence>
-        {productsDataList.length > itemsPerPage && (
+        {/* {productsDataList.length > itemsPerPage && (
           <CustomPagination
             className={css.selected_pagination}
             currentPage={currentPage}
@@ -78,7 +79,7 @@ export const SelectedProducts: React.FC = () => {
             totalItems={productsDataList.length}
             itemsPerPage={itemsPerPage}
           />
-        )}
+        )} */}
       </div>
     </div>
   )

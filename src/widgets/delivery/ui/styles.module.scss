@@ -1,6 +1,5 @@
 .delivery_section {
-  @include adaptive-value("padding-top", 40, 16, 1);
-  @include adaptive-value("padding-bottom", 120, 60, 1);
+  padding: 40px 0;
 }
 
 .tab_text {
@@ -9,68 +8,5 @@
 
   &:last-of-type {
     @include adaptive-value("margin-bottom", 40, 16, 1);
-  }
-}
-
-.delivery_block {
-  &:not(:last-child) {
-    @include adaptive-value("margin-bottom", 40, 16, 1);
-  }
-
-  &_title {
-    @include adaptive-value("margin-bottom", 24, 16, 1);
-  }
-
-  &_item {
-    background-color: var(--blueF0);
-    padding: 24px;
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    border-radius: 4px;
-
-    &:not(:last-child) {
-      margin-bottom: 8px;
-    }
-
-    @include media-down(sm) {
-      flex-direction: column;
-    }
-  }
-
-  &_item_img_wrap {
-    width: 142px;
-  }
-
-  &_item_content {
-    b {
-      color: var(--gray4E);
-      @include adaptive-value("font-size", 20, 18, 1);
-      font-weight: 600;
-      margin-bottom: 8px;
-      display: inline-block;
-    }
-
-    p {
-      @include adaptive-value("font-size", 18, 14, 1);
-
-      &:not(:last-of-type) {
-        margin-bottom: 16px;
-      }
-    }
-  }
-}
-
-.map_wrap {
-  @include adaptive-value("margin-top", 147, 64, 1);
-
-  .map_title {
-    @include adaptive-value("margin-bottom", 28, 16, 1);
-  }
-
-  .map_text {
-    max-width: 525px;
-    width: 100%;
-    @include adaptive-value("margin-bottom", 24, 16, 1);
   }
 }

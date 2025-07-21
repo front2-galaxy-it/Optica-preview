@@ -1,1 +1,1 @@
-export { BlogPage } from "./ui"
+export { BlogPage, generateMetadata } from "./ui"

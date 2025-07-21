@@ -1,31 +1,61 @@
-import { unstable_setRequestLocale } from "next-intl/server"
+import { unstable_setRequestLocale, getTranslations } from "next-intl/server"
 
 import { IHomePageProps } from "./props"
-import { MailingSection } from "@/widgets/mailing"
-import { FormSection } from "@/widgets/contact-form"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs, ButtonsList } from "@/shared/components"
 import { Payment } from "@/widgets/payment"
 import { PageInfo } from "@/widgets/page-info-block"
 import { navData } from "@/shared/routes/info-buttons-list"
-export function PaymentPage({ params: { locale } }: IHomePageProps) {
+import { notFound } from "next/navigation"
+import { IGlobalPageProps } from "@/shared/types"
+import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
+import { ModulesSwitch } from "@/widgets/module-switch"
+
+const getPaymentPageData = async ({ locale }: { locale: string }) => {
+  return await fetchPageLayoutData({ locale, layoutName: "payment" })
+}
+
+export async function PaymentPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
+
+  const paymentPageData = await getPaymentPageData({ locale })
+  if (!paymentPageData) notFound()
+
+  const {
+    layout: { modules },
+  } = paymentPageData
+
+  const tLabels = await getTranslations("page-labels")
+  const tCommon = await getTranslations("common")
 
   return (
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: ClientRoutes.payment.path, title: ClientRoutes.payment.name },
+          {
+            type: "parent",
+            slug: ClientRoutes.payment.path,
+            titleKey: ClientRoutes.payment.nameKey,
+          },
         ]}
       />
       <PageInfo
-        label="Оптика Добрих Цін"
-        title="Умови доставки і оплати"
+        label={tCommon("company-name")}
+        title={tLabels("delivery")}
       />
       <ButtonsList items={navData.delivery} />
       <Payment />
-      <FormSection />
-      <MailingSection />
+      <ModulesSwitch modules={modules} />
     </>
   )
+}
+
+export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
+  try {
+    const layoutData = await getPaymentPageData({ locale })
+    if (!layoutData) return
+    return getPageLayoutMetadata(layoutData.layout)
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+  }
 }

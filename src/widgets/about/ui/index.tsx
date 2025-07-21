@@ -6,8 +6,11 @@ import Image from "next/image"
 import classNames from "classnames"
 import { ButtonLink } from "@/shared/ui/links"
 import { ClientRoutes } from "@/shared/routes"
+import { useTranslations } from "next-intl"
 
 export const AboutSection: React.FC = () => {
+  const tAbout = useTranslations("about-us-section")
+  const tButtons = useTranslations("buttons")
   return (
     <section className={css.about_section}>
       <div className={css.about_bg_mob}>
@@ -28,23 +31,17 @@ export const AboutSection: React.FC = () => {
           />
         </div>
         <div className={css.about_section_content}>
-          <SectionTip label="Про нас" />
-          <h3 className={css.about_section_title}>Ваш надійний партнер у світі оптики</h3>
-          <p className={css.about_section_text}>
-            Ми – команда професіоналів, яка допомагає вам бачити світ чіткіше! У нашій оптиці ви
-            знайдете широкий вибір стильних та якісних окулярів, контактних лінз і аксесуарів.
-          </p>
-          <p className={css.about_section_text}>
-            Ми працюємо тільки з перевіреними виробниками, щоб гарантувати комфорт і бездоганний зір
-            кожному клієнту.
-          </p>
-          <p className={css.about_section_text}>Чекаємо вас у нашому салоні!</p>
+          <SectionTip label={tAbout("label")} />
+          <h3 className={css.about_section_title}>{tAbout("title")}</h3>
+          <p className={css.about_section_text}>{tAbout("description-1")}</p>
+          <p className={css.about_section_text}>{tAbout("description-2")}</p>
+          <p className={css.about_section_text}>{tAbout("description-3")}</p>
           <ButtonLink
             href={ClientRoutes.about.path}
             modifier="secondary"
             iconName="arrow_right"
           >
-            Детальніше
+            {tButtons("details_btn")}
           </ButtonLink>
         </div>
       </div>

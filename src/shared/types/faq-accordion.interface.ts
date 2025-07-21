@@ -1,4 +1,5 @@
 export interface IFaqAccordions {
-  name: string
-  text: string
+  id: number
+  question: string
+  answer: string
 }

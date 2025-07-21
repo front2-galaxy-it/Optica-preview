@@ -1,1 +1,1 @@
-export { CartPage } from "./ui"
+export { CartPage, generateMetadata } from "./ui"

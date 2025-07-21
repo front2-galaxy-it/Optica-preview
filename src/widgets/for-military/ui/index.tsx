@@ -4,8 +4,11 @@ import css from "./styles.module.scss"
 import Image from "next/image"
 import { ButtonLink } from "@/shared/ui/links"
 import { ClientRoutes } from "@/shared/routes"
+import { useTranslations } from "next-intl"
 
 export const ForMilitarySection: React.FC = () => {
+  const tMilitary = useTranslations("military-page")
+  const tButtons = useTranslations("buttons")
   return (
     <section className={css.for_military_section}>
       <div className="container">
@@ -18,37 +21,27 @@ export const ForMilitarySection: React.FC = () => {
             alt="image not found"
           />
           <div className={css.head_text}>
-            <h2 className={css.head_title}>Безкоштовна перевірка зору для військових</h2>
+            <h2 className={css.head_title}>{tMilitary("title-2")}</h2>
             <ButtonLink
               iconName="arrow_right"
               modifier="primary"
               href={ClientRoutes.diagnostic.path}
             >
-              Діагностика зору
+              {tButtons("diagnostic_btn")}
             </ButtonLink>
           </div>
         </div>
         <div className={css.for_military_section_content}>
-          <h5 className={css.for_military_section_title}>Умови пропозиції</h5>
-          <strong>Хто може отримати допомогу:</strong>
-          <p>
-            Допомога надається безпосереднім учасникам бойових дій, які захищають (захищали)
-            незалежність, суверенітет та територіальну цілісність України, беруть (брали)
-            безпосередню участь у відсічі збройної агресії та забезпеченні національної безпеки,
-            усуненні загрози небезпеки державній незалежності України, її територіальній цілісності
-            у період з 14.04.2014 року.
-          </p>
-          <strong>Як отримати допомогу:</strong>
-          <p>
-            Записатися на безкоштовну перевірку зору можна на нашому сайті або завітати в одну з
-            оптик які приймають участь в програмі. Обов'язково необхідно мати при собі посвідчення
-            учасника бойових дій.
-          </p>
-          <strong>Товари та послуги:</strong>
+          <h5 className={css.for_military_section_title}>{tMilitary("title-3")}</h5>
+          <strong>{tMilitary("subtitle-1")}</strong>
+          <p>{tMilitary("description-1")}</p>
+          <strong>{tMilitary("subtitle-2")}</strong>
+          <p>{tMilitary("description-2")}</p>
+          <strong>{tMilitary("subtitle-3")}</strong>
           <ul>
-            <li>* безкоштовна перевірка зору</li>
-            <li>* виготовлення окулярів за рецептом</li>
-            <li>* видача м'яких контактних лінз</li>
+            <li>{tMilitary("list-item-1")}</li>
+            <li>{tMilitary("list-item-2")}</li>
+            <li>{tMilitary("list-item-3")}</li>
           </ul>
         </div>
       </div>

@@ -1,1 +1,2 @@
-export { ReviewsPage as default } from "@/_pages/reviews"
+export const dynamic = process.env.NEXT_DYNAMIC === "true" ? "force-dynamic" : "auto"
+export { ReviewsPage as default, generateMetadata } from "@/_pages/reviews"

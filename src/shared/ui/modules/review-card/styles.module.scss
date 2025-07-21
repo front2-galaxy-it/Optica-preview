@@ -39,7 +39,11 @@
   .icon_star {
     width: 20px;
     height: 20px;
-    color: var(--blue-primary);
+    color: var(--white);
+
+    &.active {
+      color: var(--blue-primary);
+    }
   }
 
   &_text {

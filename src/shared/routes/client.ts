@@ -84,107 +84,101 @@ export const DevRoutes = {
 export const ClientRoutes = {
   home: {
     path: "/",
-    name: "Головна",
+    nameKey: "home",
   },
   delivery: {
     path: "/delivery",
-    name: "Доставка",
+    nameKey: "delivery",
   },
   payment: {
     path: "/payment",
-    name: "Оплата",
+    nameKey: "payment",
   },
   about: {
     path: "/about",
-    name: "Про нас",
+    nameKey: "about",
   },
   net: {
     path: "/net",
-    name: "Мережа",
+    nameKey: "net",
   },
   diagnostic: {
     path: "/diagnostic",
-    name: "Діагностика",
+    nameKey: "diagnostic",
   },
   reviews: {
     path: "/reviews",
-    name: "Відгуки",
+    nameKey: "reviews",
   },
   faq: {
     path: "/faq",
-    name: "Питання та відповіді",
+    nameKey: "faq",
   },
   contacts: {
     path: "/contacts",
-    name: "Контакти",
+    nameKey: "contacts",
   },
   policy: {
     path: "/policy",
-    name: "Політика конфіденційності",
+    nameKey: "privacy_policy",
   },
   terms: {
     path: "/terms",
-    name: "Правила використання сайту",
+    nameKey: "terms",
   },
   brands: {
     path: "/brands",
-    name: "Виробники нашої продукції",
+    nameKey: "brands",
   },
   for_military: {
     path: "/for-military",
-    name: "Пропозиції для військових",
+    nameKey: "for_military",
   },
   loyalty_program: {
     path: "/loyalty-program",
-    name: "Програма лояльності",
+    nameKey: "loyalty_program",
   },
   career: {
     path: "/career",
-    name: "Кар’єра",
+    nameKey: "career",
   },
   blog: {
     path: "/blog",
-    name: "Блог",
+    nameKey: "blog",
   },
   profile: {
     path: "/profile",
-    name: "Особистий профіль",
+    nameKey: "profile",
   },
   authorization: {
     path: "/profile/authorization",
-    name: "Авторизація",
+    nameKey: "authorization",
   },
   register: {
     path: "/profile/register",
-    name: "Реєстрація",
+    nameKey: "register",
   },
   cart: {
     path: "/cart",
-    name: "Кошик",
+    nameKey: "cart",
   },
   checkout: {
     path: "/checkout",
-    name: "Кошик",
+    nameKey: "checkout",
   },
   thanks: {
     path: "/thanks",
-    name: "Дякуємо",
+    nameKey: "thanks",
   },
 
-  /** Get  the path to a specific task route.**/
-
+  /** Dynamic paths **/
   product: (slug: string, id: string) => `/catalog/${slug}/${id}`,
 
-  product_category: (id: string) => {
-    return `/catalog/${id}`
-  },
-  blog_category: (id: string) => {
-    return `/blog/${id}`
-  },
-  author: (id: string) => {
-    return `/blog/author/${id}`
-  },
-  article: (id: string) => {
-    return `/blog/article/${id}`
-  },
+  product_category: (id: string) => `/catalog/${id}`,
+
+  blog_category: (id: string) => `/blog/${id}`,
+
+  author: (id: string) => `/blog/author/${id}`,
+
+  article: (id: string) => `/blog/article/${id}`,
 }

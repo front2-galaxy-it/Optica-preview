@@ -1,1 +1,2 @@
-export { BlogPage as default } from "@/_pages/blog"
+export const dynamic = process.env.NEXT_DYNAMIC === "true" ? "force-dynamic" : "auto"
+export { BlogPage as default, generateMetadata } from "@/_pages/blog"

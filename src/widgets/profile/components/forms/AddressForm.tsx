@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { FormField, Button } from "@/shared/ui"
 import { AddressData } from "@/shared/types/form-data.interface"
 import css from "./styles.module.scss"
+import { useTranslations } from "next-intl"
 
 interface AddressFormProps {
   onSubmit: (data: AddressData) => void
@@ -10,6 +11,14 @@ interface AddressFormProps {
 }
 
 export const AddressForm: React.FC<AddressFormProps> = ({ onSubmit, initialValues }) => {
+  const tFormName = useTranslations("form.name")
+  const tFormSurname = useTranslations("form.surname")
+  const tFormPatronymic = useTranslations("form.patronymic")
+  const tFormPhone = useTranslations("form.phone")
+  const tFormAddress = useTranslations("form.address")
+  const tFormPostOffice = useTranslations("form.post-office")
+  const tButtons = useTranslations("buttons")
+
   const {
     register,
     handleSubmit,
@@ -38,41 +47,41 @@ export const AddressForm: React.FC<AddressFormProps> = ({ onSubmit, initialValue
         <FormField
           className={css.profile_data_input}
           id="address"
-          placeholder="Адреса"
+          placeholder={tFormAddress("placeholder")}
           type="text"
-          register={register("address", { required: "Заповніть поле" })}
+          register={register("address", { required: tFormAddress("error") })}
           error={errors.address?.message}
         />
         <FormField
           className={css.profile_data_input}
           id="postOffice"
-          placeholder="Відділення пошти"
+          placeholder={tFormPostOffice("placeholder")}
           type="text"
-          register={register("postOffice", { required: "Заповніть поле" })}
+          register={register("postOffice", { required: tFormPostOffice("error") })}
           error={errors.postOffice?.message}
         />
         <FormField
           className={css.profile_data_input}
           id="name"
-          placeholder="Ваше ім’я"
+          placeholder={tFormName("placeholder")}
           type="text"
-          register={register("name", { required: "Заповніть поле" })}
+          register={register("name", { required: tFormName("error") })}
           error={errors.name?.message}
         />
         <FormField
           className={css.profile_data_input}
           id="surname"
-          placeholder="Прізвище"
+          placeholder={tFormSurname("placeholder")}
           type="text"
-          register={register("surname", { required: "Заповніть поле" })}
+          register={register("surname", { required: tFormSurname("error") })}
           error={errors.surname?.message}
         />
         <FormField
           className={css.profile_data_input}
           id="patronymic"
-          placeholder="По батькові"
+          placeholder={tFormPatronymic("placeholder")}
           type="text"
-          register={register("patronymic", { required: "Заповніть поле" })}
+          register={register("patronymic", { required: tFormPatronymic("error") })}
           error={errors.patronymic?.message}
         />
         <FormField
@@ -81,10 +90,10 @@ export const AddressForm: React.FC<AddressFormProps> = ({ onSubmit, initialValue
           placeholder="+38(___)___-__-__"
           type="tel"
           register={register("phone", {
-            required: "Заповніть поле",
+            required: tFormPhone("error"),
             pattern: {
               value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-              message: "Невірний формат телефону",
+              message: tFormPhone("pattern"),
             },
           })}
           error={errors.phone?.message}
@@ -95,7 +104,7 @@ export const AddressForm: React.FC<AddressFormProps> = ({ onSubmit, initialValue
         iconName="icon_check"
         type="submit"
       >
-        Зберегти
+        {tButtons("save_btn")}
       </Button>
     </form>
   )

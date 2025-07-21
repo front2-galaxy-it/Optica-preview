@@ -1,1 +1,1 @@
-export { FaqPage } from "./ui"
+export { FaqPage, generateMetadata } from "./ui"

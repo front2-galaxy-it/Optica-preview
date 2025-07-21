@@ -1,13 +1,26 @@
 "use client"
 
-import React from "react"
+import React, { DetailedHTMLProps, HtmlHTMLAttributes } from "react"
 import css from "./styles.module.scss"
 import Image from "next/image"
 import { Button, CheckboxPolicy, FormField, FormTextArea } from "@/shared/ui"
 import { useForm } from "react-hook-form"
 import { FormData } from "@/shared/types/form-data.interface"
+import { useTranslations } from "next-intl"
 
-export const FormSection: React.FC = () => {
+interface IFormSectionProps
+  extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  module: any
+}
+
+export const FormSection: React.FC<IFormSectionProps> = ({ module }) => {
+  const tFormName = useTranslations("form.name")
+  const tFormSurname = useTranslations("form.surname")
+  const tFormPhone = useTranslations("form.phone")
+  const tFormMessage = useTranslations("form.question-message")
+
+  const tButtons = useTranslations("buttons")
+
   const {
     register,
     handleSubmit,
@@ -30,19 +43,17 @@ export const FormSection: React.FC = () => {
             alt="image not found"
           />
           <div className={css.form_wrap}>
-            <h5 className={css.form_wrap_title}>
-              Якщо у вас виникли питання чи зауваження, напишіть нам!
-            </h5>
+            <h5 className={css.form_wrap_title}>{module.content.title}</h5>
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormField
                 id="name"
                 type="text"
-                placeholder="Ваше ім’я"
+                placeholder={tFormName("placeholder")}
                 colorType="gray"
                 register={register("name", {
                   required: {
                     value: true,
-                    message: "Заповніть поле",
+                    message: tFormName("required"),
                   },
                 })}
                 error={errors.name?.message}
@@ -50,12 +61,12 @@ export const FormSection: React.FC = () => {
               <FormField
                 id="surname"
                 type="text"
-                placeholder="Прізвище"
+                placeholder={tFormSurname("placeholder")}
                 colorType="gray"
                 register={register("surname", {
                   required: {
                     value: true,
-                    message: "Заповніть поле",
+                    message: tFormSurname("required"),
                   },
                 })}
                 error={errors.name?.message}
@@ -68,11 +79,11 @@ export const FormSection: React.FC = () => {
                 register={register("phone", {
                   required: {
                     value: true,
-                    message: "Поле обов'язкове",
+                    message: tFormPhone("required"),
                   },
                   pattern: {
                     value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-                    message: "Невірний формат телефону",
+                    message: tFormPhone("error"),
                   },
                 })}
                 error={errors.phone?.message}
@@ -80,7 +91,7 @@ export const FormSection: React.FC = () => {
 
               <FormTextArea
                 id="message"
-                placeholder="Яке у вас питання?"
+                placeholder={tFormMessage("placeholder")}
                 colorType="gray"
               />
               <CheckboxPolicy
@@ -98,7 +109,7 @@ export const FormSection: React.FC = () => {
                 type="submit"
                 iconName="arrow_right"
               >
-                Надіслати
+                {tButtons("send_btn")}
               </Button>
             </form>
           </div>

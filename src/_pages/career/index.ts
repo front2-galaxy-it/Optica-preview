@@ -1,1 +1,1 @@
-export { CareerPage } from "./ui"
+export { CareerPage, generateMetadata } from "./ui"

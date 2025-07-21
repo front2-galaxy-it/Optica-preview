@@ -3,12 +3,19 @@ import css from "./styles.module.scss"
 import { Button, FormField } from "@/shared/ui"
 import { useForm } from "react-hook-form"
 import { FormData } from "@/shared/types/form-data.interface"
+import { useTranslations } from "next-intl"
 
 interface PasswordChangeProps {
   onSuccess?: () => void
 }
 
 export const PasswordChange: React.FC<PasswordChangeProps> = ({ onSuccess }) => {
+  const tProfile = useTranslations("profile-page")
+  const tButtons = useTranslations("buttons")
+  const tFormEmail = useTranslations("form.email")
+  const tFormOldPass = useTranslations("form.old-password")
+  const tFormNewPass = useTranslations("form.new-password")
+  const tFormConfirmPass = useTranslations("form.confirm-password")
   const {
     register,
     handleSubmit,
@@ -25,7 +32,7 @@ export const PasswordChange: React.FC<PasswordChangeProps> = ({ onSuccess }) => 
   }
   return (
     <div className={css.password_change}>
-      <h6 className={css.password_change_title}>Зміна паролю</h6>
+      <h6 className={css.password_change_title}>{tProfile("password-change-label")}</h6>
       <form
         className={css.password_change_form}
         onSubmit={handleSubmit(onSubmit)}
@@ -33,25 +40,25 @@ export const PasswordChange: React.FC<PasswordChangeProps> = ({ onSuccess }) => 
         <FormField
           id="email"
           type="email"
-          placeholder="Email"
-          register={register("email", { required: "Заповніть поле" })}
+          placeholder={tFormEmail("placeholder")}
+          register={register("email", { required: tFormEmail("error") })}
           error={errors.email?.message}
         />
         <FormField
           id="oldPassword"
           type="password"
-          placeholder="Старий пароль"
-          register={register("oldPassword", { required: "Заповніть поле" })}
+          placeholder={tFormOldPass("placeholder")}
+          register={register("oldPassword", { required: tFormOldPass("error") })}
           error={errors.oldPassword?.message}
         />
         <FormField
           id="newPassword"
           type="password"
-          placeholder="Новий пароль"
+          placeholder={tFormNewPass("placeholder")}
           register={register("newPassword", {
             required: {
               value: true,
-              message: "Заповніть поле",
+              message: tFormNewPass("placeholder"),
             },
           })}
           error={errors.newPassword?.message}
@@ -59,10 +66,10 @@ export const PasswordChange: React.FC<PasswordChangeProps> = ({ onSuccess }) => 
         <FormField
           id="reNewPassword"
           type="password"
-          placeholder="Повторіть новий пароль"
+          placeholder={tFormConfirmPass("placeholder")}
           register={register("reNewPassword", {
-            required: "Заповніть поле",
-            validate: (value) => value === getValues("newPassword") || "Паролі не співпадають",
+            required: tFormConfirmPass("placeholder"),
+            validate: (value) => value === getValues("newPassword") || tFormConfirmPass("mismatch"),
           })}
           error={errors.reNewPassword?.message}
         />
@@ -71,7 +78,7 @@ export const PasswordChange: React.FC<PasswordChangeProps> = ({ onSuccess }) => 
           iconName="icon_check"
           type="submit"
         >
-          Зберегти
+          {tButtons("save_btn")}
         </Button>
       </form>
     </div>
