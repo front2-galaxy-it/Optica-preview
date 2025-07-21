@@ -1,1 +1,0 @@
-export { SelfDeliverySection } from "./ui"
