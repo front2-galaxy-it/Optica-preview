@@ -151,12 +151,32 @@ export const ClientRoutes = {
     nameKey: "profile",
   },
   authorization: {
-    path: "/profile/authorization",
+    path: "/authorization",
     nameKey: "authorization",
   },
   register: {
-    path: "/profile/register",
+    path: "/register",
     nameKey: "register",
+  },
+  personal_data: {
+    path: "/personal-data",
+    nameKey: "personal_data",
+  },
+  reset_password: {
+    path: "/reset-password",
+    nameKey: "reset_password",
+  },
+  user_orders: {
+    path: "/user-orders",
+    nameKey: "user_orders",
+  },
+  user_favorites: {
+    path: "/user-favorites",
+    nameKey: "user_favorites",
+  },
+  user_bonuses: {
+    path: "/user-bonuses",
+    nameKey: "user_bonuses",
   },
   cart: {
     path: "/cart",

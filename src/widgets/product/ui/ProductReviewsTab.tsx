@@ -7,12 +7,14 @@ import dataReviewsList from "@/shared/data/reviews-list.json"
 import { IReviewCardProps } from "@/shared/types"
 import { Icon } from "@/shared/ui/icons"
 import { AnimatePresence, motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 const reviewsDataList: IReviewCardProps[] = dataReviewsList.review_cards
 
 const itemsPerPage = 6
 
 export const ProductReviewsTab: React.FC = () => {
+  const tProduct = useTranslations("product-page")
   const [activeReplyIndex, setActiveReplyIndex] = useState<number | null>(null)
 
   const [currentPage] = useState(1)
@@ -62,7 +64,7 @@ export const ProductReviewsTab: React.FC = () => {
                         name="icon_chat"
                         className={css.reply_block_icon}
                       />
-                      Відповідь представника мережі
+                      {tProduct("network_representative_response")}
                     </strong>
                     <p className={css.reply_block_text}>{card.replyText}</p>
                     <time

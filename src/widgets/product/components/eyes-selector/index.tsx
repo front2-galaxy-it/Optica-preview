@@ -3,8 +3,10 @@ import css from "./styles.module.scss"
 import classNames from "classnames"
 import { CustomSelect } from "@/shared/ui/modules/custom-select"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 export default function EyesTabSelector() {
+  const tProduct = useTranslations("product-page")
   const [activeTab, setActiveTab] = useState("same")
 
   const [sameRadius, setSameRadius] = useState("8,4")
@@ -27,7 +29,7 @@ export default function EyesTabSelector() {
           })}
           onClick={() => setActiveTab("same")}
         >
-          Однакові очі
+          {tProduct("same_eyes")}
         </button>
         <button
           className={classNames(css.tabButton, {
@@ -35,7 +37,7 @@ export default function EyesTabSelector() {
           })}
           onClick={() => setActiveTab("different")}
         >
-          Різні очі
+          {tProduct("different_eyes")}
         </button>
       </div>
       <motion.div
@@ -48,7 +50,7 @@ export default function EyesTabSelector() {
         {activeTab === "same" && (
           <div className={css.controlsRow}>
             <div className={css.controlGroup}>
-              <label className={css.label}>Радіус:</label>
+              <label className={css.label}>{tProduct("radius")}:</label>
               <CustomSelect
                 className={css.customSelect}
                 options={radiusOptions}
@@ -58,7 +60,7 @@ export default function EyesTabSelector() {
             </div>
 
             <div className={css.controlGroup}>
-              <label className={css.label}>Діоптрії:</label>
+              <label className={css.label}>{tProduct("diopters")}:</label>
               <CustomSelect
                 className={css.customSelect}
                 options={diopterOptions}
@@ -72,11 +74,11 @@ export default function EyesTabSelector() {
         {activeTab === "different" && (
           <>
             <div className={classNames(css.controlsRow, css.differentEyes)}>
-              <div className={css.eyeLabel}>Ліве око:</div>
+              <div className={css.eyeLabel}>{tProduct("left_eye")}:</div>
 
               <div className={css.controlGroup_wrap}>
                 <div className={css.controlGroup}>
-                  <label className={css.label}>Радіус:</label>
+                  <label className={css.label}>{tProduct("radius")}:</label>
                   <CustomSelect
                     className={css.customSelect}
                     options={radiusOptions}
@@ -86,7 +88,7 @@ export default function EyesTabSelector() {
                 </div>
 
                 <div className={css.controlGroup}>
-                  <label className={css.label}>Діоптрії:</label>
+                  <label className={css.label}>{tProduct("diopters")}:</label>
                   <CustomSelect
                     className={css.customSelect}
                     options={diopterOptions}
@@ -98,11 +100,11 @@ export default function EyesTabSelector() {
             </div>
 
             <div className={classNames(css.controlsRow, css.differentEyes)}>
-              <div className={css.eyeLabel}>Праве око:</div>
+              <div className={css.eyeLabel}>{tProduct("right_eye")}:</div>
 
               <div className={css.controlGroup_wrap}>
                 <div className={css.controlGroup}>
-                  <label className={css.label}>Радіус:</label>
+                  <label className={css.label}>{tProduct("radius")}:</label>
                   <CustomSelect
                     className={css.customSelect}
                     options={radiusOptions}
@@ -112,7 +114,7 @@ export default function EyesTabSelector() {
                 </div>
 
                 <div className={css.controlGroup}>
-                  <label className={css.label}>Діоптрії:</label>
+                  <label className={css.label}>{tProduct("diopters")}:</label>
                   <CustomSelect
                     className={css.customSelect}
                     options={diopterOptions}

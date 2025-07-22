@@ -5,6 +5,7 @@ import { ICateroriesLink } from "@/shared/types"
 import classNames from "classnames"
 import { RootLink } from "@/shared/ui"
 import { ClientRoutes } from "@/shared/routes"
+import { useTranslations } from "next-intl"
 
 interface CategoriesListProps {
   className?: string
@@ -19,6 +20,8 @@ export const CategoriesList: React.FC<CategoriesListProps> = ({
   onClose,
   className,
 }) => {
+  const tCommon = useTranslations("common")
+
   return (
     <div className={classNames(css.categories_list_wrap, className)}>
       <div className={css.categories_list_head}>
@@ -27,7 +30,7 @@ export const CategoriesList: React.FC<CategoriesListProps> = ({
             name="icon_category"
             className={css.icon_category}
           />
-          <strong>Категорії</strong>
+          <strong>{tCommon("category-label")}</strong>
         </div>
         <button
           className={css.closeButton}

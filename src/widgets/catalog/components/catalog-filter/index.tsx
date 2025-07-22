@@ -3,34 +3,37 @@ import css from "./styles.module.scss"
 import { AccordionItem } from "./AccordionItem"
 import filtersData from "@/shared/data/catalog-filter-list.json"
 import { Button } from "@/shared/ui"
+import { useTranslations } from "next-intl"
 
 export const CatalogFilter: React.FC = () => {
+  const tCatalog = useTranslations("catalog-page")
+  const tButtons = useTranslations("buttons")
   return (
     <div className={css.catalog_filter}>
       <div className={css.filters_wrap}>
         <AccordionItem
-          title="Знижки та акції"
+          title={tCatalog("discounts_and_promotions")}
           isRounded={true}
           filterList={filtersData.discounts}
         />
         <AccordionItem
-          title="Стать"
+          title={tCatalog("gender")}
           filterList={filtersData.gender}
         />
         <AccordionItem
-          title="Бренд"
+          title={tCatalog("brand")}
           filterList={filtersData.brand}
         />
         <AccordionItem
-          title="Колекція"
+          title={tCatalog("collection")}
           filterList={filtersData.collection}
         />
         <AccordionItem
-          title="Форма оправи"
+          title={tCatalog("frame_shape")}
           filterList={filtersData.form}
         />
         <AccordionItem
-          title="Матеріал"
+          title={tCatalog("material")}
           filterList={filtersData.material}
         />
       </div>
@@ -40,14 +43,14 @@ export const CatalogFilter: React.FC = () => {
           modifier="primary"
           iconName="arrow_right"
         >
-          Показати
+          {tButtons("show_btn")}
         </Button>
         <Button
           className={css.filter_btn}
           modifier="secondary"
           iconName="icon_bin"
         >
-          Скасувати
+          {tButtons("cancel-btn")}
         </Button>
       </div>
     </div>

@@ -16,12 +16,16 @@ import { ProductCharacteristicsTab } from "./ProductCharacteristicsTab"
 import { ProductReviewsTab } from "./ProductReviewsTab"
 import { ProductPaymentTab } from "./ProductPaymentTab"
 import EyesTabSelector from "../components/eyes-selector"
+import { useTranslations } from "next-intl"
 
 interface ProductSectionProps {
   product: IProductCardProps
 }
 
 export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
+  const tProduct = useTranslations("product-page")
+  const tButtons = useTranslations("buttons")
+
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)
 
   const [selectedColor, setSelectedColor] = useState<string>(product.colors?.[0]?.id || "grey")
@@ -49,9 +53,9 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
   )
 
   const tabMap: Record<string, string> = {
-    characteristics: "Характеристики та опис",
-    reviews: "Відгуки",
-    payment: "Доставка та оплата",
+    characteristics: tProduct("specifications_description"),
+    reviews: tProduct("reviews"),
+    payment: tProduct("delivery_payment"),
   }
 
   return (
@@ -65,31 +69,39 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
             <div className={css.product_img_wrap_head}>
               <div className={css.product_labels}>
                 {product.labelTypes?.includes("novelty") && (
-                  <span className={classNames(css.label, css.novelty)}>Новинка</span>
+                  <span className={classNames(css.label, css.novelty)}>
+                    {tProduct("label-newest")}
+                  </span>
                 )}
                 {product.labelTypes?.includes("discount") && (
                   <span className={classNames(css.label, css.discount)}>-20%</span>
                 )}
                 {product.labelTypes?.includes("top-sales") && (
-                  <span className={classNames(css.label, css.top_sales)}>Топ продажів</span>
+                  <span className={classNames(css.label, css.top_sales)}>
+                    {tProduct("label-top-sales")}
+                  </span>
                 )}
               </div>
               <div className={css.product_actions}>
                 <div className={css.product_payments}>
-                  <Image
-                    className={css.payment_icon}
-                    src="/images/svg/IconPayMono.svg"
-                    width={32}
-                    height={32}
-                    alt="mono"
-                  />
-                  <Image
-                    className={css.payment_icon}
-                    src="/images/svg/IconPayPrivat.svg"
-                    width={32}
-                    height={32}
-                    alt="privat"
-                  />
+                  {product.paymentTypes?.includes("mono") && (
+                    <Image
+                      className={css.payment_icon}
+                      src="/images/svg/IconPayMono.svg"
+                      width={32}
+                      height={32}
+                      alt="mono"
+                    />
+                  )}
+                  {product.paymentTypes?.includes("privat") && (
+                    <Image
+                      className={css.payment_icon}
+                      src="/images/svg/IconPayPrivat.svg"
+                      width={32}
+                      height={32}
+                      alt="privat"
+                    />
+                  )}
                 </div>
                 <button className={css.wish_button}>
                   <Icon
@@ -168,28 +180,32 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
                 </div>
                 <div className={css.review_count}>
                   <span>10</span>
-                  <span>відгуків</span>
+                  <span>{tProduct("review_label")}</span>
                 </div>
               </div>
               <div className={css.product_code}>
-                <span>Код товару:</span> <span>{product.code}</span>
+                <span>{tProduct("code_text")}:</span> <span>{product.code}</span>
               </div>
             </div>
 
             {product.statusTypes?.includes("available") && (
-              <span className={classNames(css.product_status, css.available)}>В наявності</span>
+              <span className={classNames(css.product_status, css.available)}>
+                {tProduct("available")}
+              </span>
             )}
             {product.statusTypes?.includes("unavailable") && (
               <span className={classNames(css.product_status, css.unavailable)}>
-                Немає в наявності
+                {tProduct("unavailable")}
               </span>
             )}
             {product.statusTypes?.includes("pre-order") && (
-              <span className={classNames(css.product_status, css.pre_order)}>Передзамовлення</span>
+              <span className={classNames(css.product_status, css.pre_order)}>
+                {tProduct("pre_order")}
+              </span>
             )}
 
             <div className={css.product_color}>
-              <span>Інші кольори</span>
+              <span>{tProduct("other_colors")}</span>
               <div className={css.colors_wrap}>
                 {product.colors?.map((color) => (
                   <button
@@ -205,7 +221,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
               </div>
             </div>
 
-            <EyesTabSelector />
+            {product.isLense && <EyesTabSelector />}
 
             <Price
               className={css.product_price}
@@ -214,7 +230,8 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
             />
             <div className={css.product_bonus}>
               <span>+18</span>
-              <span>грн на бонусний рахунок</span>
+              <span>грн</span>
+              <span>{tProduct("bonus_text")}</span>
             </div>
 
             <div className={css.product_count}>
@@ -233,7 +250,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
               iconName="basket_icon"
               size="medium"
             >
-              До кошика
+              {tButtons("add-to-cart")}
             </Button>
 
             <div className={css.warning_message}>
@@ -243,10 +260,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
                 height={24}
                 alt="alert icon"
               />
-              <p>
-                Просимо звернути увагу: колір товару може відрізнятися в залежності від освітлення
-                та налаштувань Вашого екрану.
-              </p>
+              <p>{tProduct("color_disclaimer")}</p>
             </div>
           </div>
         </div>

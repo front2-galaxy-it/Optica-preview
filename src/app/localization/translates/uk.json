@@ -193,7 +193,6 @@
     "loyalty_bonus_expiry_info": "Термін дії бонусів складає 2 роки з моменту їх активації. Невикористані бонуси через два роки анулюються в хронологічному порядку, починаючи з дати першої активації."
   },
   "catalog-page": {
-    "title": "Каталог продукції",
     "catalog-filter-title": "Фільтр",
     "catalog-filter-price-title": "Ціна",
     "catalog-filter-price-placeholder-from": "Від",
@@ -244,6 +243,7 @@
       "tab-title": "Ваші персональні дані",
       "adress-label": "Адреса доставки",
       "saved-adress-label": "Збережені адреси",
+      "no-saved-adress-label": "Немає збереженних адрес.",
       "saved-adress-description": "Ми зберігаємо останні адреси доставки, які ви вказуєте при оформленні замовлення.",
       "full-name": "ПІБ",
       "full-name-recipient": "ПІБ отримувача",
@@ -288,37 +288,57 @@
     "cart_total_bonus_suffix": "бонусів"
   },
   "product": {
-    "attributes": {
-      "gender": "Стать",
-      "manufacturer": "Виробник",
-      "brand": "Бренд",
-      "frame_shape": "Форма оправи",
-      "frame_color": "Колір оправи",
-      "lens_color": "Колір лінз",
-      "frame_material": "Матеріал оправи",
-      "temple_length": "Довжина завушника",
-      "lens_width": "Розмір окуляра",
-      "bridge_width": "Розмір мостика"
-    }
+    "gender": "Стать",
+    "manufacturer": "Виробник",
+    "brand": "Бренд",
+    "frame_shape": "Форма оправи",
+    "frame_color": "Колір оправи",
+    "lens_color": "Колір лінз",
+    "frame_material": "Матеріал оправи",
+    "temple_length": "Довжина завушника",
+    "lens_width": "Розмір окуляра",
+    "bridge_width": "Розмір мостика"
   },
   "product-page": {
+    "review_label": "відгуків",
+    "code_text": "Код товару",
+    "bonus_text": "на бонусний рахунок",
+    "label-newest": "Новинка",
+    "label-top-sales": "Топ продажів",
+    "available": "В наявності",
+    "unavailable": "Немає в наявності",
+    "pre_order": "Передзамовлення",
+    "other_colors": "Інші кольори",
+    "same_eyes": "  Однакові очі",
+    "different_eyes": "Різні очі",
+    "radius": "Радіус",
+    "diopters": "Діоптрії",
+    "left_eye": "Ліве око",
+    "right_eye": "Праве око",
     "product-info-description": "Опис",
     "product-info-attributes": "Характеристики",
     "color_disclaimer": "Просимо звернути увагу: колір товару може відрізнятися в залежності від освітлення та налаштувань Вашого екрану.",
-    "tabs": {
-      "specifications_description": "Характеристики та опис",
-      "reviews": "Відгуки",
-      "delivery_payment": "Доставка та оплата",
-      "payment_methods": {
-        "cash": "Готівкою",
-        "cod": "Післяплата",
-        "visa_mastercard": "Visa/mastercard",
-        "installments": "Оплата частинами"
-      },
-      "delivery_methods": {
-        "to_nearest_branch": "До найближчого відділення.",
-        "courier_delivery": "Адресна доставка кур’єром."
-      }
+    "specifications_description": "Характеристики та опис",
+    "reviews": "Відгуки",
+    "delivery_payment": "Доставка та оплата",
+    "cash": "Готівкою",
+    "cod": "Післяплата",
+    "visa_mastercard": "Visa/mastercard",
+    "installments": "Оплата частинами",
+    "to_nearest_branch": "До найближчого відділення.",
+    "courier_delivery": "Адресна доставка кур’єром.",
+    "network_representative_response": "Відповідь представника мережі",
+    "itemLabels": {
+      "gender": "Стать",
+      "manufacturer": "Виробник",
+      "brand": "Бренд",
+      "frameShape": "Форма оправи",
+      "frameColor": "Колір оправи",
+      "lensColor": "Колір лінз",
+      "frameMaterial": "Матеріал оправи",
+      "templeLength": "Довжина завушника",
+      "lensWidth": "Розмір окуляра",
+      "bridgeWidth": "Розмір мостика"
     }
   },
   "checkout-page": {
@@ -511,6 +531,8 @@
     }
   },
   "buttons": {
+    "add-to-cart": "До кошика",
+    "show_btn": " Показати",
     "search_btn": "Пошук",
     "subscribe_btn": "Підписатися",
     "details_btn": "Детальніше",
@@ -629,6 +651,7 @@
     "blog": "Блог",
     "no-categories": "Немає доступних категорій",
     "category-label": "Категорії",
+    "filter-label": "Фільтр",
     "author-label": "Автори статей",
     "cart": "Кошик"
   },
@@ -650,7 +673,13 @@
     "category": "Категорії",
     "cart": "Товари у кошику",
     "checkout": "Оформлення замовлення",
-    "profile": "Персональні дані"
+    "profile": "Персональні данні",
+    "personal-profile": "Особистий профіль",
+    "reset_password": "Зміна паролю",
+    "user_orders": "Мої замовлення",
+    "user_favorites": "Обрані товари",
+    "user_bonuses": "Мої бонуси",
+    "catalog": "Каталог продукції"
   },
   "footer": {
     "col-title-1": "Про нас",
@@ -761,6 +790,11 @@
     "register": "Реєстрація",
     "cart": "Кошик",
     "checkout": "Оформлення замовлення",
-    "thanks": "Дякуємо"
+    "thanks": "Дякуємо",
+    "personal_data": "Персональні данні",
+    "reset_password": "Зміна паролю",
+    "user_orders": "Мої замовлення",
+    "user_favorites": "Обрані товари",
+    "user_bonuses": "Мої бонуси"
   }
 }

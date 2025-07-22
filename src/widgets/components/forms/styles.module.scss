@@ -1,0 +1,26 @@
+.profile_data {
+  &_title {
+    @include adaptive-value("margin-bottom", 32, 16, 1);
+  }
+
+  &_form {
+    @include adaptive-value("margin-bottom", 32, 16, 1);
+  }
+
+  &_input_wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px 12px;
+    @include adaptive-value("margin-bottom", 32, 16, 1);
+  }
+
+  &_input {
+    width: 49%;
+    margin: 0;
+
+    @include media-down(md) {
+      width: 100%;
+    }
+  }
+}

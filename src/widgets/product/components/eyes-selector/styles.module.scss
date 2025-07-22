@@ -2,8 +2,7 @@
   background-color: var(--blueF0);
   padding: 16px;
   border-radius: 8px;
-  max-width: 400px;
-  width: 100%;
+  width: max-content;
   @include adaptive-value("margin-bottom", 24, 16, 1);
 }
 

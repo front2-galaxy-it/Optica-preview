@@ -19,7 +19,10 @@ export const BlogPageSection: React.FC<IBlogListingSectionProps> = ({
   articlesList,
 }) => {
   return (
-    <section className={css.blog_section}>
+    <section
+      className={css.blog_section}
+      id="blog-section"
+    >
       <div className="container">
         <div className={css.blog_section_content}>
           <BlogPageNavigation

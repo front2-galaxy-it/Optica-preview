@@ -89,7 +89,7 @@ export const Header: React.FC = () => {
 
   const { isLoggedIn } = useAuth()
 
-  const profileLink = isLoggedIn ? ClientRoutes.profile.path : ClientRoutes.register.path
+  const profileLink = isLoggedIn ? ClientRoutes.personal_data.path : ClientRoutes.register.path
 
   const categoriesMenuRef = useRef<HTMLDivElement>(null)
 
@@ -130,6 +130,7 @@ export const Header: React.FC = () => {
     <header
       ref={headerRef}
       className={css.header}
+      id="header"
     >
       <Promo />
       <div className="container">
@@ -202,7 +203,7 @@ export const Header: React.FC = () => {
                   className={css.action_icons}
                 />
               </button>
-              <RootLink href={`${ClientRoutes.profile.path}?tab=selected`}>
+              <RootLink href={`${ClientRoutes.personal_data.path}`}>
                 <Icon
                   name="wish_icon"
                   className={css.action_icons}

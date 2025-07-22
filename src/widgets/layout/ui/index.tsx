@@ -13,7 +13,12 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
     <AuthProvider>
       <div className={css.wrapper}>
         <Header />
-        <main className={css.content}>{children}</main>
+        <main
+          className={css.content}
+          id="main"
+        >
+          {children}
+        </main>
         <Footer />
         <LangPopup />
         <DevMenu />

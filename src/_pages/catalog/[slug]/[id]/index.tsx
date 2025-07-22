@@ -5,16 +5,23 @@ import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
 import { TopSalesSection } from "@/widgets/top-sales"
-import categoryData from "@/shared/data/categories-list.json"
+import CategoryList from "@/shared/data/categories-list.json"
 import productsData from "@/shared/data/products.json"
-import { ICateroriesLink, IProductCardProps, LabelType, StatusType } from "@/shared/types"
+import {
+  ICateroriesLink,
+  IProductCardProps,
+  LabelType,
+  StatusType,
+  PaymentType,
+} from "@/shared/types"
 import { ProductSection } from "@/widgets/product"
+import { useTranslations } from "next-intl"
 
-const categoryDataList: ICateroriesLink[] = categoryData.categories_list
 const productsDataList: IProductCardProps[] = productsData.products.map((product) => ({
   ...product,
   labelTypes: product.labelTypes as LabelType[],
   statusTypes: product.statusTypes as StatusType[],
+  paymentTypes: product.paymentTypes as PaymentType[],
   images:
     product.images && typeof product.images === "object" && !Array.isArray(product.images)
       ? product.images
@@ -28,6 +35,12 @@ export function ProductPage({
 }: IHomePageProps & { params: { slug: string; locale: string; id: string } }) {
   const { locale, slug, id } = params
   unstable_setRequestLocale(locale)
+  const tCategories = useTranslations("categories_list")
+
+  const categoryDataList: ICateroriesLink[] = CategoryList.categories_list.map((item) => ({
+    ...item,
+    label: tCategories(item.label),
+  }))
 
   const category = categoryDataList.find((cat) => cat.categorySlug === slug)
   const product = productsDataList.find((p) => p.id.toString() === id)

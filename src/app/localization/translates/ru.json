@@ -188,17 +188,16 @@
     "loyalty_bonus_expiry_info": "Срок действия бонусов составляет 2 года с момента их активации. Невостребованные бонусы аннулируются через два года в хронологическом порядке, начиная с даты первой активации."
   },
   "catalog-page": {
-    "title": "Каталог продукції",
-    "catalog-filter-title": "Фільтр",
-    "catalog-filter-price-title": "Ціна",
-    "catalog-filter-price-placeholder-from": "Від",
+    "catalog-filter-title": "Фильтр",
+    "catalog-filter-price-title": "Цена",
+    "catalog-filter-price-placeholder-from": "От",
     "catalog-filter-price-placeholder-to": "До",
-    "discounts_and_promotions": "Знижки та акції",
-    "gender": "Стать",
+    "discounts_and_promotions": "Скидки и акции",
+    "gender": "Пол",
     "brand": "Бренд",
-    "collection": "Колекція",
-    "frame_shape": "Форма оправи",
-    "material": "Матеріал"
+    "collection": "Коллекция",
+    "frame_shape": "Форма оправы",
+    "material": "Материал"
   },
   "career-page": {
     "label": "Карьера",
@@ -283,37 +282,57 @@
     "cart_total_bonus_suffix": "бонусов"
   },
   "product": {
-    "attributes": {
-      "gender": "Стать",
-      "manufacturer": "Виробник",
-      "brand": "Бренд",
-      "frame_shape": "Форма оправи",
-      "frame_color": "Колір оправи",
-      "lens_color": "Колір лінз",
-      "frame_material": "Матеріал оправи",
-      "temple_length": "Довжина завушника",
-      "lens_width": "Розмір окуляра",
-      "bridge_width": "Розмір мостика"
-    }
+    "gender": "Стать",
+    "manufacturer": "Виробник",
+    "brand": "Бренд",
+    "frame_shape": "Форма оправи",
+    "frame_color": "Колір оправи",
+    "lens_color": "Колір лінз",
+    "frame_material": "Матеріал оправи",
+    "temple_length": "Довжина завушника",
+    "lens_width": "Розмір окуляра",
+    "bridge_width": "Розмір мостика"
   },
   "product-page": {
-    "product-info-description": "Опис",
+    "review_label": "отзывов",
+    "code_text": "Код товара",
+    "bonus_text": "на бонусный счёт",
+    "label-newest": "Новинка",
+    "label-top-sales": "Хит продаж",
+    "available": "В наличии",
+    "unavailable": "Нет в наличии",
+    "pre_order": "Предзаказ",
+    "other_colors": "Другие цвета",
+    "same_eyes": "Одинаковые глаза",
+    "different_eyes": "Разные глаза",
+    "radius": "Радиус",
+    "diopters": "Диоптрии",
+    "left_eye": "Левый глаз",
+    "right_eye": "Правый глаз",
+    "product-info-description": "Описание",
     "product-info-attributes": "Характеристики",
-    "color_disclaimer": "Просимо звернути увагу: колір товару може відрізнятися в залежності від освітлення та налаштувань Вашого екрану.",
-    "tabs": {
-      "specifications_description": "Характеристики та опис",
-      "reviews": "Відгуки",
-      "delivery_payment": "Доставка та оплата",
-      "payment_methods": {
-        "cash": "Готівкою",
-        "cod": "Післяплата",
-        "visa_mastercard": "Visa/mastercard",
-        "installments": "Оплата частинами"
-      },
-      "delivery_methods": {
-        "to_nearest_branch": "До найближчого відділення.",
-        "courier_delivery": "Адресна доставка кур’єром."
-      }
+    "color_disclaimer": "Обратите внимание: цвет товара может отличаться в зависимости от освещения и настроек вашего экрана.",
+    "specifications_description": "Характеристики и описание",
+    "reviews": "Отзывы",
+    "delivery_payment": "Доставка и оплата",
+    "cash": "Наличными",
+    "cod": "Оплата при получении",
+    "visa_mastercard": "Visa/Mastercard",
+    "installments": "Оплата частями",
+    "to_nearest_branch": "До ближайшего отделения",
+    "courier_delivery": "Адресная доставка курьером",
+    "network_representative_response": "Ответ представителя сети",
+    "itemLabels": {
+      "gender": "Пол",
+      "manufacturer": "Производитель",
+      "brand": "Бренд",
+      "frameShape": "Форма оправы",
+      "frameColor": "Цвет оправы",
+      "lensColor": "Цвет линз",
+      "frameMaterial": "Материал оправы",
+      "templeLength": "Длина дужки",
+      "lensWidth": "Размер линзы",
+      "bridgeWidth": "Размер моста"
     }
   },
   "checkout-page": {
@@ -506,6 +525,8 @@
     }
   },
   "buttons": {
+    "add-to-cart": "В корзину",
+    "show_btn": " Показать",
     "search_btn": "Поиск",
     "subscribe_btn": "Подписаться",
     "details_btn": "Подробнее",
@@ -624,6 +645,7 @@
     "blog": "Блог",
     "no-categories": "Нет доступных категорий",
     "category-label": "Категории",
+    "filter-label": "Фильтр",
     "author-label": "Авторы статей",
     "cart": "Корзина"
   },
@@ -645,7 +667,13 @@
     "category": "Категории",
     "cart": "Товары в корзине",
     "checkout": "Оформление заказа",
-    "profile": "Персональные данные"
+    "profile": "Персональные данные",
+    "personal-profile": "Личный профиль",
+    "reset_password": "Смена пароля",
+    "user_orders": "Мои заказы",
+    "user_favorites": "Избранные товары",
+    "user_bonuses": "Мои бонусы",
+    "catalog": "Каталог продукции"
   },
   "footer": {
     "col-title-1": "О нас",
@@ -751,11 +779,16 @@
     "loyalty_program": "Программа лояльности",
     "career": "Карьера",
     "blog": "Блог",
-    "profile": "Личный профиль",
+    "profile": "Персональные данные",
     "authorization": "Авторизация",
     "register": "Регистрация",
     "cart": "Корзина",
     "checkout": "Оформление заказа",
-    "thanks": "Спасибо"
+    "thanks": "Спасибо",
+    "personal_data": "Персональные данные",
+    "reset_password": "Смена пароля",
+    "user_orders": "Мои заказы",
+    "user_favorites": "Избранные товары",
+    "user_bonuses": "Мои бонусы"
   }
 }

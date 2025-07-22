@@ -1,0 +1,21 @@
+.profile_section {
+  @include adaptive-value("padding-bottom", 120, 40, 1);
+
+  &_content {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px 12px;
+
+    @include media-down(lg) {
+      flex-direction: column;
+    }
+  }
+
+  &_blocks {
+    width: 70%;
+
+    @include media-down(lg) {
+      width: 100%;
+    }
+  }
+}

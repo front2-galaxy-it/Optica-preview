@@ -1,4 +1,4 @@
-// "use client"
+"use client"
 
 import css from "./styles.module.scss"
 import classNames from "classnames"
@@ -12,141 +12,110 @@ interface IPaginationProps
   isVisible: boolean
 }
 
+type Pagination = {
+  prev: number | null
+  next: number | null
+  pageNumbers: string[]
+}
+
 export const CustomPagination: React.FC<IPaginationProps> = ({ className, meta, isVisible }) => {
   const { setParam, removeParam } = useQueryParams()
 
-  const scrollAction = () => {
-    const listingSection = document.querySelector(".blog_section")
-    const header = document.querySelector("header")
-    if (listingSection && header) {
-      const headerOffset = (header as HTMLElement).offsetHeight
-      const elementPosition = listingSection.getBoundingClientRect().top + window.scrollY
-      let offsetPosition
-      if (headerOffset) {
-        offsetPosition = elementPosition - headerOffset + 1
-      } else {
-        offsetPosition = elementPosition
-      }
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      })
-    }
+  const extractPageNumber = (url: string | null): number | null => {
+    if (!url) return null
+    const match = url.match(/page=(\d+)/)
+    return match ? Number(match[1]) : null
   }
 
-  // Always call the hook
-  const pagination = useMemo(() => (meta ? getPagination(meta) : null), [meta])
+  const buildPagination = React.useCallback((meta: any): Pagination => {
+    const prev = extractPageNumber(
+      meta.links.find((l: any) => l.label === "pagination.previous")?.url,
+    )
+    const next = extractPageNumber(meta.links.find((l: any) => l.label === "pagination.next")?.url)
 
-  const onPaginationButtonClickHandle = (number: string | null): void => {
-    if (number === null) {
-      return
-    }
+    const pageNumbers = meta.links
+      .filter((link: any) => !["pagination.previous", "pagination.next"].includes(link.label))
+      .map((link: any) => link.label)
 
-    if (number === "1") {
+    return { prev, next, pageNumbers }
+  }, [])
+
+  const onPaginationButtonClickHandle = (page: number | string | null) => {
+    if (!page || page === "...") return
+
+    const pageNum = Number(page)
+
+    if (pageNum === 1) {
       removeParam("page", "")
-      scrollAction()
-      return
+    } else {
+      setParam("page", pageNum.toString())
     }
 
-    setParam("page", number)
-    scrollAction()
+    const headerElement = document.getElementById("main")
+    if (headerElement) {
+      headerElement.scrollIntoView({ behavior: "smooth" })
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
   }
 
-  if (!meta || !pagination) return null
+  const pagination = useMemo(() => buildPagination(meta), [meta, buildPagination])
 
-  return pagination.pageNumbers.length <= 1 || !isVisible ? null : (
+  if (pagination.pageNumbers.length <= 1 || !isVisible) return null
+
+  return (
     <div className={classNames(css.pagination, className)}>
-      <div className={css.pagination}>
-        <button
-          type={"button"}
-          className={classNames(css.nav_button, {})}
-          aria-label={"Previously page, current is: " + meta.current_page}
-          onClick={() => onPaginationButtonClickHandle(pagination.prev)}
-        >
-          <Icon
-            name="icon_arrow_bc"
-            className={css.prev_icon}
-          />
-        </button>
-        <div className={css.paginations_pages}>
-          {pagination.pageNumbers.map((number: string) => {
-            const isActive = meta.current_page.toString() === number
-            const isDisabled = number === "..."
+      <button
+        type="button"
+        className={classNames(css.nav_button, {
+          [css.disabled]: pagination.prev === null,
+        })}
+        aria-label={`Previous page, current is: ${meta.current_page}`}
+        onClick={() => onPaginationButtonClickHandle(pagination.prev)}
+        disabled={pagination.prev === null}
+      >
+        <Icon
+          name="icon_arrow_bc"
+          className={css.prev_icon}
+        />
+      </button>
 
-            return (
-              <button
-                key={number + "-pagination"}
-                className={classNames(css.nav_button, {
-                  [css.current_page]: isActive,
-                  [css.disabled]: isDisabled,
-                })}
-                aria-label={"Change page to: " + number}
-                onClick={() => onPaginationButtonClickHandle(number)}
-                disabled={isDisabled}
-              >
-                {number}
-              </button>
-            )
-          })}
-        </div>
-        {pagination.next !== null && (
-          <button
-            type={"button"}
-            className={css.nav_button}
-            aria-label={"Next page, current is: " + meta.current_page}
-            onClick={() => onPaginationButtonClickHandle(pagination.next)}
-          >
-            <Icon
-              name="icon_arrow_bc"
-              className={css.next_icon}
-            />
-          </button>
-        )}
+      <div className={css.paginations_pages}>
+        {pagination.pageNumbers.map((number) => {
+          const isActive = meta.current_page.toString() === number
+          const isDisabled = number === "..."
+
+          return (
+            <button
+              key={`${number}-pagination`}
+              className={classNames(css.nav_button, {
+                [css.current_page]: isActive,
+                [css.disabled]: isDisabled,
+              })}
+              aria-label={`Change page to: ${number}`}
+              onClick={() => onPaginationButtonClickHandle(number)}
+              disabled={isDisabled}
+            >
+              {number}
+            </button>
+          )
+        })}
       </div>
+
+      <button
+        type="button"
+        className={classNames(css.nav_button, {
+          [css.disabled]: pagination.next === null,
+        })}
+        aria-label={`Next page, current is: ${meta.current_page}`}
+        onClick={() => onPaginationButtonClickHandle(pagination.next)}
+        disabled={pagination.next === null}
+      >
+        <Icon
+          name="icon_arrow_bc"
+          className={css.next_icon}
+        />
+      </button>
     </div>
   )
-}
-
-function getPagination(meta: any) {
-  if (!meta) {
-    return null
-  }
-
-  const { last_page: lastPage, current_page: currentPage } = meta
-  const result = []
-  const minNum = 1
-  const prevPage = currentPage - 1
-  const nextPage = currentPage + 1
-  result.push(minNum.toString())
-
-  if (prevPage - 1 > minNum && prevPage < lastPage) {
-    result.push("...")
-  }
-
-  if (prevPage > minNum && prevPage < currentPage) {
-    result.push(prevPage.toString())
-  }
-
-  if (minNum !== currentPage) {
-    result.push(currentPage.toString())
-  }
-
-  if (nextPage < lastPage && nextPage > minNum) {
-    result.push(nextPage.toString())
-  }
-
-  if (nextPage + 1 < lastPage && nextPage > minNum) {
-    result.push("...")
-  }
-
-  if (currentPage !== lastPage) {
-    result.push(lastPage.toString())
-  }
-
-  return {
-    prev: currentPage > minNum ? prevPage.toString() : null,
-    pageNumbers: result,
-    next: currentPage < lastPage ? nextPage.toString() : null,
-  }
 }

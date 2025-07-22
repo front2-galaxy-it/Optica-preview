@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react"
 import Slider from "rc-slider"
 import css from "./styles.module.scss"
-
+import { useTranslations } from "next-intl"
 interface PriceRangeFilterProps {
   min: number
   max: number
@@ -17,6 +17,7 @@ export const PriceRangeFilter: React.FC<PriceRangeFilterProps> = ({
   value,
   onChange,
 }) => {
+  const tCatalog = useTranslations("catalog-page")
   const [sliderValue, setSliderValue] = useState(value)
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export const PriceRangeFilter: React.FC<PriceRangeFilterProps> = ({
 
   return (
     <div className={css.price_filter}>
-      <h4 className={css.title}>Ціна</h4>
+      <h4 className={css.title}>{tCatalog("catalog-filter-price-title")}</h4>
       <div className={css.price_values}>
         <input
           type="number"

@@ -1,9 +1,9 @@
 import { RootService } from "./root.service"
 
 class Blog extends RootService {
-  // async getAllCategories(options?: AxiosRequestConfig) {
-  //   return this.http.get("/blog-categories", options)
-  // }
+  async getAllCategories(options?: RequestInit) {
+    return this.request<any>("/blog-categories", options)
+  }
   // async getCategory(slug: string, options?: AxiosRequestConfig) {
   //   return this.http.get("/blog-categories/" + slug + "/?with_popular=2", options)
   // }

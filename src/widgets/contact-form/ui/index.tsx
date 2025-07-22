@@ -53,7 +53,7 @@ export const FormSection: React.FC<IFormSectionProps> = ({ module }) => {
                 register={register("name", {
                   required: {
                     value: true,
-                    message: tFormName("required"),
+                    message: tFormName("error"),
                   },
                 })}
                 error={errors.name?.message}
@@ -66,7 +66,7 @@ export const FormSection: React.FC<IFormSectionProps> = ({ module }) => {
                 register={register("surname", {
                   required: {
                     value: true,
-                    message: tFormSurname("required"),
+                    message: tFormSurname("error"),
                   },
                 })}
                 error={errors.name?.message}

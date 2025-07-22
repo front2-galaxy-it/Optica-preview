@@ -5,31 +5,45 @@ import css from "./styles.module.scss"
 import { CategoriesList } from "../components/categories-list"
 import { ProductList } from "../components/product-list"
 // import { CustomPagination } from "@/shared/ui"
-import { IProductCardProps, LabelType, StatusType, ICateroriesLink } from "@/shared/types"
+import {
+  IProductCardProps,
+  LabelType,
+  StatusType,
+  ICateroriesLink,
+  PaymentType,
+} from "@/shared/types"
 import productData from "@/shared/data/products.json"
-import categoryData from "@/shared/data/categories-list.json"
-import { FilterList } from "../components/filter-list"
+// import categoryData from "@/shared/data/categories-list.json"
 import { PriceRangeFilter } from "../components/price-filter-range"
+import CategoryList from "@/shared/data/categories-list.json"
 import { CatalogFilter } from "../components/catalog-filter"
 import { Icon } from "@/shared/ui/icons"
 import classNames from "classnames"
 import { Certificate } from "../components/certificate"
-
+import { useTranslations } from "next-intl"
 interface CatalogSectionProps {
   slug: string
 }
-
-const categoryDataList: ICateroriesLink[] = categoryData.categories_list
 
 const productDataList: IProductCardProps[] = productData.products.map((product) => ({
   ...product,
   labelTypes: product.labelTypes as LabelType[],
   statusTypes: product.statusTypes as StatusType[],
+  paymentTypes: product.paymentTypes as PaymentType[],
 }))
 
 const itemsPerPage = 15
 
 export const CatalogSection: React.FC<CatalogSectionProps> = ({ slug }) => {
+  const tCategories = useTranslations("categories_list")
+  const tButtons = useTranslations("buttons")
+  const tCommon = useTranslations("common")
+
+  const categoryDataList: ICateroriesLink[] = CategoryList.categories_list.map((label) => ({
+    ...label,
+    label: tCategories(label.label),
+  }))
+
   const [currentPage] = useState(1)
   const [openFilterModal, isOpenFilterModal] = useState(false)
   const [openCategoryModal, isOpenCategoryModal] = useState(false)
@@ -84,7 +98,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({ slug }) => {
                   name="icon_category"
                   className={css.icon_category}
                 />
-                <strong>Категорії</strong>
+                <strong>{tCommon("category-label")}</strong>
               </button>
               <button
                 className={css.mobile_button}
@@ -94,7 +108,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({ slug }) => {
                   name="icon_filter"
                   className={css.icon_filter}
                 />
-                <strong>Фільтр</strong>
+                <strong>{tCommon("filter-label")}</strong>
               </button>
             </div>
           )}
@@ -120,7 +134,13 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({ slug }) => {
                   <span></span>
                   <span></span>
                 </button>
-                <FilterList />
+                <div className={css.filter_list_head}>
+                  <Icon
+                    name="icon_filter"
+                    className={css.icon_filter}
+                  />
+                  <strong>{tCommon("filter-label")}</strong>
+                </div>
                 <PriceRangeFilter
                   min={minPriceValue}
                   max={maxPriceValue}
@@ -134,10 +154,10 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({ slug }) => {
           <div className={css.catalog_content}>
             {!isSertyfikaty && !isAkcii && (
               <div className={css.sort_filter}>
-                <button className={css.active}>За популярністю</button>
-                <button>Спочатку дешевші</button>
-                <button>Спочатку дорожші</button>
-                <button>За новизною</button>
+                <button className={css.active}>{tButtons("by_popularity")}</button>
+                <button>{tButtons("price_asc")}</button>
+                <button>{tButtons("price_desc")}</button>
+                <button>{tButtons("by_newest")}</button>
               </div>
             )}
             {isSertyfikaty ? (

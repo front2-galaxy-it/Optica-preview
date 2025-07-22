@@ -15,10 +15,13 @@ export interface IProductCardProps {
   statusTypes: StatusType[]
   colors: IProductColor[]
   itemList: IProductDescriptionItem[]
+  paymentTypes?: PaymentType[]
   description?: string
   size?: CardSize
+  isLense?: boolean
 }
 
+export type PaymentType = "mono" | "privat"
 export type LabelType = "novelty" | "discount" | "top-sales"
 export type StatusType = "available" | "unavailable" | "pre-order"
 

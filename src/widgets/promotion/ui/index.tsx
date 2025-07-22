@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react"
 import css from "./styles.module.scss"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import classNames from "classnames"
-import { IProductCardProps, LabelType, StatusType } from "@/shared/types"
+import { IProductCardProps, LabelType, StatusType, PaymentType } from "@/shared/types"
 import productsData from "@/shared/data/products.json"
 import { ProductTab } from "@/shared/ui/modules/product-card/components/product-tab"
 import { SliderButton } from "@/shared/ui/buttons"
@@ -16,6 +16,7 @@ const productsDataList: IProductCardProps[] = productsData.products.map((product
   ...product,
   labelTypes: product.labelTypes as LabelType[],
   statusTypes: product.statusTypes as StatusType[],
+  paymentTypes: product.paymentTypes as PaymentType[],
 }))
 
 const uniqueCategories = Array.from(

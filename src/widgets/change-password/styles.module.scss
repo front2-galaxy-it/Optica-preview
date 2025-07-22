@@ -1,0 +1,10 @@
+.password_change {
+  &_title {
+    @include adaptive-value("margin-bottom", 32, 16, 1);
+  }
+
+  &_form {
+    max-width: 420px;
+    width: 100%;
+  }
+}

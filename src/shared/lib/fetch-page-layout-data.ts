@@ -48,4 +48,9 @@ export interface IFetchPageProps {
     | "login"
     | "register"
     | "cart"
+    | "useraccount"
+    | "resetpassword"
+    | "userorders"
+    | "userfavorites"
+    | "userbonuses"
 }

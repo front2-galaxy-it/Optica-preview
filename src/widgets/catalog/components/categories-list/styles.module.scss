@@ -35,6 +35,12 @@
     font-size: 24px;
     color: var(--gray);
   }
+
+  .category_title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 }
 
 .link {

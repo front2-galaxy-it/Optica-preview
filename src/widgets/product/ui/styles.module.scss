@@ -195,6 +195,18 @@
   &_status {
     display: inline-block;
     @include adaptive-value("margin-bottom", 24, 16, 1);
+
+    &.available {
+      color: var(--green)
+    }
+
+    &.unavailable {
+      color: var(--red)
+    }
+
+    &.pre_order {
+      color: var(--gray4E)
+    }
   }
 
   &_color {
@@ -242,14 +254,11 @@
     @include adaptive-value("margin-bottom", 24, 16, 1);
 
     span {
+      color: var(--gray4E);
       @include adaptive-value("font-size", 16, 12, 1);
 
       &:nth-child(1) {
         color: var(--blue-primary);
-      }
-
-      &:nth-child(2) {
-        color: var(--gray4E);
       }
     }
   }
