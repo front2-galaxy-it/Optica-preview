@@ -1,0 +1,49 @@
+[
+  {
+    "slug": "tetyana-shevchenko",
+    "label": "Тетяна Шевченко",
+    "position": "Офтальмолог, експерт з догляду за зоровим апаратом"
+  },
+  {
+    "slug": "iryna-smirnova",
+    "label": "Ірина Смирнова",
+    "position": "Консультант з підбору оптики, офтальмолог",
+    "image": "/images/author/author_img.png"
+  },
+  {
+    "slug": "anastasiya-koval",
+    "label": "Анастасія Коваль",
+    "position": "Cтиліст та консультант з моди",
+    "image": "/images/author/author_img.png"
+  },
+  {
+    "slug": "maksym-boiko",
+    "label": "Максим Бойко",
+    "position": "Інженер, фахівець з оптичних технологій",
+    "image": "/images/author/author_img.png"
+  },
+  {
+    "slug": "olha-pavlenko",
+    "label": "Ольга Павленко",
+    "position": "Оптик-оптометрист",
+    "image": "/images/author/author_img.png"
+  },
+  {
+    "slug": "sergii-dovzhenko",
+    "label": "Сергій Довженко",
+    "position": "Хірург-офтальмолог",
+    "image": "/images/author/author_img.png"
+  },
+  {
+    "slug": "viktoriya-levchenko",
+    "label": "Вікторія Левченко",
+    "position": "Спеціаліст з дитячої офтальмології",
+    "image": "/images/author/author_img.png"
+  },
+  {
+    "slug": "dmytro-kovalchuk",
+    "label": "Дмитро Ковальчук",
+    "position": "Фахівець з екології та стійких технологій",
+    "image": "/images/author/author_img.png"
+  }
+]

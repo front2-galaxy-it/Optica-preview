@@ -1,0 +1,76 @@
+.choose_section {
+  @include adaptive-value("padding-top", 120, 60, 1);
+  @include adaptive-value("padding-bottom", 120, 60, 1);
+  background-color: var(--blueF0);
+
+  &_title {
+    @include adaptive-value("margin-bottom", 32, 24, 1);
+  }
+
+  &_text {
+    @include adaptive-value("font-size", 18, 14, 1);
+    max-width: 634px;
+    width: 100%;
+    @include adaptive-value("margin-bottom", 16, 8, 1);
+  }
+
+  &_content {
+    position: relative;
+  }
+
+  .content_block_wrap {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr;
+    column-gap: 12px;
+    @include adaptive-value("row-gap", 12, 4, 1);
+  }
+
+  .central_banner {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--blueF0);
+    border-radius: 8px;
+    @include adaptive-value("width", 420, 117, 1);
+    @include adaptive-value("height", 279, 160, 1);
+    @include adaptive-value("padding-top", 16, 12, 1);
+    @include adaptive-value("padding-bottom", 16, 12, 1);
+    @include adaptive-value("padding-left", 16, 12, 1);
+    @include adaptive-value("padding-right", 16, 12, 1);
+    text-align: center;
+
+    .banner_img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .content_block {
+    max-width: 634px;
+    @include adaptive-value("height", 400, 216, 1);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+
+    &:nth-child(4) {
+      .block_img {
+        transform: scaleX(-1);
+      }
+    }
+  }
+
+  .block_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

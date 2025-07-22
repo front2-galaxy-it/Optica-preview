@@ -1,0 +1,59 @@
+.buttons_list_wrap {
+  max-width: 1310px;
+  width: 100%;
+  padding: 0 16px;
+  margin: 0 auto;
+  overflow: auto;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: rgba(255, 255, 255, 0);
+  }
+
+  scrollbar-width: none;
+}
+
+.buttons_list {
+  display: flex;
+  align-items: center;
+  @include adaptive-value("gap", 40, 24, 1);
+  @include adaptive-value("padding-top", 26, 13, 1);
+  @include adaptive-value("padding-bottom", 16, 8, 1);
+  @include adaptive-value("padding-right", 66, 16, 1);
+  @include adaptive-value("padding-left", 66, 16, 1);
+  background-color: var(--blueF0);
+  border-radius: 8px;
+  min-width: max-content;
+
+  .button {
+    @include adaptive-value("font-size", 18, 14, 1);
+    color: var(--gray4E);
+    font-weight: 600;
+    padding-bottom: 8px;
+    position: relative;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      width: 0;
+      background-color: var(--blue-primary);
+      transition: all 0.3s ease;
+    }
+
+    &.active {
+      color: var(--blue-primary);
+      transition: all 0.3s ease;
+
+      &::before {
+        width: 100%;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+}

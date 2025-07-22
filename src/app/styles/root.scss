@@ -1,0 +1,17 @@
+:root {
+  // === Colors variables
+  @each $color, $value in $colors {
+    --#{$color}: #{$value};
+  }
+
+  // === Topography variables
+  --ff-primary: "Roboto", sans-serif;
+  --font-size: 16px;
+
+  // === Theming variables
+  --bg-primary: var(--white);
+  --text-color-primary: var(--black);
+
+  // === JS Controlling variables
+  --header-height: 7.5rem;
+}

@@ -1,0 +1,79 @@
+.form_wrap {
+  @include adaptive-value("padding-top", 160, 15, 1);
+  @include adaptive-value("padding-bottom", 120, 60, 1);
+  max-width: 635px;
+  width: 100%;
+  text-align: center;
+}
+
+.form_title {
+  @include adaptive-value("font-size", 20, 18, 1);
+  color: var(--gray4E);
+  @include adaptive-value("margin-bottom", 32, 16, 1);
+
+  p {
+    display: inline;
+  }
+
+  .link {
+    font-weight: 700;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--blue-primary);
+      transition: color 0.3s ease;
+    }
+  }
+}
+
+.checkbox {
+  align-items: center !important;
+  @include adaptive-value("margin-bottom", 24, 18, 1);
+}
+
+.submit_btn {
+  @include media-down(sm) {
+    width: 100%;
+  }
+}
+
+.spacer {
+  display: block;
+  color: var(--gray4E);
+  @include adaptive-value("font-size", 20, 18, 1);
+  @include adaptive-value("margin-top", 32, 16, 1);
+  @include adaptive-value("margin-bottom", 24, 8, 1);
+}
+
+.form_btn_wrap {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  @include adaptive-value("margin-bottom", 32, 16, 1);
+
+  @include media-down(sm) {
+    flex-direction: column;
+  }
+}
+
+.auth_btn_social {
+  width: 100%;
+  justify-content: space-between;
+
+  @include media-down(sm) {
+    justify-content: center;
+  }
+}
+
+.reset {
+  @include adaptive-value("font-size", 18, 14, 1);
+  color: var(--gray4E);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--blue-primary);
+    transition: color 0.3s ease;
+  }
+}

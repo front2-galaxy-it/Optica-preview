@@ -1,0 +1,58 @@
+.link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray4E);
+  @include adaptive-value("font-size", 20, 18, 1);
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s;
+  width: max-content;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--blue-primary);
+    transition: all 0.3s;
+  }
+
+  .button_icon {
+    @include adaptive-value("width", 14, 10, 1);
+    @include adaptive-value("height", 12, 8, 1);
+  }
+
+  &:hover {
+    color: var(--blue-primary);
+    transition: all 0.3s;
+
+    &::before {
+      width: 100%;
+      transition: all 0.3s;
+    }
+  }
+
+  &:focus {
+    color: var(--blue-primary);
+
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &:active {
+    color: var(--blue-primary);
+
+    &::before {
+      width: 0;
+      transition: all 0.3s;
+    }
+  }
+
+  &:disabled {
+    color: var(--grayD0);
+  }
+}

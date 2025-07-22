@@ -1,0 +1,110 @@
+.form_field {
+  width: 100%;
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid var(--gray8C);
+  background-color: transparent;
+  transition: all 0.3s ease;
+  margin-bottom: 16px;
+
+  &._white {
+    .form_field_input_placeholder {
+      &::before {
+        background-color: var(--white);
+      }
+    }
+  }
+
+  &._gray {
+    .form_field_input_placeholder {
+      &::before {
+        background-color: var(--blueF0);
+      }
+    }
+  }
+
+  &:hover {
+    transition: all 0.3s ease;
+    border-color: var(--blue-primary);
+  }
+
+  &._focused {
+    border-color: var(--blue-primary);
+    transition: all 0.3s ease;
+
+    .form_field_input_placeholder {
+      top: -12px;
+      left: 32px;
+      transition: all 0.3s ease;
+      padding: 0 8px;
+      color: var(--blue-primary);
+    }
+  }
+
+  &._filled {
+    border-color: var(--blue-primary);
+    transition: all 0.3s ease;
+
+    .form_field_input_placeholder {
+      top: -12px;
+      left: 32px;
+      transition: all 0.3s ease;
+      padding: 0 8px;
+      color: var(--blue-primary);
+    }
+  }
+}
+
+._invalid {
+  border-color: var(--red);
+
+  .form_field_input_placeholder {
+    color: var(--red);
+  }
+
+  .error_icon {
+    transition: all 0.3s ease;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.form_field_input_placeholder {
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: var(--grayB8);
+  font-size: 16px;
+  pointer-events: none;
+  z-index: 2;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 3px;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+  }
+}
+
+.error_icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  right: 12px;
+  transition: all 0.3s ease;
+}
+
+.form_field_textarea {
+  border-radius: 8px;
+  width: 100%;
+  height: 120px;
+  border: none;
+  background-color: transparent;
+  padding: 12px;
+  font-size: 16px;
+  color: var(--blue-primary);
+}

@@ -1,0 +1,12 @@
+.delivery_section {
+  padding: 40px 0;
+}
+
+.tab_text {
+  font-size: 18px;
+  margin-bottom: 8px;
+
+  &:last-of-type {
+    @include adaptive-value("margin-bottom", 40, 16, 1);
+  }
+}

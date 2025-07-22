@@ -1,0 +1,64 @@
+.profile_data {
+  &_title {
+    @include adaptive-value("margin-bottom", 32, 16, 1);
+  }
+
+  .address_edit_btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    @include adaptive-value("margin-bottom", 32, 16, 1);
+
+    &.open {
+      .open_status {
+        &::before {
+          animation: scaleOut 0.1s linear forwards;
+          transition: all 0.3s ease;
+        }
+      }
+    }
+
+    .profile_data_title {
+      margin: 0;
+    }
+  }
+
+  .open_status {
+    position: relative;
+    width: 14px;
+    height: 14px;
+
+    .bar {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background-color: var(--gray62);
+      border-radius: 10px;
+      transform: translate(-50%, -50%);
+    }
+
+    .bar:first-child {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    .bar:last-child {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  &_address_tip {
+    color: var(--gray4E);
+    @include adaptive-value("font-size", 16, 12, 1);
+    padding: 10px;
+    background-color: var(--blueF0);
+    border-radius: 4px;
+  }
+
+  .value_without_address {
+    @include adaptive-value("margin-bottom", 32, 16, 1);
+    color: var(--gray4E);
+    @include adaptive-value("font-size", 18, 14, 1);
+  }
+}

@@ -1,0 +1,85 @@
+.eyes_selector {
+  background-color: var(--blueF0);
+  padding: 16px;
+  border-radius: 8px;
+  width: max-content;
+  @include adaptive-value("margin-bottom", 24, 16, 1);
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 16px;
+}
+
+.tabButton {
+  padding-bottom: 4px;
+  font-weight: 700;
+  color: var(--gray4E);
+  @include adaptive-value("font-size", 16, 12, 1);
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+
+  &.tabActive {
+    color: var(--blue-primary);
+    border-color: var(--blue-primary);
+    transition: all 0.3s ease;
+  }
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @include media-down(xs) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+}
+
+.controlGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  @include adaptive-value("font-size", 14, 12, 1);
+  color: var(--gray4E);
+}
+
+.select {
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.differentEyes {
+  flex-direction: column;
+  align-items: flex-start;
+
+  .controlGroup_wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    @include media-down(xs) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+.eyeLabel {
+  @include adaptive-value("font-size", 16, 14, 1);
+  color: var(--blue-primary);
+}

@@ -1,0 +1,74 @@
+.top_sales_section {
+  @include adaptive-value("padding-top", 50, 25, 1);
+  @include adaptive-value("padding-bottom", 120, 60, 1);
+
+  &_head {
+    @include adaptive-value("margin-bottom", 48, 24, 1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    @include media-down(sm) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .slider_buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .tab_buttons {
+    display: flex;
+    align-items: center;
+    @include adaptive-value("gap", 48, 28, 1);
+    overflow: auto;
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .button {
+    white-space: nowrap;
+    @include adaptive-value("font-size", 20, 18, 1);
+    font-weight: 600;
+    color: var(--gray4E);
+    position: relative;
+    transition: all 0.3s ease;
+    padding-bottom: 8px;
+    @include adaptive-value("margin-bottom", 32, 18, 1);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%) scale(0);
+      width: 100%;
+      height: 2px;
+      background-color: var(--blue-primary);
+      transition: all 0.3s ease;
+    }
+
+    &.active {
+      color: var(--blue-primary);
+      transition: all 0.3s ease;
+
+      &::before {
+        transform: translateX(-50%) scale(1);
+        transition: all 0.3s ease;
+      }
+    }
+  }
+}
+
+.top_sales_section_content {
+  max-width: 1322px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}

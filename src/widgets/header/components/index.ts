@@ -1,0 +1,6 @@
+export { HeaderCatalog } from "./catalog"
+export { LanguageDropdown } from "./lang-switcher"
+export { BurgerMenu } from "./burger"
+export { Promo } from "./promo"
+export { MobileMenu } from "./mobile-menu"
+export { Categories } from "./categories-list"

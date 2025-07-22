@@ -1,0 +1,189 @@
+.career_section {
+  @include adaptive-value("padding-bottom", 120, 60, 1);
+
+  &_content {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr;
+    gap: 12px;
+    justify-items: center;
+    @include adaptive-value("margin-bottom", 27, 16, 1);
+
+    @include media-down(lg) {
+      grid-template: 1fr / 1fr;
+    }
+
+    p {
+      @include adaptive-value("font-size", 18, 14, 1);
+      @include adaptive-value("margin-bottom", 24, 16, 1);
+    }
+
+    b {
+      display: block;
+      color: var(--gray4E);
+      @include adaptive-value("font-size", 20, 18, 1);
+      @include adaptive-value("margin-bottom", 16, 8, 1);
+    }
+
+    strong {
+      display: block;
+      color: var(--gray4E);
+      @include adaptive-value("font-size", 18, 14, 1);
+      margin-bottom: 4px;
+    }
+  }
+
+  &_img {
+    max-width: 634px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .upload_wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    @include media-down(sm) {
+      justify-content: center;
+    }
+  }
+
+  .career_btn {
+    @include media-down(sm) {
+      width: 100%;
+    }
+  }
+
+  .file_info,
+  .error_message {
+    color: var(--gray4E);
+    @include adaptive-value("font-size", 18, 14, 1);
+  }
+
+  .hidden_input {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+
+  .buttons_list_wrap {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: auto;
+
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: rgba(255, 255, 255, 0);
+    }
+
+    scrollbar-width: none;
+  }
+
+  .buttons_list {
+    display: flex;
+    align-items: center;
+    @include adaptive-value("gap", 40, 24, 1);
+    @include adaptive-value("padding-top", 26, 13, 1);
+    @include adaptive-value("padding-bottom", 16, 8, 1);
+    @include adaptive-value("padding-right", 66, 16, 1);
+    @include adaptive-value("padding-left", 66, 16, 1);
+    background-color: var(--blueF0);
+    border-radius: 8px;
+    min-width: max-content;
+
+    .button {
+      @include adaptive-value("font-size", 18, 14, 1);
+      color: var(--gray4E);
+      font-weight: 600;
+      padding-bottom: 8px;
+      position: relative;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 2px;
+        width: 0;
+        background-color: var(--blue-primary);
+        transition: all 0.3s ease;
+      }
+
+      &.active {
+        color: var(--blue-primary);
+        transition: all 0.3s ease;
+
+        &::before {
+          width: 100%;
+          transition: all 0.3s ease;
+        }
+      }
+    }
+  }
+
+  .tab_wrapper {
+    @include adaptive-value("padding-top", 40, 16, 1);
+  }
+
+  .tab_wrapper_title {
+    color: var(--gray);
+    @include adaptive-value("margin-bottom", 32, 16, 1);
+  }
+
+  .tab_content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px 25px;
+
+    @include media-down(md) {
+      flex-direction: column;
+    }
+  }
+
+  .tab_title {
+    color: var(--blue-primary);
+  }
+
+  .vacancy_description {
+    max-width: 957px;
+    width: 100%;
+
+    p {
+      @include adaptive-value("font-size", 18, 14, 1);
+      @include adaptive-value("margin-bottom", 24, 16, 1);
+    }
+
+    strong {
+      display: block;
+      color: var(--gray4E);
+      @include adaptive-value("font-size", 18, 14, 1);
+      @include adaptive-value("margin-bottom", 16, 4, 1);
+    }
+
+    ul {
+      @include adaptive-value("margin-bottom", 24, 8, 1);
+      padding-left: 20px;
+    }
+
+    li {
+      list-style: outside;
+      line-height: 150%;
+      color: var(--gray62);
+      @include adaptive-value("font-size", 18, 14, 1);
+
+      &:not(:last-child) {
+        margin-bottom: 6px;
+      }
+    }
+  }
+}

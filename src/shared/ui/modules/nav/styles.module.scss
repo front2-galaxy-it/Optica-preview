@@ -1,0 +1,40 @@
+.nav_menu {
+  @include media-down(lg) {
+    display: none;
+  }
+}
+
+.nav_list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  @include adaptive-value("gap", 24, 16, 1);
+
+  @include media-down(lg) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+}
+
+.nav_link {
+  font-size: 14px;
+  color: var(--gray4E);
+  white-space: nowrap;
+
+  transition: all 0.3s ease;
+
+  &._special_green {
+    color: var(--green) !important;
+  }
+
+  &._special_red {
+    color: var(--red) !important;
+  }
+
+  &:hover {
+    color: var(--blue-primary);
+    transition: all 0.3s ease;
+  }
+}

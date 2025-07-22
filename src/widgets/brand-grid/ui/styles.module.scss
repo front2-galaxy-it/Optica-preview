@@ -1,0 +1,33 @@
+.brand_section {
+  padding: 25px 0;
+
+  &_content {
+    display: grid;
+    grid-template: 1fr / repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+
+    @include media-down(sm) {
+      grid-template: 1fr / repeat(auto-fit, minmax(160px, 1fr));
+    }
+  }
+
+  &_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--blueF0);
+    border-radius: 8px;
+    padding: 23px 10px;
+    height: 150px;
+    text-align: center;
+
+    @include media-down(sm) {
+      height: auto;
+    }
+  }
+
+  .brand_name {
+    @include adaptive-value("font-size", 20, 18, 1);
+    color: var(--gray4E);
+  }
+}

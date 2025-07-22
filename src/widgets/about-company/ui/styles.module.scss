@@ -1,0 +1,46 @@
+.about_us_section {
+  @include adaptive-value("padding-top", 40, 16, 1);
+  @include adaptive-value("padding-bottom", 120, 60, 1);
+}
+
+.about_us_content {
+  display: grid;
+  grid-template: 1fr/ 12px auto auto;
+  @include adaptive-value("gap", 40, 16, 1);
+
+  @include media-down(lg) {
+    grid-template: 1fr / auto auto;
+  }
+
+  @include media-down(md) {
+    grid-template: 1fr/ 1fr;
+    justify-items: center;
+  }
+
+  &_line {
+    @include media-down(lg) {
+      display: none;
+    }
+  }
+
+  &_text_wrap {
+    max-width: 582px;
+    width: 100%;
+  }
+
+  &_text {
+    @include adaptive-value("font-size", 18, 14, 1);
+
+    &:not(:last-of-type) {
+      @include adaptive-value("margin-bottom", 19, 8, 1);
+    }
+  }
+
+  &_img {
+    object-fit: cover;
+
+    @include media-down(md) {
+      height: auto;
+    }
+  }
+}
