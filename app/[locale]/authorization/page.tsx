@@ -1,1 +1,2 @@
-export { AuthorizationPage as default } from "@/_pages/authorization"
+export const dynamic = process.env.NEXT_DYNAMIC === "true" ? "force-dynamic" : "auto"
+export { AuthorizationPage as default, generateMetadata } from "@/_pages/authorization"

@@ -7,6 +7,7 @@ import { ButtonLink } from "@/shared/ui/links"
 import classNames from "classnames"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination } from "swiper/modules"
+import { useTranslations } from "next-intl"
 
 const swiperSettings = {
   className: css.hero_swiper,
@@ -19,6 +20,8 @@ const swiperSettings = {
 }
 
 export const Hero: React.FC = () => {
+  const tHero = useTranslations("hero-section")
+  const tButtons = useTranslations("buttons")
   return (
     <section className={css.hero}>
       <Swiper
@@ -40,27 +43,23 @@ export const Hero: React.FC = () => {
             <div className={classNames(css.hero_container, "container")}>
               <div className={css.hero_content}>
                 <SectionTip
-                  label="Акція"
+                  label={tHero("label")}
                   className={css.hero_tip}
                 />
-                <h1 className={css.hero_title}>Знижка -20%</h1>
-                <p className={css.hero_text}>
-                  Даруємо знижку на всі моделі жіночих окулярів! Тільки зараз, купуючи стильні та
-                  якісні окуляри, ви зможете заощадити до 20% на будь-яку модель з нашого
-                  асортименту!
-                </p>
+                <h1 className={css.hero_title}>{tHero("discount")}</h1>
+                <p className={css.hero_text}>{tHero("thanks_text")}</p>
                 <time
                   className={css.date_duration}
                   dateTime="2025-04-14/2025-04-21"
                 >
-                  14–21 квітня
+                  14–21 {tHero("date_text")}
                 </time>
                 <ButtonLink
                   modifier="primary"
                   iconName="arrow_right"
                   className={css.hero_link}
                 >
-                  Акційні пропозиції
+                  {tButtons("special_offers")}
                 </ButtonLink>
               </div>
             </div>
@@ -81,27 +80,23 @@ export const Hero: React.FC = () => {
             <div className={classNames(css.hero_container, "container")}>
               <div className={css.hero_content}>
                 <SectionTip
-                  label="Акція"
+                  label={tHero("label")}
                   className={css.hero_tip}
                 />
-                <h1 className={css.hero_title}>Знижка -20%</h1>
-                <p className={css.hero_text}>
-                  Даруємо знижку на всі моделі жіночих окулярів! Тільки зараз, купуючи стильні та
-                  якісні окуляри, ви зможете заощадити до 20% на будь-яку модель з нашого
-                  асортименту!
-                </p>
+                <h1 className={css.hero_title}>{tHero("discount")}</h1>
+                <p className={css.hero_text}>{tHero("thanks_text")}</p>
                 <time
                   className={css.date_duration}
                   dateTime="2025-04-14/2025-04-21"
                 >
-                  14–21 квітня
+                  14–21 {tHero("date_text")}
                 </time>
                 <ButtonLink
                   modifier="primary"
                   iconName="arrow_right"
                   className={css.hero_link}
                 >
-                  Акційні пропозиції
+                  {tButtons("special_offers")}
                 </ButtonLink>
               </div>
             </div>
@@ -122,27 +117,23 @@ export const Hero: React.FC = () => {
             <div className={classNames(css.hero_container, "container")}>
               <div className={css.hero_content}>
                 <SectionTip
-                  label="Акція"
+                  label={tHero("label")}
                   className={css.hero_tip}
                 />
-                <h1 className={css.hero_title}>Знижка -20%</h1>
-                <p className={css.hero_text}>
-                  Даруємо знижку на всі моделі жіночих окулярів! Тільки зараз, купуючи стильні та
-                  якісні окуляри, ви зможете заощадити до 20% на будь-яку модель з нашого
-                  асортименту!
-                </p>
+                <h1 className={css.hero_title}>{tHero("discount")}</h1>
+                <p className={css.hero_text}>{tHero("thanks_text")}</p>
                 <time
                   className={css.date_duration}
                   dateTime="2025-04-14/2025-04-21"
                 >
-                  14–21 квітня
+                  14–21 {tHero("date_text")}
                 </time>
                 <ButtonLink
                   modifier="primary"
                   iconName="arrow_right"
                   className={css.hero_link}
                 >
-                  Акційні пропозиції
+                  {tButtons("special_offers")}
                 </ButtonLink>
               </div>
             </div>

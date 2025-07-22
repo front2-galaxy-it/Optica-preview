@@ -53,4 +53,5 @@ export interface IFetchPageProps {
     | "userorders"
     | "userfavorites"
     | "userbonuses"
+    | "checkout"
 }

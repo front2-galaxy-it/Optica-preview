@@ -10,6 +10,7 @@ import { useTranslations } from "next-intl"
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ arr, className, color, ...props }) => {
   const t = useTranslations("breadcrumbs")
+  console.log(arr)
   return (
     <div className={css.breadcrumbs_wrap}>
       <div className="container">

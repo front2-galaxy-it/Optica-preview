@@ -7,6 +7,7 @@ import css from "./styles.module.scss"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination } from "swiper/modules"
 import { Swiper as SwiperType } from "swiper"
+import { useTranslations } from "next-intl"
 
 interface ProductTabProps {
   categorySlug: string
@@ -15,9 +16,11 @@ interface ProductTabProps {
 
 export const ProductTab = forwardRef<SwiperType, ProductTabProps>(
   ({ categorySlug, productList }, ref) => {
+    const tCommon = useTranslations("common")
+
     const filteredProducts = productList.filter((product) => product.categorySlug === categorySlug)
     if (filteredProducts.length === 0) {
-      return <div>Немає продуктів у цій категорії.</div>
+      return <div>{tCommon("no-products")}</div>
     }
 
     return (

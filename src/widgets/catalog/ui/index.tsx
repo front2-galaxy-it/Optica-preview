@@ -164,8 +164,8 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({ slug }) => {
               <Certificate />
             ) : isAkcii ? (
               <div className={css.special_content}>
-                <h2>Акції</h2>
-                <p>Перелік поточних акцій, знижок або промо-пропозицій.</p>
+                <h2>{tCommon("promotion_label")}</h2>
+                <p>{tCommon("promotion_text")}</p>
               </div>
             ) : filteredProducts.length > 0 ? (
               <ProductList

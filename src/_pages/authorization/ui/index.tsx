@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server"
+import { unstable_setRequestLocale, getTranslations } from "next-intl/server"
 
 import { IHomePageProps } from "./props"
 import { ClientRoutes } from "@/shared/routes"
@@ -17,6 +17,8 @@ const getLoginPageData = async ({ locale }: { locale: string }) => {
 
 export async function AuthorizationPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
+
+  const tLabels = await getTranslations("page-labels")
 
   const loginPageData = await getLoginPageData({ locale })
   if (!loginPageData) notFound()
@@ -42,8 +44,8 @@ export async function AuthorizationPage({ params: { locale } }: IHomePageProps) 
         ]}
       />
       <PageInfo
-        label={ClientRoutes.authorization.nameKey}
-        title={ClientRoutes.profile.nameKey}
+        label={tLabels("authorization")}
+        title={tLabels("personal-profile")}
       />
       <AuthorizationSection />
       <ModulesSwitch modules={modules} />

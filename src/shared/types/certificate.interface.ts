@@ -1,5 +1,5 @@
 export interface ICertificateProps {
   price: number
-  available: string
+  available: boolean
   image: string
 }

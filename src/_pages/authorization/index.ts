@@ -1,1 +1,1 @@
-export { AuthorizationPage } from "./ui"
+export { AuthorizationPage, generateMetadata } from "./ui"

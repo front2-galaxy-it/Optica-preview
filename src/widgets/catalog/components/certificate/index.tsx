@@ -3,27 +3,24 @@ import css from "./styles.module.scss"
 import { CertificateList } from "./CertificateList"
 import { ICertificateProps } from "@/shared/types"
 import certificateData from "@/shared/data/certificate-list.json"
+import { useTranslations } from "next-intl"
 
 const certificateDataList: ICertificateProps[] = certificateData
 
 export const Certificate: React.FC = () => {
+  const tCertificate = useTranslations("certificate")
   return (
     <div className={css.certificate}>
       <div className={css.certificate_text}>
-        <h5 className={css.certificate_title}>Подарунок з турботою про зір близьких</h5>
-        <p>
-          Шукаєте ідеальний подарунок для близьких? Подарунковий сертифікат від нашого магазину — це
-          чудова можливість подарувати свободу вибору стильних окулярів!
-        </p>
-        <strong>Як це працює?</strong>
+        <h5 className={css.certificate_title}>{tCertificate("title")}</h5>
+        <p>{tCertificate("paragraph1")}</p>
+        <strong>{tCertificate("how_it_works")}</strong>
         <ul>
-          <li>Виберіть суму сертифікату.</li>
-          <li>Отримайте електронну версію сертифікату на свою пошту.</li>
-          <li>
-            Подаруйте сертифікат і дайте можливість отримати якісні окуляри на будь-який смак.
-          </li>
+          <li>{tCertificate("step1")}</li>
+          <li>{tCertificate("step2")}</li>
+          <li>{tCertificate("step3")}</li>
         </ul>
-        <p>Зробіть подарунок, який не потребує обміну!</p>
+        <p>{tCertificate("paragraph2")}</p>
       </div>
       <CertificateList certificateList={certificateDataList} />
     </div>

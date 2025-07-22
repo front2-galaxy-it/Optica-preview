@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server"
+import { unstable_setRequestLocale, getTranslations } from "next-intl/server"
 
 import { IHomePageProps } from "./props"
 import { ClientRoutes } from "@/shared/routes"
@@ -17,6 +17,8 @@ const getRegisterPageData = async ({ locale }: { locale: string }) => {
 
 export async function RegisterPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
+
+  const tLabels = await getTranslations("page-labels")
 
   const registerPageData = await getRegisterPageData({ locale })
   if (!registerPageData) notFound()
@@ -42,8 +44,8 @@ export async function RegisterPage({ params: { locale } }: IHomePageProps) {
         ]}
       />
       <PageInfo
-        label={ClientRoutes.register.nameKey}
-        title={ClientRoutes.profile.nameKey}
+        label={tLabels("register")}
+        title={tLabels("personal-profile")}
       />
       <RegisterSection />
       <ModulesSwitch modules={modules} />

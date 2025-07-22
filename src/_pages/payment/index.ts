@@ -1,1 +1,1 @@
-export { PaymentPage } from "./ui"
+export { PaymentPage, generateMetadata } from "./ui"

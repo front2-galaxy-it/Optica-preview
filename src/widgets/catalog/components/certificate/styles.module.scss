@@ -48,6 +48,7 @@
 .certificate_list_item {
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
   gap: 12px;
   background-color: var(--blueF0);
   border-radius: 8px;
@@ -97,7 +98,7 @@
 }
 
 .certificate_list_img {
-  max-width: 525px;
+  max-width: 505px;
   width: 66%;
   height: auto;
 
@@ -108,8 +109,6 @@
 }
 
 .certificate_list_text {
-  max-width: 280px;
-  width: 33%;
 
   @include media-down(md) {
     max-width: 100%;
@@ -150,8 +149,15 @@
   justify-content: space-between;
   gap: 15px;
 
-  .available {
+  span {
     font-size: 12px;
+  }
+
+  .available {
     color: var(--green);
+  }
+
+  .unavailable {
+    color: var(--red);
   }
 }

@@ -1,22 +1,22 @@
 [
   {
     "price": 500,
-    "available": "В наявності",
+    "available": false,
     "image": "/images/certificate/certificate_img_1.png"
   },
   {
     "price": 1000,
-    "available": "В наявності",
+    "available": true,
     "image": "/images/certificate/certificate_img_2.png"
   },
   {
     "price": 2000,
-    "available": "В наявності",
+    "available": true,
     "image": "/images/certificate/certificate_img_3.png"
   },
   {
     "price": 5000,
-    "available": "В наявності",
+    "available": true,
     "image": "/images/certificate/certificate_img_4.png"
   }
 ]

@@ -4,13 +4,21 @@ import React, { useState, useRef } from "react"
 import css from "./styles.module.scss"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import classNames from "classnames"
-import { IProductCardProps, LabelType, StatusType, PaymentType } from "@/shared/types"
+import {
+  IProductCardProps,
+  LabelType,
+  StatusType,
+  PaymentType,
+  ICateroriesLink,
+} from "@/shared/types"
 import productsData from "@/shared/data/products.json"
 import { ProductTab } from "@/shared/ui/modules/product-card/components/product-tab"
 import { SliderButton } from "@/shared/ui/buttons"
 import { Swiper as SwiperType } from "swiper"
 import { AnimatePresence, motion } from "framer-motion"
 import { useTranslations } from "next-intl"
+
+import CategoryList from "@/shared/data/categories-list.json"
 
 const productsDataList: IProductCardProps[] = productsData.products.map((product) => ({
   ...product,
@@ -19,23 +27,25 @@ const productsDataList: IProductCardProps[] = productsData.products.map((product
   paymentTypes: product.paymentTypes as PaymentType[],
 }))
 
-const uniqueCategories = Array.from(
-  new Map(productsDataList.map((p) => [p.categorySlug, p.categoryName])).entries(),
-).slice(0, 3)
-
-const tabs = uniqueCategories.map(([slug, name], index) => ({
-  id: `tab${index + 1}`,
-  label: name,
-  categorySlug: slug,
-}))
-
 export const TopSalesSection: React.FC = () => {
+  const tCategories = useTranslations("categories_list")
   const tSales = useTranslations("top-sales-section")
 
-  const [activeTab, setActiveTab] = useState(tabs[0].id)
-  const activeTabData = tabs.find((tab) => tab.id === activeTab)
-
   const swiperRef = useRef<SwiperType | null>(null)
+
+  const categoryDataList: ICateroriesLink[] = CategoryList.categories_list.map((item) => ({
+    ...item,
+    label: tCategories(item.label),
+  }))
+
+  const [activeTab, setActiveTab] = useState(categoryDataList[0]?.categorySlug || "")
+  const tabs = categoryDataList.slice(0, 3).map((item) => ({
+    id: item.categorySlug,
+    label: item.label,
+    categorySlug: item.categorySlug,
+  }))
+
+  const activeTabData = tabs.find((tab) => tab.id === activeTab)
 
   return (
     <section className={css.top_sales_section}>

@@ -1,1 +1,2 @@
-export { CheckoutPage as default } from "@/_pages/checkout"
+export const dynamic = process.env.NEXT_DYNAMIC === "true" ? "force-dynamic" : "auto"
+export { CheckoutPage as default, generateMetadata } from "@/_pages/checkout"

@@ -4,7 +4,7 @@ import React from "react"
 import { RootLink } from "@/shared/ui"
 import css from "./styles.module.scss"
 import { IInfoButtonsProps } from "@/shared/types"
-import { usePathname } from "next/navigation"
+import { usePathname, useParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 
 interface InfoButtonsListProps {
@@ -12,13 +12,17 @@ interface InfoButtonsListProps {
 }
 
 export const ButtonsList: React.FC<InfoButtonsListProps> = ({ items }) => {
-  const pathname = usePathname()
   const tNavButtons = useTranslations("nav_buttons")
+
+  const pathname = usePathname()
+  const params = useParams()
+
+  const pathWithoutLocale = pathname.replace(`/${params.locale}`, "")
   return (
     <div className={css.buttons_list_wrap}>
       <div className={css.buttons_list}>
         {items.map(({ labelKey, href }) => {
-          const isActive = pathname.startsWith(href)
+          const isActive = pathWithoutLocale === href
 
           return (
             <RootLink

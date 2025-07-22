@@ -11,6 +11,7 @@ import { IProductCardProps } from "@/shared/types/product-card.interface"
 import { Price } from "../price"
 import { RootLink } from "../../links"
 import { ClientRoutes } from "@/shared/routes"
+import { useTranslations } from "next-intl"
 
 export const ProductCard: React.FC<IProductCardProps> = ({
   className,
@@ -18,6 +19,7 @@ export const ProductCard: React.FC<IProductCardProps> = ({
   categoryName,
   image_url,
   labelTypes,
+  paymentTypes,
   statusTypes,
   price,
   oldPrice,
@@ -27,6 +29,8 @@ export const ProductCard: React.FC<IProductCardProps> = ({
   id,
   size = "big",
 }) => {
+  const tProduct = useTranslations("product-page")
+  const tButtons = useTranslations("buttons")
   return (
     <div
       className={classNames(css.product_card, className, {
@@ -38,31 +42,37 @@ export const ProductCard: React.FC<IProductCardProps> = ({
       <div className={css.card_head}>
         <div className={css.card_labels}>
           {labelTypes?.includes("novelty") && (
-            <span className={classNames(css.label, css.novelty)}>Новинка</span>
+            <span className={classNames(css.label, css.novelty)}>{tProduct("label-newest")}</span>
           )}
           {labelTypes?.includes("discount") && (
             <span className={classNames(css.label, css.discount)}>-20%</span>
           )}
           {labelTypes?.includes("top-sales") && (
-            <span className={classNames(css.label, css.top_sales)}>Топ продажів</span>
+            <span className={classNames(css.label, css.top_sales)}>
+              {tProduct("label-top-sales")}
+            </span>
           )}
         </div>
         <div className={css.card_actions}>
           <div className={css.card_payments}>
-            <Image
-              className={css.payment_icon}
-              src="/images/svg/IconPayMono.svg"
-              width={32}
-              height={32}
-              alt="mono"
-            />
-            <Image
-              className={css.payment_icon}
-              src="/images/svg/IconPayPrivat.svg"
-              width={32}
-              height={32}
-              alt="privat"
-            />
+            {paymentTypes?.includes("mono") && (
+              <Image
+                className={css.payment_icon}
+                src="/images/svg/IconPayMono.svg"
+                width={32}
+                height={32}
+                alt="mono"
+              />
+            )}
+            {paymentTypes?.includes("privat") && (
+              <Image
+                className={css.payment_icon}
+                src="/images/svg/IconPayPrivat.svg"
+                width={32}
+                height={32}
+                alt="privat"
+              />
+            )}
           </div>
           <div className={css.action_btns}>
             <button className={css.wish_button}>
@@ -103,20 +113,26 @@ export const ProductCard: React.FC<IProductCardProps> = ({
       />
       <div className={css.card_footer}>
         {statusTypes?.includes("available") && (
-          <span className={classNames(css.product_status, css.available)}>В наявності</span>
+          <span className={classNames(css.product_status, css.available)}>
+            {tProduct("available")}
+          </span>
         )}
         {statusTypes?.includes("unavailable") && (
-          <span className={classNames(css.product_status, css.unavailable)}>Немає в наявності</span>
+          <span className={classNames(css.product_status, css.unavailable)}>
+            {tProduct("unavailable")}
+          </span>
         )}
         {statusTypes?.includes("pre-order") && (
-          <span className={classNames(css.product_status, css.pre_order)}>Передзамовлення</span>
+          <span className={classNames(css.product_status, css.pre_order)}>
+            {tProduct("pre_order")}
+          </span>
         )}
         <Button
           modifier="primary"
           className={classNames(css.card_btn, basketButtonClass)}
           iconName="basket_icon"
         >
-          До кошика
+          {tButtons("add-to-cart")}
         </Button>
       </div>
     </div>
