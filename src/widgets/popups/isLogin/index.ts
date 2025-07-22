@@ -1,1 +1,0 @@
-export { IsLogin } from "./ui"

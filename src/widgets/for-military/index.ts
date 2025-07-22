@@ -1,1 +1,0 @@
-export { ForMilitarySection } from "./ui"

@@ -1,1 +1,0 @@
-export { UserFavoritesSection } from "./ui"

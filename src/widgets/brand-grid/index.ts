@@ -1,1 +1,0 @@
-export { BrandGrid } from "./ui"

@@ -1,1 +1,0 @@
-export { BlogCategoryPage } from "./ui"

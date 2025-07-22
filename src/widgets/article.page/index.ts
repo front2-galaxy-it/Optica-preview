@@ -1,1 +1,0 @@
-export { ArticlePageSection } from "./ui"
