@@ -197,15 +197,15 @@
     @include adaptive-value("margin-bottom", 24, 16, 1);
 
     &.available {
-      color: var(--green)
+      color: var(--green);
     }
 
     &.unavailable {
-      color: var(--red)
+      color: var(--red);
     }
 
     &.pre_order {
-      color: var(--gray4E)
+      color: var(--gray4E);
     }
   }
 

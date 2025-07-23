@@ -5,7 +5,7 @@ import css from "./styles.module.scss"
 import blogCardData from "@/shared/data/blog-card-list.json"
 import categoryData from "@/shared/data/blog-categories-list.json"
 import { BlogCard } from "@/shared/ui"
-import { BlogPageNavigation } from "@/shared/components/blog-navigation"
+// import { BlogPageNavigation } from "@/shared/components/blog-navigation"
 import { IBlogCardProps, IBlogCateroriesLink } from "@/shared/types"
 import { AnimatePresence, motion } from "framer-motion"
 
@@ -31,10 +31,10 @@ export const BlogCategoryPage: React.FC<BlogCategoryPageProps> = ({ slug }) => {
     <section className={css.blog_section}>
       <div className="container">
         <div className={css.blog_section_content}>
-          <BlogPageNavigation
+          {/* <BlogPageNavigation
             activeCategorySlug={slug}
             activeAuthorSlug={slug}
-          />
+          /> */}
           <div className={css.blog_section_articels}>
             <AnimatePresence mode="wait">
               <motion.div

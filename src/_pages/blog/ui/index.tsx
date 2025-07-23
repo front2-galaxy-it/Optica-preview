@@ -25,11 +25,14 @@ const getBlogPageData = async ({ locale }: { locale: string }) => {
 
   try {
     const blogArticlesList = await BlogService.getArticlesList("", options)
+    const blogCategoriesList = await BlogService.getCategory("", options)
 
+    const blogCategories = blogCategoriesList.data || null
     const blogArticles = blogArticlesList.data || null
     const blogArticlesMeta = blogArticlesList.meta || null
 
     return {
+      blogCategories,
       blogArticles,
       blogArticlesMeta,
     }
@@ -39,10 +42,8 @@ const getBlogPageData = async ({ locale }: { locale: string }) => {
   }
 }
 
-export async function BlogPage({
-  params,
-}: IHomePageProps & { params: { slug: string; locale: string } }) {
-  const { locale, slug } = params
+export async function BlogPage({ params }: IHomePageProps) {
+  const { locale } = params
   unstable_setRequestLocale(locale)
 
   const tLabels = await getTranslations("page-labels")
@@ -56,7 +57,6 @@ export async function BlogPage({
   const {
     layout: { modules },
   } = blogLayout
-
   return (
     <>
       <Breadcrumbs
@@ -69,8 +69,8 @@ export async function BlogPage({
         title={tLabels("blog")}
       />
       <BlogPageSection
+        categoriesList={blogData.blogCategories}
         meta={blogData.blogArticlesMeta}
-        slug={slug}
         articlesList={blogData.blogArticles}
       />
       <ModulesSwitch modules={modules} />

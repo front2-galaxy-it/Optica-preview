@@ -11,7 +11,8 @@ interface BlogCardProps {
 }
 
 export const BlogCard: React.FC<BlogCardProps> = ({ className, cardData }) => {
-  const { title, human_date, posted_date, image, category, short_description, author } = cardData
+  const { title, human_date, posted_date, image, category, short_description, author, slug } =
+    cardData
 
   return (
     <div className={classNames(css.blog_card, className)}>
@@ -34,7 +35,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ className, cardData }) => {
           {human_date}
         </time>
       </div>
-      <DefaultLink href={ClientRoutes.article(cardData.slug)}>Читати</DefaultLink>
+      <DefaultLink href={ClientRoutes.article(slug ? slug : "#")}>Читати</DefaultLink>
     </div>
   )
 }

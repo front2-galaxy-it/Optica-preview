@@ -664,6 +664,7 @@
     "gift_certificate_part-2": "грн"
   },
   "common": {
+    "article_author":"Автор статті",
     "rating-product-text": "Оцінити товар",
     "rating": "Оцінка",
     "company-name": "Оптики Добрих Цін",

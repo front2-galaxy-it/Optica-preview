@@ -7,7 +7,7 @@ import blogCardData from "@/shared/data/blog-card-list.json"
 import authorData from "@/shared/data/author-list.json"
 import { IBlogCardProps, IBlogAuthorLink } from "@/shared/types"
 import { motion, AnimatePresence } from "framer-motion"
-import { BlogPageNavigation } from "@/shared/components/blog-navigation"
+// import { BlogPageNavigation } from "@/shared/components/blog-navigation"
 import { SectionTip } from "@/shared/ui/modules/section-tip"
 import Image from "next/image"
 import { ClientRoutes } from "@/shared/routes"
@@ -34,10 +34,10 @@ export const AuthorPageSection: React.FC<AuthorPageSectionProps> = ({ slug }) =>
     <section className={css.blog_section}>
       <div className="container">
         <div className={css.blog_section_content}>
-          <BlogPageNavigation
+          {/* <BlogPageNavigation
             activeCategorySlug={slug}
             activeAuthorSlug={slug}
-          />
+          /> */}
           <div className={css.blog_section_articels}>
             <div className={css.blog_section_personal}>
               <div className={css.personal_text}>

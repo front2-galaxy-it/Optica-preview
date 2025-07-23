@@ -8,14 +8,14 @@ import { BlogPageNavigation } from "@/shared/components/blog-navigation"
 
 interface IBlogListingSectionProps
   extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  categoriesList: any
   articlesList: any
   meta: any
-  slug: string
 }
 
 export const BlogPageSection: React.FC<IBlogListingSectionProps> = ({
-  slug,
   meta,
+  categoriesList,
   articlesList,
 }) => {
   return (
@@ -26,8 +26,8 @@ export const BlogPageSection: React.FC<IBlogListingSectionProps> = ({
       <div className="container">
         <div className={css.blog_section_content}>
           <BlogPageNavigation
-            activeCategorySlug={slug}
-            activeAuthorSlug={slug}
+            categoriesList={categoriesList}
+            articlesList={articlesList}
           />
           <div className={css.blog_section_articels}>
             <AnimatePresence mode="wait">

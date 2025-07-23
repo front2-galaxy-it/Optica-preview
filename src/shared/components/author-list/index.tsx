@@ -2,7 +2,6 @@
 
 import React from "react"
 import css from "./styles.module.scss"
-import { IBlogAuthorLink, IBlogCardProps } from "@/shared/types"
 import { RootLink } from "@/shared/ui"
 import classNames from "classnames"
 import { Icon } from "@/shared/ui/icons"
@@ -11,37 +10,29 @@ import { useTranslations } from "next-intl"
 
 interface AuthorListProps {
   className?: string
-  authorList: IBlogAuthorLink[]
-  articleList: IBlogCardProps[]
-  activeAuthorSlug?: string
+  authorList: any
+  // activeAuthorSlug?: string
 }
 
 export const AuthorList: React.FC<AuthorListProps> = ({
   authorList,
   className,
-  articleList,
-  activeAuthorSlug,
+  // articleList,
+  // activeAuthorSlug,
 }) => {
   const tCommon = useTranslations("common")
-
-  const filteredAuthors = authorList.filter((author) =>
-    articleList.some((article) => article.authorSlug === author.slug),
-  )
-
   return (
     <div className={classNames(css.author_list_wrap, className)}>
       <h6 className={css.author_list_title}>{tCommon("author-label")}</h6>
       <ul className={css.author_list}>
-        {filteredAuthors.map((author, index) => (
+        {authorList.map((author: any, index: number) => (
           <li
             key={index}
             className={css.author_item}
           >
             <RootLink
               href={ClientRoutes.author(author.slug)}
-              className={classNames(css.item_link, {
-                [css.active]: activeAuthorSlug === author.slug,
-              })}
+              className={css.item_link}
             >
               <div className={css.author_info_wrap}>
                 <Icon

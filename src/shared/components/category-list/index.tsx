@@ -2,60 +2,56 @@
 
 import React from "react"
 import css from "./styles.module.scss"
-import { IBlogCateroriesLink, IBlogCardProps } from "@/shared/types"
+
 import { RootLink } from "@/shared/ui"
 import classNames from "classnames"
 import { Icon } from "@/shared/ui/icons"
 import { ClientRoutes } from "@/shared/routes"
 import { useTranslations } from "next-intl"
+import { usePathname } from "next/navigation"
 
 interface CategoryListProps {
   className?: string
-  categoryList: IBlogCateroriesLink[]
-  articleList: IBlogCardProps[]
-  activeCategorySlug?: string
+  articlesListSlug: any
 }
 
-export const CategoryList: React.FC<CategoryListProps> = ({
-  categoryList,
-  className,
-  articleList,
-  activeCategorySlug,
-}) => {
+export const CategoryList: React.FC<CategoryListProps> = ({ className, articlesListSlug }) => {
   const tCommon = useTranslations("common")
+  const pathname = usePathname()
+  const { slug } = articlesListSlug
 
-  const filteredCategories = categoryList.filter((category) =>
-    articleList.some((article) => article.categorySlug === category.slug),
-  )
-
-  if (filteredCategories.length === 0) {
+  if (slug) {
     return <div className={css.no_categories}>{tCommon("no-categories")}</div>
   }
+
+  const activeCategorySlug = pathname?.split("/").pop()
 
   return (
     <div className={classNames(css.category_list_wrap, className)}>
       <h6 className={css.category_list_title}>{tCommon("category-label")}</h6>
-      <ul className={css.category_list}>
-        {filteredCategories.map((category, index) => (
+      {articlesListSlug.map((category: any, index: number) => {
+        const isActive = category.slug === activeCategorySlug
+
+        return (
           <li
             key={index}
-            className={css.category_item}
+            className={classNames(css.category_item, {
+              [css.active]: isActive,
+            })}
           >
             <RootLink
               href={ClientRoutes.blog_category(category.slug)}
-              className={classNames(css.item_link, {
-                [css.active]: activeCategorySlug === category.slug,
-              })}
+              className={css.item_link}
             >
-              {category.label}
+              {category.slug}
               <Icon
                 name="icon_arrow_bc"
                 className={css.item_icon}
               />
             </RootLink>
           </li>
-        ))}
-      </ul>
+        )
+      })}
     </div>
   )
 }
