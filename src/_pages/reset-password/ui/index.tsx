@@ -19,6 +19,7 @@ export async function ChangePasswordPage({ params: { locale } }: IHomePageProps)
   unstable_setRequestLocale(locale)
 
   const tLabels = await getTranslations("page-labels")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const resetPasswordPageData = await getResetPasswordPageData({ locale })
   if (!resetPasswordPageData) notFound()
@@ -34,7 +35,7 @@ export async function ChangePasswordPage({ params: { locale } }: IHomePageProps)
           {
             type: "parent",
             slug: ClientRoutes.reset_password.path,
-            titleKey: ClientRoutes.reset_password.nameKey,
+            title: tBreadcrumbs("reset_password"),
           },
         ]}
       />

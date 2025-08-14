@@ -2,20 +2,20 @@
 
 import React, { useState } from "react"
 import css from "./styles.module.scss"
-import { ReviewCard } from "@/shared/ui"
+// import { ReviewCard } from "@/shared/ui"
 import dataReviewsList from "@/shared/data/reviews-list.json"
 import { IReviewCardProps } from "@/shared/types"
-import { Icon } from "@/shared/ui/icons"
-import { AnimatePresence, motion } from "framer-motion"
-import { useTranslations } from "next-intl"
+// import { Icon } from "@/shared/ui/icons"
+// import { AnimatePresence, motion } from "framer-motion"
+// import { useTranslations } from "next-intl"
 
 const reviewsDataList: IReviewCardProps[] = dataReviewsList.review_cards
 
 const itemsPerPage = 6
 
 export const ProductReviewsTab: React.FC = () => {
-  const tProduct = useTranslations("product-page")
-  const [activeReplyIndex, setActiveReplyIndex] = useState<number | null>(null)
+  // const tProduct = useTranslations("product-page")
+  // const [activeReplyIndex, setActiveReplyIndex] = useState<number | null>(null)
 
   const [currentPage] = useState(1)
   const startIndex = (currentPage - 1) * itemsPerPage
@@ -24,25 +24,25 @@ export const ProductReviewsTab: React.FC = () => {
 
   const paginatedItems = filteredCards.slice(startIndex, startIndex + itemsPerPage)
 
-  const toggleReplyBlock = (index: number) => {
-    setActiveReplyIndex((prev) => (prev === index ? null : index))
-  }
+  // const toggleReplyBlock = (index: number) => {
+  //   setActiveReplyIndex((prev) => (prev === index ? null : index))
+  // }
 
   return (
     <div className={css.reviews}>
       {paginatedItems.map((card, index) => {
-        let formattedDate = ""
-        if (card.date) {
-          const [day, month, year] = card.date.split(".")
-          formattedDate = `${year}-${month}-${day}`
-        }
+        // let formattedDate = ""
+        // if (card.date) {
+        //   const [day, month, year] = card.date.split(".")
+        //   formattedDate = `${year}-${month}-${day}`
+        // }
 
         return (
           <div
             key={index}
             className={css.product_reviews_card_wrap}
           >
-            <ReviewCard
+            {/* <ReviewCard
               itemData={card}
               className={css.product_reviews_card}
               {...card}
@@ -76,7 +76,7 @@ export const ProductReviewsTab: React.FC = () => {
                   </div>
                 )}
               </motion.div>
-            </AnimatePresence>
+            </AnimatePresence> */}
           </div>
         )
       })}

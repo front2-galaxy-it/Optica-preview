@@ -22,6 +22,7 @@ export async function AuthorPage({
   unstable_setRequestLocale(locale)
 
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const author = authorData.find((cat) => cat.slug === slug)
   if (!author) return notFound()
@@ -37,8 +38,8 @@ export async function AuthorPage({
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: ClientRoutes.blog.path, titleKey: ClientRoutes.blog.nameKey },
-          { type: "current", slug: ClientRoutes.author(slug), titleKey: author.label },
+          { type: "parent", slug: ClientRoutes.blog.path, title: tBreadcrumbs("blog") },
+          { type: "current", slug: ClientRoutes.author(slug), title: author.label },
         ]}
       />
       <PageInfo

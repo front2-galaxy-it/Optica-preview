@@ -105,7 +105,7 @@ export const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, onClose, onSuc
                 register={register("name", {
                   required: {
                     value: true,
-                    message: tFormName("required"),
+                    message: tFormName("error"),
                   },
                 })}
                 error={errors.name?.message}
@@ -118,7 +118,7 @@ export const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, onClose, onSuc
                 register={register("surname", {
                   required: {
                     value: true,
-                    message: tFormSurname("required"),
+                    message: tFormSurname("error"),
                   },
                 })}
                 error={errors.surname?.message}

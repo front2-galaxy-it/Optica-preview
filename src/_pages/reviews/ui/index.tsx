@@ -10,9 +10,25 @@ import { IGlobalPageProps } from "@/shared/types"
 import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
 import { notFound } from "next/navigation"
 import { ModulesSwitch } from "@/widgets/module-switch"
+import { ReviewsService } from "@/shared/services/reviews.service"
+
+const getReviewsLayoutData = async ({ locale }: { locale: string }) => {
+  return await fetchPageLayoutData({ locale, layoutName: "reviews" })
+}
 
 const getReviewsPageData = async ({ locale }: { locale: string }) => {
-  return await fetchPageLayoutData({ locale, layoutName: "reviews" })
+  const options = {
+    headers: {
+      "Accept-Locale": locale,
+    },
+  }
+
+  try {
+    return await ReviewsService.getData(options)
+  } catch (error) {
+    console.error("Error fetching diagnostic data:", error)
+    return null
+  }
 }
 
 export async function ReviewsPage({ params: { locale } }: IHomePageProps) {
@@ -20,13 +36,19 @@ export async function ReviewsPage({ params: { locale } }: IHomePageProps) {
 
   const tLabels = await getTranslations("page-labels")
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
-  const reviewsPageData = await getReviewsPageData({ locale })
-  if (!reviewsPageData) notFound()
+  const [reviewData, reviewLayout] = await Promise.all([
+    getReviewsPageData({ locale }),
+    getReviewsLayoutData({ locale }),
+  ])
+  if (!reviewData || !reviewLayout) {
+    notFound()
+  }
 
   const {
     layout: { modules },
-  } = reviewsPageData
+  } = reviewLayout
 
   return (
     <>
@@ -35,7 +57,7 @@ export async function ReviewsPage({ params: { locale } }: IHomePageProps) {
           {
             type: "parent",
             slug: ClientRoutes.reviews.path,
-            titleKey: ClientRoutes.reviews.nameKey,
+            title: tBreadcrumbs("reviews"),
           },
         ]}
       />
@@ -44,7 +66,7 @@ export async function ReviewsPage({ params: { locale } }: IHomePageProps) {
         title={tLabels("reviews")}
       />
       <ButtonsList items={navData.about_us} />
-      <Reviews />
+      <Reviews reviews={reviewData} />
       <ModulesSwitch modules={modules} />
     </>
   )
@@ -52,7 +74,7 @@ export async function ReviewsPage({ params: { locale } }: IHomePageProps) {
 
 export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
   try {
-    const layoutData = await getReviewsPageData({ locale })
+    const layoutData = await getReviewsLayoutData({ locale })
     if (!layoutData) return
     return getPageLayoutMetadata(layoutData.layout)
   } catch (error) {

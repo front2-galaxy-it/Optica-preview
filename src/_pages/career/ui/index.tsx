@@ -1,7 +1,6 @@
 import { unstable_setRequestLocale, getTranslations } from "next-intl/server"
 
 import { IHomePageProps } from "./props"
-import { ChooseSection } from "@/widgets/choose"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
@@ -21,8 +20,7 @@ const positionListData: ICareerSectionProps[] = positionList
 export async function CareerPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
 
-  const tLabels = await getTranslations("page-labels")
-  const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const careersPageData = await getCareerPageData({ locale })
   if (!careersPageData) notFound()
@@ -34,17 +32,19 @@ export async function CareerPage({ params: { locale } }: IHomePageProps) {
   return (
     <>
       <Breadcrumbs
-        arr={[
-          { type: "parent", slug: ClientRoutes.career.path, titleKey: ClientRoutes.career.nameKey },
-        ]}
+        arr={[{ type: "parent", slug: ClientRoutes.career.path, title: tBreadcrumbs("career") }]}
       />
-      <PageInfo
-        label={tCommon("career")}
-        title={tLabels("team")}
-      />
+      {careersPageData.layout.title && careersPageData.layout.description ? (
+        <PageInfo
+          label={careersPageData.layout.title}
+          title={careersPageData.layout.description}
+        />
+      ) : null}
       <CareerSection careerList={positionListData} />
-      <ChooseSection />
-      <ModulesSwitch modules={modules} />
+      <ModulesSwitch
+        modules={modules}
+        pageType="career"
+      />
     </>
   )
 }

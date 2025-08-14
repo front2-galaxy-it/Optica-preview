@@ -2,38 +2,28 @@
 
 import React, { useState } from "react"
 import css from "./styles.module.scss"
-import blogCardData from "@/shared/data/blog-card-list.json"
-import categoryData from "@/shared/data/blog-categories-list.json"
 import { BlogCard } from "@/shared/ui"
-// import { BlogPageNavigation } from "@/shared/components/blog-navigation"
-import { IBlogCardProps, IBlogCateroriesLink } from "@/shared/types"
 import { AnimatePresence, motion } from "framer-motion"
+import classNames from "classnames"
 
 interface BlogCategoryPageProps {
-  slug: string
+  slug: any
+  list: any
 }
 
-const blogCardDataList: IBlogCardProps[] = blogCardData.cards
-const categoryDataList: IBlogCateroriesLink[] = categoryData
-
-const itemsPerPage = 6
-
-export const BlogCategoryPage: React.FC<BlogCategoryPageProps> = ({ slug }) => {
+export const BlogCategoryPage: React.FC<BlogCategoryPageProps> = ({ list }) => {
   const [currentPage] = useState(1)
 
-  const activeCategory = categoryDataList.find((cat) => cat.slug === slug)
-  const filteredCards = blogCardDataList.filter((card) => card.category === activeCategory?.label)
-
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const paginatedItems = filteredCards.slice(startIndex, startIndex + itemsPerPage)
+  // const activeCategory = list.find((cat: any) => cat.slug === slug)
+  // const posts = activeCategory?.posts || []
 
   return (
     <section className={css.blog_section}>
       <div className="container">
-        <div className={css.blog_section_content}>
+        <div className={classNames(css.blog_section_content, css.category_section_content)}>
           {/* <BlogPageNavigation
             activeCategorySlug={slug}
-            activeAuthorSlug={slug}
+            activeAuthorSlug={slug} 
           /> */}
           <div className={css.blog_section_articels}>
             <AnimatePresence mode="wait">
@@ -45,7 +35,7 @@ export const BlogCategoryPage: React.FC<BlogCategoryPageProps> = ({ slug }) => {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                {paginatedItems.map((card, index) => (
+                {list.map((card: any, index: number) => (
                   <BlogCard
                     cardData={card}
                     className={css.blog_section_card}

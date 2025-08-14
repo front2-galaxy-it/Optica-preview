@@ -11,7 +11,24 @@ import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
 import { notFound } from "next/navigation"
 import { ModulesSwitch } from "@/widgets/module-switch"
 
+import { DiagnosticService } from "@/shared/services/diagnostic.service"
+
 const getDiagnosticPageData = async ({ locale }: { locale: string }) => {
+  const options = {
+    headers: {
+      "Accept-Locale": locale,
+    },
+  }
+
+  try {
+    return await DiagnosticService.getData(options)
+  } catch (error) {
+    console.error("Error fetching diagnostic data:", error)
+    return null
+  }
+}
+
+const getDiagnosticLayoutData = async ({ locale }: { locale: string }) => {
   return await fetchPageLayoutData({ locale, layoutName: "diagnostics" })
 }
 
@@ -20,13 +37,22 @@ export async function DiagnosticPage({ params: { locale } }: IHomePageProps) {
 
   const tLabels = await getTranslations("page-labels")
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
-  const diagnosticPageData = await getDiagnosticPageData({ locale })
-  if (!diagnosticPageData) notFound()
+  const [diagnosticLayoutData, diagnosticPageData] = await Promise.all([
+    getDiagnosticLayoutData({ locale }),
+    getDiagnosticPageData({ locale }),
+  ])
+
+  if (!diagnosticLayoutData || !diagnosticPageData) {
+    notFound()
+  }
 
   const {
     layout: { modules },
-  } = diagnosticPageData
+  } = diagnosticLayoutData
+
+  console.log(diagnosticPageData.data)
 
   return (
     <>
@@ -35,7 +61,7 @@ export async function DiagnosticPage({ params: { locale } }: IHomePageProps) {
           {
             type: "parent",
             slug: ClientRoutes.diagnostic.path,
-            titleKey: ClientRoutes.diagnostic.nameKey,
+            title: tBreadcrumbs("diagnostic"),
           },
         ]}
       />
@@ -44,7 +70,7 @@ export async function DiagnosticPage({ params: { locale } }: IHomePageProps) {
         title={tLabels("diagnostic")}
       />
       <ButtonsList items={navData.about_us} />
-      <DiagnosticSection />
+      <DiagnosticSection diagnostics={diagnosticPageData.data} />
       <ModulesSwitch modules={modules} />
     </>
   )
@@ -52,7 +78,7 @@ export async function DiagnosticPage({ params: { locale } }: IHomePageProps) {
 
 export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
   try {
-    const layoutData = await getDiagnosticPageData({ locale })
+    const layoutData = await getDiagnosticLayoutData({ locale })
     if (!layoutData) return
     return getPageLayoutMetadata(layoutData.layout)
   } catch (error) {

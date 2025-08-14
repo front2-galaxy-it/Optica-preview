@@ -1,20 +1,29 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { DetailedHTMLProps, HtmlHTMLAttributes } from "react"
 import css from "./styles.module.scss"
 
 import Image from "next/image"
 import { ButtonLink } from "@/shared/ui/links"
-import { Button } from "@/shared/ui"
-import { ClientRoutes } from "@/shared/routes"
-import { DiagnosticPopup, ThanksPopup } from "@/widgets/popups"
-import { useTranslations } from "next-intl"
 
-export const HelpSection: React.FC = () => {
-  const tHelp = useTranslations("help-section")
+interface HelpSectionProps
+  extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  module: any
+}
 
-  const [popupOpen, setPopupOpen] = useState(false)
-  const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
+export const HelpSection: React.FC<HelpSectionProps> = ({ module }) => {
+  const {
+    title_left,
+    text_left,
+    button_left,
+    button_left_url,
+    title_right,
+    text_right,
+    button_right,
+    button_right_url,
+  } = module.content
+  const { picture_left, picture_right } = module
+
   return (
     <section className={css.help_section}>
       <div className="container">
@@ -22,57 +31,57 @@ export const HelpSection: React.FC = () => {
           <div className={css.help_card}>
             <Image
               className={css.card_img}
-              src="/images/help/help_img_1.png"
+              src={picture_left ?? null}
               width={635}
               height={635}
               alt="image not found"
             />
             <div className={css.card_content}>
-              <h3 className={css.card_title}>{tHelp("card-title-1")}</h3>
-              <p className={css.card_text}>{tHelp("card-description-1")}</p>
+              <h3
+                className={css.card_title}
+                dangerouslySetInnerHTML={{ __html: title_left }}
+              ></h3>
+              <p
+                className={css.card_text}
+                dangerouslySetInnerHTML={{ __html: text_left }}
+              ></p>
               <ButtonLink
-                href={ClientRoutes.diagnostic.path}
+                href={button_left_url}
                 modifier="primary"
                 iconName="arrow_right"
               >
-                {tHelp("card-button-1")}
+                {button_left}
               </ButtonLink>
             </div>
           </div>
           <div className={css.help_card}>
             <Image
               className={css.card_img}
-              src="/images/help/help_img_2.png"
+              src={picture_right ?? null}
               width={635}
               height={635}
               alt="image not found"
             />
             <div className={css.card_content}>
-              <h3 className={css.card_title}>{tHelp("card-title-2")}</h3>
-              <p className={css.card_text}>{tHelp("card-description-2")}</p>
-              <Button
+              <h3
+                className={css.card_title}
+                dangerouslySetInnerHTML={{ __html: title_right }}
+              ></h3>
+              <p
+                className={css.card_text}
+                dangerouslySetInnerHTML={{ __html: text_right }}
+              ></p>
+              <ButtonLink
+                href={button_right_url}
                 modifier="primary"
                 iconName="arrow_right"
-                onClick={() => setPopupOpen(true)}
               >
-                {tHelp("card-button-2")}
-              </Button>
+                {button_right}
+              </ButtonLink>
             </div>
           </div>
         </div>
       </div>
-      <DiagnosticPopup
-        isOpen={popupOpen}
-        onClose={() => setPopupOpen(false)}
-        onSuccess={() => setThanksPopupOpen(true)}
-      />
-
-      <ThanksPopup
-        title="Дякуємо за запис на діагностику!"
-        message="Наші фахівці зв'яжуться з вами найближчим часом, щоб підтвердити запис та уточнити деталі."
-        isOpen={thanksPopupOpen}
-        onClose={() => setThanksPopupOpen(false)}
-      />
     </section>
   )
 }

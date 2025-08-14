@@ -3,7 +3,6 @@ import { IHomePageProps } from "../ui/props"
 import { Breadcrumbs, ButtonsList } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
 import { ClientRoutes } from "@/shared/routes"
-import serviceList from "@/shared/data/diagnostic-servises-list.json"
 import { IDiagnosticService } from "@/shared/types/diagnostic-service.interface"
 import { NotFoundPage } from "@/_pages/not-found"
 import { DiagnosticServiceSection } from "@/widgets/diagnostic"
@@ -13,7 +12,24 @@ import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
 import { notFound } from "next/navigation"
 import { ModulesSwitch } from "@/widgets/module-switch"
 
+import { DiagnosticService } from "@/shared/services/diagnostic.service"
+
 const getDiagnosticPageData = async ({ locale }: { locale: string }) => {
+  const options = {
+    headers: {
+      "Accept-Locale": locale,
+    },
+  }
+
+  try {
+    return await DiagnosticService.getData(options)
+  } catch (error) {
+    console.error("Error fetching diagnostic data:", error)
+    return null
+  }
+}
+
+const getDiagnosticLayoutData = async ({ locale }: { locale: string }) => {
   return await fetchPageLayoutData({ locale, layoutName: "diagnostics" })
 }
 
@@ -21,17 +37,26 @@ export async function DiagnosticServicePage({ params: { locale, slug } }: IHomeP
   unstable_setRequestLocale(locale)
 
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
-  const service = (serviceList as IDiagnosticService[]).find((item) => item.slug === slug)
+  const [diagnosticLayoutData, diagnosticPageData] = await Promise.all([
+    getDiagnosticLayoutData({ locale }),
+    getDiagnosticPageData({ locale }),
+  ])
+
+  if (!diagnosticLayoutData || !diagnosticPageData) {
+    notFound()
+  }
+
+  const diagnosticItem = diagnosticPageData.data
+
+  const service = (diagnosticItem as IDiagnosticService[]).find((item) => item.slug === slug)
 
   if (!service) return NotFoundPage()
 
-  const diagnosticPageData = await getDiagnosticPageData({ locale })
-  if (!diagnosticPageData) notFound()
-
   const {
     layout: { modules },
-  } = diagnosticPageData
+  } = diagnosticLayoutData
 
   return (
     <>
@@ -40,9 +65,9 @@ export async function DiagnosticServicePage({ params: { locale, slug } }: IHomeP
           {
             type: "parent",
             slug: ClientRoutes.diagnostic.path,
-            titleKey: ClientRoutes.diagnostic.nameKey,
+            title: tBreadcrumbs("diagnostic"),
           },
-          { type: "current", slug: `/diagnostic/${service.slug}`, titleKey: service.title },
+          { type: "current", slug: `/diagnostic/${service.slug}`, title: service.title },
         ]}
       />
       <PageInfo
@@ -58,7 +83,7 @@ export async function DiagnosticServicePage({ params: { locale, slug } }: IHomeP
 
 export async function generateMetadata({ params: { locale } }: IGlobalPageProps) {
   try {
-    const layoutData = await getDiagnosticPageData({ locale })
+    const layoutData = await getDiagnosticLayoutData({ locale })
     if (!layoutData) return
     return getPageLayoutMetadata(layoutData.layout)
   } catch (error) {

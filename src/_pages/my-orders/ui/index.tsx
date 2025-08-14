@@ -19,6 +19,7 @@ export async function MyOrdersDataPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
 
   const tLabels = await getTranslations("page-labels")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const userOrdersPageData = await getUserOrdersPageData({ locale })
   if (!userOrdersPageData) notFound()
@@ -34,7 +35,7 @@ export async function MyOrdersDataPage({ params: { locale } }: IHomePageProps) {
           {
             type: "parent",
             slug: ClientRoutes.user_orders.path,
-            titleKey: ClientRoutes.user_orders.nameKey,
+            title: tBreadcrumbs("user_orders"),
           },
         ]}
       />

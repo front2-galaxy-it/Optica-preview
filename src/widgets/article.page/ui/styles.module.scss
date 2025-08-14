@@ -82,8 +82,6 @@
       object-fit: cover;
       @include adaptive-value("margin-bottom", 32, 16, 1);
     }
-
-
   }
 
   .article_template_content {
@@ -120,7 +118,7 @@
 
         &:nth-child(-n + 9) {
           &::before {
-            content: "0"counter(num);
+            content: "0" counter(num);
             color: var(--blue-primary);
             font-weight: 700;
           }

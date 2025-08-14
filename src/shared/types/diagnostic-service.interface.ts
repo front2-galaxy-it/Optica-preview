@@ -11,13 +11,13 @@ export interface IDiagnosticServiceSectionContent {
 
 export interface IDiagnosticService {
   slug: string
-  img: string
+  image: string | null
   title: string
-  description: string
-  result: string
+  short_description: string
+  notice: string
   duration: number
   price?: number
-  oldPrice?: number
+  discount?: number
   condition?: string
   isFree?: boolean
   contentBlocks?: Array<{

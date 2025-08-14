@@ -18,6 +18,7 @@ const getUserFavoritesPageData = async ({ locale }: { locale: string }) => {
 export async function UserFavoritesDataPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
 
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
   const tLabels = await getTranslations("page-labels")
 
   const UserFavoritesPageData = await getUserFavoritesPageData({ locale })
@@ -34,7 +35,7 @@ export async function UserFavoritesDataPage({ params: { locale } }: IHomePagePro
           {
             type: "parent",
             slug: ClientRoutes.user_favorites.path,
-            titleKey: ClientRoutes.user_favorites.nameKey,
+            title: tBreadcrumbs("user_favorites"),
           },
         ]}
       />

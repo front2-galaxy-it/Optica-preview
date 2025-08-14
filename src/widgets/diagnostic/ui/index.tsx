@@ -3,23 +3,15 @@
 import React, { useState } from "react"
 import css from "./styles.module.scss"
 import { DiagnosticServiceBlock } from "../components/diagnostic-service-block"
-import serviceList from "@/shared/data/diagnostic-servises-list.json"
-import { IDiagnosticService } from "@/shared/types/diagnostic-service.interface"
 import { DiagnosticPopup, ThanksPopup } from "@/widgets/popups"
 import { useTranslations } from "next-intl"
 
-const serviceListData: IDiagnosticService[] = serviceList.map((service) => ({
-  ...service,
-  contentBlocks: service.contentBlocks.map((block) => ({
-    ...block,
-    title: block.title || "",
-    type: block.type as "image" | "list" | "text",
-    value: Array.isArray(block.value) ? block.value : block.value.toString(),
-    listType: block.listType as "ol" | "ul" | undefined,
-  })),
-}))
+interface DiagnosticSectionProps {
+  diagnostics: any[]
+}
 
-export const DiagnosticSection: React.FC = () => {
+export const DiagnosticSection: React.FC<DiagnosticSectionProps> = ({ diagnostics }) => {
+  const tDiagnostic = useTranslations("diagnostic-section")
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
 
@@ -29,12 +21,9 @@ export const DiagnosticSection: React.FC = () => {
     <section className={css.diagnistic_section}>
       <div className="container">
         <div className={css.diagnistic_section_content}>
-          <p className={css.diagnistic_section_text}>
-            Ми проводимо професійну діагностику зору за допомогою сучасного обладнання. Оберіть
-            послугу нижче, щоб записатися на огляд та отримати рекомендації від наших фахівців.
-          </p>
+          <p className={css.diagnistic_section_text}>{tDiagnostic("description")}</p>
           <div className={css.diagnistic_service_list}>
-            {serviceListData.map((service, index) => (
+            {diagnostics.map((service, index) => (
               <DiagnosticServiceBlock
                 key={index}
                 {...service}

@@ -20,6 +20,7 @@ export async function ContactPage({ params: { locale } }: IHomePageProps) {
 
   const tLabels = await getTranslations("page-labels")
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const contactPageData = await getContactPageData({ locale })
   if (!contactPageData) notFound()
@@ -35,7 +36,7 @@ export async function ContactPage({ params: { locale } }: IHomePageProps) {
           {
             type: "parent",
             slug: ClientRoutes.contacts.path,
-            titleKey: ClientRoutes.contacts.nameKey,
+            title: tBreadcrumbs("contacts"),
           },
         ]}
       />
@@ -44,7 +45,7 @@ export async function ContactPage({ params: { locale } }: IHomePageProps) {
         title={tLabels("contact")}
       />
       <ButtonsList items={navData.about_us} />
-      <ContactPageSection />
+      <ContactPageSection data={contactPageData} />
       <ModulesSwitch modules={modules} />
     </>
   )

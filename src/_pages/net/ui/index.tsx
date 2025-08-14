@@ -20,6 +20,7 @@ export async function NetPage({ params: { locale } }: IHomePageProps) {
 
   const tLabels = await getTranslations("page-labels")
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const netPageData = await getNetPageData({ locale })
   if (!netPageData) notFound()
@@ -31,7 +32,7 @@ export async function NetPage({ params: { locale } }: IHomePageProps) {
   return (
     <>
       <Breadcrumbs
-        arr={[{ type: "parent", slug: ClientRoutes.net.path, titleKey: ClientRoutes.net.nameKey }]}
+        arr={[{ type: "parent", slug: ClientRoutes.net.path, title: tBreadcrumbs("net") }]}
       />
       <PageInfo
         label={tCommon("company-name")}

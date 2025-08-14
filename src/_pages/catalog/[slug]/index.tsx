@@ -35,7 +35,7 @@ export function CategoryPage({
           {
             type: "current",
             slug: ClientRoutes.product_category(slug),
-            titleKey: category.label,
+            title: category.label,
           },
         ]}
       />

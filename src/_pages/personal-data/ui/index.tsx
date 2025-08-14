@@ -19,6 +19,7 @@ export async function PersonalDataPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
 
   const tLabels = await getTranslations("page-labels")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const pesonalPageData = await getPersonalPageData({ locale })
   if (!pesonalPageData) notFound()
@@ -34,7 +35,7 @@ export async function PersonalDataPage({ params: { locale } }: IHomePageProps) {
           {
             type: "parent",
             slug: ClientRoutes.personal_data.path,
-            titleKey: ClientRoutes.personal_data.nameKey,
+            title: tBreadcrumbs("personal_data"),
           },
         ]}
       />

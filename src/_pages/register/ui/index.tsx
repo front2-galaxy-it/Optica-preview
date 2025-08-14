@@ -19,6 +19,7 @@ export async function RegisterPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
 
   const tLabels = await getTranslations("page-labels")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const registerPageData = await getRegisterPageData({ locale })
   if (!registerPageData) notFound()
@@ -32,14 +33,9 @@ export async function RegisterPage({ params: { locale } }: IHomePageProps) {
       <Breadcrumbs
         arr={[
           {
-            type: "parent",
-            slug: ClientRoutes.profile.path,
-            titleKey: ClientRoutes.profile.nameKey,
-          },
-          {
             type: "current",
             slug: ClientRoutes.register.path,
-            titleKey: ClientRoutes.authorization.nameKey,
+            title: tBreadcrumbs("register"),
           },
         ]}
       />

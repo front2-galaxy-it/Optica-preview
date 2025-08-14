@@ -12,10 +12,7 @@ import { useTranslations } from "next-intl"
 export const Orders: React.FC = () => {
   const tSelectedOrders = useTranslations("profile-page.orders")
   const tButtons = useTranslations("buttons")
-  // const [currentPage, setCurrentPage] = useState(1)
 
-  // const startIndex = (currentPage - 1) * itemsPerPage
-  // const paginatedItems = filteredCards.slice(startIndex, startIndex + itemsPerPage)
   return (
     <div className={css.orders_wrap}>
       <div className={css.orders}>
@@ -117,12 +114,6 @@ export const Orders: React.FC = () => {
               </button>
             </div>
           </div>
-          {/* <CustomPagination
-          currentPage={currentPage}
-          onPageChange={setCurrentPage}
-          totalItems={filteredCards.length}
-          itemsPerPage={itemsPerPage}
-        /> */}
         </div>
       </div>
       <OrderDetails />

@@ -1,8 +1,6 @@
 import { unstable_setRequestLocale, getTranslations } from "next-intl/server"
 
 import { IHomePageProps } from "./props"
-import { ChooseSection } from "@/widgets/choose"
-import { AboutUsSection } from "@/widgets/about-company"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs, ButtonsList } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
@@ -21,6 +19,7 @@ export async function AboutPage({ params: { locale } }: IHomePageProps) {
 
   const tLabels = await getTranslations("page-labels")
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const aboutPageData = await getAboutPageData({ locale })
   if (!aboutPageData) notFound()
@@ -32,17 +31,13 @@ export async function AboutPage({ params: { locale } }: IHomePageProps) {
   return (
     <>
       <Breadcrumbs
-        arr={[
-          { type: "parent", slug: ClientRoutes.about.path, titleKey: ClientRoutes.about.nameKey },
-        ]}
+        arr={[{ type: "parent", slug: ClientRoutes.about.path, title: tBreadcrumbs("about") }]}
       />
       <PageInfo
         label={tCommon("company-name")}
         title={tLabels("about")}
       />
       <ButtonsList items={navData.about_us} />
-      <AboutUsSection />
-      <ChooseSection />
       <ModulesSwitch modules={modules} />
     </>
   )

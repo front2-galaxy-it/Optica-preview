@@ -9,14 +9,21 @@ import { SelfDeliverySection } from "../selfdelivery"
 import { FormSection } from "../contact-form"
 import { PaymentBlock } from "../payment-block"
 import { TeamSection } from "../team"
-import { GallerySection } from "../gallery"
-
+import { ChooseSection } from "../choose"
+import { BrandSection } from "../brand"
+// import { Marquee } from "../marquee"
+import { AboutSection } from "../about"
+import { HelpSection } from "../help"
+// import { LoyaltySection } from "../loyalty-program"
+import { AboutUsSection } from "../about-company"
+import { TextImageSection } from "../text-image"
 interface IModulesSwitchProps
   extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   modules: any
+  pageType?: string
 }
 
-export const ModulesSwitch: React.FC<IModulesSwitchProps> = ({ modules }) => {
+export const ModulesSwitch: React.FC<IModulesSwitchProps> = ({ modules, pageType }) => {
   return (
     <>
       {modules &&
@@ -85,13 +92,73 @@ export const ModulesSwitch: React.FC<IModulesSwitchProps> = ({ modules }) => {
                   key={index}
                 />
               )
-            case "gallery":
+            case "masonry":
               return (
-                <GallerySection
+                <ChooseSection
                   module={module.settings}
                   key={index}
                 />
               )
+            case "mini_banner":
+              return (
+                <BrandSection
+                  module={module.settings}
+                  key={index}
+                />
+              )
+            case "full_width_banner":
+              return (
+                <AboutSection
+                  module={module.settings}
+                  key={index}
+                />
+              )
+            case "couple_section":
+              return (
+                <HelpSection
+                  module={module.settings}
+                  key={index}
+                />
+              )
+            case "about_text_image":
+              return (
+                <AboutUsSection
+                  module={module.settings}
+                  key={index}
+                />
+              )
+            case "text_image":
+              return (
+                <TextImageSection
+                  module={module.settings}
+                  key={index}
+                  className={pageType === "career" ? "career-special" : ""}
+                />
+              )
+
+            // case "manufacturer_marquee":
+            //   return (
+            //     <Marquee
+            //       module={module.settings}
+            //       key={index}
+            //     />
+            //   )
+
+            // case "manufacturer_grid":
+            //   return (
+            //     <BrandGrid
+            //       module={module.settings}
+            //       key={index}
+            //     />
+            //   )
+
+            // case "manufacturer_marquee":
+            //   return (
+            //     <Marquee
+            //       module={module.settings}
+            //       key={index}
+            //     />
+            //   )
           }
         })}
     </>

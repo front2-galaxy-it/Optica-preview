@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import css from "./styles.module.scss"
 import classNames from "classnames"
-import { Button, DatePickerField, FormField } from "@/shared/ui"
+import { Button, FormField } from "@/shared/ui"
 import { useForm } from "react-hook-form"
-import { FormData } from "@/shared/types/form-data.interface"
 import { useTranslations } from "next-intl"
+
+import { DiagnosticService } from "@/shared/services/diagnostic.service"
 
 interface DiagnosticPopupProps {
   isOpen: boolean
@@ -14,41 +15,15 @@ interface DiagnosticPopupProps {
   onSuccess: () => void
 }
 
+export interface IDiagnosticApointmentForm {
+  name: string
+  surname: string
+  phone: string
+  birthDate: string
+  time: string
+}
+
 export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClose, onSuccess }) => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      birthDate: null,
-      time: null,
-    },
-  })
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add("_lock")
-    } else {
-      document.body.classList.remove("_lock")
-    }
-
-    return () => {
-      document.body.classList.remove("_lock")
-    }
-  }, [isOpen])
-
-  const closePopup = () => {
-    onClose()
-  }
-
-  const onSubmit = (data: FormData) => {
-    console.log(data)
-    onClose()
-    onSuccess()
-  }
-
   const tPopups = useTranslations("popups.diagnostic-popup")
   const tFormName = useTranslations("form.name")
   const tFormSurname = useTranslations("form.surname")
@@ -57,11 +32,74 @@ export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClos
   const tFormTime = useTranslations("form.time")
   const tButtons = useTranslations("buttons")
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    formState: { errors },
+  } = useForm<IDiagnosticApointmentForm>({
+    defaultValues: {
+      name: "",
+      surname: "",
+      phone: "",
+      birthDate: "",
+      // time: "",
+    },
+  })
+
+  const [isError, setISError] = useState<boolean>(false)
+
+  const resetHandle = () => {
+    reset()
+  }
+
+  const onSubmit = handleSubmit(async (data: IDiagnosticApointmentForm) => {
+    const successHandle = (res: any) => {
+      console.log(res)
+      resetHandle()
+      DiagnosticService.setCookie("auth_token", res.data.access_token)
+      window.location.href = "/"
+      onClose()
+      onSuccess()
+    }
+
+    const errorHandle = (err: any) => {
+      const errorsFromServer = err?.response?.data?.errors
+      if (errorsFromServer) {
+        Object.entries(errorsFromServer).forEach(([key, message]) => {
+          setError(key as keyof IDiagnosticApointmentForm, {
+            type: "custom",
+            message: message as string,
+          })
+        })
+      } else {
+        resetHandle()
+        setISError(true)
+        setTimeout(() => setISError(false), 7000)
+      }
+    }
+
+    await DiagnosticService.makeAppointment(data)
+      .then(successHandle, errorHandle)
+      .catch(errorHandle)
+  })
+
+  useEffect(() => {
+    document.body.classList.toggle("_lock", isOpen)
+    return () => document.body.classList.remove("_lock")
+  }, [isOpen])
+
+  const closePopup = () => {
+    onClose()
+  }
+
   return (
     <>
       <div className={classNames(css.diagnostic_popup_container, isOpen && css.show)}>
         <div className={css.diagnostic_popup}>
           <div className={css.diagnostic_popup_head}>
+            {isError && <div className={css.send_info}>Помилка</div>}
             <p className={css.diagnostic_popup_head_title}>{tPopups("label")}</p>
             <button
               type="button"
@@ -76,7 +114,7 @@ export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClos
             <h6 className={css.diagnostic_popup_content_title}>{tPopups("title")}</h6>
             <form
               className={css.diagnostic_popup_form}
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={onSubmit}
             >
               <FormField
                 id="name"
@@ -122,20 +160,34 @@ export const DiagnosticPopup: React.FC<DiagnosticPopupProps> = ({ isOpen, onClos
                 error={errors.phone?.message}
               />
               <div className={css.inputs_wrap}>
-                <DatePickerField
-                  name="birthDate"
-                  control={control}
-                  mode="date"
+                <FormField
+                  className={css.input}
+                  id="date"
+                  type="date"
+                  colorType="white"
                   placeholder={tFormDate("placeholder")}
+                  register={register("birthDate", {
+                    required: {
+                      value: true,
+                      message: tFormDate("error"),
+                    },
+                  })}
                   error={errors.birthDate?.message}
                 />
-                <DatePickerField
-                  name="time"
-                  control={control}
-                  mode="time"
+                <FormField
+                  className={css.input}
+                  id="time"
+                  type="time"
+                  colorType="white"
                   placeholder={tFormTime("placeholder")}
-                  minTime={new Date(0, 0, 0, 9, 0)}
-                  maxTime={new Date(0, 0, 0, 18, 0)}
+                  min="09:00"
+                  max="18:00"
+                  register={register("time", {
+                    required: {
+                      value: true,
+                      message: tFormTime("error"),
+                    },
+                  })}
                   error={errors.time?.message}
                 />
               </div>

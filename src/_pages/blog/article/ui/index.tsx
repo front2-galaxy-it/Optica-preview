@@ -42,6 +42,7 @@ export async function ArticlePage({
   const { locale, slug } = params
   unstable_setRequestLocale(locale)
 
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
   const tCommon = await getTranslations("common")
 
   const articlePageData = await getArticleLayoutData({ locale })
@@ -56,16 +57,16 @@ export async function ArticlePage({
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: ClientRoutes.blog.path, titleKey: ClientRoutes.blog.nameKey },
+          { type: "parent", slug: ClientRoutes.blog.path, title: tBreadcrumbs("blog") },
           {
             type: "parent",
             slug: ClientRoutes.blog_category(slug),
-            titleKey: slug,
+            title: slug,
           },
           {
             type: "current",
             slug: ClientRoutes.article(slug),
-            titleKey: blogArticle.blogArticleData.title,
+            title: blogArticle.blogArticleData.title,
           },
         ]}
       />

@@ -21,6 +21,7 @@ export async function CartPage({ params: { locale } }: IHomePageProps) {
 
   const tLabels = await getTranslations("page-labels")
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const cartPageData = await getCartPageData({ locale })
   if (!cartPageData) notFound()
@@ -32,9 +33,7 @@ export async function CartPage({ params: { locale } }: IHomePageProps) {
   return (
     <>
       <Breadcrumbs
-        arr={[
-          { type: "current", slug: ClientRoutes.cart.path, titleKey: ClientRoutes.cart.nameKey },
-        ]}
+        arr={[{ type: "current", slug: ClientRoutes.cart.path, title: tBreadcrumbs("cart") }]}
       />
       <PageInfo
         label={tCommon("cart")}

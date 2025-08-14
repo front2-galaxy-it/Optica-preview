@@ -2,7 +2,6 @@
 
 import React, { useState } from "react"
 import css from "./styles.module.scss"
-import Image from "next/image"
 import { Button } from "@/shared/ui"
 import { ICareerSectionProps } from "@/shared/types"
 import { motion, AnimatePresence } from "framer-motion"
@@ -20,32 +19,11 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ careerList }) => {
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
 
-  const tCareer = useTranslations("career-page")
   const tPopupCareer = useTranslations("popups.career-popup")
 
   return (
     <section className={css.career_section}>
       <div className="container">
-        <div className={css.career_section_content}>
-          <div className={css.career_section_text}>
-            <p>{tCareer("career_intro_text")}</p>
-            <b>{tCareer("career_why_join_us_title")}</b>
-            <strong>{tCareer("career_growth_title")}</strong>
-            <p>{tCareer("career_growth_text")}</p>
-            <strong>{tCareer("career_team_title")}</strong>
-            <p>{tCareer("career_team_text")}</p>
-            <strong>{tCareer("career_fairness_title")}</strong>
-            <p>{tCareer("career_fairness_text")}</p>
-            <p>{tCareer("career_call_to_action")}</p>
-          </div>
-          <Image
-            className={css.career_section_img}
-            src="/images/content_img_7.png"
-            width={634}
-            height={538}
-            alt="image not found"
-          />
-        </div>
         <div className={css.career_section_position}>
           <div className={css.buttons_list_wrap}>
             <div className={css.buttons_list}>

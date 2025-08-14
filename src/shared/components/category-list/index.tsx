@@ -43,7 +43,7 @@ export const CategoryList: React.FC<CategoryListProps> = ({ className, articlesL
               href={ClientRoutes.blog_category(category.slug)}
               className={css.item_link}
             >
-              {category.slug}
+              {category.title}
               <Icon
                 name="icon_arrow_bc"
                 className={css.item_icon}

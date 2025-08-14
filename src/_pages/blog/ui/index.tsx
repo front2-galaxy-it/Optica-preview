@@ -48,6 +48,7 @@ export async function BlogPage({ params }: IHomePageProps) {
 
   const tLabels = await getTranslations("page-labels")
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const blogLayout = await getBlogLayoutData({ locale })
   const blogData = await getBlogPageData({ locale })
@@ -60,9 +61,7 @@ export async function BlogPage({ params }: IHomePageProps) {
   return (
     <>
       <Breadcrumbs
-        arr={[
-          { type: "parent", slug: ClientRoutes.blog.path, titleKey: ClientRoutes.blog.nameKey },
-        ]}
+        arr={[{ type: "parent", slug: ClientRoutes.blog.path, title: tBreadcrumbs("blog") }]}
       />
       <PageInfo
         label={tCommon("blog")}

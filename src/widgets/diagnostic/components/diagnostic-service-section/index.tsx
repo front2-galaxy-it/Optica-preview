@@ -10,17 +10,22 @@ import { ButtonLink } from "@/shared/ui/links"
 import { IDiagnosticService } from "@/shared/types/diagnostic-service.interface"
 import { ClientRoutes } from "@/shared/routes"
 import { DiagnosticPopup, ThanksPopup } from "@/widgets/popups"
+import { useTranslations } from "next-intl"
 
 export const DiagnosticServiceSection: React.FC<IDiagnosticService> = ({
   duration,
   price,
-  oldPrice,
+  discount,
   condition,
   isFree = false,
   contentBlocks,
 }) => {
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
+
+  const tCommon = useTranslations("common")
+  const tButtons = useTranslations("buttons")
+
   return (
     <section className={css.diagnostic_service_section}>
       <div className="container">
@@ -71,15 +76,15 @@ export const DiagnosticServiceSection: React.FC<IDiagnosticService> = ({
         <div className={css.diagnostic_service_section_footer}>
           <div className={css.diagnostic_service_section_footer_top}>
             <div className={css.price_wrap}>
-              <span className={css.price_title}>Вартість:</span>
+              <span className={css.price_title}>{tCommon("price-label")}:</span>
               <div className={css.price_body}>
                 {isFree ? (
-                  <span className={css.free_text}>Безкоштовно</span>
+                  <span className={css.free_text}>{tCommon("free-label")}</span>
                 ) : (
                   <Price
                     className={css.price}
                     price={price ?? 0}
-                    oldPrice={oldPrice}
+                    oldPrice={discount}
                     oldPriceClass={css.old_price}
                   />
                 )}
@@ -111,7 +116,7 @@ export const DiagnosticServiceSection: React.FC<IDiagnosticService> = ({
               iconName="arrow_right"
               onClick={() => setPopupOpen(true)}
             >
-              Записатися
+              {tButtons("signup_btn")}
             </Button>
           </div>
         </div>

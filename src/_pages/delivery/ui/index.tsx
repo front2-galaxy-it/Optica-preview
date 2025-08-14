@@ -20,6 +20,7 @@ export async function DeliveryPage({ params: { locale } }: IHomePageProps) {
 
   const tLabels = await getTranslations("page-labels")
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const deliveryPageData = await getDeliveryPageData({ locale })
   if (!deliveryPageData) notFound()
@@ -35,7 +36,7 @@ export async function DeliveryPage({ params: { locale } }: IHomePageProps) {
           {
             type: "parent",
             slug: ClientRoutes.delivery.path,
-            titleKey: ClientRoutes.delivery.nameKey,
+            title: tBreadcrumbs("delivery"),
           },
         ]}
       />

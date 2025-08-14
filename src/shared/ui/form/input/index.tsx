@@ -22,13 +22,12 @@ export const FormField: React.FC<IFormFieldProps> = ({
   className,
   disabled,
   placeholder,
-  defaultValue = "",
   colorType = "white",
   isNeedToClean,
   ...props
 }): JSX.Element => {
   const [isError, setIsError] = useState<boolean>(false)
-  const [isFilled, setIsFilled] = useState<boolean>(Boolean(defaultValue))
+  const [isFilled, setIsFilled] = useState<boolean>(Boolean(props.value || ""))
   const [isFocus, setIsFocus] = useState<boolean>(false)
 
   useEffect(() => {
@@ -41,15 +40,12 @@ export const FormField: React.FC<IFormFieldProps> = ({
     }
   }, [isNeedToClean])
 
-  useEffect(() => {
-    setIsFilled(Boolean(defaultValue))
-  }, [defaultValue])
-
   const handleFocus = () => setIsFocus(true)
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     setIsFilled(Boolean(event.target.value))
     setIsFocus(false)
+    register?.onBlur(event)
   }
 
   return (
@@ -69,21 +65,19 @@ export const FormField: React.FC<IFormFieldProps> = ({
         <input
           className={css.form_field_input}
           onFocus={handleFocus}
-          defaultValue={defaultValue}
           {...props}
           {...register}
-          onBlur={(e) => {
-            register?.onBlur(e)
-            handleBlur(e)
-          }}
+          onBlur={handleBlur}
         />
-        <Image
-          className={css.error_icon}
-          src="/images/svg/error-icon.svg"
-          width={15}
-          height={15}
-          alt="error icon"
-        />
+        {error && props.type !== "date" && props.type !== "time" && (
+          <Image
+            className={css.error_icon}
+            src="/images/svg/error-icon.svg"
+            width={15}
+            height={15}
+            alt="error icon"
+          />
+        )}
       </div>
       {error && <span className={css.error}>{error}</span>}
     </div>

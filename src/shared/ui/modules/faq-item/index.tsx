@@ -2,12 +2,11 @@
 
 import React, { DetailedHTMLProps, HTMLAttributes, useState } from "react"
 import css from "./styles.module.scss"
-import { IFaqAccordions } from "@/shared/types/faq-accordion.interface"
 import classNames from "classnames"
 
 interface IAccordionsProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  accordeons: IFaqAccordions[]
+  accordeons: any
 }
 
 export const Accordions: React.FC<IAccordionsProps> = ({ accordeons }) => {
@@ -23,7 +22,7 @@ export const Accordions: React.FC<IAccordionsProps> = ({ accordeons }) => {
   return (
     <div className={css.accordion_wrap}>
       {accordeons &&
-        accordeons.map((accordeon: IFaqAccordions, index: number) => (
+        accordeons.map((accordeon: any, index: number) => (
           <div
             className={classNames(css.accordion, {
               [css.open]: activeIndexes.includes(index),

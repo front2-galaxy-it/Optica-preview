@@ -19,6 +19,7 @@ export async function PolicyPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
 
   const tLabels = await getTranslations("page-labels")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
   const tCommon = await getTranslations("common")
 
   const privacyPageData = await getPrivacyPageData({ locale })
@@ -32,7 +33,7 @@ export async function PolicyPage({ params: { locale } }: IHomePageProps) {
     <>
       <Breadcrumbs
         arr={[
-          { type: "parent", slug: ClientRoutes.terms.path, titleKey: ClientRoutes.policy.nameKey },
+          { type: "parent", slug: ClientRoutes.terms.path, title: tBreadcrumbs("privacy_policy") },
         ]}
       />
       <PageInfo

@@ -18,6 +18,7 @@ const getUserBonusesPageData = async ({ locale }: { locale: string }) => {
 export async function UserBonusesDataPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
 
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
   const tLabels = await getTranslations("page-labels")
 
   const UserBonusesPageData = await getUserBonusesPageData({ locale })
@@ -34,7 +35,7 @@ export async function UserBonusesDataPage({ params: { locale } }: IHomePageProps
           {
             type: "parent",
             slug: ClientRoutes.user_bonuses.path,
-            titleKey: ClientRoutes.user_bonuses.nameKey,
+            title: tBreadcrumbs("user_bonuses"),
           },
         ]}
       />

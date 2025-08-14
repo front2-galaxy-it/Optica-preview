@@ -18,11 +18,12 @@ export const ButtonsList: React.FC<InfoButtonsListProps> = ({ items }) => {
   const params = useParams()
 
   const pathWithoutLocale = pathname.replace(`/${params.locale}`, "")
+  const pathWithoutSlug = pathname.replace(`/${params.slug}`, "")
   return (
     <div className={css.buttons_list_wrap}>
       <div className={css.buttons_list}>
         {items.map(({ labelKey, href }) => {
-          const isActive = pathWithoutLocale === href
+          const isActive = pathWithoutLocale === href || pathWithoutSlug === href
 
           return (
             <RootLink

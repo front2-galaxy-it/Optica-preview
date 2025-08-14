@@ -1,1 +1,2 @@
-export { CategoryPage as default } from "@/_pages/blog/blog-category"
+export const dynamic = process.env.NEXT_DYNAMIC === "true" ? "force-dynamic" : "auto"
+export { CategoryPage as default, generateMetadata } from "@/_pages/blog/blog-category"

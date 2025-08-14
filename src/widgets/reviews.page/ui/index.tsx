@@ -1,28 +1,20 @@
 "use client"
 
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef } from "react"
 import css from "./styles.module.scss"
-import { Button, ReviewCard } from "@/shared/ui"
-import dataReviewsList from "@/shared/data/reviews-list.json"
-import { IReviewCardProps } from "@/shared/types"
-import { motion, AnimatePresence } from "framer-motion"
+import { Button, ReviewCard, CustomPagination } from "@/shared/ui"
 import { ReviewPopup, ThanksPopup } from "@/widgets/popups"
 import { useTranslations } from "next-intl"
 
-const reviewsDataList: IReviewCardProps[] = dataReviewsList.review_cards
-const itemsPerPage = 3
+interface ReviewsProps {
+  reviews: any
+}
 
-export const Reviews: React.FC = () => {
-  const [currentPage] = useState(1)
-
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const paginatedItems = reviewsDataList.slice(startIndex, startIndex + itemsPerPage)
+export const Reviews: React.FC<ReviewsProps> = ({ reviews }) => {
+  const reviewsList = reviews.data
+  const reviewsMeta = reviews.meta
 
   const reviewsListRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    reviewsListRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [currentPage])
 
   const [popupOpen, setPopupOpen] = useState(false)
   const [thanksPopupOpen, setThanksPopupOpen] = useState(false)
@@ -38,35 +30,19 @@ export const Reviews: React.FC = () => {
     >
       <div className="container">
         <div className={css.reviews_section_content}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentPage}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className={css.reviews_section_items}>
-                {paginatedItems.map((card, index) => (
-                  <ReviewCard
-                    //to-do: change to dynamic data
-                    itemData={reviewsDataList}
-                    className={css.reviews_section_card}
-                    {...card}
-                    key={index}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-          {/* {reviewsDataList.length > itemsPerPage && (
-            <CustomPagination
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-              totalItems={reviewsDataList.length}
-              itemsPerPage={itemsPerPage}
-            />
-          )} */}
+          <div className={css.reviews_section_items}>
+            {reviewsList.map((card: any, index: number) => (
+              <ReviewCard
+                className={css.reviews_section_card}
+                {...card}
+                key={index}
+              />
+            ))}
+          </div>
+          <CustomPagination
+            meta={reviewsMeta}
+            isVisible={reviewsList && reviewsList.length > 0}
+          />
         </div>
         <div className={css.send_review}>
           <h5 className={css.send_review_title}>{tReviews("subtitle")}</h5>
@@ -85,7 +61,6 @@ export const Reviews: React.FC = () => {
         onClose={() => setPopupOpen(false)}
         onSuccess={() => setThanksPopupOpen(true)}
       />
-
       <ThanksPopup
         title={tPopupReview("thanks_label")}
         message={tPopupReview("thanks_text")}

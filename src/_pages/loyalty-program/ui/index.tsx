@@ -4,7 +4,6 @@ import { IHomePageProps } from "./props"
 import { ClientRoutes } from "@/shared/routes"
 import { Breadcrumbs } from "@/shared/components"
 import { PageInfo } from "@/widgets/page-info-block"
-import { LoyaltySection } from "@/widgets/loyalty-program"
 import { IGlobalPageProps } from "@/shared/types"
 import { fetchPageLayoutData, getPageLayoutMetadata } from "@/shared/lib"
 import { notFound } from "next/navigation"
@@ -16,9 +15,7 @@ const getBonusesPageData = async ({ locale }: { locale: string }) => {
 
 export async function LoyaltyPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
-
-  const tLabels = await getTranslations("page-labels")
-  const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const bonusesPageData = await getBonusesPageData({ locale })
   if (!bonusesPageData) notFound()
@@ -34,15 +31,16 @@ export async function LoyaltyPage({ params: { locale } }: IHomePageProps) {
           {
             type: "parent",
             slug: ClientRoutes.loyalty_program.path,
-            titleKey: ClientRoutes.loyalty_program.nameKey,
+            title: tBreadcrumbs("loyalty_program"),
           },
         ]}
       />
-      <PageInfo
-        label={tCommon("company-name")}
-        title={tLabels("loyalty")}
-      />
-      <LoyaltySection />
+      {bonusesPageData.layout.title && bonusesPageData.layout.description ? (
+        <PageInfo
+          label={bonusesPageData.layout.title}
+          title={bonusesPageData.layout.description}
+        />
+      ) : null}
       <ModulesSwitch modules={modules} />
     </>
   )

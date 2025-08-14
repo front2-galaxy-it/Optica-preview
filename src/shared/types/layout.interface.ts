@@ -45,5 +45,5 @@ export interface IRobots {
 export interface IBreadCrumbsItem {
   type: string
   slug: string
-  titleKey: string
+  title: string
 }

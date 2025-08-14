@@ -14,6 +14,16 @@ interface careerPopupProps {
 }
 
 export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuccess }) => {
+  const tButtons = useTranslations("buttons")
+  const tPopupCareer = useTranslations("popups.career-popup")
+  const tFormName = useTranslations("form.name")
+  const tFormSurname = useTranslations("form.surname")
+  const tFormPhone = useTranslations("form.phone")
+  const tFormVacancy = useTranslations("form.vacancy")
+  const tFormComment = useTranslations("form.comment-message")
+  const tFormPolicy = useTranslations("form.policyAgree")
+  const tFormFile = useTranslations("form.form-file")
+
   const {
     register,
     handleSubmit,
@@ -25,7 +35,7 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
     onChange: registerOnChange,
     ...restFileProps
   } = register("file", {
-    required: "Файл обов’язковий",
+    required: tFormFile("required"),
     validate: {
       allowedType: (files) =>
         (files &&
@@ -34,8 +44,8 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
             "application/msword",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
           ].includes(files[0]?.type)) ||
-        "Неправильний формат файлу",
-      maxSize: (files) => (files && files[0]?.size < 5 * 1024 * 1024) || "Файл перевищує 5 МБ",
+        tFormFile("wrong-format"),
+      maxSize: (files) => (files && files[0]?.size < 5 * 1024 * 1024) || tFormFile("max-file-size"),
     },
   })
 
@@ -78,14 +88,6 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
     }
   }
 
-  const tButtons = useTranslations("buttons")
-  const tPopupCareer = useTranslations("popups.career-popup")
-  const tFormName = useTranslations("form.name")
-  const tFormSurname = useTranslations("form.surname")
-  const tFormPhone = useTranslations("form.phone")
-  const tFormVacancy = useTranslations("form.vacancy")
-  const tFormComment = useTranslations("form.comment-message")
-
   return (
     <>
       <div className={classNames(css.career_popup_container, isOpen && css.show)}>
@@ -115,7 +117,7 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                 register={register("name", {
                   required: {
                     value: true,
-                    message: tFormName("required"),
+                    message: tFormName("error"),
                   },
                 })}
                 error={errors.name?.message}
@@ -128,7 +130,7 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                 register={register("surname", {
                   required: {
                     value: true,
-                    message: tFormSurname("required"),
+                    message: tFormSurname("error"),
                   },
                 })}
                 error={errors.surname?.message}
@@ -141,7 +143,7 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                 register={register("phone", {
                   required: {
                     value: true,
-                    message: tFormPhone("required"),
+                    message: tFormPhone("error"),
                   },
                   pattern: {
                     value: /^\+38\s?\(?0\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
@@ -196,7 +198,7 @@ export const CareerPopup: React.FC<careerPopupProps> = ({ isOpen, onClose, onSuc
                 register={register("policyAgree", {
                   required: {
                     value: true,
-                    message: "Погодьтеся з політикою конфіденційності.",
+                    message: tFormPolicy("error"),
                   },
                 })}
                 error={errors.policyAgree?.message}

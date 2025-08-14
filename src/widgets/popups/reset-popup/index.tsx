@@ -5,13 +5,29 @@ import css from "./styles.module.scss"
 import classNames from "classnames"
 import { Button, FormField } from "@/shared/ui"
 import { useForm } from "react-hook-form"
-import { FormData } from "@/shared/types/form-data.interface"
 import { useTranslations } from "next-intl"
-
+import { AuthService } from "@/shared/services/auth.service"
+// import { useRouter } from "next/navigation"
+// import { ClientRoutes } from "@/shared/routes"
 interface ResetPopupProps {
   isOpen: boolean
   onClose: () => void
   onSuccess: () => void
+}
+
+export interface RestoreBody {
+  phone: string
+}
+
+export interface VerifyBody {
+  phone: string
+  code: string
+}
+
+export interface ResetBody {
+  phone: string
+  password: string
+  confirmPassword: string
 }
 
 export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSuccess }) => {
@@ -20,37 +36,143 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
   const tFormNewPass = useTranslations("form.new-password")
   const tFormReNewPass = useTranslations("form.confirm-password")
   const tButtons = useTranslations("buttons")
+  const tCommon = useTranslations("common")
 
   const [step, setStep] = useState<"phone" | "code" | "password">("phone")
   const inputs = useRef<Array<HTMLInputElement | null>>([])
 
+  const [isSendConfirmation, setIsSendConfirmation] = useState<boolean>(false)
+  const [isError, setISError] = useState<boolean>(false)
+  // const router = useRouter()
+
+  const { getValues } = useForm<any>()
+  const password = getValues("password")
+
   const {
-    register,
     handleSubmit,
+    register,
+    reset,
+    setError,
     formState: { errors },
-    watch,
-  } = useForm<FormData>()
+  } = useForm<any>()
 
-  const password = watch("password")
-
-  const closePopup = () => {
-    onClose()
+  const resetHandle = () => {
+    reset()
   }
 
-  const onSubmit = (data: FormData) => {
-    if (step === "phone") {
-      console.log("Телефон отправлен:", data.phone)
-      setStep("code")
-    } else if (step === "code") {
-      console.log("Код:")
-      setStep("password")
-    } else if (step === "password") {
-      console.log("Новый пароль:", data.password)
-      onClose()
-      onSuccess()
-      setStep("phone")
+  // const onSubmit = handleSubmit(async (data: IForgotData) => {
+  //   // console.log(data)
+
+  //   const successHandle = () => {
+  //     resetHandle()
+  //     setIsSendConfirmation(true)
+  //     setTimeout(() => {
+  //       setIsSendConfirmation(false)
+  //       router.push(ClientRoutes.authorization.path)
+  //     }, 7000)
+  //   }
+
+  //   const errorHandle = (err: any) => {
+  //     console.log(err)
+
+  //     if (step === "phone") {
+  //       console.log("Телефон отправлен:", data.phone)
+  //       setStep("code")
+  //     } else if (step === "code") {
+  //       console.log("Код:")
+  //       setStep("password")
+  //     } else if (step === "password") {
+  //       console.log("Новый пароль:", data.password)
+  //       onClose()
+  //       onSuccess()
+  //       setStep("phone")
+  //     }
+
+  //     if (err.response.data.errors) {
+  //       const { phone } = err.response.data.errors
+
+  //       if (phone) {
+  //         setError("phone", {
+  //           type: "custom",
+  //           message: phone,
+  //         })
+  //       }
+  //     } else if (err.response.data.message == "Email is not confirmed") {
+  //       console.log(err.response.data.message)
+  //       resetHandle()
+  //       setIsSendConfirmation(true)
+  //       setTimeout(() => {
+  //         setIsSendConfirmation(false)
+  //       }, 10000)
+  //     } else {
+  //       resetHandle()
+  //       setISError(true)
+  //       setTimeout(() => {
+  //         setISError(false)
+  //       }, 7000)
+  //     }
+  //   }
+
+  //   await AuthService.forgot(data).then(successHandle, errorHandle).catch(errorHandle)
+  // })
+
+  const onSubmit = handleSubmit(async (data: any) => {
+    try {
+      if (step === "phone") {
+        await AuthService.restore({ phone: data.phone })
+
+        setStep("code") // переходим только если restore() прошёл успешно
+      } else if (step === "code") {
+        const code = inputs.current.map((input) => input?.value).join("")
+        if (code.length !== 4) {
+          setISError(true)
+          setTimeout(() => setISError(false), 3000)
+          return
+        }
+
+        await AuthService.verify({ phone: data.phone, code })
+
+        setStep("password")
+      } else if (step === "password") {
+        if (data.password !== data.confirmPassword) {
+          setError("confirmPassword", {
+            type: "custom",
+            message: tFormReNewPass("mismatch"),
+          })
+          return
+        }
+
+        await AuthService.reset({
+          phone: data.phone,
+          password: data.password,
+          confirmPassword: data.confirmPassword,
+        })
+
+        resetHandle()
+        onClose()
+        onSuccess()
+        setStep("phone")
+      }
+    } catch (err: any) {
+      console.error(err)
+      const errorData = err?.response?.data
+
+      if (errorData?.errors?.phone) {
+        setError("phone", {
+          type: "custom",
+          message: errorData.errors.phone,
+        })
+      } else if (errorData?.message === "Email is not confirmed") {
+        resetHandle()
+        setIsSendConfirmation(true)
+        setTimeout(() => setIsSendConfirmation(false), 10000)
+      } else {
+        resetHandle()
+        setISError(true)
+        setTimeout(() => setISError(false), 7000)
+      }
     }
-  }
+  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const value = e.target.value.replace(/\D/g, "")
@@ -70,6 +192,10 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
     }
   }
 
+  const closePopup = () => {
+    onClose()
+  }
+
   return (
     <div className={classNames(css.reset_popup_container, isOpen && css.show)}>
       <div className={css.reset_popup}>
@@ -86,7 +212,11 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
         </div>
 
         <div className={css.reset_popup_content}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          {isSendConfirmation && (
+            <div className={css.send_info}>{tCommon("confirmation-email")}</div>
+          )}
+          {isError && <div className={css.send_info}>{tCommon("error-send")}</div>}
+          <form onSubmit={onSubmit}>
             <h6 className={css.reset_popup_content_title}>
               {step === "phone" && tPopupsResetPass("forgot_password_instruction")}
               {step === "code" && tPopupsResetPass("code_instruction")}
@@ -110,7 +240,7 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
                     message: tFormPhone("pattern"),
                   },
                 })}
-                error={errors.phone?.message}
+                error={typeof errors.phone?.message === "string" ? errors.phone.message : undefined}
               />
             )}
 
@@ -149,7 +279,11 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
                       message: tFormNewPass("error"),
                     },
                   })}
-                  error={errors.password?.message}
+                  error={
+                    typeof errors.password?.message === "string"
+                      ? errors.password?.message
+                      : undefined
+                  }
                 />
                 <FormField
                   className={css.reset_popup_content_input}
@@ -164,9 +298,13 @@ export const ResetPopup: React.FC<ResetPopupProps> = ({ isOpen, onClose, onSucce
                       value: 6,
                       message: tFormReNewPass("required"),
                     },
-                    validate: (value) => value === password || tFormReNewPass("mismatch"), // сообщение об ошибке, если не совпадают
+                    validate: (value) => value === password || tFormReNewPass("mismatch"),
                   })}
-                  error={errors.confirmPassword?.message}
+                  error={
+                    typeof errors.confirmPassword?.message === "string"
+                      ? errors.confirmPassword.message
+                      : undefined
+                  }
                 />
               </>
             )}

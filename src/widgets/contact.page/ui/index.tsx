@@ -11,7 +11,13 @@ import { Pagination } from "swiper/modules"
 import { SliderButton } from "@/shared/ui/buttons"
 import { useTranslations } from "next-intl"
 
-export const ContactPageSection: React.FC = () => {
+interface ContactPageSectionProps {
+  data: any
+}
+
+export const ContactPageSection: React.FC<ContactPageSectionProps> = ({ data }) => {
+  const { description } = data.layout
+
   const swiperRef = useRef<SwiperType | null>(null)
 
   const images = ["/images/content_img_4.png"]
@@ -23,7 +29,7 @@ export const ContactPageSection: React.FC = () => {
       <div className="container">
         <div className={css.contact_section_content}>
           <div className={css.contact_section_text_block}>
-            <p className={css.contact_section_text}>{tContact("description")}</p>
+            <p className={css.contact_section_text}>{description}</p>
             <div className={css.contact_section_text_block_item}>
               <b className={css.contact_section_title}>{tContact("subtitle-1")}</b>
               <a

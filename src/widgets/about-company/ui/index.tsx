@@ -1,12 +1,17 @@
 "use client"
 
-import React from "react"
+import React, { DetailedHTMLProps, HtmlHTMLAttributes } from "react"
 import css from "./styles.module.scss"
 import Image from "next/image"
-import { useTranslations } from "next-intl"
 
-export const AboutUsSection: React.FC = () => {
-  const tAbout = useTranslations("about-page")
+interface AboutUsSectionProps
+  extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  module: any
+}
+
+export const AboutUsSection: React.FC<AboutUsSectionProps> = ({ module }) => {
+  const { text } = module.content
+  const { image } = module
   return (
     <section className={css.about_us_section}>
       <div className="container">
@@ -19,16 +24,11 @@ export const AboutUsSection: React.FC = () => {
             alt="image not found"
           />
           <div className={css.about_us_content_text_wrap}>
-            <p className={css.about_us_content_text}>{tAbout("description-1")}</p>
-            <p className={css.about_us_content_text}>{tAbout("description-2")}</p>
-            <p className={css.about_us_content_text}>{tAbout("description-3")}</p>
-            <p className={css.about_us_content_text}>{tAbout("description-4")}</p>
-            <p className={css.about_us_content_text}>{tAbout("description-5")}</p>
-            <p className={css.about_us_content_text}>{tAbout("description-6")}</p>
+            <p dangerouslySetInnerHTML={{ __html: text }}></p>
           </div>
           <Image
             className={css.about_us_content_img}
-            src="/images/content_img_2.png"
+            src={image ?? null}
             width={526}
             height={593}
             alt="image not found"

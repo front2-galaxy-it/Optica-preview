@@ -19,6 +19,7 @@ export async function TermsPage({ params: { locale } }: IHomePageProps) {
   unstable_setRequestLocale(locale)
 
   const tLabels = await getTranslations("page-labels")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
   const tCommon = await getTranslations("common")
 
   const termsPageData = await getTermsPageData({ locale })
@@ -31,9 +32,7 @@ export async function TermsPage({ params: { locale } }: IHomePageProps) {
   return (
     <>
       <Breadcrumbs
-        arr={[
-          { type: "parent", slug: ClientRoutes.terms.path, titleKey: ClientRoutes.terms.nameKey },
-        ]}
+        arr={[{ type: "parent", slug: ClientRoutes.terms.path, title: tBreadcrumbs("terms") }]}
       />
       <PageInfo
         label={tCommon("company-name")}

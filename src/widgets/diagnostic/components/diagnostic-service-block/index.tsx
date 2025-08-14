@@ -8,28 +8,31 @@ import { Button } from "@/shared/ui"
 import { Icon } from "@/shared/ui/icons"
 import { IDiagnosticService } from "@/shared/types/diagnostic-service.interface"
 import { ButtonLink } from "@/shared/ui/links"
+import { useTranslations } from "next-intl"
 
 export const DiagnosticServiceBlock: React.FC<
   IDiagnosticService & { onSignUpClick: () => void }
 > = ({
   slug,
-  img,
+  image,
   title,
-  description,
-  result,
+  short_description,
+  notice,
   duration,
   price,
-  oldPrice,
+  discount,
   condition,
   isFree = false,
   onSignUpClick,
 }) => {
+  const tButtons = useTranslations("buttons")
+
   return (
     <div className={css.diagnostic_service_block}>
       <span className={css.number}></span>
       <Image
         className={css.block_img}
-        src={img}
+        src={image ?? "/images/image-not-found.jpg"}
         width={536}
         height={381}
         alt="image not found"
@@ -37,8 +40,8 @@ export const DiagnosticServiceBlock: React.FC<
       <div className={css.block_text_wrap}>
         <h5 className={css.block_title}>{title}</h5>
         <div className={css.block_info}>
-          <p className={css.block_text}>{description}</p>
-          <p className={css.block_text}>{result}</p>
+          <p className={css.block_text}>{short_description}</p>
+          <p className={css.block_text}>{notice}</p>
         </div>
         <div className={css.duration}>
           <Icon name="icon_clock" />
@@ -50,7 +53,7 @@ export const DiagnosticServiceBlock: React.FC<
           <Price
             className={css.service_price}
             price={price ?? 0}
-            oldPrice={oldPrice}
+            oldPrice={discount}
           />
         )}
         <span className={css.condition}>{condition}</span>
@@ -61,7 +64,7 @@ export const DiagnosticServiceBlock: React.FC<
             iconName="arrow_right"
             onClick={onSignUpClick}
           >
-            Записатися
+            {tButtons("signup_btn")}
           </Button>
           <ButtonLink
             href={`/diagnostic/${slug}`}
@@ -69,7 +72,7 @@ export const DiagnosticServiceBlock: React.FC<
             iconPosition="right"
             iconName="arrow_right"
           >
-            Детальніше
+            {tButtons("details_btn")}
           </ButtonLink>
         </div>
       </div>

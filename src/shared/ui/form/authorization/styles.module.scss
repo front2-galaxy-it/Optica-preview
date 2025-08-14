@@ -19,6 +19,7 @@
     font-weight: 700;
     text-decoration: underline;
     transition: color 0.3s ease;
+    margin-left: 6px;
 
     &:hover {
       color: var(--blue-primary);
@@ -76,4 +77,9 @@
     color: var(--blue-primary);
     transition: color 0.3s ease;
   }
+}
+
+.send_info {
+  margin-bottom: 25px;
+  color: var(--red);
 }

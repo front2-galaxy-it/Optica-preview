@@ -54,12 +54,12 @@ export function ProductPage({
           {
             type: "parent",
             slug: ClientRoutes.product_category(slug),
-            titleKey: category.label,
+            title: category.label,
           },
           {
             type: "current",
             slug: ClientRoutes.product(slug, id),
-            titleKey: product.name,
+            title: product.name,
           },
         ]}
       />

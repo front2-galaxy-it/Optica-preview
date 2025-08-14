@@ -23,7 +23,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ arr, className, color,
             <RootLink href={ClientRoutes.home.path}>{t("home")}</RootLink>
           </li>
 
-          {arr.map(({ slug, titleKey }, index) => {
+          {arr.map(({ slug, title }, index) => {
             const isLast = index === arr.length - 1
 
             return (
@@ -39,7 +39,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ arr, className, color,
                     className={css.separator_icon}
                   />
                 </span>
-                <RootLink href={slug}>{t(titleKey)}</RootLink>
+                <RootLink href={slug}>{title}</RootLink>
               </li>
             )
           })}

@@ -20,6 +20,7 @@ export async function ProposalPage({ params: { locale } }: IHomePageProps) {
 
   const tLabels = await getTranslations("page-labels")
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   const militaryPageData = await getMilitaryPageData({ locale })
   if (!militaryPageData) notFound()
@@ -35,7 +36,7 @@ export async function ProposalPage({ params: { locale } }: IHomePageProps) {
           {
             type: "parent",
             slug: ClientRoutes.for_military.path,
-            titleKey: ClientRoutes.for_military.nameKey,
+            title: tBreadcrumbs("for_military"),
           },
         ]}
       />

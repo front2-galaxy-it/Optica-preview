@@ -49,6 +49,21 @@
     }
   }
 
+  .central_banner_img {
+    @include adaptive-value("width", 420, 117, 1);
+    @include adaptive-value("height", 279, 160, 1);
+    @include adaptive-value("padding-top", 16, 12, 1);
+    @include adaptive-value("padding-bottom", 16, 12, 1);
+    @include adaptive-value("padding-left", 16, 12, 1);
+    @include adaptive-value("padding-right", 16, 12, 1);
+
+    .banner_img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
   .content_block {
     max-width: 634px;
     @include adaptive-value("height", 400, 216, 1);

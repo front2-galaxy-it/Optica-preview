@@ -27,6 +27,7 @@ export async function PaymentPage({ params: { locale } }: IHomePageProps) {
 
   const tLabels = await getTranslations("page-labels")
   const tCommon = await getTranslations("common")
+  const tBreadcrumbs = await getTranslations("breadcrumbs")
 
   return (
     <>
@@ -35,7 +36,7 @@ export async function PaymentPage({ params: { locale } }: IHomePageProps) {
           {
             type: "parent",
             slug: ClientRoutes.payment.path,
-            titleKey: ClientRoutes.payment.nameKey,
+            title: tBreadcrumbs("payment"),
           },
         ]}
       />

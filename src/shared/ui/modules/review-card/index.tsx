@@ -4,7 +4,13 @@ import Image from "next/image"
 import classNames from "classnames"
 import { Icon } from "../../icons"
 
-interface Props {
+interface ReviewCardProps {
+  name: string
+  nick_name: string
+  rating: string
+  type: string
+  description: string
+  link: string
   className?: string
   onReplyClick?: () => void
   hideMediaIcon?: boolean
@@ -12,18 +18,23 @@ interface Props {
   itemData: any
 }
 
-export const ReviewCard: React.FC<Props> = ({
+export const ReviewCard: React.FC<ReviewCardProps> = ({
+  name,
+  nick_name,
+  rating,
+  type,
+  description,
+  // link,
   className,
   hideMediaIcon = false,
   hideReplyButton = true,
   onReplyClick,
-  itemData,
 }) => {
   // const [day, month, year] = date.split(".")
   // const formattedDate = `${year}-${month}-${day}`
 
-  const mediaImg = `/images/svg/${itemData.type}.svg`
-  const rating = parseInt(itemData.rating) // "1" → 1
+  const mediaImg = `/images/svg/${type}.svg`
+  const ratingScore = parseInt(rating)
 
   return (
     <div
@@ -33,8 +44,8 @@ export const ReviewCard: React.FC<Props> = ({
     >
       <div className={css.review_card_head}>
         <div className={css.user_info}>
-          <h6 className={css.username}>{itemData.name}</h6>
-          <span className={css.nickname}>{itemData.nick_name}</span>
+          <h6 className={css.username}>{name}</h6>
+          <span className={css.nickname}>{nick_name}</span>
         </div>
         {!hideMediaIcon && (
           <Image
@@ -53,13 +64,13 @@ export const ReviewCard: React.FC<Props> = ({
             key={idx}
             name="icon_starV2"
             className={classNames(css.icon_star, {
-              [css.active]: idx < rating,
+              [css.active]: idx < ratingScore,
             })}
           />
         ))}
       </div>
 
-      <p className={css.review_card_text}>{itemData.description}</p>
+      <p className={css.review_card_text}>{description}</p>
 
       <div className={css.review_card_footer}>
         {/* <time

@@ -63,9 +63,12 @@ export const ReviewsSection: React.FC<IReviewSectionProps> = ({ module }) => {
         {...swiperSettings}
       >
         {Array.isArray(items) &&
-          items.slice(0, 12).map((item: any, index: number) => (
+          items.slice(0, 12).map((card: any, index: number) => (
             <SwiperSlide key={index}>
-              <ReviewCard itemData={item} />
+              <ReviewCard
+                {...card}
+                key={index}
+              />
             </SwiperSlide>
           ))}
         <div className="swiper-pagination reviews-pagination"></div>
